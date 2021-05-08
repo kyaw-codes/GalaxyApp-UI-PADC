@@ -25,16 +25,25 @@ class MainCoordinator: Coordinator {
     
     func login() {
         let authVC = AuthenticationVC()
+        authVC.coordinator = self
         authVC.modalPresentationStyle = .fullScreen
-        LoginVC.shared.coordinator = self
-        SignUpVC.shared.coordinator = self
         navigationController.present(authVC, animated: true, completion: nil)
     }
     
     func home() {
-        let homeVC = HomeVC()
-        navigationController.dismiss(animated: true) {
-            self.navigationController.pushViewController(homeVC, animated: true)
+        navigationController.dismiss(animated: true, completion: nil)
+        let child = HomeCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.start()
+    }
+    
+    func childDidFinish(_ child: Coordinator?) {
+        for (index, coordinator) in childCoordinators.enumerated() {
+            if coordinator === child {
+                childCoordinators.remove(at: index)
+                break
+            }
         }
     }
     

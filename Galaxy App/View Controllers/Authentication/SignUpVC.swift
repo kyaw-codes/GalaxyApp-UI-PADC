@@ -12,8 +12,8 @@ class SignUpVC: UIViewController {
 
     static var shared = SignUpVC()
     
-    var coordinator: MainCoordinator?
-    
+    var onConfirmTapped: (() -> Void)?
+
     private let firstNameLabel = UILabel(text: "First name", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
     private let lastNameLabel = UILabel(text: "Last name", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
     private let emailLabel = UILabel(text: "Email", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
@@ -76,7 +76,7 @@ class SignUpVC: UIViewController {
         watchKeyboardNotification()
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onViewTapped)))
-        confirmButton.addTarget(self, action: #selector(onConfirmTapped), for: .touchUpInside)
+        confirmButton.addTarget(self, action: #selector(handleConfirmTapped), for: .touchUpInside)
     }
     
     private func watchKeyboardNotification() {
@@ -151,8 +151,8 @@ class SignUpVC: UIViewController {
         view.endEditing(true)
     }
     
-    @objc private func onConfirmTapped() {
-        coordinator?.home()
+    @objc private func handleConfirmTapped() {
+        onConfirmTapped?()
     }
 }
 

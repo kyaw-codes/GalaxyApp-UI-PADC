@@ -12,6 +12,9 @@
 		021C75A7264684F700607FE1 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75A6264684F700607FE1 /* HomeVC.swift */; };
 		021C75AB264685E100607FE1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75AA264685E100607FE1 /* Coordinator.swift */; };
 		021C75AF2646864300607FE1 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75AE2646864300607FE1 /* MainCoordinator.swift */; };
+		021C75B62646DAD100607FE1 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75B52646DAD100607FE1 /* HomeCoordinator.swift */; };
+		021C75BA2646E37600607FE1 /* HomeDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75B92646E37600607FE1 /* HomeDatasource.swift */; };
+		021C75BF2646E3D100607FE1 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75BE2646E3D100607FE1 /* ProfileCell.swift */; };
 		0238EBAA26452F3D0049D670 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBA926452F3D0049D670 /* UIView+Extensions.swift */; };
 		0238EBB0264534C30049D670 /* TopTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBAF264534C30049D670 /* TopTabBar.swift */; };
 		0238EBB8264564910049D670 /* OutlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBB7264564910049D670 /* OutlineTextField.swift */; };
@@ -46,6 +49,9 @@
 		021C75A6264684F700607FE1 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		021C75AA264685E100607FE1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		021C75AE2646864300607FE1 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		021C75B52646DAD100607FE1 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		021C75B92646E37600607FE1 /* HomeDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDatasource.swift; sourceTree = "<group>"; };
+		021C75BE2646E3D100607FE1 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		0238EBA926452F3D0049D670 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		0238EBAF264534C30049D670 /* TopTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBar.swift; sourceTree = "<group>"; };
 		0238EBB7264564910049D670 /* OutlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineTextField.swift; sourceTree = "<group>"; };
@@ -118,6 +124,7 @@
 		020E6A5F26442F8600636EE6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				021C75BD2646E3C500607FE1 /* Cells */,
 				02BF24CB26446B8D00B257D1 /* OutlineButton.swift */,
 				0238EBAF264534C30049D670 /* TopTabBar.swift */,
 				0238EBB7264564910049D670 /* OutlineTextField.swift */,
@@ -148,8 +155,25 @@
 			children = (
 				021C75AA264685E100607FE1 /* Coordinator.swift */,
 				021C75AE2646864300607FE1 /* MainCoordinator.swift */,
+				021C75B52646DAD100607FE1 /* HomeCoordinator.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		021C75B82646E36B00607FE1 /* Datasources */ = {
+			isa = PBXGroup;
+			children = (
+				021C75B92646E37600607FE1 /* HomeDatasource.swift */,
+			);
+			path = Datasources;
+			sourceTree = "<group>";
+		};
+		021C75BD2646E3C500607FE1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				021C75BE2646E3D100607FE1 /* ProfileCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		029778202644357B00112F4E /* Fonts */ = {
@@ -187,6 +211,7 @@
 		02AE45CC264429A400C7F031 /* Galaxy App */ = {
 			isa = PBXGroup;
 			children = (
+				021C75B82646E36B00607FE1 /* Datasources */,
 				020E6A5F26442F8600636EE6 /* Views */,
 				020E6A5E26442F8000636EE6 /* View Controllers */,
 				020E6A6026442F8B00636EE6 /* Delegates */,
@@ -365,6 +390,7 @@
 			files = (
 				0238EBAA26452F3D0049D670 /* UIView+Extensions.swift in Sources */,
 				021C75AF2646864300607FE1 /* MainCoordinator.swift in Sources */,
+				021C75BA2646E37600607FE1 /* HomeDatasource.swift in Sources */,
 				0297783D264437D700112F4E /* UILabel+Extensions.swift in Sources */,
 				0238EBB0264534C30049D670 /* TopTabBar.swift in Sources */,
 				0238EBBB2646430D0049D670 /* UITextField+Extensions.swift in Sources */,
@@ -383,7 +409,9 @@
 				02BF24DC26452D8500B257D1 /* SignUpVC.swift in Sources */,
 				02AE45D0264429A400C7F031 /* SceneDelegate.swift in Sources */,
 				021C75A7264684F700607FE1 /* HomeVC.swift in Sources */,
+				021C75BF2646E3D100607FE1 /* ProfileCell.swift in Sources */,
 				020E6A6426442FBB00636EE6 /* UIColor+Extensions.swift in Sources */,
+				021C75B62646DAD100607FE1 /* HomeCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

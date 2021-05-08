@@ -12,7 +12,7 @@ class LoginVC: UIViewController {
 
     static var shared = LoginVC()
     
-    var coordinator: MainCoordinator?
+    var onConfirmTapped: (() -> Void)?
     
     private let emailLabel = UILabel(text: "Email", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
     private let passwordLabel = UILabel(text: "Password", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
@@ -69,7 +69,7 @@ class LoginVC: UIViewController {
         watchKeyboardNotification()
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onViewTapped)))
-        confirmButton.addTarget(self, action: #selector(onConfirmTapped), for: .touchUpInside)
+        confirmButton.addTarget(self, action: #selector(handleConfirmTapped), for: .touchUpInside)
     }
     
     private func watchKeyboardNotification() {
@@ -143,8 +143,8 @@ class LoginVC: UIViewController {
         view.endEditing(true)
     }
     
-    @objc private func onConfirmTapped() {
-        coordinator?.home()
+    @objc private func handleConfirmTapped() {
+        onConfirmTapped?()
     }
 
 }

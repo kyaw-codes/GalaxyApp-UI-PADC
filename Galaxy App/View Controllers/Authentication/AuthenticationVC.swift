@@ -11,6 +11,8 @@ class AuthenticationVC: UIViewController {
     
     // MARK: - Views
     
+    var coordinator: MainCoordinator?
+    
     private let welcomeLabel: UILabel = {
         let lbl = UILabel(text: "", font: .poppinsSemiBold, size: 28, numberOfLines: 0, color: .galaxyBlack)
         let paragraphStyle = NSMutableParagraphStyle()
@@ -40,6 +42,13 @@ class AuthenticationVC: UIViewController {
         
         setupView()
         add(vc: LoginVC.shared)
+        
+        LoginVC.shared.onConfirmTapped = { [weak self] in
+            self?.handleConfirmTapped()
+        }
+        SignUpVC.shared.onConfirmTapped = { [weak self] in
+            self?.handleConfirmTapped()
+        }
     }
     
     private func setupView() {
@@ -110,6 +119,10 @@ class AuthenticationVC: UIViewController {
             toView.alpha = 1
             fromView.alpha = 0
         }, completion: nil)
+    }
+    
+    private func handleConfirmTapped() {
+        coordinator?.home()
     }
     
 }
