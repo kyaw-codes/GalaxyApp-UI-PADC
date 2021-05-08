@@ -11,6 +11,8 @@ import SnapKit
 class GetStartedVC: UIViewController {
     
     private let vectorImageView: UIImageView = UIImageView(image: UIImage(named: "horror_movie_vector"), contentMode: .scaleAspectFit)
+    
+    var coordinator: MainCoordinator?
 
     private let greetingLabel: UILabel = {
         let lbl = UILabel(text: "", font: .poppinsSemiBold, size: 28, numberOfLines: 0)
@@ -75,9 +77,7 @@ class GetStartedVC: UIViewController {
     }
     
     @objc private func onStartTapped() {
-        let authVC = AuthenticationVC()
-        authVC.modalPresentationStyle = .fullScreen
-        present(authVC, animated: true, completion: nil)
+        coordinator?.login()
     }
 
 }

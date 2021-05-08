@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		020E6A6426442FBB00636EE6 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020E6A6326442FBB00636EE6 /* UIColor+Extensions.swift */; };
 		021C75A426464E5800607FE1 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75A326464E5800607FE1 /* UIButton+Extensions.swift */; };
+		021C75A7264684F700607FE1 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75A6264684F700607FE1 /* HomeVC.swift */; };
+		021C75AB264685E100607FE1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75AA264685E100607FE1 /* Coordinator.swift */; };
+		021C75AF2646864300607FE1 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75AE2646864300607FE1 /* MainCoordinator.swift */; };
 		0238EBAA26452F3D0049D670 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBA926452F3D0049D670 /* UIView+Extensions.swift */; };
 		0238EBB0264534C30049D670 /* TopTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBAF264534C30049D670 /* TopTabBar.swift */; };
 		0238EBB8264564910049D670 /* OutlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBB7264564910049D670 /* OutlineTextField.swift */; };
@@ -40,6 +43,9 @@
 /* Begin PBXFileReference section */
 		020E6A6326442FBB00636EE6 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		021C75A326464E5800607FE1 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
+		021C75A6264684F700607FE1 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		021C75AA264685E100607FE1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		021C75AE2646864300607FE1 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		0238EBA926452F3D0049D670 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		0238EBAF264534C30049D670 /* TopTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBar.swift; sourceTree = "<group>"; };
 		0238EBB7264564910049D670 /* OutlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineTextField.swift; sourceTree = "<group>"; };
@@ -104,6 +110,7 @@
 			children = (
 				02AE45D1264429A400C7F031 /* GetStartedVC.swift */,
 				02BF24D726452D6B00B257D1 /* Authentication */,
+				021C75A6264684F700607FE1 /* HomeVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -134,6 +141,15 @@
 				02AE45D8264429AA00C7F031 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		021C75A9264685D500607FE1 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				021C75AA264685E100607FE1 /* Coordinator.swift */,
+				021C75AE2646864300607FE1 /* MainCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		029778202644357B00112F4E /* Fonts */ = {
@@ -185,6 +201,7 @@
 		02BF24CE2645034B00B257D1 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				021C75A9264685D500607FE1 /* Coordinators */,
 				020E6A5D26442F7C00636EE6 /* Extensions */,
 				02BF24CF2645035100B257D1 /* Protocols */,
 			);
@@ -347,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0238EBAA26452F3D0049D670 /* UIView+Extensions.swift in Sources */,
+				021C75AF2646864300607FE1 /* MainCoordinator.swift in Sources */,
 				0297783D264437D700112F4E /* UILabel+Extensions.swift in Sources */,
 				0238EBB0264534C30049D670 /* TopTabBar.swift in Sources */,
 				0238EBBB2646430D0049D670 /* UITextField+Extensions.swift in Sources */,
@@ -358,11 +376,13 @@
 				02AE45D2264429A400C7F031 /* GetStartedVC.swift in Sources */,
 				02AE45CE264429A400C7F031 /* AppDelegate.swift in Sources */,
 				0238EBB8264564910049D670 /* OutlineTextField.swift in Sources */,
+				021C75AB264685E100607FE1 /* Coordinator.swift in Sources */,
 				02BF24CC26446B8D00B257D1 /* OutlineButton.swift in Sources */,
 				021C75A426464E5800607FE1 /* UIButton+Extensions.swift in Sources */,
 				0297784026443DE200112F4E /* UIStackView+Extensions.swift in Sources */,
 				02BF24DC26452D8500B257D1 /* SignUpVC.swift in Sources */,
 				02AE45D0264429A400C7F031 /* SceneDelegate.swift in Sources */,
+				021C75A7264684F700607FE1 /* HomeVC.swift in Sources */,
 				020E6A6426442FBB00636EE6 /* UIColor+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

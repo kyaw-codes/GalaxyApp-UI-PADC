@@ -11,7 +11,9 @@ import SnapKit
 class LoginVC: UIViewController {
 
     static var shared = LoginVC()
-
+    
+    var coordinator: MainCoordinator?
+    
     private let emailLabel = UILabel(text: "Email", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
     private let passwordLabel = UILabel(text: "Password", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
     private let forgotPasswordLabel = UILabel(text: "Forgot Password ?", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
@@ -67,6 +69,7 @@ class LoginVC: UIViewController {
         watchKeyboardNotification()
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onViewTapped)))
+        confirmButton.addTarget(self, action: #selector(onConfirmTapped), for: .touchUpInside)
     }
     
     private func watchKeyboardNotification() {
@@ -136,8 +139,12 @@ class LoginVC: UIViewController {
         }
     }
     
-    @objc func onViewTapped() {
+    @objc private func onViewTapped() {
         view.endEditing(true)
+    }
+    
+    @objc private func onConfirmTapped() {
+        coordinator?.home()
     }
 
 }
@@ -146,7 +153,8 @@ extension LoginVC : UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == emailOutlineField.textField {
-            textField.becomeFirstResponder()
+            textField.resignFirstResponder()
+            passwordOutlineField.textField.becomeFirstResponder()
             return false
         } else {
             textField.resignFirstResponder()
