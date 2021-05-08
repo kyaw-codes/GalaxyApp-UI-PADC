@@ -36,6 +36,7 @@ class GetStartedVC: UIViewController {
         navigationController?.navigationBar.isHidden = true
         
         setupView()
+        startButton.addTarget(self, action: #selector(onStartTapped), for: .touchUpInside)
     }
     
     private func setupView() {
@@ -73,6 +74,11 @@ class GetStartedVC: UIViewController {
         }
     }
     
+    @objc private func onStartTapped() {
+        let authVC = AuthenticationVC()
+        authVC.modalPresentationStyle = .fullScreen
+        present(authVC, animated: true, completion: nil)
+    }
 
 }
 

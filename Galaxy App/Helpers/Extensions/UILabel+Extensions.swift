@@ -9,12 +9,13 @@ import UIKit
 
 extension UILabel {
     
-    convenience init(text: String, font: UIFont.GalaxyFont, size: CGFloat = UIFont.labelFontSize, numberOfLines: Int = 1, color: UIColor = .white) {
+    convenience init(text: String, font: UIFont.GalaxyFont, size: CGFloat = UIFont.labelFontSize, numberOfLines: Int = 1, color: UIColor = .white, alignment: NSTextAlignment = .left) {
         self.init()
         
         self.text = text
         self.font = font.font(of: size)
         self.numberOfLines = numberOfLines
         self.textColor = color
+        self.textAlignment = alignment
     }
 }
