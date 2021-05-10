@@ -35,7 +35,7 @@ class GetStartedVC: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .galaxyViolet
-        setupNavBar()
+        navigationController?.navigationBar.isHidden = true
         
         setupView()
         startButton.addTarget(self, action: #selector(onStartTapped), for: .touchUpInside)
@@ -74,14 +74,6 @@ class GetStartedVC: UIViewController {
             make.leading.trailing.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(24)
             make.height.equalToSuperview().multipliedBy(0.16)
         }
-    }
-    
-    private func setupNavBar() {
-        let navBar = navigationController!.navigationBar
-        navBar.backgroundColor = .clear
-        navBar.setBackgroundImage(UIImage(), for: .default)
-        navBar.shadowImage = UIImage()
-        navBar.isTranslucent = true
     }
     
     @objc private func onStartTapped() {

@@ -8,7 +8,9 @@
 import UIKit
 import SnapKit
 
-class NavigationBarVC: UIViewController {
+class SideMenuVC: UIViewController {
+    
+    let shadowRadius: CGFloat = 16
     
     private var profileImageView = UIImageView(image: #imageLiteral(resourceName: "profile"), contentMode: .scaleAspectFill)
     private var nameLabel = UILabel(text: "Craig Federighi", font: .poppinsSemiBold, size: 20, color: .white)
@@ -20,6 +22,11 @@ class NavigationBarVC: UIViewController {
 
         view.backgroundColor = .galaxyViolet
         setupView()
+        
+        view.layer.shadowColor = UIColor.galaxyViolet.cgColor
+        view.layer.shadowOpacity = 0.7
+        view.layer.shadowOffset = CGSize(width: 5, height: 0)
+        view.layer.shadowRadius = shadowRadius
     }
     
     private func setupView() {
@@ -38,15 +45,15 @@ class NavigationBarVC: UIViewController {
             make.leading.equalTo(profileImageView).inset(10)
             make.top.equalTo(profileImageView.snp.bottom).inset(-50)
             make.trailing.equalTo(editButton)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(40)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(50)
         }
     }
     
     private func setupProfileView() {
         view.addSubview(profileImageView)
         profileImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(60)
-            make.leading.equalToSuperview().inset(20)
+            make.top.equalToSuperview().inset(80)
+            make.leading.equalToSuperview().inset(16)
             make.width.height.equalTo(50)
         }
         profileImageView.layer.cornerRadius = 50 / 2
@@ -66,8 +73,8 @@ class NavigationBarVC: UIViewController {
         
         view.addSubview(editButton)
         editButton.snp.makeConstraints { (make) in
-            make.trailing.equalToSuperview().inset(20)
-            make.bottom.equalTo(mailLabel)
+            make.trailing.equalToSuperview().inset(12)
+            make.bottom.equalTo(mailLabel).inset(-6)
         }
     }
 
