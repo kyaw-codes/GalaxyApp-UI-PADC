@@ -27,6 +27,15 @@ class HomeCoordinator: Coordinator {
     func movieDetail(_ movie: Movie?) {
         let detailVC = MovieDetailVC()
         detailVC.movie = movie
+        detailVC.coordinator = self
         navigationController.pushViewController(detailVC, animated: true)
+    }
+    
+    func popToHome() {
+        navigationController.popViewController(animated: true)
+    }
+    
+    func getTicket() {
+        
     }
 }

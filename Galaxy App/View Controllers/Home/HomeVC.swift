@@ -44,6 +44,7 @@ class HomeVC: UIViewController {
         containerView.frame = view.bounds
         
         setupNavBar()
+        navigationController?.navigationBar.isHidden = true
         
         setupCollectionView()
         setupSideMenuBar()
@@ -51,12 +52,6 @@ class HomeVC: UIViewController {
     }
     
     private func setupNavBar() {
-        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
-        navView.addSubview(blurView)
-        navView.backgroundColor = .clear
-
-        blurView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 100)
-        
         let menuButton = UIButton(iconImage: #imageLiteral(resourceName: "menu"))
         let searchButton = UIButton(iconImage: #imageLiteral(resourceName: "search"))
         menuButton.addTarget(self, action: #selector(handleMenuTapped), for: .touchUpInside)
