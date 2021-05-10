@@ -23,4 +23,10 @@ class HomeCoordinator: Coordinator {
         homeVC.coordinator = self
         navigationController.pushViewController(homeVC, animated: true)
     }
+    
+    func movieDetail(_ movie: Movie?) {
+        let detailVC = MovieDetailVC()
+        detailVC.movie = movie
+        navigationController.pushViewController(detailVC, animated: true)
+    }
 }

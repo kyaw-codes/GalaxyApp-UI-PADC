@@ -45,6 +45,8 @@
 		02D635B02647E4670027A0BA /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D635AF2647E4670027A0BA /* Movie.swift */; };
 		02D635B526481E1A0027A0BA /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D635B426481E1A0027A0BA /* Bundle+Extensions.swift */; };
 		02D635BA264821D40027A0BA /* Movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 02D635B9264821D40027A0BA /* Movies.json */; };
+		02D635BD264857AE0027A0BA /* MovieDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D635BC264857AE0027A0BA /* MovieDetailVC.swift */; };
+		02D635C3264861170027A0BA /* NavigationBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D635C2264861170027A0BA /* NavigationBarVC.swift */; };
 		3833819662C3DFFD4A9F3139 /* Pods_Galaxy_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DCA23893A73D92AF63029D /* Pods_Galaxy_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +91,8 @@
 		02D635AF2647E4670027A0BA /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		02D635B426481E1A0027A0BA /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		02D635B9264821D40027A0BA /* Movies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Movies.json; sourceTree = "<group>"; };
+		02D635BC264857AE0027A0BA /* MovieDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailVC.swift; sourceTree = "<group>"; };
+		02D635C2264861170027A0BA /* NavigationBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarVC.swift; sourceTree = "<group>"; };
 		1264DFEE3EFA0F2B1A8CA3E9 /* Pods-Galaxy App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Galaxy App.debug.xcconfig"; path = "Target Support Files/Pods-Galaxy App/Pods-Galaxy App.debug.xcconfig"; sourceTree = "<group>"; };
 		60DCA23893A73D92AF63029D /* Pods_Galaxy_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Galaxy_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E129F1C46375C9B536E4A283 /* Pods-Galaxy App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Galaxy App.release.xcconfig"; path = "Target Support Files/Pods-Galaxy App/Pods-Galaxy App.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,8 +130,9 @@
 			isa = PBXGroup;
 			children = (
 				02AE45D1264429A400C7F031 /* GetStartedVC.swift */,
+				02D635C2264861170027A0BA /* NavigationBarVC.swift */,
 				02BF24D726452D6B00B257D1 /* Authentication */,
-				021C75A6264684F700607FE1 /* HomeVC.swift */,
+				02D635C0264858660027A0BA /* Home */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -224,8 +229,8 @@
 		02AE45CC264429A400C7F031 /* Galaxy App */ = {
 			isa = PBXGroup;
 			children = (
-				02D635AE2647E45F0027A0BA /* Models */,
 				021C75B82646E36B00607FE1 /* Datasources */,
+				02D635AE2647E45F0027A0BA /* Models */,
 				020E6A5F26442F8600636EE6 /* Views */,
 				020E6A5E26442F8000636EE6 /* View Controllers */,
 				020E6A6026442F8B00636EE6 /* Delegates */,
@@ -280,6 +285,15 @@
 				02D635AF2647E4670027A0BA /* Movie.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		02D635C0264858660027A0BA /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				021C75A6264684F700607FE1 /* HomeVC.swift */,
+				02D635BC264857AE0027A0BA /* MovieDetailVC.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		E8790FB51FD968D15254FBC9 /* Frameworks */ = {
@@ -420,6 +434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02D635C3264861170027A0BA /* NavigationBarVC.swift in Sources */,
 				0238EBAA26452F3D0049D670 /* UIView+Extensions.swift in Sources */,
 				021C75AF2646864300607FE1 /* MainCoordinator.swift in Sources */,
 				021C75BA2646E37600607FE1 /* HomeDatasource.swift in Sources */,
@@ -442,6 +457,7 @@
 				02BF24DC26452D8500B257D1 /* SignUpVC.swift in Sources */,
 				02D635AC2647E37E0027A0BA /* MovieHeader.swift in Sources */,
 				02AE45D0264429A400C7F031 /* SceneDelegate.swift in Sources */,
+				02D635BD264857AE0027A0BA /* MovieDetailVC.swift in Sources */,
 				021C75A7264684F700607FE1 /* HomeVC.swift in Sources */,
 				021C75BF2646E3D100607FE1 /* ProfileCell.swift in Sources */,
 				020E6A6426442FBB00636EE6 /* UIColor+Extensions.swift in Sources */,

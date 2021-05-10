@@ -23,4 +23,10 @@ extension UIButton {
         self.titleLabel?.font = font.font(of: textSize)
         self.layer.cornerRadius = cornerRadius
     }
+    
+    convenience init(iconImage: UIImage?) {
+        self.init(frame: .zero)
+        
+        self.setImage(iconImage, for: .normal)
+    }
 }

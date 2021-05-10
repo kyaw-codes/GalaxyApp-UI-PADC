@@ -18,5 +18,6 @@ extension UIImageView {
         self.init(image: image)
         
         self.contentMode = contentMode
+        self.layer.masksToBounds = true
     }
 }

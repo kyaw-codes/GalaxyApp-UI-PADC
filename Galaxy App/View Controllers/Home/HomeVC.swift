@@ -32,7 +32,7 @@ class HomeVC: UIViewController {
         
         view.backgroundColor = .systemBackground
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleMenuTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "search"), style: .plain, target: self, action: nil)
         
         view.addSubview(collectionView)
@@ -40,6 +40,8 @@ class HomeVC: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.leading.trailing.bottom.equalToSuperview()
         }
+
+        collectionView.delegate = self
         collectionView.dataSource = dataSource
     }
     
@@ -71,4 +73,16 @@ class HomeVC: UIViewController {
         return section
     }
     
+    @objc private func handleMenuTapped() {
+        // TODO: - Implement tomorrow
+        debugPrint("Menu Tapped")
+    }
+    
+}
+
+extension HomeVC: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        coordinator?.movieDetail(dataSource.getMovie(at: indexPath))
+    }
 }

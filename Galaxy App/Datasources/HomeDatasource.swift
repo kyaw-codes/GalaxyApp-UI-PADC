@@ -65,4 +65,8 @@ class HomeDatasource: NSObject, UICollectionViewDataSource {
             return collectionView.dequeueConfiguredReusableSupplementary(using: movieHeaderRegistration, for: indexPath)
         }
     }
+    
+    func getMovie(at indexPath: IndexPath) -> Movie? {
+        movieVO[indexPath.section - 1].movies[indexPath.item]
+    }
 }
