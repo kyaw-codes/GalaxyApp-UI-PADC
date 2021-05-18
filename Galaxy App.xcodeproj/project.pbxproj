@@ -15,6 +15,7 @@
 		021C75B62646DAD100607FE1 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75B52646DAD100607FE1 /* HomeCoordinator.swift */; };
 		021C75BA2646E37600607FE1 /* HomeDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75B92646E37600607FE1 /* HomeDatasource.swift */; };
 		021C75BF2646E3D100607FE1 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75BE2646E3D100607FE1 /* ProfileCell.swift */; };
+		0238B95D264A4EC300EC352B /* FloatingMovieDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238B95C264A4EC300EC352B /* FloatingMovieDescriptionVC.swift */; };
 		0238EBAA26452F3D0049D670 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBA926452F3D0049D670 /* UIView+Extensions.swift */; };
 		0238EBB0264534C30049D670 /* TopTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBAF264534C30049D670 /* TopTabBar.swift */; };
 		0238EBB8264564910049D670 /* OutlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBB7264564910049D670 /* OutlineTextField.swift */; };
@@ -59,6 +60,7 @@
 		021C75B52646DAD100607FE1 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		021C75B92646E37600607FE1 /* HomeDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDatasource.swift; sourceTree = "<group>"; };
 		021C75BE2646E3D100607FE1 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		0238B95C264A4EC300EC352B /* FloatingMovieDescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingMovieDescriptionVC.swift; sourceTree = "<group>"; };
 		0238EBA926452F3D0049D670 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		0238EBAF264534C30049D670 /* TopTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBar.swift; sourceTree = "<group>"; };
 		0238EBB7264564910049D670 /* OutlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineTextField.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			children = (
 				021C75A6264684F700607FE1 /* HomeVC.swift */,
 				02D635BC264857AE0027A0BA /* MovieDetailVC.swift */,
+				0238B95C264A4EC300EC352B /* FloatingMovieDescriptionVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				021C75AF2646864300607FE1 /* MainCoordinator.swift in Sources */,
 				021C75BA2646E37600607FE1 /* HomeDatasource.swift in Sources */,
 				0297783D264437D700112F4E /* UILabel+Extensions.swift in Sources */,
+				0238B95D264A4EC300EC352B /* FloatingMovieDescriptionVC.swift in Sources */,
 				0238EBB0264534C30049D670 /* TopTabBar.swift in Sources */,
 				0238EBBB2646430D0049D670 /* UITextField+Extensions.swift in Sources */,
 				0297781A2644327E00112F4E /* UIImageView+Extensions.swift in Sources */,
