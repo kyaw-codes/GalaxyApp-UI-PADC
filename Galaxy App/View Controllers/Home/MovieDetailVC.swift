@@ -7,8 +7,9 @@
 
 import UIKit
 import SnapKit
+import FloatingPanel
 
-class MovieDetailVC: UIViewController {
+class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
     
     var movie: Movie? {
         didSet {
@@ -45,11 +46,13 @@ class MovieDetailVC: UIViewController {
         view.backgroundColor = .systemBackground
         
         setupView()
+        setupFloatingMovieDescriptionVC()
         setupCTAButton()
     }
     
     private func setupView() {
         view.addSubview(movieImageView)
+        
         movieImageView.snp.makeConstraints { (make) in
             make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(movieImageViewHeight)
@@ -68,6 +71,22 @@ class MovieDetailVC: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.leading.equalToSuperview().inset(20)
         }
+    }
+    
+    private func setupFloatingMovieDescriptionVC() {
+        let fpc = FloatingPanelController(delegate: self)
+        fpc.surfaceView.backgroundColor = .clear
+        fpc.backdropView.backgroundColor = .white
+
+        fpc.layout = Layout(inside: self)
+        
+        let descriptionVC = FloatingMovieDescriptionVC()
+        descriptionVC.movie = movie
+        fpc.set(contentViewController: descriptionVC)
+        fpc.contentMode = .static
+        fpc.surfaceView.grabberHandleSize = .zero
+
+        fpc.addPanel(toParent: self)
     }
     
     private func setupCTAButton() {
@@ -96,3 +115,4 @@ class MovieDetailVC: UIViewController {
         coordinator?.popToHome()
     }
 }
+

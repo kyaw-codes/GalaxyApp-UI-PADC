@@ -24,6 +24,8 @@
 		0297783D264437D700112F4E /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0297783C264437D700112F4E /* UILabel+Extensions.swift */; };
 		0297784026443DE200112F4E /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0297783F26443DE200112F4E /* UIStackView+Extensions.swift */; };
 		029778442644400E00112F4E /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 029778432644400E00112F4E /* OFL.txt */; };
+		02A8E29D2654109B009F1C5E /* MovieDetailVC+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8E29C2654109B009F1C5E /* MovieDetailVC+Layout.swift */; };
+		02A8E2A0265415C2009F1C5E /* IMDbRatingSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8E29F265415C2009F1C5E /* IMDbRatingSV.swift */; };
 		02AE45CE264429A400C7F031 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AE45CD264429A400C7F031 /* AppDelegate.swift */; };
 		02AE45D0264429A400C7F031 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AE45CF264429A400C7F031 /* SceneDelegate.swift */; };
 		02AE45D2264429A400C7F031 /* GetStartedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AE45D1264429A400C7F031 /* GetStartedVC.swift */; };
@@ -75,6 +77,8 @@
 		029778492644402100112F4E /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		0297784A2644403600112F4E /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
 		0297784B2644403700112F4E /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		02A8E29C2654109B009F1C5E /* MovieDetailVC+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailVC+Layout.swift"; sourceTree = "<group>"; };
+		02A8E29F265415C2009F1C5E /* IMDbRatingSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDbRatingSV.swift; sourceTree = "<group>"; };
 		02AE45CA264429A400C7F031 /* Galaxy App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Galaxy App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		02AE45CD264429A400C7F031 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02AE45CF264429A400C7F031 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 				02BF24CB26446B8D00B257D1 /* OutlineButton.swift */,
 				0238EBAF264534C30049D670 /* TopTabBar.swift */,
 				0238EBB7264564910049D670 /* OutlineTextField.swift */,
+				02A8E29F265415C2009F1C5E /* IMDbRatingSV.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 			children = (
 				021C75A6264684F700607FE1 /* HomeVC.swift */,
 				02D635BC264857AE0027A0BA /* MovieDetailVC.swift */,
+				02A8E29C2654109B009F1C5E /* MovieDetailVC+Layout.swift */,
 				0238B95C264A4EC300EC352B /* FloatingMovieDescriptionVC.swift */,
 			);
 			path = Home;
@@ -447,6 +453,7 @@
 				0238EBBB2646430D0049D670 /* UITextField+Extensions.swift in Sources */,
 				0297781A2644327E00112F4E /* UIImageView+Extensions.swift in Sources */,
 				02BF24D926452D7A00B257D1 /* LoginVC.swift in Sources */,
+				02A8E29D2654109B009F1C5E /* MovieDetailVC+Layout.swift in Sources */,
 				02BF24D52645078300B257D1 /* AuthenticationVC.swift in Sources */,
 				02BF24C9264443F200B257D1 /* UIFont+Extensions.swift in Sources */,
 				02BF24D22645036900B257D1 /* GalaxyButton.swift in Sources */,
@@ -463,6 +470,7 @@
 				02AE45D0264429A400C7F031 /* SceneDelegate.swift in Sources */,
 				02D635BD264857AE0027A0BA /* MovieDetailVC.swift in Sources */,
 				021C75A7264684F700607FE1 /* HomeVC.swift in Sources */,
+				02A8E2A0265415C2009F1C5E /* IMDbRatingSV.swift in Sources */,
 				021C75BF2646E3D100607FE1 /* ProfileCell.swift in Sources */,
 				020E6A6426442FBB00636EE6 /* UIColor+Extensions.swift in Sources */,
 				02D635A82647E3270027A0BA /* MovieCell.swift in Sources */,
