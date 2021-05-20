@@ -41,27 +41,19 @@ class FloatingMovieDescriptionVC: UIViewController {
     }
     
     private func setupChildViews() {
-        view.addSubview(movieTitleLabel)
-        movieTitleLabel.snp.makeConstraints { (make) in
-            make.leading.top.equalToSuperview().inset(24)
-        }
+        let subtitleSV = UIStackView(arrangedSubviews: [durationLabel, imdbRatingSV, imdbLabel, UIView()])
+        subtitleSV.spacing = 16
+        subtitleSV.alignment = .center
         
-        view.addSubview(durationLabel)
-        durationLabel.snp.makeConstraints { (make) in
-            make.leading.equalTo(movieTitleLabel)
-            make.top.equalTo(movieTitleLabel.snp.bottom).inset(-8)
-        }
+        let titleSV = UIStackView(subViews: [movieTitleLabel, subtitleSV], axis: .vertical, spacing: 8)
         
-        view.addSubview(imdbRatingSV)
-        imdbRatingSV.snp.makeConstraints { (make) in
-            make.leading.equalTo(durationLabel.snp.trailing).inset(-20)
-            make.top.bottom.equalTo(durationLabel)
-        }
-        
-        view.addSubview(imdbLabel)
-        imdbLabel.snp.makeConstraints { (make) in
-            make.leading.equalTo(imdbRatingSV.snp.trailing).inset(-20)
-            make.top.equalTo(durationLabel)
+        view.addSubview(titleSV)
+        titleSV.snp.makeConstraints { (make) in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.top.equalToSuperview().inset(24)
         }
     }
+
+    
+    
 }
