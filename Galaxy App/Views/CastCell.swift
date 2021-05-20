@@ -25,15 +25,16 @@ class CastCell: UICollectionViewCell {
         
         addSubview(imageView)
         imageView.snp.makeConstraints { (make) in
-            make.leading.trailing.top.equalToSuperview()
-            make.height.equalTo(frame.width)
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview()
+            make.width.height.equalTo(frame.width - 18)
         }
-        imageView.layer.cornerRadius = frame.width / 2
+        imageView.layer.cornerRadius = (frame.width - 18) / 2
         imageView.clipsToBounds = true
         
         addSubview(nameLabel)
         nameLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(imageView.snp.bottom).inset(-4)
+            make.top.equalTo(imageView.snp.bottom).inset(-2)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }

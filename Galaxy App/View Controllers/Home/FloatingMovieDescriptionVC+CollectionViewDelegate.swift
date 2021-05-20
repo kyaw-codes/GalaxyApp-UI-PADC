@@ -11,7 +11,7 @@ extension FloatingMovieDescriptionVC : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = ((view.frame.width - 40 - 20) / 4) - 20
-        let height = width + 50
+        let height = width + 30
         return CGSize(width: width, height: height)
     }
     

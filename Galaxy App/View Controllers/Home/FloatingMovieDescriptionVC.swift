@@ -107,9 +107,9 @@ class FloatingMovieDescriptionVC: UIViewController {
         let plotSV = UIStackView(subViews: [plotTitleLabel, plotSummaryLabel], axis: .vertical, spacing: 4)
         view.addSubview(plotSV)
         
-        let castSV = UIStackView(subViews: [castTitleLabel, castCollectionView], axis: .vertical, spacing: 8)
+        let castSV = UIStackView(subViews: [castTitleLabel, castCollectionView], axis: .vertical, spacing: 12)
         
-        let containerSV = UIStackView(subViews: [titleSV, genreSV, plotSV, castSV, UIView()], axis: .vertical, spacing: 18)
+        let containerSV = UIStackView(subViews: [titleSV, genreSV, plotSV, castSV, UIView()], axis: .vertical, spacing: 22)
         
         scrollView.addSubview(containerSV)
         containerSV.snp.makeConstraints { (make) in
@@ -129,7 +129,7 @@ class FloatingMovieDescriptionVC: UIViewController {
         guard let genreName = genreName else { return nil }
         let label = UILabel(text: genreName, font: .poppinsLight, size: 16, color: .galaxyBlack)
         let width: CGFloat = genreName.size(withAttributes: [NSAttributedString.Key.font : UIFont.GalaxyFont.poppinsLight.font(of: 16)]).width
-        let height: CGFloat = 44
+        let height: CGFloat = 48
         let padding: CGFloat = 50
         let genreView = UIView()
         genreView.addSubview(label)
