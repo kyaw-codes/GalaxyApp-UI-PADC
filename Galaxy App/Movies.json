@@ -9,12 +9,36 @@
           "secondaryGenre": "Adventure",
           "duration": "1h 45m",
           "imbdRating": 6.6,
-          "plot": "",
+          "plot": "After the demise of his fater, Tim travels to Ryme city where he runs into his fater's Pokemon cpartner, Pikachu. They team up and try to work on the case left unfinished by Tim's fater.",
           "casts": [
             {
-              "image": "",
-              "name": ""
-            }
+              "image": "ryan_reynolds",
+              "name": "Ryan Reynolds"
+            },
+            {
+              "image": "justice_smith",
+              "name": "Justice Smith"
+            },
+            {
+              "image": "kathryn_newton",
+              "name": "Kathryn Newton"
+            },
+            {
+              "image": "ken_watanabe",
+              "name": "Ken Watanabe"
+            },
+            {
+              "image": "billy_nighy",
+              "name": "Bill Nighy"
+            },
+            {
+              "image": "suki_waterhouse",
+              "name": "Suki Waterhouse"
+            },
+            {
+              "image": "rita_ora",
+              "name": "Rita Ora"
+            },
           ]
         },
         {

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		020032EE265625AB00C71FDF /* CastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020032ED265625AB00C71FDF /* CastCell.swift */; };
+		020032F12656265700C71FDF /* CastDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020032F02656265700C71FDF /* CastDatasource.swift */; };
+		020032F42656284C00C71FDF /* FloatingMovieDescriptionVC+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020032F32656284C00C71FDF /* FloatingMovieDescriptionVC+CollectionViewDelegate.swift */; };
 		020E6A6426442FBB00636EE6 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020E6A6326442FBB00636EE6 /* UIColor+Extensions.swift */; };
 		021C75A426464E5800607FE1 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75A326464E5800607FE1 /* UIButton+Extensions.swift */; };
 		021C75A7264684F700607FE1 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75A6264684F700607FE1 /* HomeVC.swift */; };
@@ -54,6 +57,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		020032ED265625AB00C71FDF /* CastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CastCell.swift; path = "Galaxy App/Views/CastCell.swift"; sourceTree = SOURCE_ROOT; };
+		020032F02656265700C71FDF /* CastDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastDatasource.swift; sourceTree = "<group>"; };
+		020032F32656284C00C71FDF /* FloatingMovieDescriptionVC+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FloatingMovieDescriptionVC+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		020E6A6326442FBB00636EE6 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		021C75A326464E5800607FE1 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		021C75A6264684F700607FE1 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -188,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				021C75B92646E37600607FE1 /* HomeDatasource.swift */,
+				020032F02656265700C71FDF /* CastDatasource.swift */,
 			);
 			path = Datasources;
 			sourceTree = "<group>";
@@ -197,6 +204,7 @@
 			children = (
 				021C75BE2646E3D100607FE1 /* ProfileCell.swift */,
 				02D635A72647E3270027A0BA /* MovieCell.swift */,
+				020032ED265625AB00C71FDF /* CastCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -301,6 +309,7 @@
 				02D635BC264857AE0027A0BA /* MovieDetailVC.swift */,
 				02A8E29C2654109B009F1C5E /* MovieDetailVC+Layout.swift */,
 				0238B95C264A4EC300EC352B /* FloatingMovieDescriptionVC.swift */,
+				020032F32656284C00C71FDF /* FloatingMovieDescriptionVC+CollectionViewDelegate.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -445,11 +454,13 @@
 			files = (
 				02D635C3264861170027A0BA /* SideMenuVC.swift in Sources */,
 				0238EBAA26452F3D0049D670 /* UIView+Extensions.swift in Sources */,
+				020032F12656265700C71FDF /* CastDatasource.swift in Sources */,
 				021C75AF2646864300607FE1 /* MainCoordinator.swift in Sources */,
 				021C75BA2646E37600607FE1 /* HomeDatasource.swift in Sources */,
 				0297783D264437D700112F4E /* UILabel+Extensions.swift in Sources */,
 				0238B95D264A4EC300EC352B /* FloatingMovieDescriptionVC.swift in Sources */,
 				0238EBB0264534C30049D670 /* TopTabBar.swift in Sources */,
+				020032F42656284C00C71FDF /* FloatingMovieDescriptionVC+CollectionViewDelegate.swift in Sources */,
 				0238EBBB2646430D0049D670 /* UITextField+Extensions.swift in Sources */,
 				0297781A2644327E00112F4E /* UIImageView+Extensions.swift in Sources */,
 				02BF24D926452D7A00B257D1 /* LoginVC.swift in Sources */,
@@ -471,6 +482,7 @@
 				02D635BD264857AE0027A0BA /* MovieDetailVC.swift in Sources */,
 				021C75A7264684F700607FE1 /* HomeVC.swift in Sources */,
 				02A8E2A0265415C2009F1C5E /* IMDbRatingSV.swift in Sources */,
+				020032EE265625AB00C71FDF /* CastCell.swift in Sources */,
 				021C75BF2646E3D100607FE1 /* ProfileCell.swift in Sources */,
 				020E6A6426442FBB00636EE6 /* UIColor+Extensions.swift in Sources */,
 				02D635A82647E3270027A0BA /* MovieCell.swift in Sources */,

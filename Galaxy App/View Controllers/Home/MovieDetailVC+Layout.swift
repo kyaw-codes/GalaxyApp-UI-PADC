@@ -23,7 +23,7 @@ extension MovieDetailVC {
         var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
                 return [
                     .full: FloatingPanelLayoutAnchor(absoluteInset: 16.0, edge: .top, referenceGuide: .safeArea),
-                    .half: FloatingPanelLayoutAnchor(fractionalInset: 0.6, edge: .bottom, referenceGuide: .safeArea)
+                    .half: FloatingPanelLayoutAnchor(fractionalInset: 0.64, edge: .bottom, referenceGuide: .safeArea)
                 ]
             }
     }

@@ -92,11 +92,12 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
     private func setupCTAButton() {
         let gradientView = UIView(backgroundColor: .clear)
         view.addSubview(gradientView)
+        gradientView.isUserInteractionEnabled = false
         gradientView.snp.makeConstraints { (make) in
             make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(view.frame.height * 0.25)
         }
-        gradientView.applyGradient(colours: [.init(white: 1, alpha: 0.01), .white], locations: [0.2, 0.8], frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height * 0.25))
+        gradientView.applyGradient(colours: [.init(white: 1, alpha: 0.15), .white], locations: [0.2, 0.7], frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height * 0.25))
 
         view.addSubview(getTicketButton)
         getTicketButton.layer.shadowColor = UIColor.galaxyViolet.cgColor
