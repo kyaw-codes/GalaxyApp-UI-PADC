@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class FloatingMovieDescriptionVC: UIViewController {
     
@@ -42,22 +43,40 @@ class FloatingMovieDescriptionVC: UIViewController {
     
     private let castTitleLabel = UILabel(text: "Cast", font: .poppinsSemiBold, size: 22, color: .galaxyBlack)
     
-    private lazy var castCollectionView: UICollectionView = {
+    private let castCollectionView: UICollectionView = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        cv.dataSource = dataSource
-        cv.delegate = self
         cv.backgroundColor = .white
         return cv
     }()
+    
+    let scrollView = UIScrollView()
     
     private var dataSource: CastDatasource?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        castCollectionView.dataSource = dataSource
+        castCollectionView.delegate = self
+        
+        scrollView.alwaysBounceVertical = true
+        scrollView.showsVerticalScrollIndicator = false
+        
         // Set up parent view
         configureParentView()
         setupChildViews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let height = castCollectionView.contentSize.height
+        
+        if height > 0 {
+            castCollectionView.snp.makeConstraints { (make) in
+                make.height.equalTo(height).priority(.high)
+            }
+        }
     }
     
     private func configureParentView() {
@@ -68,19 +87,15 @@ class FloatingMovieDescriptionVC: UIViewController {
     }
     
     private func setupChildViews() {
+        
         let subtitleSV = UIStackView(arrangedSubviews: [durationLabel, imdbRatingSV, imdbLabel, UIView()])
         subtitleSV.spacing = 16
         subtitleSV.alignment = .center
         
         let titleSV = UIStackView(subViews: [movieTitleLabel, subtitleSV], axis: .vertical, spacing: 8)
         
-        view.addSubview(titleSV)
-        titleSV.snp.makeConstraints { (make) in
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.top.equalToSuperview().inset(24)
-        }
-        
         let genreSV = UIStackView()
+
         if let primaryGenreBadgeView = primaryGenreBadgeView, let secondaryGenreBadgeView = secondaryGenreBadgeView  {
             genreSV.addArrangedSubview(primaryGenreBadgeView)
             genreSV.addArrangedSubview(secondaryGenreBadgeView)
@@ -89,32 +104,25 @@ class FloatingMovieDescriptionVC: UIViewController {
             genreSV.spacing = 20
         }
         
-        view.addSubview(genreSV)
-        genreSV.snp.makeConstraints { (make) in
-            make.leading.trailing.equalTo(titleSV)
-            make.top.equalTo(titleSV.snp.bottom).inset(-14)
-        }
-        
         let plotSV = UIStackView(subViews: [plotTitleLabel, plotSummaryLabel], axis: .vertical, spacing: 4)
         view.addSubview(plotSV)
-        plotSV.snp.makeConstraints { (make) in
-            make.leading.trailing.equalTo(genreSV)
-            make.top.equalTo(genreSV.snp.bottom).inset(-15)
+        
+        let castSV = UIStackView(subViews: [castTitleLabel, castCollectionView], axis: .vertical, spacing: 8)
+        
+        let containerSV = UIStackView(subViews: [titleSV, genreSV, plotSV, castSV, UIView()], axis: .vertical, spacing: 18)
+        
+        scrollView.addSubview(containerSV)
+        containerSV.snp.makeConstraints { (make) in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.top.equalToSuperview().inset(30)
+            make.bottom.equalToSuperview().inset(80)
+            make.centerX.equalToSuperview()
         }
         
-        view.addSubview(castTitleLabel)
-        castTitleLabel.snp.makeConstraints { (make) in
-            make.leading.trailing.equalTo(plotSV)
-            make.top.equalTo(plotSV.snp.bottom).inset(-15)
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { (make) in
+            make.leading.trailing.top.bottom.equalToSuperview()
         }
-        
-        view.addSubview(castCollectionView)
-        castCollectionView.snp.makeConstraints { (make) in
-            make.leading.trailing.equalTo(castTitleLabel)
-            make.top.equalTo(castTitleLabel.snp.bottom).inset(-15)
-            make.bottom.equalToSuperview()
-        }
-        
     }
 
     private func createGenreBadge(name genreName: String?) -> UIView? {

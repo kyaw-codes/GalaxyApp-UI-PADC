@@ -85,6 +85,7 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
         fpc.set(contentViewController: descriptionVC)
         fpc.contentMode = .static
         fpc.surfaceView.grabberHandleSize = .zero
+        fpc.track(scrollView: descriptionVC.scrollView)
 
         fpc.addPanel(toParent: self)
     }
