@@ -78,7 +78,7 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
         fpc.surfaceView.backgroundColor = .clear
         fpc.backdropView.backgroundColor = .white
 
-        fpc.layout = Layout(inside: self)
+        fpc.layout = Layout()
         
         let descriptionVC = FloatingMovieDescriptionVC()
         descriptionVC.movie = movie

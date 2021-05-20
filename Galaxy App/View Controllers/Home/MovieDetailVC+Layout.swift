@@ -12,12 +12,6 @@ extension MovieDetailVC {
     
     class Layout: FloatingPanelLayout {
         
-        let vc: UIViewController!
-        
-        init(inside: UIViewController) {
-            self.vc = inside
-        }
-        
         var position: FloatingPanelPosition = .bottom
         var initialState: FloatingPanelState = .half
         var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
