@@ -36,6 +36,18 @@ class HomeCoordinator: Coordinator {
     }
     
     func getTicket() {
-        
+        let child = TicketCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.start()
+    }
+    
+    func childDidFinish(_ child: Coordinator?) {
+        for (index, coordinator) in childCoordinators.enumerated() {
+            if coordinator === child {
+                childCoordinators.remove(at: index)
+                break
+            }
+        }
     }
 }

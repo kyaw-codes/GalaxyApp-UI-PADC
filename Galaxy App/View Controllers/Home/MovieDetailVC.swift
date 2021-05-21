@@ -30,8 +30,8 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
         return button
     }()
     
-    private lazy var backButton: UIButton = {
-        let symbolConfig = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 28, weight: .semibold))
+    private let backButton: UIButton = {
+        let symbolConfig = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 28, weight: .medium))
         let icon = UIImage(systemName: "chevron.backward", withConfiguration: symbolConfig)?.withRenderingMode(.alwaysOriginal).withTintColor(.white)
         let btn = UIButton(iconImage: icon)
         btn.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
@@ -48,6 +48,8 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
         setupView()
         setupFloatingMovieDescriptionVC()
         setupCTAButton()
+        
+        getTicketButton.addTarget(self, action: #selector(handleGetTicketTapped), for: .touchUpInside)
     }
     
     private func setupView() {
@@ -68,7 +70,7 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
         
         view.addSubview(backButton)
         backButton.snp.makeConstraints { (make) in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(18)
             make.leading.equalToSuperview().inset(20)
         }
     }
@@ -115,6 +117,10 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
     
     @objc private func handleBackTapped() {
         coordinator?.popToHome()
+    }
+    
+    @objc private func handleGetTicketTapped() {
+        coordinator?.getTicket()
     }
 }
 
