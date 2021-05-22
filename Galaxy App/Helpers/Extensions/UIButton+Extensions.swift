@@ -14,7 +14,8 @@ extension UIButton {
                      textSize: CGFloat = 18,
                      textColor: UIColor = .white,
                      backgroundColor: UIColor = .galaxyViolet,
-                     cornerRadius: CGFloat = 8) {
+                     cornerRadius: CGFloat = 8,
+                     completion: ((UIButton) -> Void)? = nil) {
         self.init(frame: .zero)
         
         self.setTitle(title, for: .normal)
@@ -22,6 +23,8 @@ extension UIButton {
         self.backgroundColor = backgroundColor
         self.titleLabel?.font = font.font(of: textSize)
         self.layer.cornerRadius = cornerRadius
+        
+        completion?(self)
     }
     
     convenience init(iconImage: UIImage?) {

@@ -29,15 +29,10 @@ class PickTheaterVC: UIViewController {
         return cv
     }()
     
-    private let contentView: UIView = {
-        let view = UIView(backgroundColor: .white)
-        view.layer.cornerRadius = 28
-        view.layer.maskedCorners = CACornerMask(arrayLiteral: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
-        return view
-    }()
+    private let pickerView = PickerView()
     
-    private let datasource = CalendarDatasource()
-    
+    private let calendarDatasource = CalendarDatasource()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,7 +40,10 @@ class PickTheaterVC: UIViewController {
 
         setupChildViews()
         calendarCollectionView.delegate = self
-        calendarCollectionView.dataSource = datasource
+        calendarCollectionView.dataSource = calendarDatasource
+        
+        // TODO: Delete later
+        navigationController?.navigationBar.isHidden = true
     }
     
     private func setupChildViews() {
@@ -55,8 +53,8 @@ class PickTheaterVC: UIViewController {
             make.leading.equalToSuperview().inset(20)
         }
         
-        view.addSubview(contentView)
-        contentView.snp.makeConstraints { (make) in
+        view.addSubview(pickerView)
+        pickerView.snp.makeConstraints { (make) in
             make.leading.trailing.bottom.equalToSuperview()
             make.top.equalToSuperview().inset(view.frame.height * 0.22)
         }
@@ -65,16 +63,10 @@ class PickTheaterVC: UIViewController {
         calendarCollectionView.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(backButton.snp.bottom).inset(-18)
-            make.bottom.equalTo(contentView.snp.top).inset(-18)
+            make.bottom.equalTo(pickerView.snp.top).inset(-18)
         }
-        
-        setupContentView()
     }
-    
-    private func setupContentView() {
-        
-    }
-    
+
     @objc private func handleBackTapped() {
         coordinator?.popToMovieDetail()
     }
