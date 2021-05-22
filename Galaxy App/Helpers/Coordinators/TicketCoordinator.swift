@@ -29,4 +29,13 @@ class TicketCoordinator: Coordinator {
         navigationController.popViewController(animated: true)
     }
     
+    func chooseSeat() {
+        let chooseSeatVC = ChooseSeatVC()
+        chooseSeatVC.coordinator = self
+        navigationController.pushViewController(chooseSeatVC, animated: true)
+    }
+    
+    func popToPickTheater() {
+        navigationController.popViewController(animated: true)
+    }
 }

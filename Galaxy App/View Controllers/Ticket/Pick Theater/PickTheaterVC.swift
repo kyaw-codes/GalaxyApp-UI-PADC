@@ -42,8 +42,9 @@ class PickTheaterVC: UIViewController {
         calendarCollectionView.delegate = self
         calendarCollectionView.dataSource = calendarDatasource
         
-        // TODO: Delete later
-        navigationController?.navigationBar.isHidden = true
+        pickerView.handleNextTap = { [weak self] in
+            self?.coordinator?.chooseSeat()
+        }
     }
     
     private func setupChildViews() {

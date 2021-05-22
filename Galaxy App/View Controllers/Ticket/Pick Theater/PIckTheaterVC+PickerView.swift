@@ -11,6 +11,8 @@ extension PickTheaterVC {
     
     class PickerView: UIScrollView {
         
+        var handleNextTap: (() -> Void)?
+        
         private var availableMovieTypes = [OutlineButton]()
         private var availableTimesForFirstRow = [OutlineButton]()
         private var availableTimesForSecondRow = [OutlineButton]()
@@ -30,6 +32,8 @@ extension PickTheaterVC {
             btn.layer.shadowRadius = 10
             btn.layer.shadowOpacity = 0.6
 
+            btn.addTarget(self, action: #selector(onNextTapped), for: .touchUpInside)
+            
             btn.snp.makeConstraints { (make) in
                 make.height.equalTo(60)
             }
@@ -143,6 +147,10 @@ extension PickTheaterVC {
         
         @objc private func onWestPointTimeButtonTapped(_ sender: OutlineButton) {
             handleButtonTap(sender, searchIn: availableTimesForSecondRow)
+        }
+        
+        @objc private func onNextTapped() {
+            handleNextTap?()
         }
         
         private func handleButtonTap(_ button: OutlineButton, searchIn array: [OutlineButton]) {
