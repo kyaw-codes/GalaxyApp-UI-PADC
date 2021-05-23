@@ -45,6 +45,9 @@ class PickTheaterVC: UIViewController {
         pickerView.handleNextTap = { [weak self] in
             self?.coordinator?.chooseSeat()
         }
+        
+        // TODO: Delete later
+//        navigationController?.navigationBar.isHidden = true
     }
     
     private func setupChildViews() {

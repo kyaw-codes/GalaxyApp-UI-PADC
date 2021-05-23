@@ -28,28 +28,43 @@ class ChooseSeatVC: UIViewController {
     private let cinemaLabel = UILabel(text: "Galaxy Cinema - Golden City", font: .poppinsRegular, size: 18, numberOfLines: 1, color: .galaxyLightBlack, alignment: .center)
     private let dateTimeLabel = UILabel(text: "Wednesday, 10 May, 07:00 PM", font: .poppinsRegular, size: 18, numberOfLines: 1, color: .galaxyBlack, alignment: .center)
 
+    private let seatCollectionView = SeatingPlanCollectionView()
+    private let datasource = SeatingPlanDatasource()
+
     private let scrollView = UIScrollView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
+        seatCollectionView.dataSource = datasource
         
         setupViews()
         scrollView.alwaysBounceVertical = true
         scrollView.showsVerticalScrollIndicator = false
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        seatCollectionView.snp.makeConstraints { (make) in
+            make.height.equalTo(seatCollectionView.contentSize.height)
+        }
+    }
+    
     private func setupViews() {
         view.addSubview(backButton)
         backButton.snp.makeConstraints { (make) in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(18)
-            make.leading.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(24)
         }
         
         setupTopSV()
+        setupMiddleSV()
+        setupBottomSV()
         
-        containerSV = UIStackView(subViews: [topSV!, UIView()], axis: .vertical, spacing: 20)
+        containerSV = UIStackView(subViews: [topSV!, middleSV!, UIView()], axis: .vertical, spacing: 20)
+        containerSV?.setCustomSpacing(80, after: topSV!)
         
         scrollView.addSubview(containerSV!)
         containerSV?.snp.makeConstraints({ (make) in
@@ -66,8 +81,65 @@ class ChooseSeatVC: UIViewController {
     }
     
     private func setupTopSV() {
-        topSV = UIStackView(subViews: [movieLabel, cinemaLabel, dateTimeLabel], axis: .vertical, spacing: 0)
+        let projectorView = ProjectorView(frame: CGRect(x: 0, y: 0, width: view.frame.width - 40, height: 30))
+        
+        topSV = UIStackView(subViews: [movieLabel, cinemaLabel, dateTimeLabel, projectorView], axis: .vertical, spacing: 0)
         topSV?.setCustomSpacing(6, after: cinemaLabel)
+        topSV?.setCustomSpacing(20, after: dateTimeLabel)
+    }
+    
+    private func setupMiddleSV() {
+        let leadingSV = UIStackView(subViews: createSeatsLabel("A", "B", "C", "D", "E", "F", "G"), axis: .vertical, spacing: 0)
+        let trailingSV = UIStackView(subViews: createSeatsLabel("A", "B", "C", "D", "E", "F", "G"), axis: .vertical, spacing: 0)
+        [leadingSV, trailingSV].forEach {
+            $0.distribution = .fillEqually
+            $0.isLayoutMarginsRelativeArrangement = true
+            $0.layoutMargins = UIEdgeInsets(top: 2, left: 0, bottom: 0, right: 0)
+        }
+
+        let seatingPlanSV = UIStackView(arrangedSubviews: [leadingSV, seatCollectionView, trailingSV])
+        seatingPlanSV.spacing = 10
+        
+        let availableSeatLegend = createSeatLegend(title: "Available", color: .seatAvailable)
+        let reservedSeatLegend = createSeatLegend(title: "Reserved", color: .seatReserved)
+        let selectionSeatLegend = createSeatLegend(title: "Your selection", color: .galaxyViolet)
+        
+        let legendSV = UIStackView(arrangedSubviews: [availableSeatLegend, reservedSeatLegend, selectionSeatLegend])
+        legendSV.distribution = .fillEqually
+        legendSV.isLayoutMarginsRelativeArrangement = true
+        legendSV.layoutMargins = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 4)
+        
+        let dashLine = DashLine(color: .seatAvailable)
+        dashLine.snp.makeConstraints { (make) in
+            make.height.equalTo(2)
+        }
+        
+        middleSV = UIStackView(subViews: [seatingPlanSV, legendSV, dashLine], axis: .vertical, spacing: 20)
+        middleSV?.setCustomSpacing(26, after: legendSV)
+    }
+    
+    private func setupBottomSV() {
+        
+    }
+    
+    private func createSeatsLabel(_ texts: String...) -> [UILabel] {
+        texts.map {
+            UILabel(text: $0, font: .poppinsRegular, size: 18, color: .galaxyLightBlack, alignment: .center)
+        }
+    }
+    
+    private func createSeatLegend(title: String, color: UIColor) -> UIStackView {
+        let circle = UIView(backgroundColor: color)
+
+        circle.snp.makeConstraints { (make) in
+            make.width.height.equalTo(20)
+        }
+        circle.layer.cornerRadius = 20 / 2
+        let label = UILabel(text: title, font: .poppinsLight, size: 14, color: .galaxyBlack)
+        
+        let sv = UIStackView(arrangedSubviews: [circle, label])
+        sv.spacing = 8
+        return sv
     }
     
     @objc private func handleBackTapped() {
