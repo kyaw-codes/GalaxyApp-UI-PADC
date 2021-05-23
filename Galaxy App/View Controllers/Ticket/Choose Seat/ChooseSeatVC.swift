@@ -30,6 +30,18 @@ class ChooseSeatVC: UIViewController {
 
     private let seatCollectionView = SeatingPlanCollectionView()
     private let datasource = SeatingPlanDatasource()
+    
+    private let buyTicketButton = UIButton(title: "Buy Ticket for $20.00", font: .poppinsMedium, textSize: 18, textColor: .white, backgroundColor: .galaxyViolet) { (btn) in
+        
+        btn.layer.shadowColor = UIColor.galaxyViolet.cgColor
+        btn.layer.shadowOffset = CGSize(width: 4, height: 5)
+        btn.layer.shadowRadius = 10
+        btn.layer.shadowOpacity = 0.6
+        
+        btn.snp.makeConstraints { (make) in
+            make.height.equalTo(60)
+        }
+    }
 
     private let scrollView = UIScrollView()
 
@@ -38,6 +50,8 @@ class ChooseSeatVC: UIViewController {
 
         view.backgroundColor = .white
         seatCollectionView.dataSource = datasource
+        
+        buyTicketButton.addTarget(self, action: #selector(handleBuyTapped), for: .touchUpInside)
         
         setupViews()
         scrollView.alwaysBounceVertical = true
@@ -63,7 +77,7 @@ class ChooseSeatVC: UIViewController {
         setupMiddleSV()
         setupBottomSV()
         
-        containerSV = UIStackView(subViews: [topSV!, middleSV!, UIView()], axis: .vertical, spacing: 20)
+        containerSV = UIStackView(subViews: [topSV!, middleSV!, bottomSV!, UIView()], axis: .vertical, spacing: 20)
         containerSV?.setCustomSpacing(80, after: topSV!)
         
         scrollView.addSubview(containerSV!)
@@ -115,11 +129,25 @@ class ChooseSeatVC: UIViewController {
         }
         
         middleSV = UIStackView(subViews: [seatingPlanSV, legendSV, dashLine], axis: .vertical, spacing: 20)
-        middleSV?.setCustomSpacing(26, after: legendSV)
+        middleSV?.setCustomSpacing(28, after: legendSV)
     }
     
     private func setupBottomSV() {
+        let ticketLabel = UILabel(text: "Tickets", font: .poppinsRegular, size: 20, color: .galaxyLightBlack)
+        let noOfTicketLabel = UILabel(text: "2", font: .poppinsRegular, size: 20, color: .galaxyBlack, alignment: .right)
         
+        let seatsLabel = UILabel(text: "Seats", font: .poppinsRegular, size: 20, color: .galaxyLightBlack)
+        let seatsNoLabel = UILabel(text: "D Row/5, 6", font: .poppinsRegular, size: 20, color: .galaxyBlack, alignment: .right)
+        
+        [ticketLabel, seatsLabel].forEach { $0.snp.makeConstraints { (make) in
+            make.width.equalTo(view.frame.width * 0.5)
+        } }
+        
+        let ticketSV = UIStackView(arrangedSubviews: [ticketLabel, noOfTicketLabel])
+        let seatSV = UIStackView(arrangedSubviews: [seatsLabel, seatsNoLabel])
+        
+        bottomSV = UIStackView(subViews: [ticketSV, seatSV, buyTicketButton], axis: .vertical, spacing: 16)
+        bottomSV?.setCustomSpacing(28, after: seatSV)
     }
     
     private func createSeatsLabel(_ texts: String...) -> [UILabel] {
@@ -144,6 +172,10 @@ class ChooseSeatVC: UIViewController {
     
     @objc private func handleBackTapped() {
         coordinator?.popToPickTheater()
+    }
+    
+    @objc private func handleBuyTapped() {
+        coordinator?.pickAdditionalService()
     }
     
 }
