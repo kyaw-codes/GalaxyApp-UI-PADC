@@ -16,3 +16,4 @@ This is the source code of the cinema booking ui from PADC iOS FTC 11. As I don'
 ## Pods I use
 1. SnapKit
 2. FloatingPanel
+3. Gemini
