@@ -16,6 +16,7 @@ extension UIFont {
         case poppinsMedium = "Poppins-Medium"
         case poppinsSemiBold = "Poppins-SemiBold"
         case poppinsBold = "Poppins-Bold"
+        case poppinsItalic = "Poppins-Italic"
         
         func font(of size: CGFloat) -> UIFont {
             guard let font = UIFont(name: self.rawValue, size: size) else {

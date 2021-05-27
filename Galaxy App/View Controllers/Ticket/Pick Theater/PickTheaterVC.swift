@@ -47,7 +47,7 @@ class PickTheaterVC: UIViewController {
         }
         
         // TODO: Delete later
-//        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
     }
     
     private func setupChildViews() {

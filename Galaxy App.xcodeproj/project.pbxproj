@@ -62,12 +62,17 @@
 		02D635BA264821D40027A0BA /* Movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 02D635B9264821D40027A0BA /* Movies.json */; };
 		02D635BD264857AE0027A0BA /* MovieDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D635BC264857AE0027A0BA /* MovieDetailVC.swift */; };
 		02D635C3264861170027A0BA /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D635C2264861170027A0BA /* SideMenuVC.swift */; };
+		02D6E41D265FD08300F8791C /* PromocodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D6E41C265FD08300F8791C /* PromocodeTextField.swift */; };
+		02D6E422265FD54000F8791C /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02D6E420265FD4CA00F8791C /* Poppins-Italic.ttf */; };
+		02D6E425265FDAC600F8791C /* PaymentMethodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D6E424265FDAC600F8791C /* PaymentMethodView.swift */; };
 		02F8880A265A098F00C8D3F3 /* ProjectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F88809265A098F00C8D3F3 /* ProjectorView.swift */; };
 		02F8880D265A0B9F00C8D3F3 /* SeatingPlanCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F8880C265A0B9F00C8D3F3 /* SeatingPlanCollectionView.swift */; };
 		02F88811265A0C2E00C8D3F3 /* SeatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F88810265A0C2E00C8D3F3 /* SeatCell.swift */; };
 		02F88814265A0CC700C8D3F3 /* SeatingPlanDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F88813265A0CC700C8D3F3 /* SeatingPlanDatasource.swift */; };
 		02F88817265A167C00C8D3F3 /* DashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F88816265A167C00C8D3F3 /* DashView.swift */; };
 		02F88821265A505700C8D3F3 /* AdditionalServiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F88820265A505700C8D3F3 /* AdditionalServiceVC.swift */; };
+		02F88826265AA8B600C8D3F3 /* CountButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F88825265AA8B600C8D3F3 /* CountButtonGroup.swift */; };
+		02F88829265AAC4C00C8D3F3 /* ComboSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F88828265AAC4C00C8D3F3 /* ComboSetView.swift */; };
 		3833819662C3DFFD4A9F3139 /* Pods_Galaxy_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DCA23893A73D92AF63029D /* Pods_Galaxy_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -129,12 +134,17 @@
 		02D635B9264821D40027A0BA /* Movies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Movies.json; sourceTree = "<group>"; };
 		02D635BC264857AE0027A0BA /* MovieDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailVC.swift; sourceTree = "<group>"; };
 		02D635C2264861170027A0BA /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
+		02D6E41C265FD08300F8791C /* PromocodeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeTextField.swift; sourceTree = "<group>"; };
+		02D6E420265FD4CA00F8791C /* Poppins-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Italic.ttf"; sourceTree = "<group>"; };
+		02D6E424265FDAC600F8791C /* PaymentMethodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodView.swift; sourceTree = "<group>"; };
 		02F88809265A098F00C8D3F3 /* ProjectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectorView.swift; sourceTree = "<group>"; };
 		02F8880C265A0B9F00C8D3F3 /* SeatingPlanCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatingPlanCollectionView.swift; sourceTree = "<group>"; };
 		02F88810265A0C2E00C8D3F3 /* SeatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatCell.swift; sourceTree = "<group>"; };
 		02F88813265A0CC700C8D3F3 /* SeatingPlanDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatingPlanDatasource.swift; sourceTree = "<group>"; };
 		02F88816265A167C00C8D3F3 /* DashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashView.swift; sourceTree = "<group>"; };
 		02F88820265A505700C8D3F3 /* AdditionalServiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalServiceVC.swift; sourceTree = "<group>"; };
+		02F88825265AA8B600C8D3F3 /* CountButtonGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountButtonGroup.swift; sourceTree = "<group>"; };
+		02F88828265AAC4C00C8D3F3 /* ComboSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboSetView.swift; sourceTree = "<group>"; };
 		1264DFEE3EFA0F2B1A8CA3E9 /* Pods-Galaxy App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Galaxy App.debug.xcconfig"; path = "Target Support Files/Pods-Galaxy App/Pods-Galaxy App.debug.xcconfig"; sourceTree = "<group>"; };
 		60DCA23893A73D92AF63029D /* Pods_Galaxy_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Galaxy_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E129F1C46375C9B536E4A283 /* Pods-Galaxy App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Galaxy App.release.xcconfig"; path = "Target Support Files/Pods-Galaxy App/Pods-Galaxy App.release.xcconfig"; sourceTree = "<group>"; };
@@ -193,6 +203,10 @@
 				02F88809265A098F00C8D3F3 /* ProjectorView.swift */,
 				02F8880C265A0B9F00C8D3F3 /* SeatingPlanCollectionView.swift */,
 				02F88816265A167C00C8D3F3 /* DashView.swift */,
+				02F88828265AAC4C00C8D3F3 /* ComboSetView.swift */,
+				02F88825265AA8B600C8D3F3 /* CountButtonGroup.swift */,
+				02D6E41C265FD08300F8791C /* PromocodeTextField.swift */,
+				02D6E424265FDAC600F8791C /* PaymentMethodView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -283,6 +297,7 @@
 				029778472644402100112F4E /* Poppins-Bold.ttf */,
 				029778482644402100112F4E /* Poppins-Light.ttf */,
 				0297784B2644403700112F4E /* Poppins-SemiBold.ttf */,
+				02D6E420265FD4CA00F8791C /* Poppins-Italic.ttf */,
 				0297784A2644403600112F4E /* Poppins-Thin.ttf */,
 				029778462644402100112F4E /* Poppins-Medium.ttf */,
 				029778492644402100112F4E /* Poppins-Regular.ttf */,
@@ -474,6 +489,7 @@
 				02BF24C5264441AD00B257D1 /* Poppins-Bold.ttf in Resources */,
 				02BF24C1264441AD00B257D1 /* Poppins-SemiBold.ttf in Resources */,
 				02BF24C3264441AD00B257D1 /* Poppins-Thin.ttf in Resources */,
+				02D6E422265FD54000F8791C /* Poppins-Italic.ttf in Resources */,
 				02BF24C6264441AD00B257D1 /* Poppins-Medium.ttf in Resources */,
 				02AE45DA264429AA00C7F031 /* LaunchScreen.storyboard in Resources */,
 				02AE45D7264429AA00C7F031 /* Assets.xcassets in Resources */,
@@ -533,6 +549,7 @@
 				0238EBAA26452F3D0049D670 /* UIView+Extensions.swift in Sources */,
 				024E04A526576C5500C9E164 /* PickTheaterVC.swift in Sources */,
 				027C3EF826590C4F0048EDCF /* ChooseSeatVC.swift in Sources */,
+				02F88829265AAC4C00C8D3F3 /* ComboSetView.swift in Sources */,
 				024E04B82657A4AD00C9E164 /* PIckTheaterVC+PickerView.swift in Sources */,
 				02F8880A265A098F00C8D3F3 /* ProjectorView.swift in Sources */,
 				020032F12656265700C71FDF /* CastDatasource.swift in Sources */,
@@ -540,6 +557,7 @@
 				02F8880D265A0B9F00C8D3F3 /* SeatingPlanCollectionView.swift in Sources */,
 				021C75BA2646E37600607FE1 /* HomeDatasource.swift in Sources */,
 				0297783D264437D700112F4E /* UILabel+Extensions.swift in Sources */,
+				02D6E425265FDAC600F8791C /* PaymentMethodView.swift in Sources */,
 				0238B95D264A4EC300EC352B /* FloatingMovieDescriptionVC.swift in Sources */,
 				02F88821265A505700C8D3F3 /* AdditionalServiceVC.swift in Sources */,
 				0238EBB0264534C30049D670 /* TopTabBar.swift in Sources */,
@@ -579,7 +597,9 @@
 				02D635A82647E3270027A0BA /* MovieCell.swift in Sources */,
 				021C75B62646DAD100607FE1 /* HomeCoordinator.swift in Sources */,
 				024E04AC265771FE00C9E164 /* CalendarCell.swift in Sources */,
+				02D6E41D265FD08300F8791C /* PromocodeTextField.swift in Sources */,
 				02D635B526481E1A0027A0BA /* Bundle+Extensions.swift in Sources */,
+				02F88826265AA8B600C8D3F3 /* CountButtonGroup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
