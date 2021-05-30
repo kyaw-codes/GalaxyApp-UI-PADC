@@ -10,8 +10,8 @@ import UIKit
 class PaymentMethodView: UIView {
     
     private let imageView = UIImageView()
-    private let titleLabel = UILabel(text: "", font: .poppinsRegular, size: 20, color: .galaxyBlack)
-    private let subtitleLabel = UILabel(text: "", font: .poppinsRegular, size: 16, color: .seatReserved)
+    private let titleLabel = UILabel(text: "", font: .poppinsRegular, size: 18, color: .galaxyBlack)
+    private let subtitleLabel = UILabel(text: "", font: .poppinsRegular, size: 15, color: .seatReserved)
     
     init(image: UIImage?, title: String, subTitle: String) {
         super.init(frame: .zero)
@@ -31,7 +31,7 @@ class PaymentMethodView: UIView {
         imageContainerView.addSubview(imageView)
         
         imageView.snp.makeConstraints { (make) in
-            make.width.height.equalToSuperview().multipliedBy(0.7)
+            make.width.height.equalToSuperview().multipliedBy(0.65)
             make.centerY.equalToSuperview()
         }
 

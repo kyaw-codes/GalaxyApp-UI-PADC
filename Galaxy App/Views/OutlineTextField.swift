@@ -35,7 +35,11 @@ class OutlineTextField: UIView {
         }
         
         addSubview(textField)
-        textField.placeholder = placeholder
+        textField.attributedPlaceholder = NSAttributedString(
+            string: placeholder,
+            attributes: [
+                NSAttributedString.Key.foregroundColor : UIColor.seatReserved,
+                NSAttributedString.Key.font : UIFont.GalaxyFont.poppinsItalic.font(of: 20)])
         textField.keyboardType = keyboardType
         
         textField.snp.makeConstraints { (make) in

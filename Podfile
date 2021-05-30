@@ -8,4 +8,5 @@ target 'Galaxy App' do
   # Pods for Galaxy App
     pod 'SnapKit', '~> 5.0.0'
     pod 'FloatingPanel'
+    pod 'Gemini'
 end

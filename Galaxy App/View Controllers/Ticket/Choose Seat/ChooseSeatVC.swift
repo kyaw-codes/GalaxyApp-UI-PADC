@@ -88,9 +88,8 @@ class ChooseSeatVC: UIViewController {
         
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { (make) in
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.leading.trailing.bottom.equalToSuperview()
             make.top.equalTo(backButton.snp.bottom)
-            make.bottom.equalToSuperview()
         }
     }
     
@@ -100,6 +99,9 @@ class ChooseSeatVC: UIViewController {
         topSV = UIStackView(subViews: [movieLabel, cinemaLabel, dateTimeLabel, projectorView], axis: .vertical, spacing: 0)
         topSV?.setCustomSpacing(6, after: cinemaLabel)
         topSV?.setCustomSpacing(20, after: dateTimeLabel)
+        
+        topSV?.isLayoutMarginsRelativeArrangement = true
+        topSV?.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
     
     private func setupMiddleSV() {
@@ -130,6 +132,9 @@ class ChooseSeatVC: UIViewController {
         
         middleSV = UIStackView(subViews: [seatingPlanSV, legendSV, dashLine], axis: .vertical, spacing: 20)
         middleSV?.setCustomSpacing(28, after: legendSV)
+        
+        middleSV?.isLayoutMarginsRelativeArrangement = true
+        middleSV?.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
     
     private func setupBottomSV() {
@@ -140,14 +145,19 @@ class ChooseSeatVC: UIViewController {
         let seatsNoLabel = UILabel(text: "D Row/5, 6", font: .poppinsRegular, size: 20, color: .galaxyBlack, alignment: .right)
         
         [ticketLabel, seatsLabel].forEach { $0.snp.makeConstraints { (make) in
-            make.width.equalTo(view.frame.width * 0.5)
+            make.width.equalTo(view.frame.width * 0.65)
         } }
         
         let ticketSV = UIStackView(arrangedSubviews: [ticketLabel, noOfTicketLabel])
         let seatSV = UIStackView(arrangedSubviews: [seatsLabel, seatsNoLabel])
         
-        bottomSV = UIStackView(subViews: [ticketSV, seatSV, buyTicketButton], axis: .vertical, spacing: 16)
-        bottomSV?.setCustomSpacing(28, after: seatSV)
+        let sv = UIStackView(subViews: [ticketSV, seatSV], axis: .vertical, spacing: 16)
+        
+        buyTicketButton.snp.makeConstraints { (make) in
+            make.width.equalTo(view.frame.width - 40)
+        }
+        bottomSV = UIStackView(subViews: [sv, buyTicketButton], axis: .vertical, spacing: 28)
+        bottomSV?.alignment = .center
     }
     
     private func createSeatsLabel(_ texts: String...) -> [UILabel] {

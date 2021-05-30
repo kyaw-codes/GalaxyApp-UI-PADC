@@ -13,7 +13,7 @@ class ComboSetView: UIView {
     
     private let titleLabel = UILabel(text: "Combo Set M", font: .poppinsRegular, size: 18, color: .galaxyBlack)
     
-    private let descriptionLabel = UILabel(text: "Combo size M 22oz. Coke (X1) and medium pop corn (X1)", font: .poppinsRegular, size: 16, numberOfLines: 0, color: .galaxyLightBlack)
+    private let descriptionLabel = UILabel(text: "Combo size M 22oz. Coke (X1) and medium pop corn (X1)", font: .poppinsRegular, size: 15, numberOfLines: 0, color: .galaxyLightBlack)
     
     private let priceLabel = UILabel(text: "0$", font: .poppinsRegular, size: 18, color: .galaxyBlack)
 
@@ -31,7 +31,7 @@ class ComboSetView: UIView {
         addSubview(countButtonGroup)
         countButtonGroup.snp.makeConstraints { (make) in
             make.trailing.bottom.equalToSuperview()
-            make.width.equalTo(120)
+            make.width.equalTo(100)
             make.height.equalTo(36)
         }
         

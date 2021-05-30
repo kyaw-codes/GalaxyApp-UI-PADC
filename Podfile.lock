@@ -1,20 +1,24 @@
 PODS:
   - FloatingPanel (2.3.0)
+  - Gemini (1.4.0)
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
   - FloatingPanel
+  - Gemini
   - SnapKit (~> 5.0.0)
 
 SPEC REPOS:
   trunk:
     - FloatingPanel
+    - Gemini
     - SnapKit
 
 SPEC CHECKSUMS:
   FloatingPanel: 373478513a197cf140abd219ca9a9c049967332b
+  Gemini: 4ad915cca8805577fe3021e02feeca2b77dcdbfc
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: b13c83f4fe745621d76d225470c42c9fffa05175
+PODFILE CHECKSUM: 939fa0e33e9c48a534dd041d502e400384f7567f
 
 COCOAPODS: 1.10.1

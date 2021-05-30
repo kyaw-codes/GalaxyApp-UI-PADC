@@ -64,14 +64,15 @@ class AdditionalServiceVC: UIViewController {
         setupPaymentMethodSV()
         
         setupParentContainerView()
+        
+        payButton.addTarget(self, action: #selector(onPayTap), for: .touchUpInside)
     }
     
     private func setupScrollView() {
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { (make) in
             make.top.equalTo(backButton.snp.bottom).inset(-20)
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
         }
         scrollView.alwaysBounceVertical = true
         scrollView.showsVerticalScrollIndicator = false
@@ -95,13 +96,17 @@ class AdditionalServiceVC: UIViewController {
         let comboL = ComboSetView(title: "Combo set L", description: "Combo size M 32oz. Coke (X1) and large popcorn (X1)", unitPrice: 18)
         let comboFor2 = ComboSetView(title: "Combo for 2", description: "Combo size 2 32oz. Coke (X2) and large popcorn (X1)", unitPrice: 20)
         comboSetSV = UIStackView(subViews: [comboM, comboL, comboFor2], axis: .vertical, spacing: 20)
+        comboSetSV?.isLayoutMarginsRelativeArrangement = true
+        comboSetSV?.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
     
     private func setupPromocodeSV() {
         promocodeTextField.snp.makeConstraints { (make) in
             make.height.equalTo(70)
         }
-        promocodeSV = UIStackView(subViews: [promocodeTextField, subTotalLabel], axis: .vertical, spacing: 18)
+        promocodeSV = UIStackView(subViews: [promocodeTextField, subTotalLabel], axis: .vertical, spacing: 20)
+        promocodeSV?.isLayoutMarginsRelativeArrangement = true
+        promocodeSV?.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
     
     private func setupPaymentMethodSV() {
@@ -113,13 +118,24 @@ class AdditionalServiceVC: UIViewController {
         
         let eWalletPayment = PaymentMethodView(image: #imageLiteral(resourceName: "wallet"), title: "E-Wallet", subTitle: "Paypal")
         
-        paymentMethodSV = UIStackView(subViews: [titleLabel, creditCardPayment, internetBankingdPayment, eWalletPayment, payButton], axis: .vertical, spacing: 14)
-        paymentMethodSV?.setCustomSpacing(20, after: titleLabel)
-        paymentMethodSV?.setCustomSpacing(30, after: eWalletPayment)
+        let sv = UIStackView(subViews: [titleLabel, creditCardPayment, internetBankingdPayment, eWalletPayment], axis: .vertical, spacing: 14)
+        sv.setCustomSpacing(20, after: titleLabel)
+        
+        [sv, payButton].forEach {
+            $0.snp.makeConstraints { (make) in
+                make.width.equalTo(view.frame.width - 40)
+            }
+        }
+
+        paymentMethodSV = UIStackView(subViews: [sv, payButton], axis: .vertical, spacing: 30)
+        paymentMethodSV?.alignment = .center
     }
 
     @objc private func handleBackTapped() {
         coordinator?.popToChooseSeatVC()
     }
 
+    @objc private func onPayTap() {
+        coordinator?.checkOut()
+    }
 }

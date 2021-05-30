@@ -48,4 +48,31 @@ class TicketCoordinator: Coordinator {
     func popToChooseSeatVC() {
         navigationController.popViewController(animated: true)
     }
+    
+    func checkOut() {
+        let checkoutVC = CheckoutVC()
+        checkoutVC.coordinator = self
+        navigationController.pushViewController(checkoutVC, animated: true)
+    }
+    
+    func popToAdditionalService() {
+        navigationController.popViewController(animated: true)
+    }
+    
+    func issueVoucher() {
+        let voucherVC = VoucherVC()
+        voucherVC.coordinator = self
+        voucherVC.modalPresentationStyle = .fullScreen
+        navigationController.present(voucherVC, animated: true, completion: nil)
+    }
+    
+    func closeVoucherSlip() {
+        navigationController.viewControllers.forEach {
+            if let vc = $0 as? MovieDetailVC {
+                navigationController.dismiss(animated: true) { [weak self] in
+                    self?.navigationController.popToViewController(vc, animated: true)
+                }
+            }
+        }
+    }
 }

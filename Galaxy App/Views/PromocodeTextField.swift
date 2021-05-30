@@ -11,15 +11,15 @@ class PromocodeTextField: UIView {
     
     let textField: UITextField = {
         let tf = UITextField()
-        tf.font = UIFont.GalaxyFont.poppinsRegular.font(of: 22)
+        tf.font = UIFont.GalaxyFont.poppinsRegular.font(of: 20)
         tf.textColor = .galaxyBlack
-        
+
         tf.attributedPlaceholder = NSAttributedString(
             string: "Enter promo code",
             attributes: [
                 NSAttributedString.Key.foregroundColor : UIColor.seatReserved,
                 NSAttributedString.Key.font : UIFont.GalaxyFont.poppinsItalic.font(of: 20)])
-        
+
         tf.autocorrectionType = .no
         tf.autocapitalizationType = .none
         return tf
