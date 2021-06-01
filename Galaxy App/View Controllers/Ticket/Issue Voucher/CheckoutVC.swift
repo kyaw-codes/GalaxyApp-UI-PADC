@@ -11,10 +11,14 @@ import SnapKit
 
 class CheckoutVC: UIViewController {
     
+    // MARK: - Properties
+    
     var coordinator: TicketCoordinator?
     
     private let datasource = CreditCardDatasource()
     private var scrollViewBottomConstraint: Constraint?
+    
+    // MARK: - Views
     
     private let backButton: UIButton = {
         let symbolConfig = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 28, weight: .medium))
@@ -78,31 +82,77 @@ class CheckoutVC: UIViewController {
         return sv
     }()
 
+    // MARK: - Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
 
         setupViews()
-
+        
         collectionView.dataSource = datasource
         collectionView.delegate = self
-        
+        configureCollectionViewScrollingAnimation()
+
+        watchKeyboardNotification()
+
+        confirmButton.addTarget(self, action: #selector(handleConfirmTapped), for: .touchUpInside)
+    }
+    
+    // MARK: - Private Helpers
+    
+    private func configureCollectionViewScrollingAnimation() {
         collectionView.gemini
             .customAnimation()
             .scale(x: 0.9, y: 0.7, z: 0.8)
             .shadowEffect(.nextFadeIn)
             .alpha(0.3)
             .ease(.easeInOutCirc)
-        
-        watchKeyboardNotification()
-        confirmButton.addTarget(self, action: #selector(handleConfirmTapped), for: .touchUpInside)
     }
 
     private func watchKeyboardNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
+    private func createFormInput(title: String, textField: UIView) -> UIStackView {
+        let titleLabel = UILabel(text: title, font: .poppinsRegular, size: 18, color: .seatReserved)
+        return UIStackView(subViews: [titleLabel, textField], axis: .vertical, spacing: 0)
+    }
+    
+    // MARK: - Action Handlers
+    
+    @objc private func handleBackTapped() {
+        coordinator?.popToAdditionalService()
+    }
+    
+    @objc private func handleKeyboardNotification(notification: NSNotification) {
+        let isKeyboardShowing = notification.name == UIView.keyboardWillShowNotification
+        let keyboardRect = ((notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]) as? NSValue)?.cgRectValue
+        let bottomPadding: CGFloat = 40
+        
+        let keyboardHeight = (keyboardRect!.height - view.safeAreaInsets.bottom) + bottomPadding
+        let bottomInset = isKeyboardShowing ? keyboardHeight : bottomPadding
+        
+        // Update the scroll view bottom constraint
+        scrollViewBottomConstraint?.update(inset: bottomInset)
+        
+        let animationDuration = ((notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey]) as? NSNumber)?.doubleValue
+        
+        UIView.animate(withDuration: animationDuration ?? 0) { [weak self] in
+            self?.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc private func handleConfirmTapped() {
+        coordinator?.issueVoucher()
+    }
+}
+
+// MARK: - Layout Views
+
+extension CheckoutVC {
     
     private func setupViews() {
         view.addSubview(backButton)
@@ -174,38 +224,9 @@ class CheckoutVC: UIViewController {
             scrollViewBottomConstraint = make.bottom.equalToSuperview().constraint
         }
     }
-    
-    private func createFormInput(title: String, textField: UIView) -> UIStackView {
-        let titleLabel = UILabel(text: title, font: .poppinsRegular, size: 18, color: .seatReserved)
-        return UIStackView(subViews: [titleLabel, textField], axis: .vertical, spacing: 0)
-    }
-    
-    @objc private func handleBackTapped() {
-        coordinator?.popToAdditionalService()
-    }
-    
-    @objc private func handleKeyboardNotification(notification: NSNotification) {
-        let isKeyboardShowing = notification.name == UIView.keyboardWillShowNotification
-        let keyboardRect = ((notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]) as? NSValue)?.cgRectValue
-        let bottomPadding: CGFloat = 40
-        
-        let keyboardHeight = (keyboardRect!.height - view.safeAreaInsets.bottom) + bottomPadding
-        let bottomInset = isKeyboardShowing ? keyboardHeight : bottomPadding
-        
-        // Update the scroll view bottom constraint
-        scrollViewBottomConstraint?.update(inset: bottomInset)
-        
-        let animationDuration = ((notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey]) as? NSNumber)?.doubleValue
-        
-        UIView.animate(withDuration: animationDuration ?? 0) { [weak self] in
-            self?.view.layoutIfNeeded()
-        }
-    }
-    
-    @objc private func handleConfirmTapped() {
-        coordinator?.issueVoucher()
-    }
 }
+
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension CheckoutVC: UICollectionViewDelegateFlowLayout {
     

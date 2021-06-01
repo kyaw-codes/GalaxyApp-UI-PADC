@@ -9,7 +9,13 @@ import UIKit
 
 class PickTheaterVC: UIViewController {
     
+    // MARK: - Properties
+
     var coordinator: TicketCoordinator?
+    
+    private let calendarDatasource = CalendarDatasource()
+
+    // MARK: - Views
     
     private let backButton: UIButton = {
         let symbolConfig = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 28, weight: .medium))
@@ -31,24 +37,33 @@ class PickTheaterVC: UIViewController {
     
     private let pickerView = PickerView()
     
-    private let calendarDatasource = CalendarDatasource()
-
+    // MARK: - Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .galaxyViolet
 
         setupChildViews()
+        
         calendarCollectionView.delegate = self
         calendarCollectionView.dataSource = calendarDatasource
         
         pickerView.handleNextTap = { [weak self] in
             self?.coordinator?.chooseSeat()
         }
-        
-        // TODO: Delete later
-//        navigationController?.navigationBar.isHidden = true
     }
+    
+    // MARK: - Action Handler
+
+    @objc private func handleBackTapped() {
+        coordinator?.popToMovieDetail()
+    }
+}
+
+// MARK: - Layout Views
+
+extension PickTheaterVC {
     
     private func setupChildViews() {
         view.addSubview(backButton)
@@ -69,9 +84,5 @@ class PickTheaterVC: UIViewController {
             make.top.equalTo(backButton.snp.bottom).inset(-18)
             make.bottom.equalTo(pickerView.snp.top).inset(-18)
         }
-    }
-
-    @objc private func handleBackTapped() {
-        coordinator?.popToMovieDetail()
     }
 }

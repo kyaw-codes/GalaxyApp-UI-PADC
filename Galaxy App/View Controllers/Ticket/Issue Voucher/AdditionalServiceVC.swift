@@ -9,7 +9,11 @@ import UIKit
 
 class AdditionalServiceVC: UIViewController {
     
+    // MARK: - Properties
+    
     var coordinator: TicketCoordinator?
+    
+    // MARK: - Views
     
     private let backButton: UIButton = {
         let symbolConfig = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 28, weight: .medium))
@@ -41,6 +45,8 @@ class AdditionalServiceVC: UIViewController {
     private var comboSetSV: UIStackView?
     private var promocodeSV: UIStackView?
     private var paymentMethodSV: UIStackView?
+    
+    // MARK: - Lifecycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +54,23 @@ class AdditionalServiceVC: UIViewController {
         view.backgroundColor = .systemBackground
         
         setupViews()
+        payButton.addTarget(self, action: #selector(onPayTap), for: .touchUpInside)
     }
+    
+    // MARK: - Action Handlers
+    
+    @objc private func handleBackTapped() {
+        coordinator?.popToChooseSeatVC()
+    }
+
+    @objc private func onPayTap() {
+        coordinator?.checkOut()
+    }
+}
+
+// MARK: - Layout Views
+
+extension AdditionalServiceVC {
     
     private func setupViews() {
         view.addSubview(backButton)
@@ -64,8 +86,6 @@ class AdditionalServiceVC: UIViewController {
         setupPaymentMethodSV()
         
         setupParentContainerView()
-        
-        payButton.addTarget(self, action: #selector(onPayTap), for: .touchUpInside)
     }
     
     private func setupScrollView() {
@@ -129,13 +149,5 @@ class AdditionalServiceVC: UIViewController {
 
         paymentMethodSV = UIStackView(subViews: [sv, payButton], axis: .vertical, spacing: 30)
         paymentMethodSV?.alignment = .center
-    }
-
-    @objc private func handleBackTapped() {
-        coordinator?.popToChooseSeatVC()
-    }
-
-    @objc private func onPayTap() {
-        coordinator?.checkOut()
     }
 }

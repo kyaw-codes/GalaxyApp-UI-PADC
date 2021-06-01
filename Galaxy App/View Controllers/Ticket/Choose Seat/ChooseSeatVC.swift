@@ -9,7 +9,13 @@ import UIKit
 
 class ChooseSeatVC: UIViewController {
     
+    // MARK: - Properties
+    
     var coordinator: TicketCoordinator?
+    
+    private let datasource = SeatingPlanDatasource()
+
+    // MARK: - Views
     
     private let backButton: UIButton = {
         let symbolConfig = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 28, weight: .medium))
@@ -19,17 +25,11 @@ class ChooseSeatVC: UIViewController {
         return btn
     }()
     
-    private var topSV: UIStackView?
-    private var middleSV: UIStackView?
-    private var bottomSV: UIStackView?
-    private var containerSV: UIStackView?
-    
     private let movieLabel = UILabel(text: "Detective Pikachu", font: .poppinsSemiBold, size: 26, numberOfLines: 2, color: .galaxyBlack, alignment: .center)
     private let cinemaLabel = UILabel(text: "Galaxy Cinema - Golden City", font: .poppinsRegular, size: 18, numberOfLines: 1, color: .galaxyLightBlack, alignment: .center)
     private let dateTimeLabel = UILabel(text: "Wednesday, 10 May, 07:00 PM", font: .poppinsRegular, size: 18, numberOfLines: 1, color: .galaxyBlack, alignment: .center)
 
     private let seatCollectionView = SeatingPlanCollectionView()
-    private let datasource = SeatingPlanDatasource()
     
     private let buyTicketButton = UIButton(title: "Buy Ticket for $20.00", font: .poppinsMedium, textSize: 18, textColor: .white, backgroundColor: .galaxyViolet) { (btn) in
         
@@ -42,29 +42,81 @@ class ChooseSeatVC: UIViewController {
             make.height.equalTo(60)
         }
     }
+    
+    private var topSV: UIStackView?
+    private var middleSV: UIStackView?
+    private var bottomSV: UIStackView?
+    private var containerSV: UIStackView?
 
-    private let scrollView = UIScrollView()
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.alwaysBounceVertical = true
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
+    }()
+    
+    // MARK: - Lifecycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
+        
         seatCollectionView.dataSource = datasource
         
         buyTicketButton.addTarget(self, action: #selector(handleBuyTapped), for: .touchUpInside)
         
         setupViews()
-        scrollView.alwaysBounceVertical = true
-        scrollView.showsVerticalScrollIndicator = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        seatCollectionView.snp.makeConstraints { (make) in
-            make.height.equalTo(seatCollectionView.contentSize.height)
+        let height = seatCollectionView.contentSize.height
+        if height > 0 {
+            seatCollectionView.snp.makeConstraints { (make) in
+                make.height.equalTo(seatCollectionView.contentSize.height)
+            }
         }
     }
+    
+    // MARK: - Private Helpers
+    
+    private func createSeatsLabel(_ texts: String...) -> [UILabel] {
+        texts.map {
+            UILabel(text: $0, font: .poppinsRegular, size: 18, color: .galaxyLightBlack, alignment: .center)
+        }
+    }
+    
+    private func createSeatLegend(title: String, color: UIColor) -> UIStackView {
+        let circle = UIView(backgroundColor: color)
+
+        circle.snp.makeConstraints { (make) in
+            make.width.height.equalTo(20)
+        }
+        circle.layer.cornerRadius = 20 / 2
+        let label = UILabel(text: title, font: .poppinsLight, size: 14, color: .galaxyBlack)
+        
+        let sv = UIStackView(arrangedSubviews: [circle, label])
+        sv.spacing = 8
+        return sv
+    }
+    
+    // MARK: - Action Handlers
+    
+    @objc private func handleBackTapped() {
+        coordinator?.popToPickTheater()
+    }
+    
+    @objc private func handleBuyTapped() {
+        coordinator?.pickAdditionalService()
+    }
+    
+}
+
+// MARK: - Layout Views
+
+extension ChooseSeatVC {
     
     private func setupViews() {
         view.addSubview(backButton)
@@ -76,21 +128,29 @@ class ChooseSeatVC: UIViewController {
         setupTopSV()
         setupMiddleSV()
         setupBottomSV()
-        
-        containerSV = UIStackView(subViews: [topSV!, middleSV!, bottomSV!, UIView()], axis: .vertical, spacing: 20)
-        containerSV?.setCustomSpacing(80, after: topSV!)
-        
-        scrollView.addSubview(containerSV!)
-        containerSV?.snp.makeConstraints({ (make) in
-            make.leading.trailing.top.bottom.equalToSuperview()
-            make.centerX.equalToSuperview()
-        })
-        
+        setupContainerSV()
+        setupScrollView()
+
+    }
+    
+    private func setupScrollView() {
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { (make) in
             make.leading.trailing.bottom.equalToSuperview()
             make.top.equalTo(backButton.snp.bottom)
         }
+    }
+    
+    private func setupContainerSV() {
+        containerSV = UIStackView(subViews: [topSV!, middleSV!, bottomSV!, UIView()], axis: .vertical, spacing: 20)
+        containerSV?.setCustomSpacing(80, after: topSV!)
+
+        scrollView.addSubview(containerSV!)
+        containerSV?.snp.makeConstraints({ (make) in
+            make.leading.trailing.top.bottom.equalToSuperview()
+            make.centerX.equalToSuperview()
+        })
+
     }
     
     private func setupTopSV() {
@@ -159,33 +219,4 @@ class ChooseSeatVC: UIViewController {
         bottomSV = UIStackView(subViews: [sv, buyTicketButton], axis: .vertical, spacing: 28)
         bottomSV?.alignment = .center
     }
-    
-    private func createSeatsLabel(_ texts: String...) -> [UILabel] {
-        texts.map {
-            UILabel(text: $0, font: .poppinsRegular, size: 18, color: .galaxyLightBlack, alignment: .center)
-        }
-    }
-    
-    private func createSeatLegend(title: String, color: UIColor) -> UIStackView {
-        let circle = UIView(backgroundColor: color)
-
-        circle.snp.makeConstraints { (make) in
-            make.width.height.equalTo(20)
-        }
-        circle.layer.cornerRadius = 20 / 2
-        let label = UILabel(text: title, font: .poppinsLight, size: 14, color: .galaxyBlack)
-        
-        let sv = UIStackView(arrangedSubviews: [circle, label])
-        sv.spacing = 8
-        return sv
-    }
-    
-    @objc private func handleBackTapped() {
-        coordinator?.popToPickTheater()
-    }
-    
-    @objc private func handleBuyTapped() {
-        coordinator?.pickAdditionalService()
-    }
-    
 }

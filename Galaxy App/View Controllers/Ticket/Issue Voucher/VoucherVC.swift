@@ -9,7 +9,11 @@ import UIKit
 
 class VoucherVC: UIViewController {
     
+    // MARK: - Properties
+    
     var coordinator: TicketCoordinator?
+    
+    // MARK: - Views
     
     private let closeButton: UIButton = {
         let symbolConfig = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 24, weight: .medium))
@@ -48,6 +52,8 @@ class VoucherVC: UIViewController {
         return sv
     }()
     
+    // MARK: - Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,6 +62,17 @@ class VoucherVC: UIViewController {
         
         setupViews()
     }
+    
+    // MARK: - Action Handlers
+    
+    @objc private func handleCloseTapped() {
+        coordinator?.closeVoucherSlip()
+    }
+}
+
+// MARK: - Layout Views
+
+extension VoucherVC {
     
     private func setupViews() {
         view.addSubview(closeButton)
@@ -87,9 +104,5 @@ class VoucherVC: UIViewController {
             make.leading.trailing.equalToSuperview().inset(34)
             make.top.bottom.centerX.equalToSuperview()
         })
-    }
-    
-    @objc private func handleCloseTapped() {
-        coordinator?.closeVoucherSlip()
     }
 }
