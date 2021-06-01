@@ -9,7 +9,7 @@ import UIKit
 
 class CastDatasource: NSObject, UICollectionViewDataSource {
     
-    let casts: [Cast]?
+    private let casts: [Cast]?
     
     init(casts: [Cast]?) {
         self.casts = casts

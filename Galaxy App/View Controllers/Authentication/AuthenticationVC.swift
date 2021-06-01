@@ -9,9 +9,11 @@ import UIKit
 
 class AuthenticationVC: UIViewController {
     
-    // MARK: - Views
+    // MARK: - Properties
     
     var coordinator: MainCoordinator?
+    
+    // MARK: - Views
     
     private let welcomeLabel: UILabel = {
         let lbl = UILabel(text: "", font: .poppinsSemiBold, size: 28, numberOfLines: 0, color: .galaxyBlack)
@@ -31,51 +33,35 @@ class AuthenticationVC: UIViewController {
     private let topTabBar = TopTabBar()
     private let containerView = UIView(backgroundColor: .clear)
     
+    // MARK: - Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
         
+        configureTopTabBar()
+        setupView()
+    }
+    
+    private func configureTopTabBar() {
         topTabBar.onTabSelectionChange = { [weak self] tabItem in
-            self?.onTabItemChange(tappedItem: tabItem)
+            self?.onTabSelectionChange(tappedItem: tabItem)
         }
         
-        setupView()
+        // Show login vc initially.
         add(vc: LoginVC.shared)
         
         LoginVC.shared.onConfirmTapped = { [weak self] in
             self?.handleConfirmTapped()
         }
+        
         SignUpVC.shared.onConfirmTapped = { [weak self] in
             self?.handleConfirmTapped()
         }
     }
     
-    private func setupView() {
-        view.addSubview(welcomeLabel)
-        welcomeLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(40)
-            make.leading.trailing.equalToSuperview().inset(20)
-        }
-        
-        setupTopTabView()
-        
-        view.addSubview(containerView)
-        containerView.snp.makeConstraints { (make) in
-            make.top.equalTo(topTabBar.snp.bottom).inset(-40)
-            make.leading.trailing.bottom.equalToSuperview()
-        }
-    }
-    
-    private func setupTopTabView() {
-        view.addSubview(topTabBar)
-        
-        topTabBar.snp.makeConstraints { (make) in
-            make.top.equalTo(welcomeLabel.snp.bottom).inset(-34)
-            make.leading.trailing.equalTo(welcomeLabel).inset(4)
-            make.height.equalTo(60)
-        }
-    }
+    // MARK: - Private Helpers
     
     private func add(vc: UIViewController) {
         addChild(vc)
@@ -92,8 +78,12 @@ class AuthenticationVC: UIViewController {
         view.willRemoveSubview(vc.view)
     }
     
-    private func onTabItemChange(tappedItem: TopTabBar.TabItem) {
-        guard let toView = tappedItem.currentVC.view, let fromView = tappedItem.previousVC.view else { return }
+    // MARK: - Tab Event Handlers
+    
+    private func onTabSelectionChange(tappedItem: TopTabBar.TabItem) {
+        guard
+            let toView = tappedItem.currentVC.view,
+            let fromView = tappedItem.previousVC.view else { return }
         
         let frame = containerView.frame
         var toViewFrame = frame
@@ -120,10 +110,40 @@ class AuthenticationVC: UIViewController {
             fromView.alpha = 0
         }, completion: nil)
     }
-    
+
     private func handleConfirmTapped() {
         coordinator?.home()
     }
     
 }
 
+// MARK: - Layout Views
+
+extension AuthenticationVC {
+    
+    private func setupView() {
+        view.addSubview(welcomeLabel)
+        welcomeLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(40)
+            make.leading.trailing.equalToSuperview().inset(20)
+        }
+        
+        setupTopTabView()
+        
+        view.addSubview(containerView)
+        containerView.snp.makeConstraints { (make) in
+            make.top.equalTo(topTabBar.snp.bottom).inset(-40)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    private func setupTopTabView() {
+        view.addSubview(topTabBar)
+        
+        topTabBar.snp.makeConstraints { (make) in
+            make.top.equalTo(welcomeLabel.snp.bottom).inset(-34)
+            make.leading.trailing.equalTo(welcomeLabel).inset(4)
+            make.height.equalTo(60)
+        }
+    }
+}

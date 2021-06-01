@@ -10,19 +10,33 @@ import SnapKit
 
 class LoginVC: UIViewController {
 
+    // MARK: - Properties
+    
     static var shared = LoginVC()
     
     var onConfirmTapped: (() -> Void)?
     
+    private var mainStackViewBottomConstraint: Constraint?
+
+    // MARK: - Views
+    
     private let emailLabel = UILabel(text: "Email", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
     private let passwordLabel = UILabel(text: "Password", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
     private let forgotPasswordLabel = UILabel(text: "Forgot Password ?", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
-    
-    private let emailOutlineField = OutlineTextField(placeholder: "LilyJohnson@gmail.com", keyboardType: .emailAddress)
-    private let passwordOutlineField = OutlineTextField(placeholder: "Something unique")
-    
-    private var mainStackViewBottomConstraint: Constraint?
 
+    private let emailOutlineField: OutlineTextField = {
+        let field = OutlineTextField(placeholder: "LilyJohnson@gmail.com", keyboardType: .emailAddress)
+        field.textField.becomeFirstResponder()
+        field.textField.returnKeyType = .next
+        return field
+    }()
+    
+    private let passwordOutlineField: OutlineTextField = {
+        let field = OutlineTextField(placeholder: "Something unique")
+        field.textField.isSecureTextEntry = true
+        return field
+    }()
+    
     private lazy var fbSocialLoginButton: UIButton = {
         let ob = OutlineButton(title: "Sign in with facebook")
         ob.outlineColor = UIColor.galaxyLightBlack.withAlphaComponent(0.5)
@@ -46,6 +60,7 @@ class LoginVC: UIViewController {
     }()
     
     private let confirmButton = UIButton(title: "Confirm", textSize: 20)
+    
     private let scrollView: UIScrollView = {
         let sv = UIScrollView()
         sv.showsVerticalScrollIndicator = false
@@ -54,29 +69,59 @@ class LoginVC: UIViewController {
         return sv
     }()
     
+    // MARK: - Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        emailOutlineField.textField.becomeFirstResponder()
-        emailOutlineField.textField.returnKeyType = .next
-        passwordOutlineField.textField.isSecureTextEntry = true
         
         [emailOutlineField, passwordOutlineField]
             .map { $0.textField }
             .forEach { $0.delegate = self }
         
         setupViews()
+        
         watchKeyboardNotification()
         
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onViewTapped)))
         confirmButton.addTarget(self, action: #selector(handleConfirmTapped), for: .touchUpInside)
     }
+    
+    // MARK: - Private Helpers
     
     private func watchKeyboardNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    // MARK: - Action Handlers
+    
+    @objc private func handleKeyboardNotification(notification: NSNotification) {
+        let isKeyboardShowing = notification.name == UIView.keyboardWillShowNotification
+        let keyboardRect = ((notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]) as? NSValue)?.cgRectValue
+        let bottomPadding: CGFloat = 20
+        
+        let keyboardHeight = (keyboardRect!.height - view.safeAreaInsets.bottom) + bottomPadding
+        let bottomInset = isKeyboardShowing ? keyboardHeight : bottomPadding
+        
+        // Update the stack view bottom constraint
+        mainStackViewBottomConstraint?.update(inset: bottomInset)
+        
+        let animationDuration = ((notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey]) as? NSNumber)?.doubleValue
+        
+        UIView.animate(withDuration: animationDuration ?? 0) { [weak self] in
+            self?.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc private func handleConfirmTapped() {
+        onConfirmTapped?()
+    }
+
+}
+
+// MARK: - Layout Views
+
+extension LoginVC {
+   
     private func setupViews() {
         let emailSV = UIStackView(subViews: [emailLabel, emailOutlineField], axis: .vertical, spacing: 4)
         let passwordSV = UIStackView(subViews: [passwordLabel, passwordOutlineField], axis: .vertical, spacing: 4)
@@ -120,34 +165,9 @@ class LoginVC: UIViewController {
             make.centerX.equalToSuperview()
         }
     }
-    
-    @objc private func handleKeyboardNotification(notification: NSNotification) {
-        let isKeyboardShowing = notification.name == UIView.keyboardWillShowNotification
-        let keyboardRect = ((notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]) as? NSValue)?.cgRectValue
-        let bottomPadding: CGFloat = 20
-        
-        let keyboardHeight = (keyboardRect!.height - view.safeAreaInsets.bottom) + bottomPadding
-        let bottomInset = isKeyboardShowing ? keyboardHeight : bottomPadding
-        
-        // Update the stack view bottom constraint
-        mainStackViewBottomConstraint?.update(inset: bottomInset)
-        
-        let animationDuration = ((notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey]) as? NSNumber)?.doubleValue
-        
-        UIView.animate(withDuration: animationDuration ?? 0) { [weak self] in
-            self?.view.layoutIfNeeded()
-        }
-    }
-    
-    @objc private func onViewTapped() {
-        view.endEditing(true)
-    }
-    
-    @objc private func handleConfirmTapped() {
-        onConfirmTapped?()
-    }
-
 }
+
+// MARK: - UITextFieldDelegate
 
 extension LoginVC : UITextFieldDelegate {
     

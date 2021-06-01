@@ -6,10 +6,11 @@
 //
 
 import UIKit
-import SnapKit
 import FloatingPanel
 
 class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
+    
+    // MARK: - Properties
     
     var movie: Movie? {
         didSet {
@@ -19,6 +20,8 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
     }
     
     var coordinator: HomeCoordinator?
+    
+    // MARK: - Views
     
     private var movieImageView = UIImageView(image: nil, contentMode: .scaleAspectFill)
     private lazy var movieImageViewHeight = view.frame.height * 0.46
@@ -40,6 +43,8 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
     
     private let getTicketButton = UIButton(title: "Get your ticket", font: .poppinsSemiBold, textSize: 20, textColor: .white, cornerRadius: 6)
     
+    // MARK: - Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +56,21 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
         
         getTicketButton.addTarget(self, action: #selector(handleGetTicketTapped), for: .touchUpInside)
     }
+    
+    // MARK: - Action Handlers
+    
+    @objc private func handleBackTapped() {
+        coordinator?.popToHome()
+    }
+    
+    @objc private func handleGetTicketTapped() {
+        coordinator?.getTicket()
+    }
+}
+
+// MARK: - Layout Views
+
+extension MovieDetailVC {
     
     private func setupView() {
         view.addSubview(movieImageView)
@@ -114,13 +134,4 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
             make.height.equalTo(60)
         }
     }
-    
-    @objc private func handleBackTapped() {
-        coordinator?.popToHome()
-    }
-    
-    @objc private func handleGetTicketTapped() {
-        coordinator?.getTicket()
-    }
 }
-

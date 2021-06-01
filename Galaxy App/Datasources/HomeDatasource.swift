@@ -9,11 +9,11 @@ import UIKit
 
 class HomeDatasource: NSObject, UICollectionViewDataSource {
 
-    weak var collectionView: UICollectionView?
-
-    private lazy var movieVO = Bundle.main.decode([MovieVO].self, from: "Movies.json")
-    private lazy var nowShowingMovies = movieVO[0].movies
-    private lazy var comingSoonMovies = movieVO[1].movies
+    private let movies = Bundle.main.decode([AllMovie].self, from: "Movies.json")
+    private lazy var nowShowingMovies = movies[0].movies
+    private lazy var comingSoonMovies = movies[1].movies
+    
+    // MARK: - Cell/Header Registration
     
     private let profileCellRegistration = UICollectionView.CellRegistration<ProfileCell, String> { (cell, indexPath, item) in
         // DO NOTHING
@@ -28,11 +28,9 @@ class HomeDatasource: NSObject, UICollectionViewDataSource {
     private let movieHeaderRegistration = UICollectionView.SupplementaryRegistration<MovieHeader>(elementKind: MovieHeader.kind) { (header, string, indexPath) in
         header.headerText = indexPath.section == 1 ? "Now Showing" : "Coming Soon"
     }
-
-    init(for collectionView: UICollectionView) {
-        self.collectionView = collectionView
-    }
     
+    // MARK: - Datasource Methods
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
     }
@@ -66,7 +64,9 @@ class HomeDatasource: NSObject, UICollectionViewDataSource {
         }
     }
     
+    // MARK: - Utility Method
+    
     func getMovie(at indexPath: IndexPath) -> Movie? {
-        movieVO[indexPath.section - 1].movies[indexPath.item]
+        movies[indexPath.section - 1].movies[indexPath.item]
     }
 }

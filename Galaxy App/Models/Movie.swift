@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct MovieVO: Codable {
+struct AllMovie: Codable {
     var status: String
     var movies: [Movie]
 }

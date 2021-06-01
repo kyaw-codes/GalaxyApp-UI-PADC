@@ -1,19 +1,22 @@
 //
-//  ViewController.swift
+//  GetStartedVC.swift
 //  Galaxy App
 //
 //  Created by Ko Kyaw on 06/05/2021.
 //
 
 import UIKit
-import SnapKit
 
 class GetStartedVC: UIViewController {
     
-    private let vectorImageView: UIImageView = UIImageView(image: UIImage(named: "horror_movie_vector"), contentMode: .scaleAspectFit)
+    // MARK: - Properties
     
     var coordinator: MainCoordinator?
 
+    // MARK: - Views
+    
+    private let vectorImageView: UIImageView = UIImageView(image: UIImage(named: "horror_movie_vector"), contentMode: .scaleAspectFit)
+    
     private let greetingLabel: UILabel = {
         let lbl = UILabel(text: "", font: .poppinsSemiBold, size: 28, numberOfLines: 0)
         let attrString = NSMutableAttributedString(string: "Welcome!\n")
@@ -31,17 +34,31 @@ class GetStartedVC: UIViewController {
         return btn
     }()
     
+    // MARK: - Lifecycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .galaxyViolet
-        navigationController?.navigationBar.isHidden = true
         
         setupView()
         startButton.addTarget(self, action: #selector(onStartTapped), for: .touchUpInside)
     }
     
+    // MARK: - Action Handlers
+    
+    @objc private func onStartTapped() {
+        coordinator?.login()
+    }
+
+}
+
+// MARK: - Layout Views
+
+extension GetStartedVC {
+    
     private func setupView() {
+        
         let topContainerView = UIView()
         let bottomContainerView = UIView()
         
@@ -75,10 +92,4 @@ class GetStartedVC: UIViewController {
             make.height.equalToSuperview().multipliedBy(0.16)
         }
     }
-    
-    @objc private func onStartTapped() {
-        coordinator?.login()
-    }
-
 }
-

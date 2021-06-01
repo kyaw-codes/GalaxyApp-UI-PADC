@@ -9,7 +9,7 @@ import UIKit
 
 class SeatingPlanDatasource: NSObject, UICollectionViewDataSource {
     
-    let cellRegistration = UICollectionView.CellRegistration<SeatCell, String> { (cell, indexPath, data) in
+    private let cellRegistration = UICollectionView.CellRegistration<SeatCell, String> { (cell, indexPath, data) in
         if indexPath.row == 0 || indexPath.row == 7 {
             cell.seatView.backgroundColor = .clear
             cell.seatView.isUserInteractionEnabled = false

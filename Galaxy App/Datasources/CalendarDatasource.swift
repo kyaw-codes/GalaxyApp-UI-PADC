@@ -9,7 +9,7 @@ import UIKit
 
 class CalendarDatasource: NSObject, UICollectionViewDataSource {
     
-    var calendars: [Calendar] = [
+    private var calendars: [Calendar] = [
         .init(day: "We", date: "8"),
         .init(day: "Th", date: "9"),
         .init(day: "Fr", date: "10", isToday: true),

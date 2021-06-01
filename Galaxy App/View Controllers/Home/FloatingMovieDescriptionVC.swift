@@ -10,6 +10,8 @@ import SnapKit
 
 class FloatingMovieDescriptionVC: UIViewController {
     
+    // MARK: - Properties
+    
     var movie: Movie? {
         didSet {
             guard let movie = movie else { return }
@@ -30,9 +32,13 @@ class FloatingMovieDescriptionVC: UIViewController {
         }
     }
     
-    private let movieTitleLabel = UILabel(text: "Detective Pikachu", font: .poppinsSemiBold, size: 28, numberOfLines: 2, color: .galaxyBlack)
-    private let durationLabel = UILabel(text: "1h 45m", font: .poppinsLight, size: 20, color: .galaxyBlack)
-    private let imdbLabel = UILabel(text: "1h 45m", font: .poppinsLight, size: 20, color: .galaxyBlack)
+    private var dataSource: CastDatasource?
+
+    // MARK: - Views
+    
+    private let movieTitleLabel = UILabel(text: "", font: .poppinsSemiBold, size: 28, numberOfLines: 2, color: .galaxyBlack)
+    private let durationLabel = UILabel(text: "", font: .poppinsLight, size: 20, color: .galaxyBlack)
+    private let imdbLabel = UILabel(text: "", font: .poppinsLight, size: 20, color: .galaxyBlack)
     private var primaryGenreBadgeView: UIView?
     private var secondaryGenreBadgeView: UIView?
     
@@ -51,8 +57,8 @@ class FloatingMovieDescriptionVC: UIViewController {
     
     let scrollView = UIScrollView()
     
-    private var dataSource: CastDatasource?
-
+    // MARK: - Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -64,6 +70,7 @@ class FloatingMovieDescriptionVC: UIViewController {
         
         // Set up parent view
         configureParentView()
+        
         setupChildViews()
     }
     
@@ -79,12 +86,44 @@ class FloatingMovieDescriptionVC: UIViewController {
         }
     }
     
+    // MARK: - Private Helpers
+    
     private func configureParentView() {
         view.backgroundColor = .white
         view.layer.cornerRadius = 30
         view.layer.masksToBounds = true
         view.layer.maskedCorners = CACornerMask(arrayLiteral: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
     }
+    
+    private func createGenreBadge(name genreName: String?) -> UIView? {
+        guard let genreName = genreName else { return nil }
+        let label = UILabel(text: genreName, font: .poppinsLight, size: 16, color: .galaxyBlack)
+        let width: CGFloat = genreName.size(withAttributes: [NSAttributedString.Key.font : UIFont.GalaxyFont.poppinsLight.font(of: 16)]).width
+        let height: CGFloat = 48
+        let padding: CGFloat = 50
+        let genreView = UIView()
+        genreView.addSubview(label)
+        
+        label.snp.makeConstraints { (make) in
+            make.centerX.centerY.equalToSuperview()
+        }
+        
+        genreView.snp.makeConstraints { (make) in
+            make.width.equalTo(width + padding)
+            make.height.equalTo(height)
+        }
+        genreView.layer.cornerRadius = height / 2
+        genreView.clipsToBounds = true
+        genreView.layer.borderWidth = 0.5
+        genreView.layer.borderColor = UIColor.galaxyLightBlack.cgColor
+        return genreView
+    }
+    
+}
+
+// MARK: - Layout Views
+
+extension FloatingMovieDescriptionVC {
     
     private func setupChildViews() {
         
@@ -124,29 +163,4 @@ class FloatingMovieDescriptionVC: UIViewController {
             make.leading.trailing.top.bottom.equalToSuperview()
         }
     }
-
-    private func createGenreBadge(name genreName: String?) -> UIView? {
-        guard let genreName = genreName else { return nil }
-        let label = UILabel(text: genreName, font: .poppinsLight, size: 16, color: .galaxyBlack)
-        let width: CGFloat = genreName.size(withAttributes: [NSAttributedString.Key.font : UIFont.GalaxyFont.poppinsLight.font(of: 16)]).width
-        let height: CGFloat = 48
-        let padding: CGFloat = 50
-        let genreView = UIView()
-        genreView.addSubview(label)
-        
-        label.snp.makeConstraints { (make) in
-            make.centerX.centerY.equalToSuperview()
-        }
-        
-        genreView.snp.makeConstraints { (make) in
-            make.width.equalTo(width + padding)
-            make.height.equalTo(height)
-        }
-        genreView.layer.cornerRadius = height / 2
-        genreView.clipsToBounds = true
-        genreView.layer.borderWidth = 0.5
-        genreView.layer.borderColor = UIColor.galaxyLightBlack.cgColor
-        return genreView
-    }
-    
 }

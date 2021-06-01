@@ -12,7 +12,7 @@ class TicketView: UIView {
     private var topArcYOffset: CGFloat = 0
     private var bottomArcYOffset: CGFloat = 0
     private let arcSize: CGFloat = 26
-    private let cornerRadius: CGFloat = 20
+    private let cornerRadius: CGFloat = 14
     
     private let topDashLineView = DashLine(color: .seatAvailable)
     private let bottomDashLineView = DashLine(color: .seatAvailable)
@@ -39,7 +39,7 @@ class TicketView: UIView {
                 infoSV.addArrangedSubview(row)
             }
             
-            barCodeImageView.image = ticket.movieName.appending(ticket.bookingNo).generateBarcode()
+            barCodeImageView.image = ticket.bookingNo.generateBarcode()
         }
     }
     

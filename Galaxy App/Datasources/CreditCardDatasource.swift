@@ -10,10 +10,10 @@ import Gemini
 
 class CreditCardDatasource: NSObject, UICollectionViewDataSource {
     
-    var creditCards: [CreditCard] = [
+    private var creditCards: [CreditCard] = [
         .init(cardHolder: "Jonathan Ive", expireDate: Date.of(dateString: "01/1/2023"), cardNo: "1534539834210348"),
         .init(cardHolder: "Craig Federighi", expireDate: Date.of(dateString: "07/20/2021"), cardNo: "1534539834218014"),
-        .init(cardHolder: "Novall Swift", expireDate: Date.of(dateString: "05/1/2025"), cardNo: "1534539834214249")
+        .init(cardHolder: "Paul Hudson", expireDate: Date.of(dateString: "05/1/2025"), cardNo: "1534539834214249")
     ]
     
     private let cellRegistration = UICollectionView.CellRegistration<CreditCardCell, CreditCard> { (cell, indexPaht, creditCard) in

@@ -6,11 +6,16 @@
 //
 
 import UIKit
-import SnapKit
 
 class HomeVC: UIViewController {
     
+    // MARK: - Properties
+    
     var coordinator: HomeCoordinator?
+
+    private lazy var dataSource = HomeDatasource()
+
+    // MARK: - Views
     
     private lazy var menuBarWidth = view.frame.width * 0.8
         
@@ -34,21 +39,102 @@ class HomeVC: UIViewController {
         return cv
     }()
     
-    private lazy var dataSource = HomeDatasource(for: collectionView)
+    // MARK: - Lifecycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .galaxyViolet
+        setupView()
+        
+        view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:))))
+    }
+    
+    // MARK: - Private Helpers
+    
+    private func animateMenuOpen() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: { [weak self] in
+            guard let self = self else { return }
+            self.sideMenuView.transform = CGAffineTransform(translationX: self.menuBarWidth + self.sideMenuVC.shadowRadius, y: 0)
+            self.containerView.transform = CGAffineTransform(translationX: self.menuBarWidth, y: 0)
+        }, completion: nil)
+    }
+    
+    private func animateMenuClose() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: { [weak self] in
+            guard let self = self else { return }
+            self.sideMenuView.transform = .identity
+            self.containerView.transform = .identity
+        }, completion: nil)
+    }
+    
+    private func createProfileSection() -> NSCollectionLayoutSection? {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
+        return section
+    }
+    
+    private func createMovieSection() -> NSCollectionLayoutSection? {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.38), heightDimension: .estimated(200))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .none, top: .none, trailing: .fixed(20), bottom: .none)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 30, trailing: 0)
+        
+        section.boundarySupplementaryItems = [
+            .init(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
+        ]
+        return section
+    }
+    
+    // MARK: - Action Handlers
+    
+    @objc private func handleMenuTapped() {
+        if sideMenuView.transform == .identity {
+            // Open the menu
+            animateMenuOpen()
+        } else {
+            // Close the menu
+            animateMenuClose()
+        }
+    }
+    
+    @objc private func handlePan(_ sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: self.view)
+        
+        switch sender.state {
+        case .ended:
+            if translation.x >= 0 {
+                animateMenuOpen()
+            } else {
+                animateMenuClose()
+            }
+        default:
+            break
+        }
+    }
+    
+}
+
+// MARK: - Layout Views
+
+extension HomeVC {
+    private func setupView() {
         view.addSubview(containerView)
         containerView.frame = view.bounds
         
         setupNavBar()
-        navigationController?.navigationBar.isHidden = true
         
         setupCollectionView()
         setupSideMenuBar()
-        view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:))))
     }
     
     private func setupNavBar() {
@@ -88,76 +174,9 @@ class HomeVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = dataSource
     }
-
-    private func createProfileSection() -> NSCollectionLayoutSection? {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
-        return section
-    }
-    
-    private func createMovieSection() -> NSCollectionLayoutSection? {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.38), heightDimension: .estimated(200))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        group.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .none, top: .none, trailing: .fixed(20), bottom: .none)
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 30, trailing: 0)
-        
-        section.boundarySupplementaryItems = [
-            .init(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
-        ]
-        return section
-    }
-    
-    @objc private func handleMenuTapped() {
-        if sideMenuView.transform == .identity {
-            // Open the menu
-            animateMenuOpen()
-        } else {
-            // Close the menu
-            animateMenuClose()
-        }
-    }
-    
-    @objc private func handlePan(_ sender: UIPanGestureRecognizer) {
-        let translation = sender.translation(in: self.view)
-        
-        switch sender.state {
-        case .ended:
-            if translation.x >= 0 {
-                animateMenuOpen()
-            } else {
-                animateMenuClose()
-            }
-        default:
-            break
-        }
-    }
-    
-    private func animateMenuOpen() {
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: { [weak self] in
-            guard let self = self else { return }
-            self.sideMenuView.transform = CGAffineTransform(translationX: self.menuBarWidth + self.sideMenuVC.shadowRadius, y: 0)
-            self.containerView.transform = CGAffineTransform(translationX: self.menuBarWidth, y: 0)
-        }, completion: nil)
-    }
-    
-    private func animateMenuClose() {
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: { [weak self] in
-            guard let self = self else { return }
-            self.sideMenuView.transform = .identity
-            self.containerView.transform = .identity
-        }, completion: nil)
-    }
 }
+
+// MARK: - UICollectionViewDelegate
 
 extension HomeVC: UICollectionViewDelegate {
     

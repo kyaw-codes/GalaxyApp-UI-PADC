@@ -10,9 +10,15 @@ import SnapKit
 
 class SignUpVC: UIViewController {
 
+    // MARK: - Properties
+    
     static var shared = SignUpVC()
     
     var onConfirmTapped: (() -> Void)?
+    
+    private var mainStackViewBottomConstraint: Constraint?
+
+    // MARK: - Views
 
     private let firstNameLabel = UILabel(text: "First name", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
     private let lastNameLabel = UILabel(text: "Last name", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
@@ -25,8 +31,6 @@ class SignUpVC: UIViewController {
     private let emailOutlineField = OutlineTextField(placeholder: "sexyMonkey@gmail.com", keyboardType: .emailAddress)
     private let passwordOutlineField = OutlineTextField(placeholder: "Something unique")
     
-    private var mainStackViewBottomConstraint: Constraint?
-
     private lazy var fbSocialSignUpButton: UIButton = {
         let ob = OutlineButton(title: "Sign up with facebook")
         ob.outlineColor = UIColor.galaxyLightBlack.withAlphaComponent(0.5)
@@ -58,9 +62,21 @@ class SignUpVC: UIViewController {
         return sv
     }()
     
+    // MARK: - Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTextFields()
+        setupViews()
+        
+        watchKeyboardNotification()
+        confirmButton.addTarget(self, action: #selector(handleConfirmTapped), for: .touchUpInside)
+    }
+    
+    // MARK: - Private Helpers
+    
+    private func setupTextFields() {
         firstNameOutlineField.textField.becomeFirstResponder()
         passwordOutlineField.textField.isSecureTextEntry = true
         
@@ -71,18 +87,41 @@ class SignUpVC: UIViewController {
         [firstNameOutlineField, lastNameOutlineField, emailOutlineField]
             .map { $0.textField }
             .forEach { $0.returnKeyType = .next }
-
-        setupViews()
-        watchKeyboardNotification()
-        
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onViewTapped)))
-        confirmButton.addTarget(self, action: #selector(handleConfirmTapped), for: .touchUpInside)
     }
-    
+
     private func watchKeyboardNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
+    // MARK: - Action Handlers
+    
+    @objc private func handleKeyboardNotification(notification: NSNotification) {
+        let isKeyboardShowing = notification.name == UIView.keyboardWillShowNotification
+        let keyboardRect = ((notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]) as? NSValue)?.cgRectValue
+        let bottomPadding: CGFloat = 20
+        
+        let keyboardHeight = (keyboardRect!.height - view.safeAreaInsets.bottom) + bottomPadding
+        let bottomInset = isKeyboardShowing ? keyboardHeight : bottomPadding
+        
+        // Update the stack view bottom constraint
+        mainStackViewBottomConstraint?.update(inset: bottomInset)
+        
+        let animationDuration = ((notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey]) as? NSNumber)?.doubleValue
+        
+        UIView.animate(withDuration: animationDuration ?? 0) { [weak self] in
+            self?.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc private func handleConfirmTapped() {
+        onConfirmTapped?()
+    }
+}
+
+// MARK: - Layout Views
+
+extension SignUpVC {
     
     private func setupViews() {
         let firstNameSV = UIStackView(subViews: [firstNameLabel, firstNameOutlineField], axis: .vertical, spacing: 4)
@@ -128,33 +167,9 @@ class SignUpVC: UIViewController {
             make.centerX.equalToSuperview()
         }
     }
-    
-    @objc private func handleKeyboardNotification(notification: NSNotification) {
-        let isKeyboardShowing = notification.name == UIView.keyboardWillShowNotification
-        let keyboardRect = ((notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]) as? NSValue)?.cgRectValue
-        let bottomPadding: CGFloat = 20
-        
-        let keyboardHeight = (keyboardRect!.height - view.safeAreaInsets.bottom) + bottomPadding
-        let bottomInset = isKeyboardShowing ? keyboardHeight : bottomPadding
-        
-        // Update the stack view bottom constraint
-        mainStackViewBottomConstraint?.update(inset: bottomInset)
-        
-        let animationDuration = ((notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey]) as? NSNumber)?.doubleValue
-        
-        UIView.animate(withDuration: animationDuration ?? 0) { [weak self] in
-            self?.view.layoutIfNeeded()
-        }
-    }
-    
-    @objc func onViewTapped() {
-        view.endEditing(true)
-    }
-    
-    @objc private func handleConfirmTapped() {
-        onConfirmTapped?()
-    }
 }
+
+// MARK: - UITextFieldDelegate
 
 extension SignUpVC : UITextFieldDelegate {
     
