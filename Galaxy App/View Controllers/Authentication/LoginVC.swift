@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import SnapKit
 
-class LoginVC: UIViewController {
+class LoginVC: VerticallyScrollableVC<MainCoordinator> {
 
     // MARK: - Properties
     
@@ -16,8 +15,6 @@ class LoginVC: UIViewController {
     
     var onConfirmTapped: (() -> Void)?
     
-    private var mainStackViewBottomConstraint: Constraint?
-
     // MARK: - Views
     
     private let emailLabel = UILabel(text: "Email", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
@@ -37,37 +34,11 @@ class LoginVC: UIViewController {
         return field
     }()
     
-    private lazy var fbSocialLoginButton: UIButton = {
-        let ob = OutlineButton(title: "Sign in with facebook")
-        ob.outlineColor = UIColor.galaxyLightBlack.withAlphaComponent(0.5)
-        ob.titleColor = .galaxyLightBlack
-        ob.titleFont = UIFont.GalaxyFont.poppinsRegular.font(of: 20)
-        ob.setImage(#imageLiteral(resourceName: "logo_fb"), for: .normal)
-        ob.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: view.frame.width * 0.15)
-        ob.titleEdgeInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
-        return ob
-    }()
+    private lazy var fbSocialLoginButton = SocialButton(title: "Sign in with facebook", icon: #imageLiteral(resourceName: "logo_fb"))
     
-    private lazy var googleSocialLoginButton: UIButton = {
-        let ob = OutlineButton(title: "Sign in with google")
-        ob.outlineColor = UIColor.galaxyLightBlack.withAlphaComponent(0.5)
-        ob.titleColor = .galaxyLightBlack
-        ob.titleFont = UIFont.GalaxyFont.poppinsRegular.font(of: 20)
-        ob.setImage(#imageLiteral(resourceName: "logo_google"), for: .normal)
-        ob.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: view.frame.width * 0.2)
-        ob.titleEdgeInsets = UIEdgeInsets(top: 0, left: -25, bottom: 0, right: 0)
-        return ob
-    }()
+    private lazy var googleSocialLoginButton = SocialButton(title: "Sign in with google", icon: #imageLiteral(resourceName: "logo_google"))
     
     private let confirmButton = CTAButton(title: "Confirm")
-    
-    private let scrollView: UIScrollView = {
-        let sv = UIScrollView()
-        sv.showsVerticalScrollIndicator = false
-        sv.keyboardDismissMode = .interactive
-        sv.alwaysBounceVertical = true
-        return sv
-    }()
     
     // MARK: - Lifecycles
     
@@ -78,93 +49,35 @@ class LoginVC: UIViewController {
             .map { $0.textField }
             .forEach { $0.delegate = self }
         
-        setupViews()
-        
-        watchKeyboardNotification()
-        
         confirmButton.addTarget(self, action: #selector(handleConfirmTapped), for: .touchUpInside)
     }
     
-    // MARK: - Private Helpers
-    
-    private func watchKeyboardNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    override func layoutViews(inside contentView: UIStackView) {
+        let emailSV = UIStackView(subViews: [emailLabel, emailOutlineField], axis: .vertical, spacing: 4)
+        let passwordSV = UIStackView(subViews: [passwordLabel, passwordOutlineField], axis: .vertical, spacing: 4)
+        let forgotPasswordSV = UIStackView(arrangedSubviews: [UIView(), forgotPasswordLabel])
+
+        let inputsSV = UIStackView(subViews: [emailSV, passwordSV, forgotPasswordSV], axis: .vertical, spacing: 40)
+
+        [googleSocialLoginButton].forEach {
+            $0.snp.makeConstraints { (make) in
+                make.height.equalTo(56)
+            }
+        }
+
+        let buttonsSV = UIStackView(subViews: [fbSocialLoginButton, googleSocialLoginButton, confirmButton], axis: .vertical, spacing: 30)
+        
+        contentView.spacing = 40
+        contentView.addArrangedSubview(inputsSV)
+        contentView.addArrangedSubview(buttonsSV)
     }
     
     // MARK: - Action Handlers
-    
-    @objc private func handleKeyboardNotification(notification: NSNotification) {
-        let isKeyboardShowing = notification.name == UIView.keyboardWillShowNotification
-        let keyboardRect = ((notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]) as? NSValue)?.cgRectValue
-        let bottomPadding: CGFloat = 20
-        
-        let keyboardHeight = (keyboardRect!.height - view.safeAreaInsets.bottom) + bottomPadding
-        let bottomInset = isKeyboardShowing ? keyboardHeight : bottomPadding
-        
-        // Update the stack view bottom constraint
-        mainStackViewBottomConstraint?.update(inset: bottomInset)
-        
-        let animationDuration = ((notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey]) as? NSNumber)?.doubleValue
-        
-        UIView.animate(withDuration: animationDuration ?? 0) { [weak self] in
-            self?.view.layoutIfNeeded()
-        }
-    }
     
     @objc private func handleConfirmTapped() {
         onConfirmTapped?()
     }
 
-}
-
-// MARK: - Layout Views
-
-extension LoginVC {
-   
-    private func setupViews() {
-        let emailSV = UIStackView(subViews: [emailLabel, emailOutlineField], axis: .vertical, spacing: 4)
-        let passwordSV = UIStackView(subViews: [passwordLabel, passwordOutlineField], axis: .vertical, spacing: 4)
-        let forgotPasswordSV = UIStackView(arrangedSubviews: [UIView(), forgotPasswordLabel])
-        
-        let inputsSV = UIStackView(subViews: [emailSV, passwordSV, forgotPasswordSV], axis: .vertical, spacing: 40)
-        
-        [fbSocialLoginButton, googleSocialLoginButton].forEach {
-            $0.snp.makeConstraints { (make) in
-                make.height.equalTo(56)
-            }
-        }
-        
-        let buttonsSV = UIStackView(subViews: [fbSocialLoginButton, googleSocialLoginButton, confirmButton], axis: .vertical, spacing: 30)
-        let mainSV = UIStackView(subViews: [inputsSV, buttonsSV], axis: .vertical, spacing: 40)
-
-        setupScrollView()
-        
-        let containerView = UIView()
-        scrollView.addSubview(containerView)
-        setupContainerView(containerView, mainSV)
-    }
-    
-    private func setupScrollView() {
-        view.addSubview(scrollView)
-        scrollView.snp.makeConstraints { (make) in
-            make.leading.trailing.top.bottom.equalToSuperview()
-        }
-    }
-    
-    private func setupContainerView(_ containerView: UIView, _ mainSV: UIStackView) {
-        containerView.addSubview(mainSV)
-        mainSV.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(20)
-            mainStackViewBottomConstraint = make.bottom.equalToSuperview().inset(20).constraint
-        }
-        
-        containerView.snp.makeConstraints { (make) in
-            make.leading.trailing.top.bottom.equalToSuperview()
-            make.centerX.equalToSuperview()
-        }
-    }
 }
 
 // MARK: - UITextFieldDelegate

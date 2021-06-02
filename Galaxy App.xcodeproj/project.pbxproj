@@ -48,6 +48,7 @@
 		02AE45DA264429AA00C7F031 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02AE45D8264429AA00C7F031 /* LaunchScreen.storyboard */; };
 		02B29D2726674E79000B78D6 /* CTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B29D2626674E79000B78D6 /* CTAButton.swift */; };
 		02B29D2B266755B9000B78D6 /* VerticallyScrollableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B29D2A266755B9000B78D6 /* VerticallyScrollableVC.swift */; };
+		02B29D3226677C9B000B78D6 /* SocialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B29D3126677C9B000B78D6 /* SocialButton.swift */; };
 		02BF24C1264441AD00B257D1 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0297784B2644403700112F4E /* Poppins-SemiBold.ttf */; };
 		02BF24C2264441AD00B257D1 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 029778482644402100112F4E /* Poppins-Light.ttf */; };
 		02BF24C3264441AD00B257D1 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0297784A2644403600112F4E /* Poppins-Thin.ttf */; };
@@ -140,6 +141,7 @@
 		02AE45DB264429AA00C7F031 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02B29D2626674E79000B78D6 /* CTAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAButton.swift; sourceTree = "<group>"; };
 		02B29D2A266755B9000B78D6 /* VerticallyScrollableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticallyScrollableVC.swift; sourceTree = "<group>"; };
+		02B29D3126677C9B000B78D6 /* SocialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialButton.swift; sourceTree = "<group>"; };
 		02BF24C8264443F200B257D1 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		02BF24CB26446B8D00B257D1 /* OutlineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineButton.swift; sourceTree = "<group>"; };
 		02BF24D12645036900B257D1 /* GalaxyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyButton.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				021C75BD2646E3C500607FE1 /* Cells */,
 				02BF24CB26446B8D00B257D1 /* OutlineButton.swift */,
 				02B29D2626674E79000B78D6 /* CTAButton.swift */,
+				02B29D3126677C9B000B78D6 /* SocialButton.swift */,
 				02D9940B26668EE400C7A00A /* BackButton.swift */,
 				02D9940F266690CB00C7A00A /* CloseButton.swift */,
 				0238EBAF264534C30049D670 /* TopTabBar.swift */,
@@ -649,6 +652,7 @@
 				021C75BF2646E3D100607FE1 /* ProfileCell.swift in Sources */,
 				020E6A6426442FBB00636EE6 /* UIColor+Extensions.swift in Sources */,
 				024E04A826576CA400C9E164 /* TicketCoordinator.swift in Sources */,
+				02B29D3226677C9B000B78D6 /* SocialButton.swift in Sources */,
 				02D635A82647E3270027A0BA /* MovieCell.swift in Sources */,
 				021C75B62646DAD100607FE1 /* HomeCoordinator.swift in Sources */,
 				024E04AC265771FE00C9E164 /* CalendarCell.swift in Sources */,
