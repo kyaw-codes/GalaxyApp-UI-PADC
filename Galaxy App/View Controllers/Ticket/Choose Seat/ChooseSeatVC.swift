@@ -17,13 +17,7 @@ class ChooseSeatVC: UIViewController {
 
     // MARK: - Views
     
-    private let backButton: UIButton = {
-        let symbolConfig = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 28, weight: .medium))
-        let icon = UIImage(systemName: "chevron.backward", withConfiguration: symbolConfig)?.withRenderingMode(.alwaysOriginal).withTintColor(.galaxyBlack)
-        let btn = UIButton(iconImage: icon)
-        btn.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
-        return btn
-    }()
+    private let backButton = BackButton()
     
     private let movieLabel = UILabel(text: "Detective Pikachu", font: .poppinsSemiBold, size: 26, numberOfLines: 2, color: .galaxyBlack, alignment: .center)
     private let cinemaLabel = UILabel(text: "Galaxy Cinema - Golden City", font: .poppinsRegular, size: 18, numberOfLines: 1, color: .galaxyLightBlack, alignment: .center)
@@ -31,17 +25,7 @@ class ChooseSeatVC: UIViewController {
 
     private let seatCollectionView = SeatingPlanCollectionView()
     
-    private let buyTicketButton = UIButton(title: "Buy Ticket for $20.00", font: .poppinsMedium, textSize: 18, textColor: .white, backgroundColor: .galaxyViolet) { (btn) in
-        
-        btn.layer.shadowColor = UIColor.galaxyViolet.cgColor
-        btn.layer.shadowOffset = CGSize(width: 4, height: 5)
-        btn.layer.shadowRadius = 10
-        btn.layer.shadowOpacity = 0.6
-        
-        btn.snp.makeConstraints { (make) in
-            make.height.equalTo(60)
-        }
-    }
+    private let buyTicketButton = CTAButton(title: "Buy Ticket for $20.00")
     
     private var topSV: UIStackView?
     private var middleSV: UIStackView?
@@ -64,9 +48,10 @@ class ChooseSeatVC: UIViewController {
         
         seatCollectionView.dataSource = datasource
         
-        buyTicketButton.addTarget(self, action: #selector(handleBuyTapped), for: .touchUpInside)
-        
         setupViews()
+
+        backButton.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
+        buyTicketButton.addTarget(self, action: #selector(handleBuyTapped), for: .touchUpInside)
     }
     
     override func viewDidAppear(_ animated: Bool) {

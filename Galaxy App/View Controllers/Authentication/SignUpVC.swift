@@ -53,7 +53,8 @@ class SignUpVC: UIViewController {
         return ob
     }()
     
-    private let confirmButton = UIButton(title: "Confirm", textSize: 20)
+    private let confirmButton = CTAButton(title: "Confirm")
+    
     private let scrollView: UIScrollView = {
         let sv = UIScrollView()
         sv.showsVerticalScrollIndicator = false
@@ -131,7 +132,7 @@ extension SignUpVC {
         
         let inputsSV = UIStackView(subViews: [firstNameSV, lastNameSV, emailSV, passwordSV], axis: .vertical, spacing: 40)
         
-        [fbSocialSignUpButton, googleSocialSignUpButton, confirmButton].forEach {
+        [fbSocialSignUpButton, googleSocialSignUpButton].forEach {
             $0.snp.makeConstraints { (make) in
                 make.height.equalTo(56)
             }

@@ -17,25 +17,11 @@ class PickTheaterVC: UIViewController {
 
     // MARK: - Views
     
-    private let backButton: UIButton = {
-        let symbolConfig = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 28, weight: .medium))
-        let icon = UIImage(systemName: "chevron.backward", withConfiguration: symbolConfig)?.withRenderingMode(.alwaysOriginal).withTintColor(.white)
-        let btn = UIButton(iconImage: icon)
-        btn.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
-        return btn
-    }()
+    private let backButton = BackButton(iconColor: .white)
     
-    private let calendarCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.showsHorizontalScrollIndicator = false
-        cv.alwaysBounceHorizontal = true
-        cv.backgroundColor = .clear
-        return cv
-    }()
+    private let calendarCollectionView = CalendarCollectionView()
     
-    private let pickerView = PickerView()
+    private let pickerView = ContentView()
     
     // MARK: - Lifecycles
     
@@ -52,6 +38,8 @@ class PickTheaterVC: UIViewController {
         pickerView.handleNextTap = { [weak self] in
             self?.coordinator?.chooseSeat()
         }
+        
+        backButton.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
     }
     
     // MARK: - Action Handler

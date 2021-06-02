@@ -46,6 +46,7 @@
 		02AE45D2264429A400C7F031 /* GetStartedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AE45D1264429A400C7F031 /* GetStartedVC.swift */; };
 		02AE45D7264429AA00C7F031 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02AE45D6264429AA00C7F031 /* Assets.xcassets */; };
 		02AE45DA264429AA00C7F031 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02AE45D8264429AA00C7F031 /* LaunchScreen.storyboard */; };
+		02B29D2726674E79000B78D6 /* CTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B29D2626674E79000B78D6 /* CTAButton.swift */; };
 		02BF24C1264441AD00B257D1 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0297784B2644403700112F4E /* Poppins-SemiBold.ttf */; };
 		02BF24C2264441AD00B257D1 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 029778482644402100112F4E /* Poppins-Light.ttf */; };
 		02BF24C3264441AD00B257D1 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0297784A2644403600112F4E /* Poppins-Thin.ttf */; };
@@ -74,6 +75,9 @@
 		02D6E43B2660106F00F8791C /* CreditCardDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D6E43A2660106F00F8791C /* CreditCardDatasource.swift */; };
 		02D6E43E266010DA00F8791C /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D6E43D266010DA00F8791C /* Date+extension.swift */; };
 		02D6E4412660AB3B00F8791C /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D6E4402660AB3B00F8791C /* String+extensions.swift */; };
+		02D9940C26668EE400C7A00A /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9940B26668EE400C7A00A /* BackButton.swift */; };
+		02D99410266690CB00C7A00A /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9940F266690CB00C7A00A /* CloseButton.swift */; };
+		02D994142666921F00C7A00A /* CalendarCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D994132666921F00C7A00A /* CalendarCollectionView.swift */; };
 		02F8880A265A098F00C8D3F3 /* ProjectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F88809265A098F00C8D3F3 /* ProjectorView.swift */; };
 		02F8880D265A0B9F00C8D3F3 /* SeatingPlanCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F8880C265A0B9F00C8D3F3 /* SeatingPlanCollectionView.swift */; };
 		02F88811265A0C2E00C8D3F3 /* SeatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F88810265A0C2E00C8D3F3 /* SeatCell.swift */; };
@@ -133,6 +137,7 @@
 		02AE45D6264429AA00C7F031 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02AE45D9264429AA00C7F031 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02AE45DB264429AA00C7F031 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02B29D2626674E79000B78D6 /* CTAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAButton.swift; sourceTree = "<group>"; };
 		02BF24C8264443F200B257D1 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		02BF24CB26446B8D00B257D1 /* OutlineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineButton.swift; sourceTree = "<group>"; };
 		02BF24D12645036900B257D1 /* GalaxyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyButton.swift; sourceTree = "<group>"; };
@@ -155,6 +160,9 @@
 		02D6E43A2660106F00F8791C /* CreditCardDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardDatasource.swift; sourceTree = "<group>"; };
 		02D6E43D266010DA00F8791C /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
 		02D6E4402660AB3B00F8791C /* String+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
+		02D9940B26668EE400C7A00A /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		02D9940F266690CB00C7A00A /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
+		02D994132666921F00C7A00A /* CalendarCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionView.swift; sourceTree = "<group>"; };
 		02F88809265A098F00C8D3F3 /* ProjectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectorView.swift; sourceTree = "<group>"; };
 		02F8880C265A0B9F00C8D3F3 /* SeatingPlanCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatingPlanCollectionView.swift; sourceTree = "<group>"; };
 		02F88810265A0C2E00C8D3F3 /* SeatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatCell.swift; sourceTree = "<group>"; };
@@ -217,6 +225,9 @@
 				02D635AA2647E36A0027A0BA /* Headers */,
 				021C75BD2646E3C500607FE1 /* Cells */,
 				02BF24CB26446B8D00B257D1 /* OutlineButton.swift */,
+				02B29D2626674E79000B78D6 /* CTAButton.swift */,
+				02D9940B26668EE400C7A00A /* BackButton.swift */,
+				02D9940F266690CB00C7A00A /* CloseButton.swift */,
 				0238EBAF264534C30049D670 /* TopTabBar.swift */,
 				0238EBB7264564910049D670 /* OutlineTextField.swift */,
 				02A8E29F265415C2009F1C5E /* IMDbRatingSV.swift */,
@@ -228,6 +239,7 @@
 				02D6E41C265FD08300F8791C /* PromocodeTextField.swift */,
 				02D6E424265FDAC600F8791C /* PaymentMethodView.swift */,
 				025CF51F2663AA2C00D0112E /* TicketView.swift */,
+				02D994132666921F00C7A00A /* CalendarCollectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -575,6 +587,7 @@
 				02D6E43026600F4E00F8791C /* CreditCardCell.swift in Sources */,
 				02D635C3264861170027A0BA /* SideMenuVC.swift in Sources */,
 				0238EBAA26452F3D0049D670 /* UIView+Extensions.swift in Sources */,
+				02D994142666921F00C7A00A /* CalendarCollectionView.swift in Sources */,
 				024E04A526576C5500C9E164 /* PickTheaterVC.swift in Sources */,
 				027C3EF826590C4F0048EDCF /* ChooseSeatVC.swift in Sources */,
 				02F88829265AAC4C00C8D3F3 /* ComboSetView.swift in Sources */,
@@ -593,9 +606,11 @@
 				020032F42656284C00C71FDF /* FloatingMovieDescriptionVC+CollectionViewDelegate.swift in Sources */,
 				02D6E4382660102500F8791C /* CreditCard.swift in Sources */,
 				0238EBBB2646430D0049D670 /* UITextField+Extensions.swift in Sources */,
+				02B29D2726674E79000B78D6 /* CTAButton.swift in Sources */,
 				0297781A2644327E00112F4E /* UIImageView+Extensions.swift in Sources */,
 				02BF24D926452D7A00B257D1 /* LoginVC.swift in Sources */,
 				02A8E29D2654109B009F1C5E /* MovieDetailVC+Layout.swift in Sources */,
+				02D9940C26668EE400C7A00A /* BackButton.swift in Sources */,
 				02BF24D52645078300B257D1 /* AuthenticationVC.swift in Sources */,
 				02BF24C9264443F200B257D1 /* UIFont+Extensions.swift in Sources */,
 				02BF24D22645036900B257D1 /* GalaxyButton.swift in Sources */,
@@ -619,6 +634,7 @@
 				02D635AC2647E37E0027A0BA /* MovieHeader.swift in Sources */,
 				02AE45D0264429A400C7F031 /* SceneDelegate.swift in Sources */,
 				02F88814265A0CC700C8D3F3 /* SeatingPlanDatasource.swift in Sources */,
+				02D99410266690CB00C7A00A /* CloseButton.swift in Sources */,
 				02D635BD264857AE0027A0BA /* MovieDetailVC.swift in Sources */,
 				02D6E42D265FE86E00F8791C /* CheckoutVC.swift in Sources */,
 				021C75A7264684F700607FE1 /* HomeVC.swift in Sources */,

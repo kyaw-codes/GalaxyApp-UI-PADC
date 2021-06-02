@@ -33,15 +33,9 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
         return button
     }()
     
-    private let backButton: UIButton = {
-        let symbolConfig = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 28, weight: .medium))
-        let icon = UIImage(systemName: "chevron.backward", withConfiguration: symbolConfig)?.withRenderingMode(.alwaysOriginal).withTintColor(.white)
-        let btn = UIButton(iconImage: icon)
-        btn.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
-        return btn
-    }()
+    private let backButton = BackButton(iconColor: .white)
     
-    private let getTicketButton = UIButton(title: "Get your ticket", font: .poppinsSemiBold, textSize: 20, textColor: .white, cornerRadius: 6)
+    private let getTicketButton = CTAButton(title: "Get your ticket")
     
     // MARK: - Lifecycles
     
@@ -54,6 +48,7 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
         setupFloatingMovieDescriptionVC()
         setupCTAButton()
         
+        backButton.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
         getTicketButton.addTarget(self, action: #selector(handleGetTicketTapped), for: .touchUpInside)
     }
     
@@ -123,15 +118,9 @@ extension MovieDetailVC {
         gradientView.applyGradient(colours: [.init(white: 1, alpha: 0.15), .white], locations: [0.2, 0.7], frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height * 0.25))
 
         view.addSubview(getTicketButton)
-        getTicketButton.layer.shadowColor = UIColor.galaxyViolet.cgColor
-        getTicketButton.layer.shadowOffset = CGSize(width: 4, height: 5)
-        getTicketButton.layer.shadowRadius = 10
-        getTicketButton.layer.shadowOpacity = 0.6
-        
         getTicketButton.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(30)
-            make.height.equalTo(60)
         }
     }
 }

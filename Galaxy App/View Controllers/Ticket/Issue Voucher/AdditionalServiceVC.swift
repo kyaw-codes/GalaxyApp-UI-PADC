@@ -15,29 +15,13 @@ class AdditionalServiceVC: UIViewController {
     
     // MARK: - Views
     
-    private let backButton: UIButton = {
-        let symbolConfig = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 28, weight: .medium))
-        let icon = UIImage(systemName: "chevron.backward", withConfiguration: symbolConfig)?.withRenderingMode(.alwaysOriginal).withTintColor(.galaxyBlack)
-        let btn = UIButton(iconImage: icon)
-        btn.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
-        return btn
-    }()
+    private let backButton = BackButton()
     
     private let promocodeTextField = PromocodeTextField()
     
     private let subTotalLabel = UILabel(text: "Sub total : 40$", font: .poppinsMedium, size: 18, color: .galaxyGreen)
     
-    private let payButton = UIButton(title: "Pay $40.00", font: .poppinsMedium, textSize: 18, textColor: .white, backgroundColor: .galaxyViolet) { (btn) in
-        
-        btn.layer.shadowColor = UIColor.galaxyViolet.cgColor
-        btn.layer.shadowOffset = CGSize(width: 4, height: 5)
-        btn.layer.shadowRadius = 10
-        btn.layer.shadowOpacity = 0.6
-        
-        btn.snp.makeConstraints { (make) in
-            make.height.equalTo(60)
-        }
-    }
+    private let payButton = CTAButton(title: "Pay $40.00")
     
     private let scrollView = UIScrollView()
     
@@ -54,6 +38,8 @@ class AdditionalServiceVC: UIViewController {
         view.backgroundColor = .systemBackground
         
         setupViews()
+        
+        backButton.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
         payButton.addTarget(self, action: #selector(onPayTap), for: .touchUpInside)
     }
     

@@ -1,5 +1,5 @@
 //
-//  PIckTheater+PickerView.swift
+//  PIckTheater+ContentView.swift
 //  Galaxy App
 //
 //  Created by Ko Kyaw on 21/05/2021.
@@ -9,9 +9,13 @@ import UIKit
 
 extension PickTheaterVC {
     
-    class PickerView: UIScrollView {
+    class ContentView: UIScrollView {
+        
+        // MARK: - Properties
         
         var handleNextTap: (() -> Void)?
+        
+        // MARK: - Views
         
         private var availableMovieTypes = [OutlineButton]()
         private var availableTimesForFirstRow = [OutlineButton]()
@@ -21,25 +25,11 @@ extension PickTheaterVC {
         private var secondRow: UIStackView?
         private var thirdRow: UIStackView?
         
-        private let nextButton = UIButton(title: "Next",
-                                          font: .poppinsMedium,
-                                          textSize: 18,
-                                          textColor: .white,
-                                          backgroundColor: .galaxyViolet) { btn in
-            
-            btn.layer.shadowColor = UIColor.galaxyViolet.cgColor
-            btn.layer.shadowOffset = CGSize(width: 4, height: 5)
-            btn.layer.shadowRadius = 10
-            btn.layer.shadowOpacity = 0.6
-
-            btn.addTarget(self, action: #selector(onNextTapped), for: .touchUpInside)
-            
-            btn.snp.makeConstraints { (make) in
-                make.height.equalTo(60)
-            }
-        }
+        private let nextButton = CTAButton(title: "Next")
         
         private var containerSV: UIStackView?
+        
+        // MARK: - Lifecycles
         
         override init(frame: CGRect) {
             super.init(frame: frame)
@@ -51,7 +41,11 @@ extension PickTheaterVC {
             showsVerticalScrollIndicator = false
             
             setupViews()
+            
+            nextButton.addTarget(self, action: #selector(onNextTapped), for: .touchUpInside)
         }
+        
+        // MARK: - Layout Views
         
         private func setupViews() {
             availableMovieTypes = createOutlineButtons("2D", "3D", "IMAX")
@@ -122,6 +116,8 @@ extension PickTheaterVC {
             }
         }
         
+        // MARK: - Private Helpers
+        
         private func createSectionTitleLabel(_ text: String) -> UILabel {
             return UILabel(text: text, font: .poppinsSemiBold, size: 20, numberOfLines: 1, color: .galaxyBlack)
         }
@@ -137,20 +133,16 @@ extension PickTheaterVC {
             }
         }
         
-        @objc private func onAvailableMovieInButtonTapped(_ sender: OutlineButton) {
-            handleButtonTap(sender, searchIn: availableMovieTypes)
+        private func selectButton(_ button: UIButton) {
+            button.backgroundColor = .galaxyViolet
+            button.setTitleColor(.white, for: .normal)
+            button.layer.borderColor = UIColor.clear.cgColor
         }
         
-        @objc private func onGoldenCityTimeButtonTapped(_ sender: OutlineButton) {
-            handleButtonTap(sender, searchIn: availableTimesForFirstRow)
-        }
-        
-        @objc private func onWestPointTimeButtonTapped(_ sender: OutlineButton) {
-            handleButtonTap(sender, searchIn: availableTimesForSecondRow)
-        }
-        
-        @objc private func onNextTapped() {
-            handleNextTap?()
+        private func deselectButton(_ button: UIButton) {
+            button.backgroundColor = .white
+            button.setTitleColor(.galaxyBlack, for: .normal)
+            button.layer.borderColor = UIColor.galaxyLightBlack.cgColor
         }
         
         private func handleButtonTap(_ button: OutlineButton, searchIn array: [OutlineButton]) {
@@ -169,16 +161,22 @@ extension PickTheaterVC {
             }
         }
         
-        private func selectButton(_ button: UIButton) {
-            button.backgroundColor = .galaxyViolet
-            button.setTitleColor(.white, for: .normal)
-            button.layer.borderColor = UIColor.clear.cgColor
+        // MARK: - Action Handlers
+        
+        @objc private func onAvailableMovieInButtonTapped(_ sender: OutlineButton) {
+            handleButtonTap(sender, searchIn: availableMovieTypes)
         }
         
-        private func deselectButton(_ button: UIButton) {
-            button.backgroundColor = .white
-            button.setTitleColor(.galaxyBlack, for: .normal)
-            button.layer.borderColor = UIColor.galaxyLightBlack.cgColor
+        @objc private func onGoldenCityTimeButtonTapped(_ sender: OutlineButton) {
+            handleButtonTap(sender, searchIn: availableTimesForFirstRow)
+        }
+        
+        @objc private func onWestPointTimeButtonTapped(_ sender: OutlineButton) {
+            handleButtonTap(sender, searchIn: availableTimesForSecondRow)
+        }
+        
+        @objc private func onNextTapped() {
+            handleNextTap?()
         }
         
         required init?(coder: NSCoder) {

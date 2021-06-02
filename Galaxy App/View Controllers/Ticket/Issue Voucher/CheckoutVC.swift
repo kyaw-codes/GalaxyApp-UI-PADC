@@ -20,13 +20,7 @@ class CheckoutVC: UIViewController {
     
     // MARK: - Views
     
-    private let backButton: UIButton = {
-        let symbolConfig = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 28, weight: .medium))
-        let icon = UIImage(systemName: "chevron.backward", withConfiguration: symbolConfig)?.withRenderingMode(.alwaysOriginal).withTintColor(.galaxyBlack)
-        let btn = UIButton(iconImage: icon)
-        btn.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
-        return btn
-    }()
+    private let backButton = BackButton()
     
     private let addNewCardButton: UIButton = {
         let btn = UIButton()
@@ -41,17 +35,7 @@ class CheckoutVC: UIViewController {
         return btn
     }()
     
-    private let confirmButton = UIButton(title: "Confirm", font: .poppinsMedium, textSize: 18, textColor: .white, backgroundColor: .galaxyViolet) { (btn) in
-        
-        btn.layer.shadowColor = UIColor.galaxyViolet.cgColor
-        btn.layer.shadowOffset = CGSize(width: 4, height: 5)
-        btn.layer.shadowRadius = 10
-        btn.layer.shadowOpacity = 0.6
-        
-        btn.snp.makeConstraints { (make) in
-            make.height.equalTo(60)
-        }
-    }
+    private let confirmButton = CTAButton(title: "Confirm")
     
     private var paymentAmountLabel = UILabel(text: "$ 926.21", font: .poppinsSemiBold, size: 32, color: .galaxyBlack)
     
@@ -97,6 +81,7 @@ class CheckoutVC: UIViewController {
 
         watchKeyboardNotification()
 
+        backButton.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
         confirmButton.addTarget(self, action: #selector(handleConfirmTapped), for: .touchUpInside)
     }
     
