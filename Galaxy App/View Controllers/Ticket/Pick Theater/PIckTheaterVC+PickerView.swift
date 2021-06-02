@@ -125,6 +125,7 @@ extension PickTheaterVC {
         private func createOutlineButtons(_ titles: String...) -> [OutlineButton] {
             titles.map { (title) -> OutlineButton in
                 OutlineButton(title: title) { (btn) in
+                    btn.setTitleColor(.galaxyBlack, for: .normal)
                     btn.snp.makeConstraints { (make) in
                         make.height.equalTo(50)
                     }

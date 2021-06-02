@@ -15,13 +15,13 @@ class OutlineButton: UIButton, GalaxyButton {
         }
     }
 
-    var titleColor: UIColor = .black {
+    var titleColor: UIColor = .white {
         didSet {
             self.setTitleColor(titleColor, for: .normal)
         }
     }
     
-    var outlineColor: UIColor = .galaxyLightBlack {
+    var outlineColor: UIColor = .seatAvailable {
         didSet {
             self.layer.borderColor = outlineColor.cgColor
         }

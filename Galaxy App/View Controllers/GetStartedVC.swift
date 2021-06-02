@@ -27,12 +27,7 @@ class GetStartedVC: UIViewController {
         return lbl
     }()
     
-    private let startButton: UIButton = {
-        let btn = OutlineButton(title: "Get Started")
-        btn.outlineColor = .white
-        btn.titleColor = .white
-        return btn
-    }()
+    private let startButton = OutlineButton(title: "Get Started")
     
     // MARK: - Lifecycle Methods
     
