@@ -15,6 +15,10 @@ class ProjectorView: UIView {
         backgroundColor = .clear
         
         let contentView = ContentView(frame: self.frame)
+        contentView.layer.shadowColor = UIColor.galaxyGreen.cgColor
+        contentView.layer.shadowOffset = .zero
+        contentView.layer.shadowRadius = 10
+        contentView.layer.shadowOpacity = 0.4
         contentView.backgroundColor = .clear
         
         addSubview(contentView)

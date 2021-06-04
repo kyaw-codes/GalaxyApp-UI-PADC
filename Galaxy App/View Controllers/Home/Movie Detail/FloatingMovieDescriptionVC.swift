@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class FloatingMovieDescriptionVC: UIViewController {
+class FloatingMovieDescriptionVC: VerticallyScrollableVC<HomeCoordinator> {
     
     // MARK: - Properties
     
@@ -55,8 +55,6 @@ class FloatingMovieDescriptionVC: UIViewController {
         return cv
     }()
     
-    let scrollView = UIScrollView()
-    
     // MARK: - Lifecycles
     
     override func viewDidLoad() {
@@ -64,9 +62,6 @@ class FloatingMovieDescriptionVC: UIViewController {
 
         castCollectionView.dataSource = dataSource
         castCollectionView.delegate = self
-        
-        scrollView.alwaysBounceVertical = true
-        scrollView.showsVerticalScrollIndicator = false
         
         // Set up parent view
         configureParentView()
@@ -89,10 +84,9 @@ class FloatingMovieDescriptionVC: UIViewController {
     // MARK: - Private Helpers
     
     private func configureParentView() {
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 30
-        view.layer.masksToBounds = true
-        view.layer.maskedCorners = CACornerMask(arrayLiteral: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        scrollView.layer.masksToBounds = true
+        scrollView.layer.cornerRadius = 28
+        scrollView.layer.maskedCorners = CACornerMask(arrayLiteral: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
     }
     
     private func createGenreBadge(name genreName: String?) -> UIView? {
@@ -148,19 +142,9 @@ extension FloatingMovieDescriptionVC {
         
         let castSV = UIStackView(subViews: [castTitleLabel, castCollectionView], axis: .vertical, spacing: 12)
         
-        let containerSV = UIStackView(subViews: [titleSV, genreSV, plotSV, castSV, UIView()], axis: .vertical, spacing: 22)
-        
-        scrollView.addSubview(containerSV)
-        containerSV.snp.makeConstraints { (make) in
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.top.equalToSuperview().inset(30)
-            make.bottom.equalToSuperview().inset(80)
-            make.centerX.equalToSuperview()
-        }
-        
-        view.addSubview(scrollView)
-        scrollView.snp.makeConstraints { (make) in
-            make.leading.trailing.top.bottom.equalToSuperview()
-        }
+        [titleSV, genreSV, plotSV, castSV, UIView()].forEach { contentStackView.addArrangedSubview($0) }
+        contentStackView.spacing = 22
+        contentStackView.layoutMargins.top = 24
+        contentStackView.layoutMargins.bottom = 60
     }
 }

@@ -7,11 +7,9 @@
 
 import UIKit
 
-class ChooseSeatVC: UIViewController {
+class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
     
     // MARK: - Properties
-    
-    var coordinator: TicketCoordinator?
     
     private let datasource = SeatingPlanDatasource()
 
@@ -30,14 +28,6 @@ class ChooseSeatVC: UIViewController {
     private var topSV: UIStackView?
     private var middleSV: UIStackView?
     private var bottomSV: UIStackView?
-    private var containerSV: UIStackView?
-
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.alwaysBounceVertical = true
-        scrollView.showsVerticalScrollIndicator = false
-        return scrollView
-    }()
     
     // MARK: - Lifecycles
 
@@ -46,6 +36,7 @@ class ChooseSeatVC: UIViewController {
 
         view.backgroundColor = .systemBackground
         
+        seatCollectionView.delegate = self
         seatCollectionView.dataSource = datasource
         
         setupViews()
@@ -54,8 +45,8 @@ class ChooseSeatVC: UIViewController {
         buyTicketButton.addTarget(self, action: #selector(handleBuyTapped), for: .touchUpInside)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    override func viewDidLayoutSubviews() {
+        contentStackView.layoutMargins.top = backButton.frame.origin.y
         
         let height = seatCollectionView.contentSize.height
         if height > 0 {
@@ -113,40 +104,18 @@ extension ChooseSeatVC {
         setupTopSV()
         setupMiddleSV()
         setupBottomSV()
-        setupContainerSV()
-        setupScrollView()
-
-    }
-    
-    private func setupScrollView() {
-        view.addSubview(scrollView)
-        scrollView.snp.makeConstraints { (make) in
-            make.leading.trailing.bottom.equalToSuperview()
-            make.top.equalTo(backButton.snp.bottom)
-        }
-    }
-    
-    private func setupContainerSV() {
-        containerSV = UIStackView(subViews: [topSV!, middleSV!, bottomSV!, UIView()], axis: .vertical, spacing: 20)
-        containerSV?.setCustomSpacing(80, after: topSV!)
-
-        scrollView.addSubview(containerSV!)
-        containerSV?.snp.makeConstraints({ (make) in
-            make.leading.trailing.top.bottom.equalToSuperview()
-            make.centerX.equalToSuperview()
-        })
-
+        
+        [topSV!, middleSV!, bottomSV!, UIView()].forEach { contentStackView.addArrangedSubview($0) }
+        
+        contentStackView.setCustomSpacing(80, after: topSV!)
     }
     
     private func setupTopSV() {
-        let projectorView = ProjectorView(frame: CGRect(x: 0, y: 0, width: view.frame.width - 40, height: 30))
+        let projectorView = ProjectorView(frame: CGRect(x: -10, y: 0, width: view.frame.width - 20, height: 36))
         
         topSV = UIStackView(subViews: [movieLabel, cinemaLabel, dateTimeLabel, projectorView], axis: .vertical, spacing: 0)
         topSV?.setCustomSpacing(6, after: cinemaLabel)
         topSV?.setCustomSpacing(20, after: dateTimeLabel)
-        
-        topSV?.isLayoutMarginsRelativeArrangement = true
-        topSV?.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
     
     private func setupMiddleSV() {
@@ -179,7 +148,6 @@ extension ChooseSeatVC {
         middleSV?.setCustomSpacing(28, after: legendSV)
         
         middleSV?.isLayoutMarginsRelativeArrangement = true
-        middleSV?.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
     
     private func setupBottomSV() {
@@ -204,4 +172,19 @@ extension ChooseSeatVC {
         bottomSV = UIStackView(subViews: [sv, buyTicketButton], axis: .vertical, spacing: 28)
         bottomSV?.alignment = .center
     }
+}
+
+extension ChooseSeatVC: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        
+        if let selectedItems = collectionView.indexPathsForSelectedItems {
+            if selectedItems.contains(indexPath) {
+                collectionView.deselectItem(at: indexPath, animated: true)
+                return false
+            }
+        }
+        return true
+    }
+
 }

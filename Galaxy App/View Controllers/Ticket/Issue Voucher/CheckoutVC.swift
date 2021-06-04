@@ -9,14 +9,11 @@ import UIKit
 import Gemini
 import SnapKit
 
-class CheckoutVC: UIViewController {
+class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
     
     // MARK: - Properties
     
-    var coordinator: TicketCoordinator?
-    
     private let datasource = CreditCardDatasource()
-    private var scrollViewBottomConstraint: Constraint?
     
     // MARK: - Views
     
@@ -47,7 +44,6 @@ class CheckoutVC: UIViewController {
     private var headerSV: UIStackView?
     private var cardCollectionSV: UIStackView?
     private var formSV: UIStackView?
-    private var parentContainerSV: UIStackView?
     
     private let collectionView: GeminiCollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -58,14 +54,6 @@ class CheckoutVC: UIViewController {
         return cv
     }()
     
-    private let scrollView: UIScrollView = {
-        let sv = UIScrollView()
-        sv.alwaysBounceVertical = true
-        sv.showsVerticalScrollIndicator = false
-        sv.keyboardDismissMode = .interactive
-        return sv
-    }()
-
     // MARK: - Lifecycles
     
     override func viewDidLoad() {
@@ -79,10 +67,12 @@ class CheckoutVC: UIViewController {
         collectionView.delegate = self
         configureCollectionViewScrollingAnimation()
 
-        watchKeyboardNotification()
-
         backButton.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
         confirmButton.addTarget(self, action: #selector(handleConfirmTapped), for: .touchUpInside)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        contentStackView.layoutMargins = UIEdgeInsets(top: backButton.frame.origin.y, left: 0, bottom: 0, right: 0)
     }
     
     // MARK: - Private Helpers
@@ -96,11 +86,6 @@ class CheckoutVC: UIViewController {
             .ease(.easeInOutCirc)
     }
 
-    private func watchKeyboardNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
     private func createFormInput(title: String, textField: UIView) -> UIStackView {
         let titleLabel = UILabel(text: title, font: .poppinsRegular, size: 18, color: .seatReserved)
         return UIStackView(subViews: [titleLabel, textField], axis: .vertical, spacing: 0)
@@ -110,24 +95,6 @@ class CheckoutVC: UIViewController {
     
     @objc private func handleBackTapped() {
         coordinator?.popToAdditionalService()
-    }
-    
-    @objc private func handleKeyboardNotification(notification: NSNotification) {
-        let isKeyboardShowing = notification.name == UIView.keyboardWillShowNotification
-        let keyboardRect = ((notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]) as? NSValue)?.cgRectValue
-        let bottomPadding: CGFloat = 40
-        
-        let keyboardHeight = (keyboardRect!.height - view.safeAreaInsets.bottom) + bottomPadding
-        let bottomInset = isKeyboardShowing ? keyboardHeight : bottomPadding
-        
-        // Update the scroll view bottom constraint
-        scrollViewBottomConstraint?.update(inset: bottomInset)
-        
-        let animationDuration = ((notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey]) as? NSNumber)?.doubleValue
-        
-        UIView.animate(withDuration: animationDuration ?? 0) { [weak self] in
-            self?.view.layoutIfNeeded()
-        }
     }
     
     @objc private func handleConfirmTapped() {
@@ -146,24 +113,12 @@ extension CheckoutVC {
             make.leading.equalToSuperview().inset(24)
         }
         
-        setupScrollView()
-        
         setupHeaderSV()
         setupCardCollectionSV()
         setupFromSV()
         
-        setupContainerSV()
-    }
-    
-    private func setupContainerSV() {
-        parentContainerSV = UIStackView(subViews: [headerSV!, cardCollectionSV!, formSV!], axis: .vertical, spacing: 20)
-        parentContainerSV?.setCustomSpacing(36, after: cardCollectionSV!)
-
-        scrollView.addSubview(parentContainerSV!)
-        parentContainerSV?.snp.makeConstraints({ (make) in
-            make.leading.trailing.top.bottom.equalToSuperview()
-            make.centerX.equalToSuperview()
-        })
+        [headerSV!, cardCollectionSV!, formSV!].forEach { contentStackView.addArrangedSubview($0) }
+        contentStackView.setCustomSpacing(36, after: cardCollectionSV!)
     }
     
     private func setupHeaderSV() {
@@ -199,15 +154,6 @@ extension CheckoutVC {
         formSV?.isLayoutMarginsRelativeArrangement = true
         formSV?.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         formSV?.setCustomSpacing(30, after: addNewCardSV)
-    }
-    
-    private func setupScrollView() {
-        view.addSubview(scrollView)
-        scrollView.snp.makeConstraints { (make) in
-            make.leading.trailing.equalToSuperview()
-            make.top.equalTo(backButton.snp.bottom).inset(-10)
-            scrollViewBottomConstraint = make.bottom.equalToSuperview().constraint
-        }
     }
 }
 

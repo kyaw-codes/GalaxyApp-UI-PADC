@@ -7,11 +7,7 @@
 
 import UIKit
 
-class AdditionalServiceVC: UIViewController {
-    
-    // MARK: - Properties
-    
-    var coordinator: TicketCoordinator?
+class AdditionalServiceVC: VerticallyScrollableVC<TicketCoordinator> {
     
     // MARK: - Views
     
@@ -23,9 +19,6 @@ class AdditionalServiceVC: UIViewController {
     
     private let payButton = CTAButton(title: "Pay $40.00")
     
-    private let scrollView = UIScrollView()
-    
-    private var parentContainerSV: UIStackView?
     private var comboSetSV: UIStackView?
     private var promocodeSV: UIStackView?
     private var paymentMethodSV: UIStackView?
@@ -41,6 +34,10 @@ class AdditionalServiceVC: UIViewController {
         
         backButton.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
         payButton.addTarget(self, action: #selector(onPayTap), for: .touchUpInside)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        contentStackView.layoutMargins.top = backButton.frame.origin.y
     }
     
     // MARK: - Action Handlers
@@ -65,36 +62,13 @@ extension AdditionalServiceVC {
             make.leading.equalToSuperview().inset(24)
         }
         
-        setupScrollView()
-        
         setupComboSetSV()
         setupPromocodeSV()
         setupPaymentMethodSV()
         
-        setupParentContainerView()
-    }
-    
-    private func setupScrollView() {
-        view.addSubview(scrollView)
-        scrollView.snp.makeConstraints { (make) in
-            make.top.equalTo(backButton.snp.bottom).inset(-20)
-            make.leading.trailing.bottom.equalToSuperview()
-        }
-        scrollView.alwaysBounceVertical = true
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.keyboardDismissMode = .onDrag
-    }
-    
-    private func setupParentContainerView() {
-        
-        parentContainerSV = UIStackView(subViews: [comboSetSV!, promocodeSV!, paymentMethodSV!], axis: .vertical, spacing: 26)
-        parentContainerSV?.setCustomSpacing(36, after: comboSetSV!)
-        
-        scrollView.addSubview(parentContainerSV!)
-        parentContainerSV?.snp.makeConstraints({ (make) in
-            make.leading.trailing.top.bottom.equalToSuperview()
-            make.centerX.equalToSuperview()
-        })
+        [comboSetSV!, promocodeSV!, paymentMethodSV!].forEach { contentStackView.addArrangedSubview($0) }
+        contentStackView.spacing = 26
+        contentStackView.setCustomSpacing(36, after: comboSetSV!)
     }
     
     private func setupComboSetSV() {
@@ -102,8 +76,6 @@ extension AdditionalServiceVC {
         let comboL = ComboSetView(title: "Combo set L", description: "Combo size M 32oz. Coke (X1) and large popcorn (X1)", unitPrice: 18)
         let comboFor2 = ComboSetView(title: "Combo for 2", description: "Combo size 2 32oz. Coke (X2) and large popcorn (X1)", unitPrice: 20)
         comboSetSV = UIStackView(subViews: [comboM, comboL, comboFor2], axis: .vertical, spacing: 20)
-        comboSetSV?.isLayoutMarginsRelativeArrangement = true
-        comboSetSV?.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
     
     private func setupPromocodeSV() {
@@ -111,8 +83,6 @@ extension AdditionalServiceVC {
             make.height.equalTo(70)
         }
         promocodeSV = UIStackView(subViews: [promocodeTextField, subTotalLabel], axis: .vertical, spacing: 20)
-        promocodeSV?.isLayoutMarginsRelativeArrangement = true
-        promocodeSV?.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
     
     private func setupPaymentMethodSV() {

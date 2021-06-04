@@ -14,6 +14,7 @@ class SeatingPlanCollectionView: UICollectionView {
             SeatingPlanCollectionView.createSection()
         }
         super.init(frame: frame, collectionViewLayout: layout)
+        allowsMultipleSelection = true
         
         backgroundColor = .clear
     }

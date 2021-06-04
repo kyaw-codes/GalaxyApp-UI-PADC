@@ -7,11 +7,7 @@
 
 import UIKit
 
-class VoucherVC: UIViewController {
-    
-    // MARK: - Properties
-    
-    var coordinator: TicketCoordinator?
+class VoucherVC: VerticallyScrollableVC<TicketCoordinator> {
     
     // MARK: - Views
     
@@ -37,15 +33,6 @@ class VoucherVC: UIViewController {
     
     private let ticketView = TicketView()
    
-    private var containerSV: UIStackView?
-    
-    private let scrollView: UIScrollView = {
-        let sv = UIScrollView()
-        sv.alwaysBounceVertical = true
-        sv.showsVerticalScrollIndicator = false
-        return sv
-    }()
-    
     // MARK: - Lifecycles
     
     override func viewDidLoad() {
@@ -57,6 +44,10 @@ class VoucherVC: UIViewController {
         setupViews()
         
         closeButton.addTarget(self, action: #selector(handleCloseTapped), for: .touchUpInside)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        contentStackView.layoutMargins.top = closeButton.frame.height + 10
     }
     
     // MARK: - Action Handlers
@@ -72,33 +63,17 @@ extension VoucherVC {
     
     private func setupViews() {
         view.addSubview(closeButton)
+        
         closeButton.snp.makeConstraints { (make) in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(18)
             make.leading.equalToSuperview().inset(24)
         }
         
-        setupScrollView()
-        setupContainerSV()
-    }
-    
-    private func setupScrollView() {
-        view.addSubview(scrollView)
-        scrollView.snp.makeConstraints { (make) in
-            make.leading.trailing.bottom.equalToSuperview()
-            make.top.equalTo(closeButton.snp.bottom)
-        }
-    }
-    
-    private func setupContainerSV() {
         ticketView.snp.makeConstraints { (make) in
             make.height.equalTo(view.frame.height * 0.76)
         }
-        containerSV = UIStackView(subViews: [titleLabel, ticketView], axis: .vertical, spacing: 18)
         
-        scrollView.addSubview(containerSV!)
-        containerSV?.snp.makeConstraints({ (make) in
-            make.leading.trailing.equalToSuperview().inset(34)
-            make.top.bottom.centerX.equalToSuperview()
-        })
+        [titleLabel, ticketView].forEach { contentStackView.addArrangedSubview($0) }
+        contentStackView.spacing = 18
     }
 }

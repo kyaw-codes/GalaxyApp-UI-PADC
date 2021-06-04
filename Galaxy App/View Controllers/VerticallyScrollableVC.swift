@@ -12,7 +12,7 @@ class VerticallyScrollableVC<T: Coordinator>: UIViewController {
     
     open var coordinator: T?
     
-    private let scrollView: UIScrollView = {
+    let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.alwaysBounceVertical = true
         scrollView.showsVerticalScrollIndicator = false
@@ -21,7 +21,7 @@ class VerticallyScrollableVC<T: Coordinator>: UIViewController {
         return scrollView
     }()
     
-    let stackView: UIStackView = UIStackView(subViews: [], axis: .vertical, spacing: 20)
+    let contentStackView: UIStackView = UIStackView(subViews: [], axis: .vertical, spacing: 20)
     
     private var bottomConstraint: Constraint?
 
@@ -33,21 +33,16 @@ class VerticallyScrollableVC<T: Coordinator>: UIViewController {
             make.leading.trailing.top.bottom.equalToSuperview()
         }
         
-        scrollView.addSubview(stackView)
-        stackView.snp.makeConstraints { (make) in
+        scrollView.addSubview(contentStackView)
+        contentStackView.snp.makeConstraints { (make) in
             make.leading.trailing.top.centerX.equalToSuperview()
             bottomConstraint = make.bottom.equalToSuperview().constraint
         }
         
-        layoutViews(inside: stackView)
-
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        contentStackView.isLayoutMarginsRelativeArrangement = true
+        contentStackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
         watchKeyboardNotification()
-    }
-    
-    open func layoutViews(inside contentView: UIStackView) {
     }
     
     private func watchKeyboardNotification() {

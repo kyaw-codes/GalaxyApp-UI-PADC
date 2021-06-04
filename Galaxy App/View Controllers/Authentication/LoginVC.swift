@@ -49,27 +49,9 @@ class LoginVC: VerticallyScrollableVC<MainCoordinator> {
             .map { $0.textField }
             .forEach { $0.delegate = self }
         
-        confirmButton.addTarget(self, action: #selector(handleConfirmTapped), for: .touchUpInside)
-    }
-    
-    override func layoutViews(inside contentView: UIStackView) {
-        let emailSV = UIStackView(subViews: [emailLabel, emailOutlineField], axis: .vertical, spacing: 4)
-        let passwordSV = UIStackView(subViews: [passwordLabel, passwordOutlineField], axis: .vertical, spacing: 4)
-        let forgotPasswordSV = UIStackView(arrangedSubviews: [UIView(), forgotPasswordLabel])
-
-        let inputsSV = UIStackView(subViews: [emailSV, passwordSV, forgotPasswordSV], axis: .vertical, spacing: 40)
-
-        [googleSocialLoginButton].forEach {
-            $0.snp.makeConstraints { (make) in
-                make.height.equalTo(56)
-            }
-        }
-
-        let buttonsSV = UIStackView(subViews: [fbSocialLoginButton, googleSocialLoginButton, confirmButton], axis: .vertical, spacing: 30)
+        setupViews()
         
-        contentView.spacing = 40
-        contentView.addArrangedSubview(inputsSV)
-        contentView.addArrangedSubview(buttonsSV)
+        confirmButton.addTarget(self, action: #selector(handleConfirmTapped), for: .touchUpInside)
     }
     
     // MARK: - Action Handlers
@@ -78,6 +60,24 @@ class LoginVC: VerticallyScrollableVC<MainCoordinator> {
         onConfirmTapped?()
     }
 
+}
+
+// MARK: - Layout Views
+
+extension LoginVC {
+    private func setupViews() {
+        let emailSV = UIStackView(subViews: [emailLabel, emailOutlineField], axis: .vertical, spacing: 4)
+        let passwordSV = UIStackView(subViews: [passwordLabel, passwordOutlineField], axis: .vertical, spacing: 4)
+        let forgotPasswordSV = UIStackView(arrangedSubviews: [UIView(), forgotPasswordLabel])
+
+        let inputsSV = UIStackView(subViews: [emailSV, passwordSV, forgotPasswordSV], axis: .vertical, spacing: 40)
+
+        let buttonsSV = UIStackView(subViews: [fbSocialLoginButton, googleSocialLoginButton, confirmButton], axis: .vertical, spacing: 30)
+        
+        contentStackView.spacing = 40
+        contentStackView.addArrangedSubview(inputsSV)
+        contentStackView.addArrangedSubview(buttonsSV)
+    }
 }
 
 // MARK: - UITextFieldDelegate
