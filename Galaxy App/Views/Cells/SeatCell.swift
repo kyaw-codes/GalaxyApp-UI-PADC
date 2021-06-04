@@ -46,7 +46,7 @@ class SeatCell: UICollectionViewCell {
         addSubview(label)
         label.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().inset(-7)
+            make.bottom.equalToSuperview().inset(4)
         }
         
         seatView.layer.cornerRadius = frame.width / 2

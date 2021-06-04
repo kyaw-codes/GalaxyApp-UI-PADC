@@ -19,7 +19,7 @@ class SeatingPlanDatasource: NSObject, UICollectionViewDataSource {
         }
         
         ["B", "C", "D", "E", "F", "G"].forEach {
-            for i in (0...7) {
+            for i in (1...8) {
                 seats.append(Seat(seatNo: "\(i)", row: $0))
             }
         }

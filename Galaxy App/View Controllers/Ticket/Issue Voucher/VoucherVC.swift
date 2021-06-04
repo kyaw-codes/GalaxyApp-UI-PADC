@@ -50,6 +50,12 @@ class VoucherVC: VerticallyScrollableVC<TicketCoordinator> {
         contentStackView.layoutMargins.top = closeButton.frame.height + 10
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        coordinator?.parentCoordinator?.childDidFinish(coordinator!)
+    }
+    
     // MARK: - Action Handlers
     
     @objc private func handleCloseTapped() {
