@@ -129,7 +129,7 @@ extension PickTheaterVC {
                     btn.snp.makeConstraints { (make) in
                         make.height.equalTo(50)
                     }
-                    btn.layer.borderWidth = 0.5
+                    btn.layer.borderWidth = 1
                 }
             }
         }
@@ -143,7 +143,7 @@ extension PickTheaterVC {
         private func deselectButton(_ button: UIButton) {
             button.backgroundColor = .white
             button.setTitleColor(.galaxyBlack, for: .normal)
-            button.layer.borderColor = UIColor.galaxyLightBlack.cgColor
+            button.layer.borderColor = UIColor.seatAvailable.cgColor
         }
         
         private func handleButtonTap(_ button: OutlineButton, searchIn array: [OutlineButton]) {
