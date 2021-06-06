@@ -30,8 +30,7 @@ class AuthenticationVC: UIViewController {
         return lbl
     }()
     
-    private let topTabBar = TopTabBar()
-    private let containerView = UIView(backgroundColor: .clear)
+    private lazy var tabBarView = TabBar(coordinator: coordinator)
     
     // MARK: - Lifecycles
     
@@ -40,36 +39,7 @@ class AuthenticationVC: UIViewController {
 
         view.backgroundColor = .systemBackground
         
-        configureTopTabBar()
         setupView()
-    }
-    
-    private func configureTopTabBar() {
-        topTabBar.onTabSelectionChange = { [weak self] tabItem in
-            self?.onTabSelectionChange(tappedItem: tabItem)
-        }
-        
-        // Show login vc initially.
-        add(vc: LoginVC.shared)
-        
-        LoginVC.shared.onConfirmTapped = { [weak self] in
-            self?.handleConfirmTapped()
-        }
-        
-        SignUpVC.shared.onConfirmTapped = { [weak self] in
-            self?.handleConfirmTapped()
-        }
-    }
-    
-    // MARK: - Private Helpers
-    
-    private func add(vc: UIViewController) {
-        addChild(vc)
-        containerView.addSubview(vc.view)
-        vc.view.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
-        containerView.didAddSubview(vc.view)
     }
     
     private func remove(vc: UIViewController) {
@@ -78,39 +48,6 @@ class AuthenticationVC: UIViewController {
         view.willRemoveSubview(vc.view)
     }
     
-    // MARK: - Tab Event Handlers
-    
-    private func onTabSelectionChange(tappedItem: TopTabBar.TabItem) {
-        guard
-            let toView = tappedItem.currentVC.view,
-            let fromView = tappedItem.previousVC.view else { return }
-        
-        let frame = containerView.frame
-        var toViewFrame = frame
-        var fromViewFrame = frame
-        
-        if tappedItem.direction == TopTabBar.TabItem.loginToSignUp {
-            toViewFrame = CGRect(x: toView.frame.origin.x + frame.width, y: frame.origin.y, width: toView.frame.width, height: frame.height)
-            fromViewFrame = CGRect(x: fromView.frame.origin.x - frame.width, y: frame.origin.y, width: fromView.frame.width, height: frame.height)
-        } else {
-            toViewFrame = CGRect(x: toView.frame.origin.x - frame.width, y: frame.origin.y, width: toView.frame.width, height: frame.height)
-            fromViewFrame = CGRect(x: fromView.frame.origin.x + frame.width, y: frame.origin.y, width: fromView.frame.width, height: frame.height)
-        }
-        
-        toView.frame = toViewFrame
-        toView.alpha = 0
-        
-        self.add(vc: tappedItem.currentVC)
-        self.remove(vc: tappedItem.previousVC)
-        
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
-            toView.frame = frame
-            fromView.frame = fromViewFrame
-            toView.alpha = 1
-            fromView.alpha = 0
-        }, completion: nil)
-    }
-
     private func handleConfirmTapped() {
         coordinator?.home()
     }
@@ -128,22 +65,10 @@ extension AuthenticationVC {
             make.leading.trailing.equalToSuperview().inset(20)
         }
         
-        setupTopTabView()
-        
-        view.addSubview(containerView)
-        containerView.snp.makeConstraints { (make) in
-            make.top.equalTo(topTabBar.snp.bottom).inset(-40)
+        view.addSubview(tabBarView)
+        tabBarView.snp.makeConstraints { (make) in
             make.leading.trailing.bottom.equalToSuperview()
-        }
-    }
-    
-    private func setupTopTabView() {
-        view.addSubview(topTabBar)
-        
-        topTabBar.snp.makeConstraints { (make) in
-            make.top.equalTo(welcomeLabel.snp.bottom).inset(-34)
-            make.leading.trailing.equalTo(welcomeLabel).inset(4)
-            make.height.equalTo(60)
+            make.top.equalTo(welcomeLabel.snp.bottom).inset(-32)
         }
     }
 }

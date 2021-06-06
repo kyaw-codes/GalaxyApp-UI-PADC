@@ -20,9 +20,12 @@
 		021C75BF2646E3D100607FE1 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75BE2646E3D100607FE1 /* ProfileCell.swift */; };
 		0238B95D264A4EC300EC352B /* FloatingMovieDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238B95C264A4EC300EC352B /* FloatingMovieDescriptionVC.swift */; };
 		0238EBAA26452F3D0049D670 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBA926452F3D0049D670 /* UIView+Extensions.swift */; };
-		0238EBB0264534C30049D670 /* TopTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBAF264534C30049D670 /* TopTabBar.swift */; };
+		0238EBB0264534C30049D670 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBAF264534C30049D670 /* TabBar.swift */; };
 		0238EBB8264564910049D670 /* OutlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBB7264564910049D670 /* OutlineTextField.swift */; };
 		0238EBBB2646430D0049D670 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBBA2646430D0049D670 /* UITextField+Extensions.swift */; };
+		024083EB266B66E400F40F54 /* TabHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024083EA266B66E400F40F54 /* TabHeaderCell.swift */; };
+		024083EE266B6A6300F40F54 /* TabContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024083ED266B6A6300F40F54 /* TabContentCell.swift */; };
+		024083F3266C842C00F40F54 /* TabHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024083F2266C842C00F40F54 /* TabHeader.swift */; };
 		024E04A526576C5500C9E164 /* PickTheaterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04A426576C5500C9E164 /* PickTheaterVC.swift */; };
 		024E04A826576CA400C9E164 /* TicketCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04A726576CA400C9E164 /* TicketCoordinator.swift */; };
 		024E04AC265771FE00C9E164 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04AB265771FE00C9E164 /* CalendarCell.swift */; };
@@ -106,9 +109,12 @@
 		021C75BE2646E3D100607FE1 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		0238B95C264A4EC300EC352B /* FloatingMovieDescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingMovieDescriptionVC.swift; sourceTree = "<group>"; };
 		0238EBA926452F3D0049D670 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		0238EBAF264534C30049D670 /* TopTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBar.swift; sourceTree = "<group>"; };
+		0238EBAF264534C30049D670 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		0238EBB7264564910049D670 /* OutlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineTextField.swift; sourceTree = "<group>"; };
 		0238EBBA2646430D0049D670 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		024083EA266B66E400F40F54 /* TabHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHeaderCell.swift; sourceTree = "<group>"; };
+		024083ED266B6A6300F40F54 /* TabContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentCell.swift; sourceTree = "<group>"; };
+		024083F2266C842C00F40F54 /* TabHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHeader.swift; sourceTree = "<group>"; };
 		024E04A426576C5500C9E164 /* PickTheaterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickTheaterVC.swift; sourceTree = "<group>"; };
 		024E04A726576CA400C9E164 /* TicketCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCoordinator.swift; sourceTree = "<group>"; };
 		024E04AB265771FE00C9E164 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
@@ -236,7 +242,8 @@
 				02B29D3126677C9B000B78D6 /* SocialButton.swift */,
 				02D9940B26668EE400C7A00A /* BackButton.swift */,
 				02D9940F266690CB00C7A00A /* CloseButton.swift */,
-				0238EBAF264534C30049D670 /* TopTabBar.swift */,
+				0238EBAF264534C30049D670 /* TabBar.swift */,
+				024083F2266C842C00F40F54 /* TabHeader.swift */,
 				0238EBB7264564910049D670 /* OutlineTextField.swift */,
 				02A8E29F265415C2009F1C5E /* IMDbRatingSV.swift */,
 				02F88809265A098F00C8D3F3 /* ProjectorView.swift */,
@@ -302,6 +309,8 @@
 				024E04AB265771FE00C9E164 /* CalendarCell.swift */,
 				02F88810265A0C2E00C8D3F3 /* SeatCell.swift */,
 				02D6E42F26600F4E00F8791C /* CreditCardCell.swift */,
+				024083EA266B66E400F40F54 /* TabHeaderCell.swift */,
+				024083ED266B6A6300F40F54 /* TabContentCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -616,11 +625,12 @@
 				025CF5272663DF2C00D0112E /* Ticket.swift in Sources */,
 				021C75BA2646E37600607FE1 /* HomeDatasource.swift in Sources */,
 				0297783D264437D700112F4E /* UILabel+Extensions.swift in Sources */,
+				024083EE266B6A6300F40F54 /* TabContentCell.swift in Sources */,
 				02D6E425265FDAC600F8791C /* PaymentMethodView.swift in Sources */,
 				027708AD26695665006D4304 /* Seat.swift in Sources */,
 				0238B95D264A4EC300EC352B /* FloatingMovieDescriptionVC.swift in Sources */,
 				02F88821265A505700C8D3F3 /* AdditionalServiceVC.swift in Sources */,
-				0238EBB0264534C30049D670 /* TopTabBar.swift in Sources */,
+				0238EBB0264534C30049D670 /* TabBar.swift in Sources */,
 				020032F42656284C00C71FDF /* FloatingMovieDescriptionVC+CollectionViewDelegate.swift in Sources */,
 				02D6E4382660102500F8791C /* CreditCard.swift in Sources */,
 				0238EBBB2646430D0049D670 /* UITextField+Extensions.swift in Sources */,
@@ -630,11 +640,13 @@
 				02A8E29D2654109B009F1C5E /* MovieDetailVC+Layout.swift in Sources */,
 				02D9940C26668EE400C7A00A /* BackButton.swift in Sources */,
 				02BF24D52645078300B257D1 /* AuthenticationVC.swift in Sources */,
+				024083F3266C842C00F40F54 /* TabHeader.swift in Sources */,
 				02BF24C9264443F200B257D1 /* UIFont+Extensions.swift in Sources */,
 				02BF24D22645036900B257D1 /* GalaxyButton.swift in Sources */,
 				02B29D2B266755B9000B78D6 /* VerticallyScrollableVC.swift in Sources */,
 				02D635B02647E4670027A0BA /* Movie.swift in Sources */,
 				02D6E4412660AB3B00F8791C /* String+extensions.swift in Sources */,
+				024083EB266B66E400F40F54 /* TabHeaderCell.swift in Sources */,
 				025CF5232663B92000D0112E /* VoucherVC.swift in Sources */,
 				02F88811265A0C2E00C8D3F3 /* SeatCell.swift in Sources */,
 				024E04B2265772C800C9E164 /* PickTheaterVC+CollectionViewDelegate.swift in Sources */,

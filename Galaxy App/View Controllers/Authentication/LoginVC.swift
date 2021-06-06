@@ -13,8 +13,6 @@ class LoginVC: VerticallyScrollableVC<MainCoordinator> {
     
     static var shared = LoginVC()
     
-    var onConfirmTapped: (() -> Void)?
-    
     // MARK: - Views
     
     private let emailLabel = UILabel(text: "Email", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
@@ -57,7 +55,7 @@ class LoginVC: VerticallyScrollableVC<MainCoordinator> {
     // MARK: - Action Handlers
     
     @objc private func handleConfirmTapped() {
-        onConfirmTapped?()
+        coordinator?.home()
     }
 
 }

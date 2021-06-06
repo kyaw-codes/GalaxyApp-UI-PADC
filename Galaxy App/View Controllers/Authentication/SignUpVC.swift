@@ -14,8 +14,6 @@ class SignUpVC: VerticallyScrollableVC<MainCoordinator> {
     
     static var shared = SignUpVC()
     
-    var onConfirmTapped: (() -> Void)?
-    
     private var mainStackViewBottomConstraint: Constraint?
 
     // MARK: - Views
@@ -66,7 +64,7 @@ class SignUpVC: VerticallyScrollableVC<MainCoordinator> {
     // MARK: - Action Handlers
     
     @objc private func handleConfirmTapped() {
-        onConfirmTapped?()
+        coordinator?.home()
     }
 }
 
