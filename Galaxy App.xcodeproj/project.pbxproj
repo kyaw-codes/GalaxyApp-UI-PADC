@@ -26,6 +26,7 @@
 		024083EB266B66E400F40F54 /* TabHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024083EA266B66E400F40F54 /* TabHeaderCell.swift */; };
 		024083EE266B6A6300F40F54 /* TabContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024083ED266B6A6300F40F54 /* TabContentCell.swift */; };
 		024083F3266C842C00F40F54 /* TabHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024083F2266C842C00F40F54 /* TabHeader.swift */; };
+		0240841D266DCCF300F40F54 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0240841C266DCCF300F40F54 /* MainVC.swift */; };
 		024E04A526576C5500C9E164 /* PickTheaterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04A426576C5500C9E164 /* PickTheaterVC.swift */; };
 		024E04A826576CA400C9E164 /* TicketCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04A726576CA400C9E164 /* TicketCoordinator.swift */; };
 		024E04AC265771FE00C9E164 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04AB265771FE00C9E164 /* CalendarCell.swift */; };
@@ -115,6 +116,7 @@
 		024083EA266B66E400F40F54 /* TabHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHeaderCell.swift; sourceTree = "<group>"; };
 		024083ED266B6A6300F40F54 /* TabContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentCell.swift; sourceTree = "<group>"; };
 		024083F2266C842C00F40F54 /* TabHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHeader.swift; sourceTree = "<group>"; };
+		0240841C266DCCF300F40F54 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		024E04A426576C5500C9E164 /* PickTheaterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickTheaterVC.swift; sourceTree = "<group>"; };
 		024E04A726576CA400C9E164 /* TicketCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCoordinator.swift; sourceTree = "<group>"; };
 		024E04AB265771FE00C9E164 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
@@ -224,7 +226,6 @@
 			children = (
 				02B29D2A266755B9000B78D6 /* VerticallyScrollableVC.swift */,
 				02AE45D1264429A400C7F031 /* GetStartedVC.swift */,
-				02D635C2264861170027A0BA /* SideMenuVC.swift */,
 				02BF24D726452D6B00B257D1 /* Authentication */,
 				02D635C0264858660027A0BA /* Home */,
 				024E04A326576BB600C9E164 /* Ticket */,
@@ -455,7 +456,9 @@
 		02D635C0264858660027A0BA /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0240841C266DCCF300F40F54 /* MainVC.swift */,
 				021C75A6264684F700607FE1 /* HomeVC.swift */,
+				02D635C2264861170027A0BA /* SideMenuVC.swift */,
 				02C9235F2668A8790092FF58 /* Movie Detail */,
 			);
 			path = Home;
@@ -641,6 +644,7 @@
 				02D9940C26668EE400C7A00A /* BackButton.swift in Sources */,
 				02BF24D52645078300B257D1 /* AuthenticationVC.swift in Sources */,
 				024083F3266C842C00F40F54 /* TabHeader.swift in Sources */,
+				0240841D266DCCF300F40F54 /* MainVC.swift in Sources */,
 				02BF24C9264443F200B257D1 /* UIFont+Extensions.swift in Sources */,
 				02BF24D22645036900B257D1 /* GalaxyButton.swift in Sources */,
 				02B29D2B266755B9000B78D6 /* VerticallyScrollableVC.swift in Sources */,

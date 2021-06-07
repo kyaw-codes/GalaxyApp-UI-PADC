@@ -67,6 +67,9 @@ class HomeDatasource: NSObject, UICollectionViewDataSource {
     // MARK: - Utility Method
     
     func getMovie(at indexPath: IndexPath) -> Movie? {
-        movies[indexPath.section - 1].movies[indexPath.item]
+        if indexPath.section == 1 {
+            return movies[indexPath.section - 1].movies[indexPath.item]
+        }
+        return nil
     }
 }

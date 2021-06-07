@@ -19,9 +19,9 @@ class HomeCoordinator: Coordinator {
     }
     
     func start() {
-        let homeVC = HomeVC()
-        homeVC.coordinator = self
-        navigationController.pushViewController(homeVC, animated: true)
+        let mainVC = MainVC()
+        mainVC.homeVC.coordinator = self
+        navigationController.pushViewController(mainVC, animated: true)
     }
     
     func movieDetail(_ movie: Movie?) {

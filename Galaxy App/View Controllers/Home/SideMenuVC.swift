@@ -24,13 +24,10 @@ class SideMenuVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .galaxyViolet
-        view.layer.shadowColor = UIColor.galaxyViolet.cgColor
-        view.layer.shadowOpacity = 0.7
-        view.layer.shadowOffset = CGSize(width: 5, height: 0)
-        view.layer.shadowRadius = shadowRadius
         
+        view.backgroundColor = .galaxyViolet
+
+        addElevation(shouldAdd: false)
         setupView()
     }
     
@@ -42,6 +39,20 @@ class SideMenuVC: UIViewController {
         let label = UILabel(text: title, font: .poppinsRegular, size: 18, color: .white)
         let sv = UIStackView(subViews: [imageView, label, UIView()], axis: .horizontal, spacing: 30)
         return sv
+    }
+    
+    // MARK: - Utility Func
+    
+    func addElevation(shouldAdd: Bool) {
+        if shouldAdd {
+            view.layer.shadowColor = UIColor.galaxyViolet.cgColor
+            view.layer.shadowOpacity = 0.7
+            view.layer.shadowOffset = CGSize(width: 5, height: 0)
+            view.layer.shadowRadius = shadowRadius
+        } else {
+            view.layer.shadowColor = nil
+            view.layer.shadowOpacity = 0
+        }
     }
     
 }
