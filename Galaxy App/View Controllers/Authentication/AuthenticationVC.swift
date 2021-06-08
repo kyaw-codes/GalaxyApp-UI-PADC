@@ -42,12 +42,6 @@ class AuthenticationVC: UIViewController {
         setupView()
     }
     
-    private func remove(vc: UIViewController) {
-        vc.removeFromParent()
-        vc.view.removeFromSuperview()
-        view.willRemoveSubview(vc.view)
-    }
-    
     private func handleConfirmTapped() {
         coordinator?.home()
     }

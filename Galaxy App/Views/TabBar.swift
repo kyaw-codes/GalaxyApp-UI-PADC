@@ -34,6 +34,9 @@ class TabBar: UIView {
         cv.keyboardDismissMode = .interactive
         return cv
     }()
+    
+    private let loginVC = AuthenticationFormVC(viewType: .signIn)
+    private let signupVC = AuthenticationFormVC(viewType: .signUp)
 
     // MARK: - Initializers & Lifecycle Methods
     
@@ -45,6 +48,14 @@ class TabBar: UIView {
         setHeaderView()
         setupHorizontalBar()
         setupContentView()
+        
+        loginVC.onConfirmTapped = { coordinator in
+            coordinator.home()
+        }
+
+        signupVC.onConfirmTapped = { coordinator in
+            coordinator.home()
+        }
     }
     
     override func layoutSubviews() {
@@ -100,9 +111,9 @@ class TabBar: UIView {
     
     private func dismissKeyboard(basedOn offsetX: CGFloat) {
         if offsetX == 0 {
-            SignUpVC.shared.view.endEditing(true)
+            signupVC.view.endEditing(true)
         } else {
-            LoginVC.shared.view.endEditing(true)
+            loginVC.view.endEditing(true)
         }
     }
 }
@@ -117,10 +128,8 @@ extension TabBar: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tabContent", for: indexPath) as? TabContentCell else { fatalError() }
-        let loginVC = LoginVC.shared
-        let signupVC = SignUpVC.shared
         [loginVC, signupVC].forEach { $0.coordinator = coordinator }
-        cell.viewController = indexPath.item == 0 ? LoginVC.shared : SignUpVC.shared
+        cell.viewController = indexPath.item == 0 ? loginVC : signupVC
         return cell
     }
     

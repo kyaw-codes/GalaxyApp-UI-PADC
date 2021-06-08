@@ -9,11 +9,11 @@ import UIKit
 
 class SocialButton: UIView {
     
-    private let titleLabel = UILabel(text: "", font: .poppinsRegular, size: 20, numberOfLines: 1, color: .galaxyLightBlack)
+    let titleLabel = UILabel(text: "", font: .poppinsRegular, size: 20, numberOfLines: 1, color: .galaxyLightBlack)
     
-    private let imageView = UIImageView(image: nil, contentMode: .scaleAspectFit)
+    let imageView = UIImageView(image: nil, contentMode: .scaleAspectFit)
     
-    private var onTap: ((SocialButton) -> Void)?
+    var onTap: ((SocialButton) -> Void)?
     
     init(title: String, icon: UIImage?, onTap: ((SocialButton) -> Void)? = nil) {
         super.init(frame: .zero)

@@ -44,6 +44,7 @@
 		0297783D264437D700112F4E /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0297783C264437D700112F4E /* UILabel+Extensions.swift */; };
 		0297784026443DE200112F4E /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0297783F26443DE200112F4E /* UIStackView+Extensions.swift */; };
 		029778442644400E00112F4E /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 029778432644400E00112F4E /* OFL.txt */; };
+		02A17BB0266F4671007CFF1C /* AuthenticationFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A17BAF266F4671007CFF1C /* AuthenticationFormVC.swift */; };
 		02A8E29D2654109B009F1C5E /* MovieDetailVC+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8E29C2654109B009F1C5E /* MovieDetailVC+Layout.swift */; };
 		02A8E2A0265415C2009F1C5E /* IMDbRatingSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8E29F265415C2009F1C5E /* IMDbRatingSV.swift */; };
 		02AE45CE264429A400C7F031 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AE45CD264429A400C7F031 /* AppDelegate.swift */; };
@@ -63,8 +64,6 @@
 		02BF24C9264443F200B257D1 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF24C8264443F200B257D1 /* UIFont+Extensions.swift */; };
 		02BF24CC26446B8D00B257D1 /* OutlineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF24CB26446B8D00B257D1 /* OutlineButton.swift */; };
 		02BF24D52645078300B257D1 /* AuthenticationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF24D42645078300B257D1 /* AuthenticationVC.swift */; };
-		02BF24D926452D7A00B257D1 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF24D826452D7A00B257D1 /* LoginVC.swift */; };
-		02BF24DC26452D8500B257D1 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF24DB26452D8500B257D1 /* SignUpVC.swift */; };
 		02D635A82647E3270027A0BA /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D635A72647E3270027A0BA /* MovieCell.swift */; };
 		02D635AC2647E37E0027A0BA /* MovieHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D635AB2647E37E0027A0BA /* MovieHeader.swift */; };
 		02D635B02647E4670027A0BA /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D635AF2647E4670027A0BA /* Movie.swift */; };
@@ -139,6 +138,7 @@
 		029778492644402100112F4E /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		0297784A2644403600112F4E /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
 		0297784B2644403700112F4E /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		02A17BAF266F4671007CFF1C /* AuthenticationFormVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationFormVC.swift; sourceTree = "<group>"; };
 		02A8E29C2654109B009F1C5E /* MovieDetailVC+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailVC+Layout.swift"; sourceTree = "<group>"; };
 		02A8E29F265415C2009F1C5E /* IMDbRatingSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDbRatingSV.swift; sourceTree = "<group>"; };
 		02AE45CA264429A400C7F031 /* Galaxy App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Galaxy App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,8 +154,6 @@
 		02BF24C8264443F200B257D1 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		02BF24CB26446B8D00B257D1 /* OutlineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineButton.swift; sourceTree = "<group>"; };
 		02BF24D42645078300B257D1 /* AuthenticationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationVC.swift; sourceTree = "<group>"; };
-		02BF24D826452D7A00B257D1 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		02BF24DB26452D8500B257D1 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		02D635A72647E3270027A0BA /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		02D635AB2647E37E0027A0BA /* MovieHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHeader.swift; sourceTree = "<group>"; };
 		02D635AF2647E4670027A0BA /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -405,8 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				02BF24D42645078300B257D1 /* AuthenticationVC.swift */,
-				02BF24D826452D7A00B257D1 /* LoginVC.swift */,
-				02BF24DB26452D8500B257D1 /* SignUpVC.swift */,
+				02A17BAF266F4671007CFF1C /* AuthenticationFormVC.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -607,6 +604,7 @@
 				02D994142666921F00C7A00A /* CalendarCollectionView.swift in Sources */,
 				024E04A526576C5500C9E164 /* PickTheaterVC.swift in Sources */,
 				027C3EF826590C4F0048EDCF /* ChooseSeatVC.swift in Sources */,
+				02A17BB0266F4671007CFF1C /* AuthenticationFormVC.swift in Sources */,
 				02F88829265AAC4C00C8D3F3 /* ComboSetView.swift in Sources */,
 				024E04B82657A4AD00C9E164 /* PIckTheaterVC+ContentView.swift in Sources */,
 				02F8880A265A098F00C8D3F3 /* ProjectorView.swift in Sources */,
@@ -627,7 +625,6 @@
 				0238EBBB2646430D0049D670 /* UITextField+Extensions.swift in Sources */,
 				02B29D2726674E79000B78D6 /* CTAButton.swift in Sources */,
 				0297781A2644327E00112F4E /* UIImageView+Extensions.swift in Sources */,
-				02BF24D926452D7A00B257D1 /* LoginVC.swift in Sources */,
 				02A8E29D2654109B009F1C5E /* MovieDetailVC+Layout.swift in Sources */,
 				02D9940C26668EE400C7A00A /* BackButton.swift in Sources */,
 				02BF24D52645078300B257D1 /* AuthenticationVC.swift in Sources */,
@@ -653,7 +650,6 @@
 				02D6E43E266010DA00F8791C /* Date+extension.swift in Sources */,
 				024E04B5265772F900C9E164 /* CalendarDatasource.swift in Sources */,
 				0297784026443DE200112F4E /* UIStackView+Extensions.swift in Sources */,
-				02BF24DC26452D8500B257D1 /* SignUpVC.swift in Sources */,
 				02D635AC2647E37E0027A0BA /* MovieHeader.swift in Sources */,
 				02AE45D0264429A400C7F031 /* SceneDelegate.swift in Sources */,
 				02F88814265A0CC700C8D3F3 /* SeatingPlanDatasource.swift in Sources */,
