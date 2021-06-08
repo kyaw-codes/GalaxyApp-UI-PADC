@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OutlineButton: UIButton, GalaxyButton {
+class OutlineButton: UIButton {
     
     var titleFont: UIFont = UIFont.GalaxyFont.poppinsMedium.font(of: 18) {
         didSet {

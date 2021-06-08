@@ -1,5 +1,5 @@
 //
-//  PIckTheater+ContentView.swift
+//  PickTheater+ContentView.swift
 //  Galaxy App
 //
 //  Created by Ko Kyaw on 21/05/2021.

@@ -19,7 +19,6 @@
 		021C75BA2646E37600607FE1 /* HomeDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75B92646E37600607FE1 /* HomeDatasource.swift */; };
 		021C75BF2646E3D100607FE1 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75BE2646E3D100607FE1 /* ProfileCell.swift */; };
 		0238B95D264A4EC300EC352B /* FloatingMovieDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238B95C264A4EC300EC352B /* FloatingMovieDescriptionVC.swift */; };
-		0238EBAA26452F3D0049D670 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBA926452F3D0049D670 /* UIView+Extensions.swift */; };
 		0238EBB0264534C30049D670 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBAF264534C30049D670 /* TabBar.swift */; };
 		0238EBB8264564910049D670 /* OutlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBB7264564910049D670 /* OutlineTextField.swift */; };
 		0238EBBB2646430D0049D670 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBBA2646430D0049D670 /* UITextField+Extensions.swift */; };
@@ -27,6 +26,7 @@
 		024083EE266B6A6300F40F54 /* TabContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024083ED266B6A6300F40F54 /* TabContentCell.swift */; };
 		024083F3266C842C00F40F54 /* TabHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024083F2266C842C00F40F54 /* TabHeader.swift */; };
 		0240841D266DCCF300F40F54 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0240841C266DCCF300F40F54 /* MainVC.swift */; };
+		024D5D71266DE7EA00980E9A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024D5D70266DE7EA00980E9A /* UIView+Extension.swift */; };
 		024E04A526576C5500C9E164 /* PickTheaterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04A426576C5500C9E164 /* PickTheaterVC.swift */; };
 		024E04A826576CA400C9E164 /* TicketCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04A726576CA400C9E164 /* TicketCoordinator.swift */; };
 		024E04AC265771FE00C9E164 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04AB265771FE00C9E164 /* CalendarCell.swift */; };
@@ -62,7 +62,6 @@
 		02BF24C6264441AD00B257D1 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 029778462644402100112F4E /* Poppins-Medium.ttf */; };
 		02BF24C9264443F200B257D1 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF24C8264443F200B257D1 /* UIFont+Extensions.swift */; };
 		02BF24CC26446B8D00B257D1 /* OutlineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF24CB26446B8D00B257D1 /* OutlineButton.swift */; };
-		02BF24D22645036900B257D1 /* GalaxyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF24D12645036900B257D1 /* GalaxyButton.swift */; };
 		02BF24D52645078300B257D1 /* AuthenticationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF24D42645078300B257D1 /* AuthenticationVC.swift */; };
 		02BF24D926452D7A00B257D1 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF24D826452D7A00B257D1 /* LoginVC.swift */; };
 		02BF24DC26452D8500B257D1 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF24DB26452D8500B257D1 /* SignUpVC.swift */; };
@@ -109,7 +108,6 @@
 		021C75B92646E37600607FE1 /* HomeDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDatasource.swift; sourceTree = "<group>"; };
 		021C75BE2646E3D100607FE1 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		0238B95C264A4EC300EC352B /* FloatingMovieDescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingMovieDescriptionVC.swift; sourceTree = "<group>"; };
-		0238EBA926452F3D0049D670 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		0238EBAF264534C30049D670 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		0238EBB7264564910049D670 /* OutlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineTextField.swift; sourceTree = "<group>"; };
 		0238EBBA2646430D0049D670 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
@@ -117,6 +115,7 @@
 		024083ED266B6A6300F40F54 /* TabContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContentCell.swift; sourceTree = "<group>"; };
 		024083F2266C842C00F40F54 /* TabHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHeader.swift; sourceTree = "<group>"; };
 		0240841C266DCCF300F40F54 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		024D5D70266DE7EA00980E9A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		024E04A426576C5500C9E164 /* PickTheaterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickTheaterVC.swift; sourceTree = "<group>"; };
 		024E04A726576CA400C9E164 /* TicketCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCoordinator.swift; sourceTree = "<group>"; };
 		024E04AB265771FE00C9E164 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
@@ -154,7 +153,6 @@
 		02B29D3126677C9B000B78D6 /* SocialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialButton.swift; sourceTree = "<group>"; };
 		02BF24C8264443F200B257D1 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		02BF24CB26446B8D00B257D1 /* OutlineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineButton.swift; sourceTree = "<group>"; };
-		02BF24D12645036900B257D1 /* GalaxyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyButton.swift; sourceTree = "<group>"; };
 		02BF24D42645078300B257D1 /* AuthenticationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationVC.swift; sourceTree = "<group>"; };
 		02BF24D826452D7A00B257D1 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		02BF24DB26452D8500B257D1 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
@@ -210,13 +208,13 @@
 				0297783C264437D700112F4E /* UILabel+Extensions.swift */,
 				0297783F26443DE200112F4E /* UIStackView+Extensions.swift */,
 				02BF24C8264443F200B257D1 /* UIFont+Extensions.swift */,
-				0238EBA926452F3D0049D670 /* UIView+Extensions.swift */,
 				0238EBBA2646430D0049D670 /* UITextField+Extensions.swift */,
 				021C75A326464E5800607FE1 /* UIButton+Extensions.swift */,
 				02D635B426481E1A0027A0BA /* Bundle+Extensions.swift */,
 				024E04BD2657A72B00C9E164 /* OutlineButton+extensions.swift */,
 				02D6E43D266010DA00F8791C /* Date+extension.swift */,
 				02D6E4402660AB3B00F8791C /* String+extensions.swift */,
+				024D5D70266DE7EA00980E9A /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -399,17 +397,8 @@
 			children = (
 				021C75A9264685D500607FE1 /* Coordinators */,
 				020E6A5D26442F7C00636EE6 /* Extensions */,
-				02BF24CF2645035100B257D1 /* Protocols */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		02BF24CF2645035100B257D1 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				02BF24D12645036900B257D1 /* GalaxyButton.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		02BF24D726452D6B00B257D1 /* Authentication */ = {
@@ -615,7 +604,6 @@
 			files = (
 				02D6E43026600F4E00F8791C /* CreditCardCell.swift in Sources */,
 				02D635C3264861170027A0BA /* SideMenuVC.swift in Sources */,
-				0238EBAA26452F3D0049D670 /* UIView+Extensions.swift in Sources */,
 				02D994142666921F00C7A00A /* CalendarCollectionView.swift in Sources */,
 				024E04A526576C5500C9E164 /* PickTheaterVC.swift in Sources */,
 				027C3EF826590C4F0048EDCF /* ChooseSeatVC.swift in Sources */,
@@ -646,7 +634,6 @@
 				024083F3266C842C00F40F54 /* TabHeader.swift in Sources */,
 				0240841D266DCCF300F40F54 /* MainVC.swift in Sources */,
 				02BF24C9264443F200B257D1 /* UIFont+Extensions.swift in Sources */,
-				02BF24D22645036900B257D1 /* GalaxyButton.swift in Sources */,
 				02B29D2B266755B9000B78D6 /* VerticallyScrollableVC.swift in Sources */,
 				02D635B02647E4670027A0BA /* Movie.swift in Sources */,
 				02D6E4412660AB3B00F8791C /* String+extensions.swift in Sources */,
@@ -662,6 +649,7 @@
 				021C75AB264685E100607FE1 /* Coordinator.swift in Sources */,
 				02BF24CC26446B8D00B257D1 /* OutlineButton.swift in Sources */,
 				021C75A426464E5800607FE1 /* UIButton+Extensions.swift in Sources */,
+				024D5D71266DE7EA00980E9A /* UIView+Extension.swift in Sources */,
 				02D6E43E266010DA00F8791C /* Date+extension.swift in Sources */,
 				024E04B5265772F900C9E164 /* CalendarDatasource.swift in Sources */,
 				0297784026443DE200112F4E /* UIStackView+Extensions.swift in Sources */,
@@ -828,7 +816,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5YBNKRN22U;
+				DEVELOPMENT_TEAM = 3LGZY3S9Q5;
 				INFOPLIST_FILE = "Galaxy App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -848,7 +836,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5YBNKRN22U;
+				DEVELOPMENT_TEAM = 3LGZY3S9Q5;
 				INFOPLIST_FILE = "Galaxy App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
