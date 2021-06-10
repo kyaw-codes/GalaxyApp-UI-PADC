@@ -31,9 +31,7 @@
 		024E04A826576CA400C9E164 /* TicketCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04A726576CA400C9E164 /* TicketCoordinator.swift */; };
 		024E04AC265771FE00C9E164 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04AB265771FE00C9E164 /* CalendarCell.swift */; };
 		024E04AF2657722600C9E164 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04AE2657722600C9E164 /* Calendar.swift */; };
-		024E04B2265772C800C9E164 /* PickTheaterVC+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04B1265772C800C9E164 /* PickTheaterVC+CollectionViewDelegate.swift */; };
 		024E04B5265772F900C9E164 /* CalendarDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04B4265772F900C9E164 /* CalendarDatasource.swift */; };
-		024E04B82657A4AD00C9E164 /* PIckTheaterVC+ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04B72657A4AD00C9E164 /* PIckTheaterVC+ContentView.swift */; };
 		024E04BE2657A72B00C9E164 /* OutlineButton+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04BD2657A72B00C9E164 /* OutlineButton+extensions.swift */; };
 		025CF5202663AA2C00D0112E /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025CF51F2663AA2C00D0112E /* TicketView.swift */; };
 		025CF5232663B92000D0112E /* VoucherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025CF5222663B92000D0112E /* VoucherVC.swift */; };
@@ -83,6 +81,10 @@
 		02D9940C26668EE400C7A00A /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9940B26668EE400C7A00A /* BackButton.swift */; };
 		02D99410266690CB00C7A00A /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9940F266690CB00C7A00A /* CloseButton.swift */; };
 		02D994142666921F00C7A00A /* CalendarCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D994132666921F00C7A00A /* CalendarCollectionView.swift */; };
+		02DF7F3C2670B22C00D2F01C /* PickTheaterCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DF7F3B2670B22C00D2F01C /* PickTheaterCollectionView.swift */; };
+		02DF7F3E2670B68200D2F01C /* PickTheaterDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DF7F3D2670B68200D2F01C /* PickTheaterDatasource.swift */; };
+		02DF7F402670BB6700D2F01C /* PickTheaterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DF7F3F2670BB6700D2F01C /* PickTheaterCell.swift */; };
+		02DF7F422670D09B00D2F01C /* ChooseTheaterVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DF7F412670D09B00D2F01C /* ChooseTheaterVO.swift */; };
 		02F8880A265A098F00C8D3F3 /* ProjectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F88809265A098F00C8D3F3 /* ProjectorView.swift */; };
 		02F8880D265A0B9F00C8D3F3 /* SeatingPlanCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F8880C265A0B9F00C8D3F3 /* SeatingPlanCollectionView.swift */; };
 		02F88811265A0C2E00C8D3F3 /* SeatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F88810265A0C2E00C8D3F3 /* SeatCell.swift */; };
@@ -119,9 +121,7 @@
 		024E04A726576CA400C9E164 /* TicketCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCoordinator.swift; sourceTree = "<group>"; };
 		024E04AB265771FE00C9E164 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		024E04AE2657722600C9E164 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
-		024E04B1265772C800C9E164 /* PickTheaterVC+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PickTheaterVC+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		024E04B4265772F900C9E164 /* CalendarDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDatasource.swift; sourceTree = "<group>"; };
-		024E04B72657A4AD00C9E164 /* PIckTheaterVC+ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PIckTheaterVC+ContentView.swift"; sourceTree = "<group>"; };
 		024E04BD2657A72B00C9E164 /* OutlineButton+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutlineButton+extensions.swift"; sourceTree = "<group>"; };
 		025CF51F2663AA2C00D0112E /* TicketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		025CF5222663B92000D0112E /* VoucherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherVC.swift; sourceTree = "<group>"; };
@@ -173,6 +173,10 @@
 		02D9940B26668EE400C7A00A /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		02D9940F266690CB00C7A00A /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		02D994132666921F00C7A00A /* CalendarCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionView.swift; sourceTree = "<group>"; };
+		02DF7F3B2670B22C00D2F01C /* PickTheaterCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickTheaterCollectionView.swift; sourceTree = "<group>"; };
+		02DF7F3D2670B68200D2F01C /* PickTheaterDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickTheaterDatasource.swift; sourceTree = "<group>"; };
+		02DF7F3F2670BB6700D2F01C /* PickTheaterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickTheaterCell.swift; sourceTree = "<group>"; };
+		02DF7F412670D09B00D2F01C /* ChooseTheaterVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTheaterVO.swift; sourceTree = "<group>"; };
 		02F88809265A098F00C8D3F3 /* ProjectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectorView.swift; sourceTree = "<group>"; };
 		02F8880C265A0B9F00C8D3F3 /* SeatingPlanCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatingPlanCollectionView.swift; sourceTree = "<group>"; };
 		02F88810265A0C2E00C8D3F3 /* SeatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatCell.swift; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 			children = (
 				02B29D2A266755B9000B78D6 /* VerticallyScrollableVC.swift */,
 				02AE45D1264429A400C7F031 /* GetStartedVC.swift */,
+				02DF7F3A2670B0C000D2F01C /* Side Menu */,
 				02BF24D726452D6B00B257D1 /* Authentication */,
 				02D635C0264858660027A0BA /* Home */,
 				024E04A326576BB600C9E164 /* Ticket */,
@@ -252,6 +257,7 @@
 				02D6E424265FDAC600F8791C /* PaymentMethodView.swift */,
 				025CF51F2663AA2C00D0112E /* TicketView.swift */,
 				02D994132666921F00C7A00A /* CalendarCollectionView.swift */,
+				02DF7F3B2670B22C00D2F01C /* PickTheaterCollectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -293,6 +299,7 @@
 				024E04B4265772F900C9E164 /* CalendarDatasource.swift */,
 				02F88813265A0CC700C8D3F3 /* SeatingPlanDatasource.swift */,
 				02D6E43A2660106F00F8791C /* CreditCardDatasource.swift */,
+				02DF7F3D2670B68200D2F01C /* PickTheaterDatasource.swift */,
 			);
 			path = Datasources;
 			sourceTree = "<group>";
@@ -308,6 +315,7 @@
 				02D6E42F26600F4E00F8791C /* CreditCardCell.swift */,
 				024083EA266B66E400F40F54 /* TabHeaderCell.swift */,
 				024083ED266B6A6300F40F54 /* TabContentCell.swift */,
+				02DF7F3F2670BB6700D2F01C /* PickTheaterCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -326,8 +334,6 @@
 			isa = PBXGroup;
 			children = (
 				024E04A426576C5500C9E164 /* PickTheaterVC.swift */,
-				024E04B72657A4AD00C9E164 /* PIckTheaterVC+ContentView.swift */,
-				024E04B1265772C800C9E164 /* PickTheaterVC+CollectionViewDelegate.swift */,
 			);
 			path = "Pick Theater";
 			sourceTree = "<group>";
@@ -430,6 +436,7 @@
 		02D635AE2647E45F0027A0BA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				02DF7F412670D09B00D2F01C /* ChooseTheaterVO.swift */,
 				02D635AF2647E4670027A0BA /* Movie.swift */,
 				024E04AE2657722600C9E164 /* Calendar.swift */,
 				02D6E4372660102500F8791C /* CreditCard.swift */,
@@ -442,12 +449,19 @@
 		02D635C0264858660027A0BA /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				0240841C266DCCF300F40F54 /* MainVC.swift */,
 				021C75A6264684F700607FE1 /* HomeVC.swift */,
-				02D635C2264861170027A0BA /* SideMenuVC.swift */,
 				02C9235F2668A8790092FF58 /* Movie Detail */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		02DF7F3A2670B0C000D2F01C /* Side Menu */ = {
+			isa = PBXGroup;
+			children = (
+				0240841C266DCCF300F40F54 /* MainVC.swift */,
+				02D635C2264861170027A0BA /* SideMenuVC.swift */,
+			);
+			path = "Side Menu";
 			sourceTree = "<group>";
 		};
 		02F88819265A4EF200C8D3F3 /* Issue Voucher */ = {
@@ -606,14 +620,15 @@
 				027C3EF826590C4F0048EDCF /* ChooseSeatVC.swift in Sources */,
 				02A17BB0266F4671007CFF1C /* AuthenticationFormVC.swift in Sources */,
 				02F88829265AAC4C00C8D3F3 /* ComboSetView.swift in Sources */,
-				024E04B82657A4AD00C9E164 /* PIckTheaterVC+ContentView.swift in Sources */,
 				02F8880A265A098F00C8D3F3 /* ProjectorView.swift in Sources */,
 				020032F12656265700C71FDF /* CastDatasource.swift in Sources */,
 				021C75AF2646864300607FE1 /* MainCoordinator.swift in Sources */,
 				02F8880D265A0B9F00C8D3F3 /* SeatingPlanCollectionView.swift in Sources */,
 				025CF5272663DF2C00D0112E /* Ticket.swift in Sources */,
+				02DF7F422670D09B00D2F01C /* ChooseTheaterVO.swift in Sources */,
 				021C75BA2646E37600607FE1 /* HomeDatasource.swift in Sources */,
 				0297783D264437D700112F4E /* UILabel+Extensions.swift in Sources */,
+				02DF7F3E2670B68200D2F01C /* PickTheaterDatasource.swift in Sources */,
 				024083EE266B6A6300F40F54 /* TabContentCell.swift in Sources */,
 				02D6E425265FDAC600F8791C /* PaymentMethodView.swift in Sources */,
 				027708AD26695665006D4304 /* Seat.swift in Sources */,
@@ -637,7 +652,6 @@
 				024083EB266B66E400F40F54 /* TabHeaderCell.swift in Sources */,
 				025CF5232663B92000D0112E /* VoucherVC.swift in Sources */,
 				02F88811265A0C2E00C8D3F3 /* SeatCell.swift in Sources */,
-				024E04B2265772C800C9E164 /* PickTheaterVC+CollectionViewDelegate.swift in Sources */,
 				02AE45D2264429A400C7F031 /* GetStartedVC.swift in Sources */,
 				024E04AF2657722600C9E164 /* Calendar.swift in Sources */,
 				02AE45CE264429A400C7F031 /* AppDelegate.swift in Sources */,
@@ -646,6 +660,7 @@
 				021C75AB264685E100607FE1 /* Coordinator.swift in Sources */,
 				02BF24CC26446B8D00B257D1 /* OutlineButton.swift in Sources */,
 				021C75A426464E5800607FE1 /* UIButton+Extensions.swift in Sources */,
+				02DF7F3C2670B22C00D2F01C /* PickTheaterCollectionView.swift in Sources */,
 				024D5D71266DE7EA00980E9A /* UIView+Extension.swift in Sources */,
 				02D6E43E266010DA00F8791C /* Date+extension.swift in Sources */,
 				024E04B5265772F900C9E164 /* CalendarDatasource.swift in Sources */,
@@ -671,6 +686,7 @@
 				02D6E41D265FD08300F8791C /* PromocodeTextField.swift in Sources */,
 				02D635B526481E1A0027A0BA /* Bundle+Extensions.swift in Sources */,
 				02F88826265AA8B600C8D3F3 /* CountButtonGroup.swift in Sources */,
+				02DF7F402670BB6700D2F01C /* PickTheaterCell.swift in Sources */,
 				025CF5202663AA2C00D0112E /* TicketView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -812,7 +828,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3LGZY3S9Q5;
+				DEVELOPMENT_TEAM = 5YBNKRN22U;
 				INFOPLIST_FILE = "Galaxy App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -832,7 +848,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3LGZY3S9Q5;
+				DEVELOPMENT_TEAM = 5YBNKRN22U;
 				INFOPLIST_FILE = "Galaxy App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
