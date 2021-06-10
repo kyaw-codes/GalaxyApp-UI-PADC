@@ -1,5 +1,5 @@
 //
-//  PromocodeView.swift
+//  PromocodeCell.swift
 //  Galaxy App
 //
 //  Created by Ko Kyaw on 27/05/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PromocodeTextField: UIView {
+class PromocodeCell: UICollectionViewCell {
     
     let textField: UITextField = {
         let tf = UITextField()
@@ -29,6 +29,7 @@ class PromocodeTextField: UIView {
     
     private let underlineView = UIView(backgroundColor: .seatAvailable)
     private let getItNowLabel = UILabel(text: "Get it now", font: .poppinsRegular, size: 16, color: .galaxyBlack)
+    var subTotlaLabel = UILabel(text: "Sub totla : 40$", font: .poppinsMedium, size: 16, color: .galaxyGreen)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,20 +42,26 @@ class PromocodeTextField: UIView {
         
         addSubview(underlineView)
         underlineView.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview().inset(30)
+            make.top.equalTo(textField.snp.bottom).inset(-10)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(1)
         }
         
         addSubview(additionalInfoLabel)
         additionalInfoLabel.snp.makeConstraints { (make) in
-            make.leading.bottom.equalToSuperview()
+            make.top.equalTo(underlineView.snp.bottom).inset(-10)
+            make.leading.equalToSuperview()
         }
         
         addSubview(getItNowLabel)
         getItNowLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(additionalInfoLabel.snp.trailing).inset(-4)
             make.bottom.equalTo(additionalInfoLabel.snp.bottom)
+        }
+        
+        addSubview(subTotlaLabel)
+        subTotlaLabel.snp.makeConstraints { make in
+            make.leading.bottom.equalToSuperview()
         }
     }
     

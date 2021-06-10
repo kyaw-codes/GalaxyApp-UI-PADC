@@ -1,5 +1,5 @@
 //
-//  PaymentMethodView.swift
+//  PaymentMethodCell.swift
 //  Galaxy App
 //
 //  Created by Ko Kyaw on 27/05/2021.
@@ -7,24 +7,34 @@
 
 import UIKit
 
-class PaymentMethodView: UIView {
+class PaymentMethodCell: UICollectionViewCell {
+    
+    public struct ViewModel {
+        var image: UIImage?
+        var title: String
+        var subtitle: String
+    }
+    
+    var viewModel: ViewModel? {
+        didSet {
+            imageView.image = viewModel?.image?
+                .withRenderingMode(.alwaysOriginal)
+                .withTintColor(.seatReserved)
+    
+            titleLabel.text = viewModel?.title
+            subtitleLabel.text = viewModel?.subtitle
+        }
+    }
     
     private let imageView = UIImageView()
     private let titleLabel = UILabel(text: "", font: .poppinsRegular, size: 18, color: .galaxyBlack)
     private let subtitleLabel = UILabel(text: "", font: .poppinsRegular, size: 15, color: .seatReserved)
     
-    init(image: UIImage?, title: String, subTitle: String) {
+    override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        imageView.image = image?
-            .withRenderingMode(.alwaysOriginal)
-            .withTintColor(.seatReserved)
-        
         imageView.contentMode = .scaleAspectFit
-        
-        titleLabel.text = title
-        subtitleLabel.text = subTitle
-        
+
         let innerSV = UIStackView(subViews: [titleLabel, subtitleLabel], axis: .vertical, spacing: 4)
         
         let imageContainerView = UIView()

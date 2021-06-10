@@ -1,28 +1,40 @@
 //
-//  ComboSetView.swift
+//  ComboSetCell.swift
 //  Galaxy App
 //
-//  Created by Ko Kyaw on 23/05/2021.
+//  Created by Ko Kyaw on 10/06/2021.
 //
 
 import UIKit
 
-class ComboSetView: UIView {
+class ComboSetCell: UICollectionViewCell {
+    
+    public struct ViewModel {
+        var title: String
+        var description: String
+        var unitPrice: Double
+    }
+    
+    var viewModel: ViewModel? {
+        didSet {
+            titleLabel.text = viewModel?.title
+            descriptionLabel.text = viewModel?.description
+        }
+    }
     
     private let countButtonGroup = CountButtonGroup()
     
-    private let titleLabel = UILabel(text: "Combo Set M", font: .poppinsRegular, size: 18, color: .galaxyBlack)
+    private let titleLabel = UILabel(text: "", font: .poppinsRegular, size: 18, color: .galaxyBlack)
     
-    private let descriptionLabel = UILabel(text: "Combo size M 22oz. Coke (X1) and medium pop corn (X1)", font: .poppinsRegular, size: 15, numberOfLines: 0, color: .galaxyLightBlack)
+    private let descriptionLabel = UILabel(text: "", font: .poppinsRegular, size: 15, numberOfLines: 0, color: .galaxyLightBlack)
     
     private let priceLabel = UILabel(text: "0$", font: .poppinsRegular, size: 18, color: .galaxyBlack)
 
-    init(title: String, description: String, unitPrice: Double) {
+    override init(frame: CGRect) {
         super.init(frame: .zero)
         
         backgroundColor = .clear
         
-        titleLabel.text = title
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
             make.leading.top.equalToSuperview()
@@ -35,7 +47,6 @@ class ComboSetView: UIView {
             make.height.equalTo(36)
         }
         
-        descriptionLabel.text = description
         addSubview(descriptionLabel)
         descriptionLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(titleLabel)
@@ -51,6 +62,7 @@ class ComboSetView: UIView {
         }
         
         countButtonGroup.onCountValueUpdate = { [weak self] count in
+            guard let unitPrice = self?.viewModel?.unitPrice else { return }
             self?.priceLabel.text = "\(unitPrice * Double(count))$"
         }
         
@@ -60,5 +72,4 @@ class ComboSetView: UIView {
     required init?(coder: NSCoder) {
         fatalError()
     }
-
 }

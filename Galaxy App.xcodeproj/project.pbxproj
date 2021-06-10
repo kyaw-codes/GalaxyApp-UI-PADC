@@ -11,6 +11,9 @@
 		020032F12656265700C71FDF /* CastDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020032F02656265700C71FDF /* CastDatasource.swift */; };
 		020032F42656284C00C71FDF /* FloatingMovieDescriptionVC+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020032F32656284C00C71FDF /* FloatingMovieDescriptionVC+CollectionViewDelegate.swift */; };
 		020E6A6426442FBB00636EE6 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020E6A6326442FBB00636EE6 /* UIColor+Extensions.swift */; };
+		021683DE2671CA9D007072DD /* AdditionalServiceCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021683DD2671CA9D007072DD /* AdditionalServiceCollectionView.swift */; };
+		021683E02671CD3C007072DD /* ComboSetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021683DF2671CD3C007072DD /* ComboSetCell.swift */; };
+		021683E22671DB96007072DD /* AdditionalServiceDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021683E12671DB96007072DD /* AdditionalServiceDatasource.swift */; };
 		021C75A426464E5800607FE1 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75A326464E5800607FE1 /* UIButton+Extensions.swift */; };
 		021C75A7264684F700607FE1 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75A6264684F700607FE1 /* HomeVC.swift */; };
 		021C75AB264685E100607FE1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75AA264685E100607FE1 /* Coordinator.swift */; };
@@ -69,9 +72,9 @@
 		02D635BA264821D40027A0BA /* Movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 02D635B9264821D40027A0BA /* Movies.json */; };
 		02D635BD264857AE0027A0BA /* MovieDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D635BC264857AE0027A0BA /* MovieDetailVC.swift */; };
 		02D635C3264861170027A0BA /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D635C2264861170027A0BA /* SideMenuVC.swift */; };
-		02D6E41D265FD08300F8791C /* PromocodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D6E41C265FD08300F8791C /* PromocodeTextField.swift */; };
+		02D6E41D265FD08300F8791C /* PromocodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D6E41C265FD08300F8791C /* PromocodeCell.swift */; };
 		02D6E422265FD54000F8791C /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02D6E420265FD4CA00F8791C /* Poppins-Italic.ttf */; };
-		02D6E425265FDAC600F8791C /* PaymentMethodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D6E424265FDAC600F8791C /* PaymentMethodView.swift */; };
+		02D6E425265FDAC600F8791C /* PaymentMethodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D6E424265FDAC600F8791C /* PaymentMethodCell.swift */; };
 		02D6E42D265FE86E00F8791C /* CheckoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D6E42C265FE86E00F8791C /* CheckoutVC.swift */; };
 		02D6E43026600F4E00F8791C /* CreditCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D6E42F26600F4E00F8791C /* CreditCardCell.swift */; };
 		02D6E4382660102500F8791C /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D6E4372660102500F8791C /* CreditCard.swift */; };
@@ -92,7 +95,6 @@
 		02F88817265A167C00C8D3F3 /* DashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F88816265A167C00C8D3F3 /* DashView.swift */; };
 		02F88821265A505700C8D3F3 /* AdditionalServiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F88820265A505700C8D3F3 /* AdditionalServiceVC.swift */; };
 		02F88826265AA8B600C8D3F3 /* CountButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F88825265AA8B600C8D3F3 /* CountButtonGroup.swift */; };
-		02F88829265AAC4C00C8D3F3 /* ComboSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F88828265AAC4C00C8D3F3 /* ComboSetView.swift */; };
 		3833819662C3DFFD4A9F3139 /* Pods_Galaxy_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DCA23893A73D92AF63029D /* Pods_Galaxy_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +103,9 @@
 		020032F02656265700C71FDF /* CastDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastDatasource.swift; sourceTree = "<group>"; };
 		020032F32656284C00C71FDF /* FloatingMovieDescriptionVC+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FloatingMovieDescriptionVC+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		020E6A6326442FBB00636EE6 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		021683DD2671CA9D007072DD /* AdditionalServiceCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalServiceCollectionView.swift; sourceTree = "<group>"; };
+		021683DF2671CD3C007072DD /* ComboSetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboSetCell.swift; sourceTree = "<group>"; };
+		021683E12671DB96007072DD /* AdditionalServiceDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalServiceDatasource.swift; sourceTree = "<group>"; };
 		021C75A326464E5800607FE1 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		021C75A6264684F700607FE1 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		021C75AA264685E100607FE1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -161,9 +166,9 @@
 		02D635B9264821D40027A0BA /* Movies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Movies.json; sourceTree = "<group>"; };
 		02D635BC264857AE0027A0BA /* MovieDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailVC.swift; sourceTree = "<group>"; };
 		02D635C2264861170027A0BA /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
-		02D6E41C265FD08300F8791C /* PromocodeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeTextField.swift; sourceTree = "<group>"; };
+		02D6E41C265FD08300F8791C /* PromocodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeCell.swift; sourceTree = "<group>"; };
 		02D6E420265FD4CA00F8791C /* Poppins-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Italic.ttf"; sourceTree = "<group>"; };
-		02D6E424265FDAC600F8791C /* PaymentMethodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodView.swift; sourceTree = "<group>"; };
+		02D6E424265FDAC600F8791C /* PaymentMethodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodCell.swift; sourceTree = "<group>"; };
 		02D6E42C265FE86E00F8791C /* CheckoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutVC.swift; sourceTree = "<group>"; };
 		02D6E42F26600F4E00F8791C /* CreditCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardCell.swift; sourceTree = "<group>"; };
 		02D6E4372660102500F8791C /* CreditCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCard.swift; sourceTree = "<group>"; };
@@ -184,7 +189,6 @@
 		02F88816265A167C00C8D3F3 /* DashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashView.swift; sourceTree = "<group>"; };
 		02F88820265A505700C8D3F3 /* AdditionalServiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalServiceVC.swift; sourceTree = "<group>"; };
 		02F88825265AA8B600C8D3F3 /* CountButtonGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountButtonGroup.swift; sourceTree = "<group>"; };
-		02F88828265AAC4C00C8D3F3 /* ComboSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboSetView.swift; sourceTree = "<group>"; };
 		1264DFEE3EFA0F2B1A8CA3E9 /* Pods-Galaxy App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Galaxy App.debug.xcconfig"; path = "Target Support Files/Pods-Galaxy App/Pods-Galaxy App.debug.xcconfig"; sourceTree = "<group>"; };
 		60DCA23893A73D92AF63029D /* Pods_Galaxy_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Galaxy_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E129F1C46375C9B536E4A283 /* Pods-Galaxy App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Galaxy App.release.xcconfig"; path = "Target Support Files/Pods-Galaxy App/Pods-Galaxy App.release.xcconfig"; sourceTree = "<group>"; };
@@ -251,13 +255,14 @@
 				02F88809265A098F00C8D3F3 /* ProjectorView.swift */,
 				02F8880C265A0B9F00C8D3F3 /* SeatingPlanCollectionView.swift */,
 				02F88816265A167C00C8D3F3 /* DashView.swift */,
-				02F88828265AAC4C00C8D3F3 /* ComboSetView.swift */,
 				02F88825265AA8B600C8D3F3 /* CountButtonGroup.swift */,
-				02D6E41C265FD08300F8791C /* PromocodeTextField.swift */,
-				02D6E424265FDAC600F8791C /* PaymentMethodView.swift */,
+				021683DF2671CD3C007072DD /* ComboSetCell.swift */,
+				02D6E41C265FD08300F8791C /* PromocodeCell.swift */,
+				02D6E424265FDAC600F8791C /* PaymentMethodCell.swift */,
 				025CF51F2663AA2C00D0112E /* TicketView.swift */,
 				02D994132666921F00C7A00A /* CalendarCollectionView.swift */,
 				02DF7F3B2670B22C00D2F01C /* PickTheaterCollectionView.swift */,
+				021683DD2671CA9D007072DD /* AdditionalServiceCollectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -300,6 +305,7 @@
 				02F88813265A0CC700C8D3F3 /* SeatingPlanDatasource.swift */,
 				02D6E43A2660106F00F8791C /* CreditCardDatasource.swift */,
 				02DF7F3D2670B68200D2F01C /* PickTheaterDatasource.swift */,
+				021683E12671DB96007072DD /* AdditionalServiceDatasource.swift */,
 			);
 			path = Datasources;
 			sourceTree = "<group>";
@@ -619,9 +625,9 @@
 				024E04A526576C5500C9E164 /* PickTheaterVC.swift in Sources */,
 				027C3EF826590C4F0048EDCF /* ChooseSeatVC.swift in Sources */,
 				02A17BB0266F4671007CFF1C /* AuthenticationFormVC.swift in Sources */,
-				02F88829265AAC4C00C8D3F3 /* ComboSetView.swift in Sources */,
 				02F8880A265A098F00C8D3F3 /* ProjectorView.swift in Sources */,
 				020032F12656265700C71FDF /* CastDatasource.swift in Sources */,
+				021683DE2671CA9D007072DD /* AdditionalServiceCollectionView.swift in Sources */,
 				021C75AF2646864300607FE1 /* MainCoordinator.swift in Sources */,
 				02F8880D265A0B9F00C8D3F3 /* SeatingPlanCollectionView.swift in Sources */,
 				025CF5272663DF2C00D0112E /* Ticket.swift in Sources */,
@@ -630,9 +636,10 @@
 				0297783D264437D700112F4E /* UILabel+Extensions.swift in Sources */,
 				02DF7F3E2670B68200D2F01C /* PickTheaterDatasource.swift in Sources */,
 				024083EE266B6A6300F40F54 /* TabContentCell.swift in Sources */,
-				02D6E425265FDAC600F8791C /* PaymentMethodView.swift in Sources */,
+				02D6E425265FDAC600F8791C /* PaymentMethodCell.swift in Sources */,
 				027708AD26695665006D4304 /* Seat.swift in Sources */,
 				0238B95D264A4EC300EC352B /* FloatingMovieDescriptionVC.swift in Sources */,
+				021683E22671DB96007072DD /* AdditionalServiceDatasource.swift in Sources */,
 				02F88821265A505700C8D3F3 /* AdditionalServiceVC.swift in Sources */,
 				0238EBB0264534C30049D670 /* TabBar.swift in Sources */,
 				020032F42656284C00C71FDF /* FloatingMovieDescriptionVC+CollectionViewDelegate.swift in Sources */,
@@ -673,6 +680,7 @@
 				02D6E42D265FE86E00F8791C /* CheckoutVC.swift in Sources */,
 				021C75A7264684F700607FE1 /* HomeVC.swift in Sources */,
 				02F88817265A167C00C8D3F3 /* DashView.swift in Sources */,
+				021683E02671CD3C007072DD /* ComboSetCell.swift in Sources */,
 				02A8E2A0265415C2009F1C5E /* IMDbRatingSV.swift in Sources */,
 				02D6E43B2660106F00F8791C /* CreditCardDatasource.swift in Sources */,
 				020032EE265625AB00C71FDF /* CastCell.swift in Sources */,
@@ -683,7 +691,7 @@
 				02D635A82647E3270027A0BA /* MovieCell.swift in Sources */,
 				021C75B62646DAD100607FE1 /* HomeCoordinator.swift in Sources */,
 				024E04AC265771FE00C9E164 /* CalendarCell.swift in Sources */,
-				02D6E41D265FD08300F8791C /* PromocodeTextField.swift in Sources */,
+				02D6E41D265FD08300F8791C /* PromocodeCell.swift in Sources */,
 				02D635B526481E1A0027A0BA /* Bundle+Extensions.swift in Sources */,
 				02F88826265AA8B600C8D3F3 /* CountButtonGroup.swift in Sources */,
 				02DF7F402670BB6700D2F01C /* PickTheaterCell.swift in Sources */,
