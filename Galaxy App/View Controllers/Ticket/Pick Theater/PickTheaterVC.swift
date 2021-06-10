@@ -64,11 +64,7 @@ class PickTheaterVC: UIViewController {
     
     private func resetAvailableMovieTypes(at index: Int) {
         for (i, item) in chooseTheaterVOs[0].items.enumerated() {
-            if i == index {
-                item.isSelected = true
-            } else {
-                item.isSelected = false
-            }
+            item.isSelected = i == index
         }
     }
     
