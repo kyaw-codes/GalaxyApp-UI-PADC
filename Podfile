@@ -9,4 +9,8 @@ target 'Galaxy App' do
     pod 'SnapKit', '~> 5.0.0'
     pod 'FloatingPanel'
     pod 'Gemini'
+   pod 'Alamofire', '~> 5.4'
+   pod 'Wormholy', :configurations => ['Debug']
+   pod 'SDWebImage', '~> 5.0'
+   pod 'YouTubePlayer'
 end

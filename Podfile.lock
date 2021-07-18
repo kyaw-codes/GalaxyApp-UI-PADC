@@ -1,24 +1,42 @@
 PODS:
+  - Alamofire (5.4.3)
   - FloatingPanel (2.3.0)
   - Gemini (1.4.0)
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
   - SnapKit (5.0.1)
+  - Wormholy (1.6.4)
+  - YouTubePlayer (0.7.2)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.4)
   - FloatingPanel
   - Gemini
+  - SDWebImage (~> 5.0)
   - SnapKit (~> 5.0.0)
+  - Wormholy
+  - YouTubePlayer
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - FloatingPanel
     - Gemini
+    - SDWebImage
     - SnapKit
+    - Wormholy
+    - YouTubePlayer
 
 SPEC CHECKSUMS:
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   FloatingPanel: 373478513a197cf140abd219ca9a9c049967332b
   Gemini: 4ad915cca8805577fe3021e02feeca2b77dcdbfc
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Wormholy: 2e70f64227e010d363f8d33268369f77faf12471
+  YouTubePlayer: 2b5f2830d8f9b2cde942083211291e382c9e6bd5
 
-PODFILE CHECKSUM: 939fa0e33e9c48a534dd041d502e400384f7567f
+PODFILE CHECKSUM: 4411c86e3ad8b38bebeecda94dcc7a25f7efa215
 
 COCOAPODS: 1.10.1
