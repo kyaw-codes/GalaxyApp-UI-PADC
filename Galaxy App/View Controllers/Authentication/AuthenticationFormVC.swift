@@ -24,13 +24,13 @@ class AuthenticationFormVC: VerticallyScrollableVC<MainCoordinator> {
     
     // MARK: - Views
     
-    private lazy var firstNameLabel = UILabel(text: "First name", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
-    private lazy var lastNameLabel = UILabel(text: "Last name", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
+    private lazy var nameLabel = UILabel(text: "Full name", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
+    private lazy var phoneLabel = UILabel(text: "Phone no.", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
     private lazy var emailLabel = UILabel(text: "Email", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
     private lazy var passwordLabel = UILabel(text: "Password", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
     private lazy var forgotPasswordLabel = UILabel(text: "Forgot Password ?", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
     
-    private lazy var firstNameOutlineField: OutlineTextField = {
+    private lazy var nameOutlineField: OutlineTextField = {
         let field = OutlineTextField(placeholder: "Monkey")
         if viewType == .signUp {
             field.textField.becomeFirstResponder()
@@ -38,7 +38,7 @@ class AuthenticationFormVC: VerticallyScrollableVC<MainCoordinator> {
         return field
     }()
     
-    private lazy var lastNameOutlineField = OutlineTextField(placeholder: "Kyaw")
+    private lazy var phoneNoOutlineField = OutlineTextField(placeholder: "0911222333", keyboardType: .phonePad)
     
     private lazy var emailOutlineField: OutlineTextField = {
         let field = OutlineTextField(placeholder: "LilyJohnson@gmail.com", keyboardType: .emailAddress)
@@ -75,7 +75,7 @@ class AuthenticationFormVC: VerticallyScrollableVC<MainCoordinator> {
         [emailOutlineField, passwordOutlineField].forEach { $0.textField.delegate = self }
         
         if viewType == .signUp {
-            [firstNameOutlineField, lastNameOutlineField].forEach { $0.textField.delegate = self }
+            [nameOutlineField, phoneNoOutlineField].forEach { $0.textField.delegate = self }
         }
         
         confirmButton.addTarget(self, action: #selector(handleConfirmTapped), for: .touchUpInside)
@@ -115,9 +115,9 @@ extension AuthenticationFormVC {
             
             contentStackView.addArrangedSubview(inputsSV)
         } else {
-            let firstNameSV = UIStackView(subViews: [firstNameLabel, firstNameOutlineField], axis: .vertical, spacing: 4)
-            let lastNameSV = UIStackView(subViews: [lastNameLabel, lastNameOutlineField], axis: .vertical, spacing: 4)
-            let inputsSV = UIStackView(subViews: [firstNameSV, lastNameSV, emailSV, passwordSV], axis: .vertical, spacing: 40)
+            let firstSV = UIStackView(subViews: [nameLabel, nameOutlineField], axis: .vertical, spacing: 4)
+            let secondSV = UIStackView(subViews: [phoneLabel, phoneNoOutlineField], axis: .vertical, spacing: 4)
+            let inputsSV = UIStackView(subViews: [firstSV, emailSV, secondSV, passwordSV], axis: .vertical, spacing: 40)
 
             contentStackView.addArrangedSubview(inputsSV)
         }
@@ -133,11 +133,11 @@ extension AuthenticationFormVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
-        case firstNameOutlineField.textField:
+        case nameOutlineField.textField:
             textField.resignFirstResponder()
-            lastNameOutlineField.textField.becomeFirstResponder()
+            phoneNoOutlineField.textField.becomeFirstResponder()
             return false
-        case lastNameOutlineField.textField:
+        case phoneNoOutlineField.textField:
             textField.resignFirstResponder()
             emailOutlineField.textField.becomeFirstResponder()
             return false

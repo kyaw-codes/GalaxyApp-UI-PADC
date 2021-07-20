@@ -39,6 +39,8 @@
 		025CF5202663AA2C00D0112E /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025CF51F2663AA2C00D0112E /* TicketView.swift */; };
 		025CF5232663B92000D0112E /* VoucherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025CF5222663B92000D0112E /* VoucherVC.swift */; };
 		025CF5272663DF2C00D0112E /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025CF5262663DF2C00D0112E /* Ticket.swift */; };
+		026D3D1726A5C3210098B657 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026D3D1626A5C3210098B657 /* ApiService.swift */; };
+		026D3D1B26A5C5EF0098B657 /* FacebookAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026D3D1A26A5C5EF0098B657 /* FacebookAuth.swift */; };
 		027708AD26695665006D4304 /* Seat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027708AC26695665006D4304 /* Seat.swift */; };
 		027C3EF826590C4F0048EDCF /* ChooseSeatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027C3EF726590C4F0048EDCF /* ChooseSeatVC.swift */; };
 		0297781A2644327E00112F4E /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029778192644327E00112F4E /* UIImageView+Extensions.swift */; };
@@ -131,6 +133,8 @@
 		025CF51F2663AA2C00D0112E /* TicketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		025CF5222663B92000D0112E /* VoucherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherVC.swift; sourceTree = "<group>"; };
 		025CF5262663DF2C00D0112E /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
+		026D3D1626A5C3210098B657 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		026D3D1A26A5C5EF0098B657 /* FacebookAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuth.swift; sourceTree = "<group>"; };
 		027708AC26695665006D4304 /* Seat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seat.swift; sourceTree = "<group>"; };
 		027C3EF726590C4F0048EDCF /* ChooseSeatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSeatVC.swift; sourceTree = "<group>"; };
 		029778192644327E00112F4E /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
@@ -336,6 +340,15 @@
 			path = Ticket;
 			sourceTree = "<group>";
 		};
+		026D3D1526A5C30D0098B657 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				026D3D1626A5C3210098B657 /* ApiService.swift */,
+				026D3D1A26A5C5EF0098B657 /* FacebookAuth.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		027C3EF326590B9A0048EDCF /* Pick Theater */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,6 +401,7 @@
 		02AE45CC264429A400C7F031 /* Galaxy App */ = {
 			isa = PBXGroup;
 			children = (
+				026D3D1526A5C30D0098B657 /* Services */,
 				021C75B82646E36B00607FE1 /* Datasources */,
 				02D635AE2647E45F0027A0BA /* Models */,
 				020E6A5F26442F8600636EE6 /* Views */,
@@ -639,6 +653,7 @@
 				02D6E425265FDAC600F8791C /* PaymentMethodCell.swift in Sources */,
 				027708AD26695665006D4304 /* Seat.swift in Sources */,
 				0238B95D264A4EC300EC352B /* FloatingMovieDescriptionVC.swift in Sources */,
+				026D3D1726A5C3210098B657 /* ApiService.swift in Sources */,
 				021683E22671DB96007072DD /* AdditionalServiceDatasource.swift in Sources */,
 				02F88821265A505700C8D3F3 /* AdditionalServiceVC.swift in Sources */,
 				0238EBB0264534C30049D670 /* TabBar.swift in Sources */,
@@ -691,6 +706,7 @@
 				02D635A82647E3270027A0BA /* MovieCell.swift in Sources */,
 				021C75B62646DAD100607FE1 /* HomeCoordinator.swift in Sources */,
 				024E04AC265771FE00C9E164 /* CalendarCell.swift in Sources */,
+				026D3D1B26A5C5EF0098B657 /* FacebookAuth.swift in Sources */,
 				02D6E41D265FD08300F8791C /* PromocodeCell.swift in Sources */,
 				02D635B526481E1A0027A0BA /* Bundle+Extensions.swift in Sources */,
 				02F88826265AA8B600C8D3F3 /* CountButtonGroup.swift in Sources */,

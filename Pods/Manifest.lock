@@ -1,7 +1,32 @@
 PODS:
   - Alamofire (5.4.3)
+  - AppAuth (1.4.0):
+    - AppAuth/Core (= 1.4.0)
+    - AppAuth/ExternalUserAgent (= 1.4.0)
+  - AppAuth/Core (1.4.0)
+  - AppAuth/ExternalUserAgent (1.4.0)
+  - FBSDKCoreKit (11.0.1):
+    - FBSDKCoreKit/Core (= 11.0.1)
+  - FBSDKCoreKit/Core (11.0.1):
+    - FBSDKCoreKit_Basics (~> 11.0.1)
+  - FBSDKCoreKit_Basics (11.0.1):
+    - FBSDKCoreKit_Basics/Basics (= 11.0.1)
+  - FBSDKCoreKit_Basics/Basics (11.0.1)
+  - FBSDKLoginKit (11.0.1):
+    - FBSDKLoginKit/Login (= 11.0.1)
+  - FBSDKLoginKit/Login (11.0.1):
+    - FBSDKCoreKit (~> 11.0.1)
+    - FBSDKCoreKit_Basics (~> 11.0.1)
   - FloatingPanel (2.3.0)
   - Gemini (1.4.0)
+  - GoogleSignIn (6.0.0):
+    - AppAuth (~> 1.4)
+    - GTMAppAuth (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GTMAppAuth (1.2.2):
+    - AppAuth/Core (~> 1.4)
+    - GTMSessionFetcher/Core (~> 1.5)
+  - GTMSessionFetcher/Core (1.5.0)
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
@@ -11,8 +36,10 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.4)
+  - FBSDKLoginKit
   - FloatingPanel
   - Gemini
+  - GoogleSignIn
   - SDWebImage (~> 5.0)
   - SnapKit (~> 5.0.0)
   - Wormholy
@@ -21,8 +48,15 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - AppAuth
+    - FBSDKCoreKit
+    - FBSDKCoreKit_Basics
+    - FBSDKLoginKit
     - FloatingPanel
     - Gemini
+    - GoogleSignIn
+    - GTMAppAuth
+    - GTMSessionFetcher
     - SDWebImage
     - SnapKit
     - Wormholy
@@ -30,13 +64,20 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
+  FBSDKCoreKit: 38c9e29a3f1436362acacff6486d3a28628c288f
+  FBSDKCoreKit_Basics: 06780a4a12e16596bde8406add02c6aa1bf38616
+  FBSDKLoginKit: 8243e04c590c38b85c69fcf09d1234514d2475c3
   FloatingPanel: 373478513a197cf140abd219ca9a9c049967332b
   Gemini: 4ad915cca8805577fe3021e02feeca2b77dcdbfc
+  GoogleSignIn: b7779a809e1dfb32ebb43131b10d8bfcd53c1383
+  GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
+  GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Wormholy: 2e70f64227e010d363f8d33268369f77faf12471
   YouTubePlayer: 2b5f2830d8f9b2cde942083211291e382c9e6bd5
 
-PODFILE CHECKSUM: 4411c86e3ad8b38bebeecda94dcc7a25f7efa215
+PODFILE CHECKSUM: f769171b33bc36850b0a3744b5445d4d53c011a2
 
 COCOAPODS: 1.10.1
