@@ -28,9 +28,9 @@ class HomeCoordinator: Coordinator {
         navigationController.interactivePopGestureRecognizer?.isEnabled = false
     }
     
-    func movieDetail(_ movie: Movie?) {
+    func movieDetail(_ id: Int?) {
         let detailVC = MovieDetailVC()
-        detailVC.movie = movie
+        detailVC.movieId = id ?? -1
         detailVC.coordinator = self
         navigationController.pushViewController(detailVC, animated: true)
     }

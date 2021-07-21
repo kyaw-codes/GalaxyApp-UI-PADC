@@ -49,6 +49,8 @@ class HomeVC: UIViewController {
         setupView()
         collectionView.delegate = self
         collectionView.dataSource = dataSource
+        
+        fetchMovies()
     }
     
     // MARK: - Private Helpers
@@ -79,6 +81,28 @@ class HomeVC: UIViewController {
             .init(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
         ]
         return section
+    }
+    
+    private func fetchMovies() {
+        ApiService.shared.fetchMovies { [weak self] result in
+            do {
+                let response = try result.get()
+                self?.dataSource.nowShowingMovies = response.movies ?? []
+                self?.collectionView.reloadData()
+            } catch {
+                fatalError("[Error while fetching now showing movies] \(error)")
+            }
+        }
+        
+        ApiService.shared.fetchMovies(movieType: ApiService.MovieFetchType.coming) { [weak self] result in
+            do {
+                let response = try result.get()
+                self?.dataSource.comingSoonMovies = response.movies ?? []
+                self?.collectionView.reloadData()
+            } catch {
+                fatalError("[Error while fetching upcoming movies] \(error)")
+            }
+        }
     }
 }
 
@@ -123,6 +147,6 @@ extension HomeVC: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let movie = dataSource.getMovie(at: indexPath) else { return }
-        coordinator?.movieDetail(movie)
+        coordinator?.movieDetail(movie.id)
     }
 }

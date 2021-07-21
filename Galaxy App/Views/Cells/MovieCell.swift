@@ -13,9 +13,12 @@ class MovieCell: UICollectionViewCell {
     var movie: Movie? {
         didSet {
             guard let movie = movie else { return }
-            imageView.image = UIImage(named: movie.coverImage ?? "")
-            titleLabel.text = movie.name
-            subtitleLabel.text = "\(movie.primaryGenre!)/\(movie.secondaryGenre!) . \(movie.duration!)"
+            
+            let imageUrl = "https://image.tmdb.org/t/p/original\(movie.posterPath ?? "")"
+            imageView.sd_setImage(with: URL(string: imageUrl))
+            
+            titleLabel.text = movie.originalTitle
+            subtitleLabel.text = movie.releaseDate
         }
     }
     

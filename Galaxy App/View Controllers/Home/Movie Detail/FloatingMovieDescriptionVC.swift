@@ -12,35 +12,41 @@ class FloatingMovieDescriptionVC: VerticallyScrollableVC<HomeCoordinator> {
     
     // MARK: - Properties
     
-    var movie: Movie? {
+    var genres = [String]()
+    
+    var movie: MovieDetail? {
         didSet {
             guard let movie = movie else { return }
-            movieTitleLabel.text = movie.name
-            durationLabel.text = movie.duration
-            imdbRatingSV.rating = movie.imbdRating
-            imdbLabel.text = "IMDb \(movie.imbdRating!)"
-            
-            primaryGenreBadgeView = createGenreBadge(name: movie.primaryGenre)
-            secondaryGenreBadgeView = createGenreBadge(name: movie.secondaryGenre)
+            movieTitleLabel.text = movie.originalTitle
+            durationLabel.text = calculateDuration(movie.runtime)
+            imdbRatingSV.rating = (movie.rating ?? 0) * 0.5
+            imdbLabel.text = "IMDb \(movie.rating ?? 0)"
             
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = 3
             
-            plotSummaryLabel.attributedText = NSAttributedString(string: movie.plot ?? "", attributes: [NSAttributedString.Key.paragraphStyle : paragraphStyle])
+            plotSummaryLabel.attributedText = NSAttributedString(string: movie.overview ?? "", attributes: [NSAttributedString.Key.paragraphStyle : paragraphStyle])
             
-            dataSource = CastDatasource(casts: movie.casts)
+            dataSource.casts = movie.casts ?? []
+            castCollectionView.snp.makeConstraints { make in
+                make.height.equalTo(calculateCastCollectionViewHeight(noOfCasts: movie.casts?.count ?? 0))
+            }
+            castCollectionView.reloadData()
+            
+            genres = movie.genres ?? []
+            genreDataSource.genres = genres
+            genreCollectionView.reloadData()
         }
     }
     
-    private var dataSource: CastDatasource?
+    private var dataSource = CastDatasource()
+    private var genreDataSource = GenreDatasource()
 
     // MARK: - Views
     
     private let movieTitleLabel = UILabel(text: "", font: .poppinsSemiBold, size: 28, numberOfLines: 2, color: .galaxyBlack)
     private let durationLabel = UILabel(text: "", font: .poppinsLight, size: 20, color: .galaxyBlack)
     private let imdbLabel = UILabel(text: "", font: .poppinsLight, size: 20, color: .galaxyBlack)
-    private var primaryGenreBadgeView: UIView?
-    private var secondaryGenreBadgeView: UIView?
     
     private let plotTitleLabel = UILabel(text: "Plot Summary", font: .poppinsSemiBold, size: 22, color: .galaxyBlack)
     private let plotSummaryLabel = UILabel(text: "", font: .poppinsLight, size: 18, numberOfLines: 0, color: .galaxyBlack)
@@ -49,8 +55,19 @@ class FloatingMovieDescriptionVC: VerticallyScrollableVC<HomeCoordinator> {
     
     private let castTitleLabel = UILabel(text: "Cast", font: .poppinsSemiBold, size: 22, color: .galaxyBlack)
     
-    private let castCollectionView: UICollectionView = {
+    let castCollectionView: UICollectionView = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        cv.backgroundColor = .white
+        cv.showsVerticalScrollIndicator = false
+        cv.isScrollEnabled = false
+        return cv
+    }()
+    
+    let genreCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.showsHorizontalScrollIndicator = false
         cv.backgroundColor = .white
         return cv
     }()
@@ -63,22 +80,13 @@ class FloatingMovieDescriptionVC: VerticallyScrollableVC<HomeCoordinator> {
         castCollectionView.dataSource = dataSource
         castCollectionView.delegate = self
         
+        genreCollectionView.dataSource = genreDataSource
+        genreCollectionView.delegate = self
+
         // Set up parent view
         configureParentView()
         
         setupChildViews()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        let height = castCollectionView.contentSize.height
-        
-        if height > 0 {
-            castCollectionView.snp.makeConstraints { (make) in
-                make.height.equalTo(height).priority(.high)
-            }
-        }
     }
     
     // MARK: - Private Helpers
@@ -88,29 +96,22 @@ class FloatingMovieDescriptionVC: VerticallyScrollableVC<HomeCoordinator> {
         scrollView.layer.cornerRadius = 28
         scrollView.layer.maskedCorners = CACornerMask(arrayLiteral: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
     }
+
+    private func calculateDuration(_ duration: Double?) -> String {
+        guard let duration = duration else {
+            return "0hr 0m"
+        }
+        let hour = Int(duration / 60)
+        let minute = Int(Int(duration) % 60)
+        return "\(hour)hr \(minute)m"
+    }
     
-    private func createGenreBadge(name genreName: String?) -> UIView? {
-        guard let genreName = genreName else { return nil }
-        let label = UILabel(text: genreName, font: .poppinsLight, size: 16, color: .galaxyBlack)
-        let width: CGFloat = genreName.size(withAttributes: [NSAttributedString.Key.font : UIFont.GalaxyFont.poppinsLight.font(of: 16)]).width
-        let height: CGFloat = 48
-        let padding: CGFloat = 50
-        let genreView = UIView()
-        genreView.addSubview(label)
-        
-        label.snp.makeConstraints { (make) in
-            make.centerX.centerY.equalToSuperview()
-        }
-        
-        genreView.snp.makeConstraints { (make) in
-            make.width.equalTo(width + padding)
-            make.height.equalTo(height)
-        }
-        genreView.layer.cornerRadius = height / 2
-        genreView.clipsToBounds = true
-        genreView.layer.borderWidth = 0.5
-        genreView.layer.borderColor = UIColor.galaxyLightBlack.cgColor
-        return genreView
+    private func calculateCastCollectionViewHeight(noOfCasts: Int) -> CGFloat {
+        let noOfCols = 4
+        let noOfRows: CGFloat = CGFloat(noOfCasts / noOfCols)
+        let width = ((view.frame.width - 40 - 20) / 4) - 20
+        let height = width + 30 + 20
+        return (height * noOfRows) + 100
     }
     
 }
@@ -127,22 +128,16 @@ extension FloatingMovieDescriptionVC {
         
         let titleSV = UIStackView(subViews: [movieTitleLabel, subtitleSV], axis: .vertical, spacing: 8)
         
-        let genreSV = UIStackView()
-
-        if let primaryGenreBadgeView = primaryGenreBadgeView, let secondaryGenreBadgeView = secondaryGenreBadgeView  {
-            genreSV.addArrangedSubview(primaryGenreBadgeView)
-            genreSV.addArrangedSubview(secondaryGenreBadgeView)
-            genreSV.addArrangedSubview(UIView())
-            
-            genreSV.spacing = 20
-        }
-        
         let plotSV = UIStackView(subViews: [plotTitleLabel, plotSummaryLabel], axis: .vertical, spacing: 4)
         view.addSubview(plotSV)
         
         let castSV = UIStackView(subViews: [castTitleLabel, castCollectionView], axis: .vertical, spacing: 12)
         
-        [titleSV, genreSV, plotSV, castSV, UIView()].forEach { contentStackView.addArrangedSubview($0) }
+        genreCollectionView.snp.makeConstraints { make in
+            make.height.equalTo(50)
+        }
+        
+        [titleSV, genreCollectionView, plotSV, castSV, UIView()].forEach { contentStackView.addArrangedSubview($0) }
         contentStackView.spacing = 22
         contentStackView.layoutMargins.top = 24
         contentStackView.layoutMargins.bottom = 60

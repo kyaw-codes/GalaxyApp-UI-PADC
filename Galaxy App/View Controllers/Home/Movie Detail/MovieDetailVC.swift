@@ -12,10 +12,13 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
     
     // MARK: - Properties
     
-    var movie: Movie? {
+    var movieId: Int = -1
+    
+    var movie: MovieDetail? {
         didSet {
             guard let movie = movie else { return }
-            movieImageView.image = UIImage(named: movie.coverImage ?? "")
+            movieImageView.sd_setImage(with: URL(string: "https://image.tmdb.org/t/p/original\(movie.posterPath ?? "")"))
+            descriptionVC.movie = movie
         }
     }
     
@@ -23,6 +26,8 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
     
     // MARK: - Views
     
+    private let descriptionVC = FloatingMovieDescriptionVC()
+
     private var movieImageView = UIImageView(image: nil, contentMode: .scaleAspectFill)
     private lazy var movieImageViewHeight = view.frame.height * 0.46
     
@@ -50,6 +55,8 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
         
         backButton.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
         getTicketButton.addTarget(self, action: #selector(handleGetTicketTapped), for: .touchUpInside)
+        
+        fetchMovieDetail()
     }
     
     // MARK: - Action Handlers
@@ -60,6 +67,19 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
     
     @objc private func handleGetTicketTapped() {
         coordinator?.getTicket()
+    }
+    
+    // MARK: - Private Helpers
+    
+    private func fetchMovieDetail() {
+        ApiService.shared.getMovieDetail(movieId) { result in
+            do {
+                let response = try result.get()
+                self.movie = response.data
+            } catch {
+                fatalError("[Error while fetching movie detail] \(error)")
+            }
+        }
     }
 }
 
@@ -97,8 +117,6 @@ extension MovieDetailVC {
 
         fpc.layout = Layout()
         
-        let descriptionVC = FloatingMovieDescriptionVC()
-        descriptionVC.movie = movie
         fpc.set(contentViewController: descriptionVC)
         fpc.contentMode = .static
         fpc.surfaceView.grabberHandleSize = .zero

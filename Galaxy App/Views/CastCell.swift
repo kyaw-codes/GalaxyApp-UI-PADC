@@ -12,7 +12,7 @@ class CastCell: UICollectionViewCell {
     var cast: Cast? {
         didSet {
             guard let cast = cast else { return }
-            imageView.image = UIImage(named: cast.image ?? "")
+            imageView.sd_setImage(with: URL(string: "https://image.tmdb.org/t/p/original\(cast.profilePath ?? "")"))
             nameLabel.text = cast.name ?? "No Name"
         }
     }

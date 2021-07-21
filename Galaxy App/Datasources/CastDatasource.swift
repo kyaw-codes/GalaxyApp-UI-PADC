@@ -9,18 +9,14 @@ import UIKit
 
 class CastDatasource: NSObject, UICollectionViewDataSource {
     
-    private let casts: [Cast]?
-    
-    init(casts: [Cast]?) {
-        self.casts = casts
-    }
+    var casts = [Cast]()
     
     private let cellRegistration = UICollectionView.CellRegistration<CastCell, Cast?> { (cell, indexPath, item) in
         cell.cast = item
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cast = casts?[indexPath.row]
+        let cast = casts[indexPath.row]
         return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: cast)
     }
 
@@ -29,6 +25,6 @@ class CastDatasource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return casts?.count ?? 0
+        return casts.count
     }
 }

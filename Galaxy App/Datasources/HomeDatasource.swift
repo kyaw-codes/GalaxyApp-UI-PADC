@@ -9,9 +9,8 @@ import UIKit
 
 class HomeDatasource: NSObject, UICollectionViewDataSource {
 
-    private let movies = Bundle.main.decode([AllMovie].self, from: "Movies.json")
-    private lazy var nowShowingMovies = movies[0].movies
-    private lazy var comingSoonMovies = movies[1].movies
+    var nowShowingMovies = [Movie]()
+    var comingSoonMovies = [Movie]()
     
     var user: SignInUserData?
     
@@ -55,7 +54,8 @@ class HomeDatasource: NSObject, UICollectionViewDataSource {
         if indexPath.section == 0 {
             return collectionView.dequeueConfiguredReusableCell(using: profileCellRegistration, for: indexPath, item: "Profile")
         } else {
-            return collectionView.dequeueConfiguredReusableCell(using: movieCellRegistration, for: indexPath, item: Movie())
+            let movie = indexPath.section == 1 ? nowShowingMovies[indexPath.row] : comingSoonMovies[indexPath.row]
+            return collectionView.dequeueConfiguredReusableCell(using: movieCellRegistration, for: indexPath, item: movie)
         }
     }
 
@@ -71,7 +71,7 @@ class HomeDatasource: NSObject, UICollectionViewDataSource {
     
     func getMovie(at indexPath: IndexPath) -> Movie? {
         if indexPath.section != 0 {
-            return movies[indexPath.section - 1].movies[indexPath.item]
+            return indexPath.section == 1 ? nowShowingMovies[indexPath.row] : comingSoonMovies[indexPath.row]
         }
         return nil
     }

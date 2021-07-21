@@ -80,4 +80,43 @@ struct ApiService {
             completion()
         }
     }
+    
+    // MARK: - Movies
+    
+    enum MovieFetchType: String {
+        case nowShowing = "current"
+        case coming = "comingsoon"
+    }
+    
+    func fetchMovies(movieType: MovieFetchType = .nowShowing,
+                     recieving demand: Int = 0,
+                     completion: @escaping (Result<MovieResponse, AFError>) -> Void) {
+        
+        var urlString = "\(baseUrl)/api/v1/movies?status=\(movieType.rawValue)"
+        if demand > 0 {
+            urlString.append("&take=\(demand)")
+        }
+        
+        AF.request(urlString).responseDecodable(of: MovieResponse.self) { response in
+            if let err = response.error {
+                completion(.failure(err))
+            }
+            
+            if let response = response.value {
+                completion(.success(response))
+            }
+        }.validate(statusCode: 200..<300)
+    }
+    
+    func getMovieDetail(_ id: Int, completion: @escaping (Result<MovieDetailResponse, AFError>) -> Void) {
+        AF.request("\(baseUrl)/api/v1/movies/\(id)").responseDecodable(of: MovieDetailResponse.self) { response in
+            if let err = response.error {
+                completion(.failure(err))
+            }
+            
+            if let response = response.value {
+                completion(.success(response))
+            }
+        }.validate(statusCode: 200..<300)
+    }
 }
