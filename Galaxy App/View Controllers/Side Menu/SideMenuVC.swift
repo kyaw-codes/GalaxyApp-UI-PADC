@@ -12,6 +12,16 @@ class SideMenuVC: UIViewController {
     // MARK: - Properties
     
     let shadowRadius: CGFloat = 16
+    var user: SignInUserData? {
+        didSet {
+            guard let user = user else { return }
+            profileImageView.sd_setImage(with: URL(string: "\(baseImageUrl)\(user.profileImage ?? "")"))
+            nameLabel.text = user.name
+            mailLabel.text = user.email
+        }
+    }
+    
+    var onLogoutTapped: (() -> Void)?
     
     // MARK: - Views
     
@@ -55,6 +65,12 @@ class SideMenuVC: UIViewController {
         }
     }
     
+    // MARK: - Target/Action Method
+    
+    @objc private func handleLogOut() {
+        onLogoutTapped?()        
+    }
+    
 }
 
 // MARK: - Layout Views
@@ -71,7 +87,11 @@ extension SideMenuVC {
         }
         
         navItems.append(UIView())
-        navItems.append(createNavItems(#imageLiteral(resourceName: "logout"), title: "Log out"))
+        
+        let logoutView = createNavItems(#imageLiteral(resourceName: "logout"), title: "Log out")
+        navItems.append(logoutView)
+        logoutView.isUserInteractionEnabled = true
+        logoutView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleLogOut)))
         
         let sv = UIStackView(subViews: navItems, axis: .vertical, spacing: 30)
         view.addSubview(sv)

@@ -7,9 +7,22 @@
 
 import UIKit
 import SnapKit
+import SDWebImage
 
 class ProfileCell: UICollectionViewCell {
     
+    var name: String? {
+        didSet {
+            greetingLabel.text = "Hi \(name ?? "")!"
+        }
+    }
+    var image: String? {
+        didSet {
+            guard let image = image else { return }
+            profileImage.sd_setImage(with: URL(string: "\(baseImageUrl)\(image)"))
+        }
+    }
+
     private let profileImage = UIImageView(image: #imageLiteral(resourceName: "profile"), contentMode: .scaleAspectFill)
     private let greetingLabel = UILabel(text: "Hi Craig!", font: .poppinsSemiBold, size: 26, color: .galaxyBlack)
     

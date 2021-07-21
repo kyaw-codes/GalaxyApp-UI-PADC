@@ -12,6 +12,11 @@ class HomeVC: UIViewController {
     // MARK: - Properties
     
     var coordinator: HomeCoordinator?
+    var user: SignInUserData? {
+        didSet {
+            dataSource.user = user
+        }
+    }
 
     private lazy var dataSource = HomeDatasource()
 

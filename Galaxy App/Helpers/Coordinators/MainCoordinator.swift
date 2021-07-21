@@ -31,10 +31,11 @@ class MainCoordinator: Coordinator {
         navigationController.present(authVC, animated: true, completion: nil)
     }
     
-    func home() {
+    func home(userData: SignInUserData?) {
         navigationController.dismiss(animated: true, completion: nil)
         let child = HomeCoordinator(navigationController: navigationController)
         child.parentCoordinator = self
+        child.loginUser = userData
         childCoordinators.append(child)
         child.start()
     }

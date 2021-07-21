@@ -22,6 +22,7 @@ class MainVC: UIViewController {
     private var isMenuVisible = false
     private var contentLeadingConstraint: Constraint?
     private var menuLeadingConstraint: Constraint?
+    var spinner = UIActivityIndicatorView(style: .large)
 
     // MARK: - Lifecycles
     
@@ -39,11 +40,25 @@ class MainVC: UIViewController {
         homeVC.menuButton.addTarget(self, action: #selector(onMenuButtonTapped), for: .touchUpInside)
         
         add(sideMenuVC)
+        sideMenuVC.user = homeVC.user
         sideMenuView?.snp.makeConstraints({ (make) in
             make.top.bottom.equalToSuperview()
             make.width.equalTo(menuWidth)
             menuLeadingConstraint = make.leading.equalToSuperview().inset(-menuWidth).constraint
         })
+        sideMenuVC.onLogoutTapped = { [weak self] in
+            self?.spinner.startAnimating()
+            ApiService.shared.logOut {
+                self?.spinner.stopAnimating()
+                self?.homeVC.coordinator?.logOut()
+            }
+        }
+        
+        spinner.color = .white
+        view.addSubview(spinner)
+        spinner.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
         
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:))))
     }

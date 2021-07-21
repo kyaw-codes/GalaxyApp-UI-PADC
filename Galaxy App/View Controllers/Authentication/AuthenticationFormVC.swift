@@ -20,7 +20,7 @@ class AuthenticationFormVC: VerticallyScrollableVC<MainCoordinator> {
     
     var viewType: ViewControllerType!
     
-    var onConfirmTapped: ((MainCoordinator) -> Void)?
+    var onConfirmTapped: ((MainCoordinator, SignInUserData?) -> Void)?
     
     // MARK: - Views
     
@@ -95,7 +95,37 @@ class AuthenticationFormVC: VerticallyScrollableVC<MainCoordinator> {
     
     @objc private func handleConfirmTapped() {
         guard let coordinator = coordinator else { return }
-        onConfirmTapped?(coordinator)
+        
+        let email = emailOutlineField.textField.text ?? ""
+        let password = passwordOutlineField.textField.text ?? ""
+        
+        if viewType == .signUp {
+            let name = nameOutlineField.textField.text ?? ""
+            let phone = phoneNoOutlineField.textField.text ?? ""
+
+            ApiService.shared.signUpWithEmail(name: name, email: email, phone: phone, password: password) { [weak self] result in
+                do {
+                    let response = try result.get()
+                    let userData = response.data
+                    UserDefaults.standard.setValue(response.token, forKey: keyAuthToken)
+                    self?.onConfirmTapped?(coordinator, userData)
+                } catch {
+                    fatalError("[Error while sign up] \(error)")
+                }
+            }
+        } else {
+            ApiService.shared.signIn(email: email, password: password) { [weak self] result in
+                do {
+                    let response = try result.get()
+                    let userData = response.data
+                    UserDefaults.standard.setValue(response.token, forKey: keyAuthToken)
+                    self?.onConfirmTapped?(coordinator, userData)
+                } catch {
+                    fatalError("[Error while sign in] \(error)")
+                }
+            }
+        }
+                    
     }
     
 }

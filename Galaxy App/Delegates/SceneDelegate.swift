@@ -20,9 +20,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let navController = UINavigationController()
         coordinator = MainCoordinator(navigationController: navController)
-//        coordinator = TicketCoordinator(navigationController: navController)
-        coordinator?.start()
-
+        
+        let token = UserDefaults.standard.value(forKey: keyAuthToken)
+        
+        if token == nil {
+            coordinator?.start()
+        } else {
+            // fetch profile here
+            ApiService.shared.fetchProfile { [weak self] result in
+                do {
+                    let response = try result.get()
+                    (self?.coordinator as! MainCoordinator).home(userData: response.data)
+                } catch {
+                    fatalError("[Error fetch profile] \(error)")
+                }
+            }
+        }
+        
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = navController
         window?.makeKeyAndVisible()

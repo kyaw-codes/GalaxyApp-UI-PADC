@@ -12,6 +12,8 @@ class HomeCoordinator: Coordinator {
     weak var parentCoordinator: MainCoordinator?
     var childCoordinators = [Coordinator]()
     
+    var loginUser: SignInUserData?
+    
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -21,6 +23,7 @@ class HomeCoordinator: Coordinator {
     func start() {
         let mainVC = MainVC()
         mainVC.homeVC.coordinator = self
+        mainVC.homeVC.user = loginUser
         navigationController.pushViewController(mainVC, animated: true)
         navigationController.interactivePopGestureRecognizer?.isEnabled = false
     }
@@ -30,6 +33,14 @@ class HomeCoordinator: Coordinator {
         detailVC.movie = movie
         detailVC.coordinator = self
         navigationController.pushViewController(detailVC, animated: true)
+    }
+    
+    func logOut() {
+        if navigationController.viewControllers.count > 1 {
+            navigationController.popViewController(animated: true)
+        } else {            
+            parentCoordinator?.start()
+        }
     }
     
     func popToHome() {

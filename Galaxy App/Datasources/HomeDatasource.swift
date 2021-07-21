@@ -13,10 +13,13 @@ class HomeDatasource: NSObject, UICollectionViewDataSource {
     private lazy var nowShowingMovies = movies[0].movies
     private lazy var comingSoonMovies = movies[1].movies
     
+    var user: SignInUserData?
+    
     // MARK: - Cell/Header Registration
     
-    private let profileCellRegistration = UICollectionView.CellRegistration<ProfileCell, String> { (cell, indexPath, item) in
-        // DO NOTHING
+    private lazy var profileCellRegistration = UICollectionView.CellRegistration<ProfileCell, String> { [weak self] (cell, indexPath, item) in
+        cell.name = self?.user?.name
+        cell.image = self?.user?.profileImage
     }
     
     private lazy var movieCellRegistration = UICollectionView.CellRegistration<MovieCell, Movie> { [weak self] (cell, indexPath, movie) in

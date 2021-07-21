@@ -42,9 +42,9 @@ class AuthenticationVC: UIViewController {
         setupView()
     }
     
-    private func handleConfirmTapped() {
-        coordinator?.home()
-    }
+//    private func handleConfirmTapped() {
+//        coordinator?.home(userData: nil)
+//    }
     
 }
 

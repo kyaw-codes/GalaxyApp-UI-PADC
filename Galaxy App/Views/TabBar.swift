@@ -49,12 +49,12 @@ class TabBar: UIView {
         setupHorizontalBar()
         setupContentView()
         
-        loginVC.onConfirmTapped = { coordinator in
-            coordinator.home()
+        loginVC.onConfirmTapped = { coordinator, userData in
+            coordinator.home(userData: userData)
         }
 
-        signupVC.onConfirmTapped = { coordinator in
-            coordinator.home()
+        signupVC.onConfirmTapped = { coordinator, userData in
+            coordinator.home(userData: userData)
         }
     }
     

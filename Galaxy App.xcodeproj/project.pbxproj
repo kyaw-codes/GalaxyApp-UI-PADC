@@ -47,6 +47,10 @@
 		0297783D264437D700112F4E /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0297783C264437D700112F4E /* UILabel+Extensions.swift */; };
 		0297784026443DE200112F4E /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0297783F26443DE200112F4E /* UIStackView+Extensions.swift */; };
 		029778442644400E00112F4E /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 029778432644400E00112F4E /* OFL.txt */; };
+		029847DE26A7D2850078F013 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029847DD26A7D2850078F013 /* Constants.swift */; };
+		029847E126A7D3100078F013 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029847E026A7D3100078F013 /* SignUpResponse.swift */; };
+		029847E326A7D32E0078F013 /* SignInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029847E226A7D32E0078F013 /* SignInResponse.swift */; };
+		029847E526A7DB390078F013 /* ProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029847E426A7DB390078F013 /* ProfileResponse.swift */; };
 		02A17BB0266F4671007CFF1C /* AuthenticationFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A17BAF266F4671007CFF1C /* AuthenticationFormVC.swift */; };
 		02A8E29D2654109B009F1C5E /* MovieDetailVC+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8E29C2654109B009F1C5E /* MovieDetailVC+Layout.swift */; };
 		02A8E2A0265415C2009F1C5E /* IMDbRatingSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8E29F265415C2009F1C5E /* IMDbRatingSV.swift */; };
@@ -147,6 +151,10 @@
 		029778492644402100112F4E /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		0297784A2644403600112F4E /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
 		0297784B2644403700112F4E /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		029847DD26A7D2850078F013 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		029847E026A7D3100078F013 /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
+		029847E226A7D32E0078F013 /* SignInResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponse.swift; sourceTree = "<group>"; };
+		029847E426A7DB390078F013 /* ProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResponse.swift; sourceTree = "<group>"; };
 		02A17BAF266F4671007CFF1C /* AuthenticationFormVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationFormVC.swift; sourceTree = "<group>"; };
 		02A8E29C2654109B009F1C5E /* MovieDetailVC+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailVC+Layout.swift"; sourceTree = "<group>"; };
 		02A8E29F265415C2009F1C5E /* IMDbRatingSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDbRatingSV.swift; sourceTree = "<group>"; };
@@ -380,6 +388,16 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		029847DF26A7D2890078F013 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				029847E026A7D3100078F013 /* SignUpResponse.swift */,
+				029847E226A7D32E0078F013 /* SignInResponse.swift */,
+				029847E426A7DB390078F013 /* ProfileResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
 		02AE45C1264429A400C7F031 = {
 			isa = PBXGroup;
 			children = (
@@ -456,6 +474,8 @@
 		02D635AE2647E45F0027A0BA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				029847DD26A7D2850078F013 /* Constants.swift */,
+				029847DF26A7D2890078F013 /* Response */,
 				02DF7F412670D09B00D2F01C /* ChooseTheaterVO.swift */,
 				02D635AF2647E4670027A0BA /* Movie.swift */,
 				024E04AE2657722600C9E164 /* Calendar.swift */,
@@ -634,6 +654,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02D6E43026600F4E00F8791C /* CreditCardCell.swift in Sources */,
+				029847E126A7D3100078F013 /* SignUpResponse.swift in Sources */,
 				02D635C3264861170027A0BA /* SideMenuVC.swift in Sources */,
 				02D994142666921F00C7A00A /* CalendarCollectionView.swift in Sources */,
 				024E04A526576C5500C9E164 /* PickTheaterVC.swift in Sources */,
@@ -657,6 +678,7 @@
 				021683E22671DB96007072DD /* AdditionalServiceDatasource.swift in Sources */,
 				02F88821265A505700C8D3F3 /* AdditionalServiceVC.swift in Sources */,
 				0238EBB0264534C30049D670 /* TabBar.swift in Sources */,
+				029847E526A7DB390078F013 /* ProfileResponse.swift in Sources */,
 				020032F42656284C00C71FDF /* FloatingMovieDescriptionVC+CollectionViewDelegate.swift in Sources */,
 				02D6E4382660102500F8791C /* CreditCard.swift in Sources */,
 				0238EBBB2646430D0049D670 /* UITextField+Extensions.swift in Sources */,
@@ -672,6 +694,7 @@
 				02D635B02647E4670027A0BA /* Movie.swift in Sources */,
 				02D6E4412660AB3B00F8791C /* String+extensions.swift in Sources */,
 				024083EB266B66E400F40F54 /* TabHeaderCell.swift in Sources */,
+				029847E326A7D32E0078F013 /* SignInResponse.swift in Sources */,
 				025CF5232663B92000D0112E /* VoucherVC.swift in Sources */,
 				02F88811265A0C2E00C8D3F3 /* SeatCell.swift in Sources */,
 				02AE45D2264429A400C7F031 /* GetStartedVC.swift in Sources */,
@@ -688,6 +711,7 @@
 				024E04B5265772F900C9E164 /* CalendarDatasource.swift in Sources */,
 				0297784026443DE200112F4E /* UIStackView+Extensions.swift in Sources */,
 				02D635AC2647E37E0027A0BA /* MovieHeader.swift in Sources */,
+				029847DE26A7D2850078F013 /* Constants.swift in Sources */,
 				02AE45D0264429A400C7F031 /* SceneDelegate.swift in Sources */,
 				02F88814265A0CC700C8D3F3 /* SeatingPlanDatasource.swift in Sources */,
 				02D99410266690CB00C7A00A /* CloseButton.swift in Sources */,
