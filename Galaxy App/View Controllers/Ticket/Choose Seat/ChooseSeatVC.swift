@@ -17,13 +17,15 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
     
     private let backButton = BackButton()
     
-    private let movieLabel = UILabel(text: "Detective Pikachu", font: .poppinsSemiBold, size: 26, numberOfLines: 2, color: .galaxyBlack, alignment: .center)
-    private let cinemaLabel = UILabel(text: "Galaxy Cinema - Golden City", font: .poppinsRegular, size: 18, numberOfLines: 1, color: .galaxyLightBlack, alignment: .center)
-    private let dateTimeLabel = UILabel(text: "Wednesday, 10 May, 07:00 PM", font: .poppinsRegular, size: 18, numberOfLines: 1, color: .galaxyBlack, alignment: .center)
+    private let checkoutVM = CheckoutVM.instance
+    
+    private lazy var movieLabel = UILabel(text: checkoutVM.movieName, font: .poppinsSemiBold, size: 26, numberOfLines: 2, color: .galaxyBlack, alignment: .center)
+    private lazy var cinemaLabel = UILabel(text: checkoutVM.cinemaName, font: .poppinsRegular, size: 18, numberOfLines: 1, color: .galaxyLightBlack, alignment: .center)
+    private lazy var dateTimeLabel = UILabel(text: "\(checkoutVM.bookingDateString), \(checkoutVM.bookingTime)", font: .poppinsRegular, size: 18, numberOfLines: 1, color: .galaxyBlack, alignment: .center)
 
     private let seatCollectionView = SeatingPlanCollectionView()
     
-    private let buyTicketButton = CTAButton(title: "Buy Ticket for $20.00")
+    private let buyTicketButton = CTAButton(title: "Buy Ticket for $00.00")
     
     private var topSV: UIStackView?
     private var middleSV: UIStackView?

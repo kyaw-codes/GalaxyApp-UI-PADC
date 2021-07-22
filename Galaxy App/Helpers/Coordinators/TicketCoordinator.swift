@@ -20,7 +20,7 @@ class TicketCoordinator: Coordinator {
     }
     
     func start() {
-        let pickTheaterVC = PickTheaterVC()
+        let pickTheaterVC = TimeSlotVC()
         pickTheaterVC.coordinator = self
         navigationController.pushViewController(pickTheaterVC, animated: true)
     }

@@ -7,22 +7,18 @@
 
 import UIKit
 
-class PickTheaterCollectionView : UICollectionView {
+class TimeSlotCollectionView : UICollectionView {
     
     init() {
         let layout = UICollectionViewCompositionalLayout { section, _ in
-            PickTheaterCollectionView.createSection()
+            TimeSlotCollectionView.createSection()
         }
         
         super.init(frame: .zero, collectionViewLayout: layout)
         
-        self.backgroundColor = .systemBackground
+        self.backgroundColor = .white
         self.showsVerticalScrollIndicator = false
-        self.alwaysBounceVertical = true
-        self.layer.cornerRadius = 30
-        self.layer.masksToBounds = true
-        self.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
-        
+        self.alwaysBounceVertical = false
         self.contentInset.top = 20
     }
     
@@ -39,7 +35,7 @@ class PickTheaterCollectionView : UICollectionView {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 20, trailing: 20)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20)
         
         section.boundarySupplementaryItems = [
             .init(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)

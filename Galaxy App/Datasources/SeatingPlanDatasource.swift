@@ -15,18 +15,18 @@ class SeatingPlanDatasource: NSObject, UICollectionViewDataSource {
         super.init()
         
         for i in (0...7) {
-            seats.append(Seat(seatNo: "\(i)", row: "A"))
+//            seats.append(Seat(seatNo: "\(i)", row: "A"))
         }
         
-        ["B", "C", "D", "E", "F", "G"].forEach {
-            for i in (1...8) {
-                seats.append(Seat(seatNo: "\(i)", row: $0))
-            }
-        }
+//        ["B", "C", "D", "E", "F", "G"].forEach {
+//            for i in (1...8) {
+//                seats.append(Seat(seatNo: "\(i)", row: $0))
+//            }
+//        }
         
-        seats[23].isAvailable = false
-        seats[24].isAvailable = false
-        seats[25].isAvailable = false
+//        seats[23].isAvailable = false
+//        seats[24].isAvailable = false
+//        seats[25].isAvailable = false
     }
     
     private let cellRegistration = UICollectionView.CellRegistration<SeatCell, Seat> { (cell, indexPath, data) in

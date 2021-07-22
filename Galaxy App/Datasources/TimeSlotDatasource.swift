@@ -7,35 +7,32 @@
 
 import UIKit
 
-class PickTheaterDatasource: NSObject, UICollectionViewDataSource {
+class TimeSlotDatasource: NSObject, UICollectionViewDataSource {
     
-    var onButtonSelect: ((IndexPath) -> Void)?
+    var onCinemaTimeSlotSelected: ((Int, Int) -> Void)?
     
-    var data: [ChooseTheaterVO]!
+    var cinemas = [CinemaTimeSlotVM]()
     
-    init(data: [ChooseTheaterVO]) {
-        self.data = data
-    }
-
     private lazy var headerRegistration = UICollectionView.SupplementaryRegistration<MovieHeader>(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] header, _, indexPath in
-        header.headerText = self?.data[indexPath.section].title
+        header.headerText = self?.cinemas[indexPath.section].cinema
     }
     
-    private lazy var cellRegistration = UICollectionView.CellRegistration<PickTheaterCell, PickTheaterCell.DataModel> { [weak self] cell, indexPath, item in
-        cell.data = item
-        cell.onButtonSelect = self?.onButtonSelect
+    private lazy var cellRegistration = UICollectionView.CellRegistration<TimeslotCell, CinemaTimeSlotVM> { [weak self] cell, indexPath, item in
+        cell.indexPath = indexPath
+        cell.cinema = item
+        cell.onCinemaTimeSlotSelected = self?.onCinemaTimeSlotSelected
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return data.count
+        return cinemas.count
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data[section].items.count
+        return cinemas[section].timeslots.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: (data[indexPath.section], indexPath))
+        return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: cinemas[indexPath.section])
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

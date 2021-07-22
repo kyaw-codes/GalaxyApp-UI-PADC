@@ -119,4 +119,48 @@ struct ApiService {
             }
         }.validate(statusCode: 200..<300)
     }
+    
+    // MARK: - Cinema Time Slot
+    func fetchCinemaDayTimeSlots(movieId: Int,
+                                 date: String,
+                                 completion: @escaping (Result<CinemaResponse, AFError>) -> Void) {
+        let urlString = "\(baseUrl)/api/v1/cinema-day-timeslots?movie_id=\(movieId)&date=\(date)"
+        guard let token = UserDefaults.standard.value(forKey: keyAuthToken) as? String else {
+            fatalError("No token found")
+        }
+        
+        AF.request(urlString, headers: [.authorization(bearerToken: token)]).responseDecodable(of: CinemaResponse.self) { response in
+            if let err = response.error {
+                completion(.failure(err))
+            }
+            
+            if let response = response.value {
+                completion(.success(response))
+            }
+        }.validate(statusCode: 200 ..< 300)
+        
+    }
+    
+    // MARK: - Cinema Seat Plan
+    func fetchSeatPlan(timeslodId: Int,
+                       date: Date,
+                       completion: @escaping (Result<CinemaSeatResponse, AFError>) -> Void) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        let urlString = "\(baseUrl)/api/v1/seat-plan?cinema_day_timeslot_id=\(timeslodId)&booking_date=\(formatter.string(from: date))"
+        guard let token = UserDefaults.standard.value(forKey: keyAuthToken) as? String else {
+            fatalError("No token found")
+        }
+        
+        AF.request(urlString, headers: [.authorization(bearerToken: token)]).responseDecodable(of: CinemaSeatResponse.self) { response in
+            if let err = response.error {
+                completion(.failure(err))
+            }
+            
+            if let response = response.value {
+                completion(.success(response))
+            }
+        }.validate(statusCode: 200 ..< 300)
+    }
 }

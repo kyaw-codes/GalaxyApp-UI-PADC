@@ -9,21 +9,31 @@ import UIKit
 
 class CalendarCell: UICollectionViewCell {
     
-    var calendar: Calendar? {
+    private let checkoutVM = CheckoutVM.instance
+    
+    var calendar: CalendarVM? {
         didSet {
             guard let calendar = calendar else { return }
-            dayLabel.text = calendar.day
-            dateLabel.text = calendar.date
+            dayLabel.text = calendar.date.dayOfWeek()
+            dateLabel.text = calendar.date.getDay()
             
-            if calendar.isToday {
+            if calendar.isSelected {
                 dayLabel.textColor = .white
                 dayLabel.font = UIFont.GalaxyFont.poppinsMedium.font(of: 20)
                 
                 dateLabel.textColor = .white
                 dateLabel.font = UIFont.GalaxyFont.poppinsMedium.font(of: 26)
+            } else {
+                dayLabel.textColor = UIColor.white.withAlphaComponent(0.5)
+                dayLabel.font = UIFont.GalaxyFont.poppinsLight.font(of: 18)
+                
+                dateLabel.textColor = UIColor.white.withAlphaComponent(0.5)
+                dateLabel.font = UIFont.GalaxyFont.poppinsLight.font(of: 18)
             }
         }
     }
+    
+    var onDaySelected: ((CalendarVM) -> Void)?
     
     private let dayLabel = UILabel(text: "", font: .poppinsLight, size: 18, numberOfLines: 1, color: UIColor.white.withAlphaComponent(0.5), alignment: .center)
     private let dateLabel = UILabel(text: "", font: .poppinsLight, size: 18, numberOfLines: 1, color: UIColor.white.withAlphaComponent(0.5), alignment: .center)
@@ -40,6 +50,14 @@ class CalendarCell: UICollectionViewCell {
             make.centerX.top.equalToSuperview()
         }
         
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleCellTapped)))
+    }
+    
+    @objc private func handleCellTapped() {
+        guard let calendar = calendar else { return }
+        
+        checkoutVM.bookingDate = calendar.date
+        onDaySelected?(calendar)
     }
     
     required init?(coder: NSCoder) {

@@ -76,6 +76,10 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
             do {
                 let response = try result.get()
                 self.movie = response.data
+                
+                let cvm = CheckoutVM.instance
+                cvm.movieName = response.data?.originalTitle ?? ""
+                cvm.movieId = response.data?.id ?? -1
             } catch {
                 fatalError("[Error while fetching movie detail] \(error)")
             }

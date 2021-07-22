@@ -12,9 +12,9 @@ class SeatCell: UICollectionViewCell {
     var seat: Seat? {
         didSet {
             guard let data = seat else { return }
-            label.text = data.seatNo
-            seatView.backgroundColor = data.isAvailable ? .seatAvailable : .seatReserved
-            isUserInteractionEnabled = data.isAvailable
+//            label.text = data.seatNo
+//            seatView.backgroundColor = data.isAvailable ? .seatAvailable : .seatReserved
+//            isUserInteractionEnabled = data.isAvailable
         }
     }
     
