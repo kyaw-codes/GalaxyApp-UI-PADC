@@ -61,6 +61,7 @@ class TimeSlotVC: UIViewController {
         }
         
         timeslotDatasource.onCinemaTimeSlotSelected = { [weak self] _, timeslotId in
+            CheckoutVM.instance.timeslodId = timeslotId
             self?.timeslots.forEach{ cinema in
                 cinema.timeslots.forEach { timeslot in
                     if timeslot.cinemaDayTimeslotID == timeslotId {
@@ -91,6 +92,7 @@ class TimeSlotVC: UIViewController {
                 cinemas[0].timeslots[0].isSelected = true
                 CheckoutVM.instance.cinemaName = cinemas[0].cinema ?? ""
                 CheckoutVM.instance.bookingTime = cinemas[0].timeslots[0].startTime ?? ""
+                CheckoutVM.instance.timeslodId = cinemas[0].timeslots[0].cinemaDayTimeslotID ?? -1
                 
                 self?.timeslots = cinemas
                 self?.timeslotDatasource.cinemas = cinemas

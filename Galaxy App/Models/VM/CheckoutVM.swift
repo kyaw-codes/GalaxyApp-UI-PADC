@@ -13,6 +13,9 @@ class CheckoutVM {
     var movieName: String = ""
     var cinemaName: String = ""
     var bookingDate: Date = Date()
+    var timeslodId: Int = -1
+    var seatNumbers: String = ""
+    
     var bookingDateString: String {
         get {
             let formatter = DateFormatter()

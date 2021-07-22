@@ -24,9 +24,9 @@ class SeatingPlanCollectionView: UICollectionView {
     }
     
     private static func createSection() -> NSCollectionLayoutSection? {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/8), heightDimension: .fractionalWidth(1/7.9))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/14), heightDimension: .absolute(40))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 8, bottom: 8, trailing: 8)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 4, bottom: 8, trailing: 4)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])

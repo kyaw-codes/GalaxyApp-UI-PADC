@@ -8,18 +8,38 @@
 import UIKit
 
 class SeatCell: UICollectionViewCell {
+    
+    var onSeatTapped: (() -> Void)?
         
     var seat: Seat? {
         didSet {
-            guard let data = seat else { return }
-//            label.text = data.seatNo
-//            seatView.backgroundColor = data.isAvailable ? .seatAvailable : .seatReserved
-//            isUserInteractionEnabled = data.isAvailable
+            guard let seat = seat else { return }
+            switch seat.type {
+            case .available:
+                label.text = String(describing: seat.seatName!.last!)
+                seatView.backgroundColor = .seatAvailable
+                isUserInteractionEnabled = true
+            case .text:
+                seatView.backgroundColor = .white
+                label.text = seat.symbol
+                label.textColor = .galaxyBlack
+                isUserInteractionEnabled = false
+            case .taken:
+                seatView.backgroundColor = .seatReserved
+                isUserInteractionEnabled = false
+            case .space:
+                seatView.backgroundColor = .white
+                isUserInteractionEnabled = false
+            default:
+                print("")
+            }
+            
         }
     }
     
     override var isSelected: Bool {
         didSet {
+            onSeatTapped?()
             if isSelected {
                 seatView.backgroundColor = .galaxyViolet
                 label.textColor = .white
@@ -55,5 +75,9 @@ class SeatCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError()
+    }
+    
+    @objc private func handleSeatTapped() {
+        onSeatTapped?()
     }
 }

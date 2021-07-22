@@ -12,6 +12,9 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
     // MARK: - Properties
     
     private let datasource = SeatingPlanDatasource()
+    private var seats = [[Seat]]()
+    private var selectedSeats = [String]()
+    private var ticketPrice: Double = 0.0
 
     // MARK: - Views
     
@@ -26,7 +29,9 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
     private let seatCollectionView = SeatingPlanCollectionView()
     
     private let buyTicketButton = CTAButton(title: "Buy Ticket for $00.00")
-    
+    private let noOfTicketLabel = UILabel(text: "0", font: .poppinsRegular, size: 20, color: .galaxyBlack, alignment: .right)
+    private let seatsNoLabel = UILabel(text: "-", font: .poppinsRegular, size: 20, color: .galaxyBlack, alignment: .right)
+
     private var topSV: UIStackView?
     private var middleSV: UIStackView?
     private var bottomSV: UIStackView?
@@ -41,10 +46,32 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
         seatCollectionView.delegate = self
         seatCollectionView.dataSource = datasource
         
+        seatsNoLabel.numberOfLines = 2
+        
+        datasource.onSeatTapped = { [weak self] in
+            guard let self = self else { return }
+            let indexPaths = self.seatCollectionView.indexPathsForSelectedItems!
+            
+            self.selectedSeats = []
+            self.ticketPrice = 0.0
+            
+            indexPaths.forEach { ip in
+                let seat: Seat = self.seats[ip.section][ip.item]
+                self.selectedSeats.append(seat.seatName ?? "")
+                self.ticketPrice += Double(seat.price ?? 0)
+            }
+            
+            self.noOfTicketLabel.text = "\(indexPaths.count)"
+            self.seatsNoLabel.text = self.selectedSeats.joined(separator: ", ")
+            self.buyTicketButton.setTitle("Buy Ticket for $\(self.ticketPrice)", for: .normal)
+        }
+        
         setupViews()
 
         backButton.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
         buyTicketButton.addTarget(self, action: #selector(handleBuyTapped), for: .touchUpInside)
+        
+        fetchSeatData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -78,6 +105,20 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
         let sv = UIStackView(arrangedSubviews: [circle, label])
         sv.spacing = 8
         return sv
+    }
+    
+    private func fetchSeatData() {
+        let checkoutVM = CheckoutVM.instance
+        ApiService.shared.fetchSeatPlan(timeslodId: checkoutVM.timeslodId, date: checkoutVM.bookingDate) { [weak self] result in
+            do {
+                let response = try result.get()
+                self?.datasource.seats = response.data ?? [[]]
+                self?.seats = response.data ?? [[]]
+                self?.seatCollectionView.reloadData()
+            } catch {
+                fatalError("[Error while fetching seat plan] \(error)")
+            }
+        }
     }
     
     // MARK: - Action Handlers
@@ -121,16 +162,6 @@ extension ChooseSeatVC {
     }
     
     private func setupMiddleSV() {
-        let leadingSV = UIStackView(subViews: createSeatsLabel("A", "B", "C", "D", "E", "F", "G"), axis: .vertical, spacing: 0)
-        let trailingSV = UIStackView(subViews: createSeatsLabel("A", "B", "C", "D", "E", "F", "G"), axis: .vertical, spacing: 0)
-        [leadingSV, trailingSV].forEach {
-            $0.distribution = .fillEqually
-            $0.isLayoutMarginsRelativeArrangement = true
-            $0.layoutMargins = UIEdgeInsets(top: 2, left: 0, bottom: 0, right: 0)
-        }
-
-        let seatingPlanSV = UIStackView(arrangedSubviews: [leadingSV, seatCollectionView, trailingSV])
-        seatingPlanSV.spacing = 10
         
         let availableSeatLegend = createSeatLegend(title: "Available", color: .seatAvailable)
         let reservedSeatLegend = createSeatLegend(title: "Reserved", color: .seatReserved)
@@ -146,7 +177,11 @@ extension ChooseSeatVC {
             make.height.equalTo(2)
         }
         
-        middleSV = UIStackView(subViews: [seatingPlanSV, legendSV, dashLine], axis: .vertical, spacing: 20)
+        seatCollectionView.snp.makeConstraints { make in
+            make.height.equalTo(600)
+        }
+        
+        middleSV = UIStackView(subViews: [seatCollectionView, legendSV, dashLine], axis: .vertical, spacing: 20)
         middleSV?.setCustomSpacing(28, after: legendSV)
         
         middleSV?.isLayoutMarginsRelativeArrangement = true
@@ -154,10 +189,8 @@ extension ChooseSeatVC {
     
     private func setupBottomSV() {
         let ticketLabel = UILabel(text: "Tickets", font: .poppinsRegular, size: 20, color: .galaxyLightBlack)
-        let noOfTicketLabel = UILabel(text: "2", font: .poppinsRegular, size: 20, color: .galaxyBlack, alignment: .right)
-        
+
         let seatsLabel = UILabel(text: "Seats", font: .poppinsRegular, size: 20, color: .galaxyLightBlack)
-        let seatsNoLabel = UILabel(text: "D Row/5, 6", font: .poppinsRegular, size: 20, color: .galaxyBlack, alignment: .right)
         
         [ticketLabel, seatsLabel].forEach { $0.snp.makeConstraints { (make) in
             make.width.equalTo(view.frame.width * 0.65)
