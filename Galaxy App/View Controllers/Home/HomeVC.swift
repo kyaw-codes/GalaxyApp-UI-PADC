@@ -39,6 +39,8 @@ class HomeVC: UIViewController {
         return cv
     }()
     
+    private let spinner = UIActivityIndicatorView(style: .large)
+    
     // MARK: - Lifecycles
     
     override func viewDidLoad() {
@@ -84,11 +86,13 @@ class HomeVC: UIViewController {
     }
     
     private func fetchMovies() {
+        spinner.startAnimating()
         ApiService.shared.fetchMovies { [weak self] result in
             do {
                 let response = try result.get()
                 self?.dataSource.nowShowingMovies = response.movies ?? []
                 self?.collectionView.reloadData()
+                self?.spinner.stopAnimating()
             } catch {
                 fatalError("[Error while fetching now showing movies] \(error)")
             }
@@ -111,6 +115,11 @@ class HomeVC: UIViewController {
 extension HomeVC {
 
     private func setupView() {
+        view.addSubview(spinner)
+        spinner.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
+        
         setupNavBar()
         setupCollectionView()
     }

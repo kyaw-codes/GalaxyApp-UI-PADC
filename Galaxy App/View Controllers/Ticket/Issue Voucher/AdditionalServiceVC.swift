@@ -11,6 +11,13 @@ class AdditionalServiceVC: UIViewController {
     
     var coordinator: TicketCoordinator?
     
+    private var originalPrice: Double = 0.0
+    private let checkoutVM = CheckoutVM.instance
+    private var selectedSnacks = [SnackData]()
+    private var snackList = [Snack]()
+    private var paymentMethods = [PaymentMethod]()
+    private let dataSource = AdditionalServiceDatasource()
+    
     // MARK: - Views
     
     private let backButton = BackButton()
@@ -19,15 +26,15 @@ class AdditionalServiceVC: UIViewController {
     
     private let subTotalLabel = UILabel(text: "Sub total : 40$", font: .poppinsMedium, size: 18, color: .galaxyGreen)
     
-    private let payButton = CTAButton(title: "Pay $40.00")
+    private let payButton = CTAButton(title: "Pay $00.00")
     
     private var comboSetSV: UIStackView?
     private var promocodeSV: UIStackView?
     private var paymentMethodSV: UIStackView?
     
     private let collectionView = AdditionalServiceCollectionView()
-    private let dataSource = AdditionalServiceDatasource()
-    
+    private let spinner = UIActivityIndicatorView(style: .large)
+
     // MARK: - Lifecycles
 
     override func viewDidLoad() {
@@ -37,10 +44,35 @@ class AdditionalServiceVC: UIViewController {
         
         setupViews()
         
+        originalPrice = checkoutVM.totalPrice
+        payButton.setTitle("Pay $\(originalPrice)", for: .normal)
+        
         collectionView.dataSource = dataSource
+        dataSource.onSnackTap = { [weak self] snack, qty in
+            guard let self = self else { return }
+            
+            if let index = self.selectedSnacks.firstIndex(where: { $0.id == snack.id }) {
+                if qty > 0 {
+                    self.selectedSnacks[index].quantity = qty
+                } else {
+                    self.selectedSnacks.remove(at: index)
+                }
+            } else {
+                let data = SnackData()
+                data.id = snack.id
+                data.quantity = qty
+                self.selectedSnacks.append(data)
+            }
+            
+            self.checkoutVM.totalPrice = self.originalPrice + self.calculateSnacksPrice()
+            self.payButton.setTitle("Pay $\(self.checkoutVM.totalPrice)", for: .normal)
+        }
         
         backButton.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
         payButton.addTarget(self, action: #selector(onPayTap), for: .touchUpInside)
+        
+        fetchSnacks()
+        fetchPaymentMethods()
     }
     
     // MARK: - Action Handlers
@@ -51,6 +83,47 @@ class AdditionalServiceVC: UIViewController {
 
     @objc private func onPayTap() {
         coordinator?.checkOut()
+    }
+    
+    // MARK: - Private helpers
+    
+    private func fetchSnacks() {
+        spinner.startAnimating()
+        ApiService.shared.fetchSnakcList { [weak self] result in
+            do {
+                let response = try result.get()
+                self?.dataSource.snackList = response.data ?? []
+                self?.snackList = response.data ?? []
+                self?.collectionView.reloadData()
+                self?.spinner.stopAnimating()
+            } catch {
+                fatalError("[Error while fetching snacks] \(error)")
+            }
+        }
+    }
+    
+    private func fetchPaymentMethods() {
+        spinner.startAnimating()
+        ApiService.shared.fetchPayments { [weak self] result in
+            do {
+                let response = try result.get()
+                self?.paymentMethods = response.data ?? []
+                self?.dataSource.paymentMethods = self?.paymentMethods ?? []
+                self?.collectionView.reloadData()
+                self?.spinner.stopAnimating()
+            } catch {
+                fatalError("[Error while fetching payment methods] \(error)")
+            }
+        }
+    }
+    
+    private func calculateSnacksPrice() -> Double {
+        var total = 0.0
+        selectedSnacks.forEach { snackData in
+            let snack = self.snackList.first(where: { $0.id == snackData.id })
+            total += Double(snack!.price!) * Double(snackData.quantity!)
+        }
+        return total
     }
 }
 
@@ -77,6 +150,11 @@ extension AdditionalServiceVC {
         payButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+        
+        view.addSubview(spinner)
+        spinner.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
         }
     }
 }

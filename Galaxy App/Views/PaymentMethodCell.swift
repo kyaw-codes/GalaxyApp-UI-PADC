@@ -9,20 +9,16 @@ import UIKit
 
 class PaymentMethodCell: UICollectionViewCell {
     
-    public struct ViewModel {
-        var image: UIImage?
-        var title: String
-        var subtitle: String
+    var icon: UIImage? {
+        didSet {
+            imageView.image = icon?.withRenderingMode(.alwaysOriginal).withTintColor(.seatReserved)
+        }
     }
     
-    var viewModel: ViewModel? {
+    var paymentMethod: PaymentMethod? {
         didSet {
-            imageView.image = viewModel?.image?
-                .withRenderingMode(.alwaysOriginal)
-                .withTintColor(.seatReserved)
-    
-            titleLabel.text = viewModel?.title
-            subtitleLabel.text = viewModel?.subtitle
+            titleLabel.text = paymentMethod?.name
+            subtitleLabel.text = paymentMethod?.description
         }
     }
     

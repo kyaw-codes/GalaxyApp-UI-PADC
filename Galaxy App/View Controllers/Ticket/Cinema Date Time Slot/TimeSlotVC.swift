@@ -31,6 +31,7 @@ class TimeSlotVC: UIViewController {
     private let scrollView = UIScrollView(backgroundColor: .white)
     private let movieTypesCollectionView = MovieTypeCollectionView()
     private let timeSlotsCollectionView = TimeSlotCollectionView()
+    private let spinner = UIActivityIndicatorView(style: .large)
     
     // MARK: - Lifecycles
     
@@ -85,6 +86,7 @@ class TimeSlotVC: UIViewController {
     // MARK: - Private Helper
     
     private func fetchTimeSlots(date: String) {
+        spinner.startAnimating()
         ApiService.shared.fetchCinemaDayTimeSlots(movieId: CheckoutVM.instance.movieId, date: date) { [weak self] result in
             do {
                 let response = try result.get()
@@ -97,6 +99,7 @@ class TimeSlotVC: UIViewController {
                 self?.timeslots = cinemas
                 self?.timeslotDatasource.cinemas = cinemas
                 self?.timeSlotsCollectionView.reloadData()
+                self?.spinner.stopAnimating()
             } catch {
                 fatalError("[Error while fetching cinema day time slots] \(error)")
             }
@@ -168,6 +171,11 @@ extension TimeSlotVC {
         nextButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+        
+        view.addSubview(spinner)
+        spinner.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
         }
     }
 }

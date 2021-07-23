@@ -14,6 +14,9 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
     // MARK: - Properties
     
     private let datasource = CreditCardDatasource()
+    private let checkoutVM = CheckoutVM.instance
+    
+    private var cards = [Card]()
     
     // MARK: - Views
     
@@ -34,7 +37,7 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
     
     private let confirmButton = CTAButton(title: "Confirm")
     
-    private var paymentAmountLabel = UILabel(text: "$ 926.21", font: .poppinsSemiBold, size: 32, color: .galaxyBlack)
+    private lazy var paymentAmountLabel = UILabel(text: "$ \(checkoutVM.totalPrice)", font: .poppinsSemiBold, size: 32, color: .galaxyBlack)
     
     private let cardNoField = OutlineTextField(placeholder: "1234.5678.9101.8014", keyboardType: .numberPad)
     private let cardHolderField = OutlineTextField(placeholder: "Craig Federighi", keyboardType: .default)
@@ -44,6 +47,7 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
     private var headerSV: UIStackView?
     private var cardCollectionSV: UIStackView?
     private var formSV: UIStackView?
+    private let spinner = UIActivityIndicatorView(style: .large)
     
     private let collectionView: GeminiCollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -59,8 +63,7 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
-
+        view.backgroundColor = .white 
         setupViews()
         
         collectionView.dataSource = datasource
@@ -69,6 +72,9 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
 
         backButton.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
         confirmButton.addTarget(self, action: #selector(handleConfirmTapped), for: .touchUpInside)
+        addNewCardButton.addTarget(self, action: #selector(handleAddNewCardTapped), for: .touchUpInside)
+        
+        fetchCards()
     }
     
     override func viewDidLayoutSubviews() {
@@ -85,12 +91,24 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
             .alpha(0.3)
             .ease(.easeInOutCirc)
     }
-
-    private func createFormInput(title: String, textField: UIView) -> UIStackView {
-        let titleLabel = UILabel(text: title, font: .poppinsRegular, size: 18, color: .seatReserved)
-        return UIStackView(subViews: [titleLabel, textField], axis: .vertical, spacing: 0)
-    }
     
+    private func fetchCards() {
+        spinner.startAnimating()
+        ApiService.shared.fetchProfile { [weak self] result in
+            do {
+                let response = try result.get()
+                if let cards = response.data?.cards {
+                    self?.cards = cards
+                    self?.datasource.cards = cards
+                    self?.collectionView.reloadData()
+                    self?.spinner.stopAnimating()
+                }
+            } catch {
+                fatalError("[Error while fetching profile] \(error)")
+            }
+        }
+    }
+
     // MARK: - Action Handlers
     
     @objc private func handleBackTapped() {
@@ -99,6 +117,16 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
     
     @objc private func handleConfirmTapped() {
         coordinator?.issueVoucher()
+    }
+    
+    @objc private func handleAddNewCardTapped() {
+        let formVC = AddCreditCardVC()
+        formVC.modalTransitionStyle = .crossDissolve
+        formVC.modalPresentationStyle = .overCurrentContext
+        formVC.onNewCardAdded = { [weak self] in
+            self?.fetchCards()
+        }
+        self.navigationController?.present(formVC, animated: true, completion: nil)
     }
 }
 
@@ -111,6 +139,11 @@ extension CheckoutVC {
         backButton.snp.makeConstraints { (make) in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(18)
             make.leading.equalToSuperview().inset(24)
+        }
+        
+        view.addSubview(spinner)
+        spinner.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
         }
         
         setupHeaderSV()
@@ -137,19 +170,8 @@ extension CheckoutVC {
     }
     
     private func setupFromSV() {
-        var inputViews: [UIView] = [("Card number", cardNoField), ("Card holder", cardHolderField)].map { createFormInput(title: $0.0, textField: $0.1) }
-        
-        let formGroupSV = UIStackView(arrangedSubviews:
-                                        [("Expiration date", expirationDateField), ("CVC", cvcField)
-                                        ].map { createFormInput(title: $0.0, textField: $0.1) })
-        
-        formGroupSV.spacing = 20
-        formGroupSV.distribution = .fillEqually
-        
         let addNewCardSV = UIStackView(arrangedSubviews: [addNewCardButton, UIView()])
-        inputViews.append(contentsOf: [formGroupSV,addNewCardSV,confirmButton])
-        
-        formSV = UIStackView(subViews: inputViews, axis: .vertical, spacing: 26)
+        formSV = UIStackView(subViews: [addNewCardSV, confirmButton], axis: .vertical, spacing: 26)
         
         formSV?.isLayoutMarginsRelativeArrangement = true
         formSV?.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)

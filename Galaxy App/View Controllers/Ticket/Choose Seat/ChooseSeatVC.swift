@@ -15,6 +15,7 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
     private var seats = [[Seat]]()
     private var selectedSeats = [String]()
     private var ticketPrice: Double = 0.0
+    private var originalPrice: Double = 0.0
 
     // MARK: - Views
     
@@ -35,6 +36,7 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
     private var topSV: UIStackView?
     private var middleSV: UIStackView?
     private var bottomSV: UIStackView?
+    private let spinner = UIActivityIndicatorView(style: .large)
     
     // MARK: - Lifecycles
 
@@ -42,6 +44,8 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
+        
+        originalPrice = checkoutVM.totalPrice
         
         seatCollectionView.delegate = self
         seatCollectionView.dataSource = datasource
@@ -64,6 +68,9 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
             self.noOfTicketLabel.text = "\(indexPaths.count)"
             self.seatsNoLabel.text = self.selectedSeats.joined(separator: ", ")
             self.buyTicketButton.setTitle("Buy Ticket for $\(self.ticketPrice)", for: .normal)
+
+            self.checkoutVM.seatNumbers = self.selectedSeats.joined(separator: ", ")
+            self.checkoutVM.totalPrice = self.originalPrice + self.ticketPrice
         }
         
         setupViews()
@@ -109,12 +116,14 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
     
     private func fetchSeatData() {
         let checkoutVM = CheckoutVM.instance
+        spinner.startAnimating()
         ApiService.shared.fetchSeatPlan(timeslodId: checkoutVM.timeslodId, date: checkoutVM.bookingDate) { [weak self] result in
             do {
                 let response = try result.get()
                 self?.datasource.seats = response.data ?? [[]]
                 self?.seats = response.data ?? [[]]
                 self?.seatCollectionView.reloadData()
+                self?.spinner.stopAnimating()
             } catch {
                 fatalError("[Error while fetching seat plan] \(error)")
             }
@@ -151,6 +160,11 @@ extension ChooseSeatVC {
         [topSV!, middleSV!, bottomSV!, UIView()].forEach { contentStackView.addArrangedSubview($0) }
         
         contentStackView.setCustomSpacing(80, after: topSV!)
+        
+        view.addSubview(spinner)
+        spinner.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
     }
     
     private func setupTopSV() {

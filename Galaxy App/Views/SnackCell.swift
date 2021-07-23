@@ -7,20 +7,16 @@
 
 import UIKit
 
-class ComboSetCell: UICollectionViewCell {
+class SnackCell: UICollectionViewCell {
     
-    public struct ViewModel {
-        var title: String
-        var description: String
-        var unitPrice: Double
-    }
-    
-    var viewModel: ViewModel? {
+    var snack: Snack? {
         didSet {
-            titleLabel.text = viewModel?.title
-            descriptionLabel.text = viewModel?.description
+            titleLabel.text = snack?.name
+            descriptionLabel.text = snack?.description
         }
     }
+    
+    var onSnackTap: ((Snack, Int) -> Void)?
     
     private let countButtonGroup = CountButtonGroup()
     
@@ -62,8 +58,11 @@ class ComboSetCell: UICollectionViewCell {
         }
         
         countButtonGroup.onCountValueUpdate = { [weak self] count in
-            guard let unitPrice = self?.viewModel?.unitPrice else { return }
-            self?.priceLabel.text = "\(unitPrice * Double(count))$"
+            guard let unitPrice = self?.snack?.price else { return }
+            let snackPrice = Double(unitPrice) * Double(count)
+            self?.priceLabel.text = "\(snackPrice)$"
+            self?.onSnackTap?(self!.snack!, count)
+            
         }
         
         isUserInteractionEnabled = true

@@ -15,6 +15,7 @@ class CheckoutVM {
     var bookingDate: Date = Date()
     var timeslodId: Int = -1
     var seatNumbers: String = ""
+    var totalPrice: Double = 0
     
     var bookingDateString: String {
         get {

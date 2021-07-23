@@ -163,4 +163,70 @@ struct ApiService {
             }
         }.validate(statusCode: 200 ..< 300)
     }
+    
+    // MARK: - Snack List
+    func fetchSnakcList(completion: @escaping (Result<SnackResponse, AFError>) -> Void) {
+        guard let token = UserDefaults.standard.value(forKey: keyAuthToken) as? String else {
+            fatalError("No token found")
+        }
+        
+        AF.request("\(baseUrl)/api/v1/snacks", headers: [.authorization(bearerToken: token)]).responseDecodable(of: SnackResponse.self) { response in
+            if let err = response.error {
+                completion(.failure(err))
+            }
+            
+            if let response = response.value {
+                completion(.success(response))
+            }
+        }.validate(statusCode: 200 ..< 300)
+    }
+    
+    // MARK: - Payment Methods
+    func fetchPayments(completion: @escaping (Result<PaymentMethodResponse, AFError>) -> Void) {
+        guard let token = UserDefaults.standard.value(forKey: keyAuthToken) as? String else {
+            fatalError("No token found")
+        }
+        
+        AF.request("\(baseUrl)/api/v1/payment-methods", headers: [.authorization(bearerToken: token)]).responseDecodable(of: PaymentMethodResponse.self) { response in
+            if let err = response.error {
+                completion(.failure(err))
+            }
+            
+            if let response = response.value {
+                completion(.success(response))
+            }
+        }.validate(statusCode: 200 ..< 300)
+    }
+    
+    // MARK: - Card
+    func createNewCard(cardNo: String,
+                       cardHolder: String,
+                       expirationDate: String,
+                       cvc: String,
+                       completion: @escaping(Result<Array<Card>, AFError>) -> Void) {
+        guard let token = UserDefaults.standard.value(forKey: keyAuthToken) as? String else {
+            fatalError("No token found")
+        }
+        
+        let reqBody = [
+            "card_number" : cardNo,
+            "card_holder" : cardHolder,
+            "expiration_date" : expirationDate,
+            "cvc" : cvc
+        ]
+        
+        AF.request("\(baseUrl)/api/v1/card",
+                   method: .post,
+                   parameters: reqBody,
+                   headers: [.authorization(bearerToken: token)])
+            .responseDecodable(of: CardResponse.self) { response in
+                if let err = response.error {
+                    completion(.failure(err))
+                }
+                
+                if let response = response.value {
+                    completion(.success(response.data))
+                }
+            }.validate(statusCode: 200 ..< 300)
+    }
 }

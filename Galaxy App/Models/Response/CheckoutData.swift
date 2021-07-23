@@ -12,7 +12,7 @@ class CheckoutData: Codable {
     let cinemaDayTimeslotID: Int?
     let row, seatNumber, bookingDate: String?
     let totalPrice, movieID, cardID, cinemaID: Int?
-    let snacks: [Snack]?
+    let snacks: [SnackData]?
 
     enum CodingKeys: String, CodingKey {
         case cinemaDayTimeslotID = "cinema_day_timeslot_id"
@@ -28,6 +28,6 @@ class CheckoutData: Codable {
 }
 
 // MARK: - Snack
-class Snack: Codable {
-    let id, quantity: Int?
+class SnackData: Codable {
+    var id, quantity: Int?
 }

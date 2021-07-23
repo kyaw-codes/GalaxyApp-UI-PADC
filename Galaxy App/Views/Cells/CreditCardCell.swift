@@ -10,18 +10,18 @@ import Gemini
 
 class CreditCardCell: GeminiCell {
     
-    var creditCard: CreditCard? {
+    var creditCard: Card? {
         didSet {
             guard let cardData = creditCard else { return }
             
-            let lastFourDigit = getLastFourDigit(of: cardData.cardNo)
+            let lastFourDigit = getLastFourDigit(of: cardData.cardNumber ?? "")
             cardNoLabel.text = "* * * *  * * * *  * * * *  \(lastFourDigit)"
             
             guard let nameLabel = nameSV?.arrangedSubviews.last as? UILabel else { return }
             nameLabel.text = cardData.cardHolder
 
             guard let expireDateLabel = expireDateSV?.arrangedSubviews.last as? UILabel else { return }
-            expireDateLabel.text = cardData.expireDate.stringValue(in: "MM/dd")
+            expireDateLabel.text = cardData.expirationDate
         }
     }
     
@@ -74,8 +74,9 @@ class CreditCardCell: GeminiCell {
     }
     
     private func getLastFourDigit(of cardNo: String) -> String {
-        if cardNo.count == 16 {
-            return cardNo[12...15]
+        if cardNo.count >= 4 {
+            let index = cardNo.count - 4
+            return cardNo[index ... cardNo.count - 1]
         } else {
             return "0000"
         }

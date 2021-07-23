@@ -41,6 +41,7 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
     private let backButton = BackButton(iconColor: .white)
     
     private let getTicketButton = CTAButton(title: "Get your ticket")
+    private let spinner = UIActivityIndicatorView(style: .large)
     
     // MARK: - Lifecycles
     
@@ -72,14 +73,16 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
     // MARK: - Private Helpers
     
     private func fetchMovieDetail() {
-        ApiService.shared.getMovieDetail(movieId) { result in
+        spinner.startAnimating()
+        ApiService.shared.getMovieDetail(movieId) { [weak self] result in
             do {
                 let response = try result.get()
-                self.movie = response.data
+                self?.movie = response.data
                 
                 let cvm = CheckoutVM.instance
                 cvm.movieName = response.data?.originalTitle ?? ""
                 cvm.movieId = response.data?.id ?? -1
+                self?.spinner.stopAnimating()
             } catch {
                 fatalError("[Error while fetching movie detail] \(error)")
             }
@@ -112,6 +115,11 @@ extension MovieDetailVC {
             make.top.equalTo(view.safeAreaLayoutGuide).inset(18)
             make.leading.equalToSuperview().inset(20)
         }
+        
+        view.addSubview(spinner)
+        spinner.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
     }
     
     private func setupFloatingMovieDescriptionVC() {
@@ -127,6 +135,7 @@ extension MovieDetailVC {
         fpc.track(scrollView: descriptionVC.scrollView)
 
         fpc.addPanel(toParent: self)
+        view.bringSubviewToFront(spinner)
     }
     
     private func setupCTAButton() {
