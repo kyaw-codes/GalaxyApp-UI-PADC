@@ -229,4 +229,25 @@ struct ApiService {
                 }
             }.validate(statusCode: 200 ..< 300)
     }
+    
+    // MARK: - Checkout
+    func checkout(_ checkoutData: CheckoutData, completion: @escaping (Result<VoucherResponse, AFError>) -> Void) {
+        guard let token = UserDefaults.standard.value(forKey: keyAuthToken) as? String else {
+            fatalError("No token found")
+        }
+        
+        AF.request("\(baseUrl)/api/v1/checkout",
+                   method: .post,
+                   parameters: checkoutData,
+                   encoder: JSONParameterEncoder.default,
+                   headers: [.authorization(bearerToken: token)]).responseDecodable(of: VoucherResponse.self) { response in
+                    if let err = response.error {
+                        completion(.failure(err))
+                    }
+                    
+                    if let response = response.value {
+                        completion(.success(response))
+                    }
+                   }
+    }
 }

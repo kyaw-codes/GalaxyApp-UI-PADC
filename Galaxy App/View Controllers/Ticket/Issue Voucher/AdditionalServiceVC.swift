@@ -58,13 +58,11 @@ class AdditionalServiceVC: UIViewController {
                     self.selectedSnacks.remove(at: index)
                 }
             } else {
-                let data = SnackData()
-                data.id = snack.id
-                data.quantity = qty
-                self.selectedSnacks.append(data)
+                self.selectedSnacks.append(SnackData(id: snack.id, quantity: qty))
             }
             
             self.checkoutVM.totalPrice = self.originalPrice + self.calculateSnacksPrice()
+            self.checkoutVM.snack = self.selectedSnacks
             self.payButton.setTitle("Pay $\(self.checkoutVM.totalPrice)", for: .normal)
         }
         

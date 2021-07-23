@@ -12,6 +12,7 @@ class VoucherVC: VerticallyScrollableVC<TicketCoordinator> {
     // MARK: - Views
     
     private let closeButton = CloseButton()
+    private let checkoutVM = CheckoutVM.instance
     
     private let titleLabel: UILabel = {
         let lbl = UILabel(text: "", font: .poppinsMedium, size: 28, numberOfLines: 2, color: .galaxyBlack, alignment: .center)
@@ -39,7 +40,7 @@ class VoucherVC: VerticallyScrollableVC<TicketCoordinator> {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        ticketView.ticket = .init(cover: #imageLiteral(resourceName: "showing_1"), movieName: "Detective Pikachu", duration: "105m", format: "IMAX", bookingNo: "GC13532131", showDateTime: "7:00 PM - 10 May", theater: "Galaxy Cinema - Golden City", screen: 2, row: "D", seats: "5, 6", price: 40.00)
+        ticketView.ticket = .init(coverPath: checkoutVM.imageUrl, movieName: checkoutVM.movieName, duration: checkoutVM.duration, format: checkoutVM.movieType, bookingNo: checkoutVM.bookingNo, showDateTime: "\(checkoutVM.startTime) - \(checkoutVM.bookingDateForVoucher)", theater: "\(checkoutVM.cinemaName)", screen: 2, row: "\(checkoutVM.row)", seats: checkoutVM.seatNumbers, price: checkoutVM.totalPrice)
         
         setupViews()
         
@@ -59,6 +60,7 @@ class VoucherVC: VerticallyScrollableVC<TicketCoordinator> {
     // MARK: - Action Handlers
     
     @objc private func handleCloseTapped() {
+        checkoutVM.clear()
         coordinator?.closeVoucherSlip()
     }
 }

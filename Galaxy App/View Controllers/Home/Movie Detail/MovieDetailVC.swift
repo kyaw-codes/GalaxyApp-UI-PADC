@@ -82,6 +82,9 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
                 let cvm = CheckoutVM.instance
                 cvm.movieName = response.data?.originalTitle ?? ""
                 cvm.movieId = response.data?.id ?? -1
+                cvm.duration = "\(response.data?.runtime ?? 0)m"
+                cvm.imageUrl = response.data?.posterPath ?? ""
+
                 self?.spinner.stopAnimating()
             } catch {
                 fatalError("[Error while fetching movie detail] \(error)")

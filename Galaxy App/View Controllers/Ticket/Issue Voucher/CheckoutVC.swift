@@ -102,6 +102,9 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
                     self?.datasource.cards = cards
                     self?.collectionView.reloadData()
                     self?.spinner.stopAnimating()
+                    if cards.count > 0 {
+                        self?.checkoutVM.cardId = cards[0].id ?? -1
+                    }
                 }
             } catch {
                 fatalError("[Error while fetching profile] \(error)")
@@ -116,7 +119,20 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
     }
     
     @objc private func handleConfirmTapped() {
-        coordinator?.issueVoucher()
+        let body = CheckoutData(cinemaDayTimeslotID: checkoutVM.timeslodId, row: "A", seatNumber: checkoutVM.seatNumbers, bookingDate: checkoutVM.bookingDate.getApiDateString(), totalPrice: Int(checkoutVM.totalPrice), movieID: checkoutVM.movieId, cardID: checkoutVM.cardId, cinemaID: checkoutVM.cinemaId, snacks: checkoutVM.snack)
+        
+        ApiService.shared.checkout(body) { [weak self] result in
+            do {
+                let response = try result.get()
+                self?.checkoutVM.bookingNo = response.data?.bookingNo ?? ""
+                self?.checkoutVM.startTime = response.data?.timeslot?.startTime ?? ""
+                self?.checkoutVM.row = response.data?.row ?? ""
+                
+                self?.coordinator?.issueVoucher()
+            } catch {
+                fatalError("[Error while issuing voucher] \(error)")
+            }
+        }
     }
     
     @objc private func handleAddNewCardTapped() {
@@ -196,7 +212,9 @@ extension CheckoutVC: UICollectionViewDelegateFlowLayout {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let index = Int(abs(round(scrollView.contentOffset.x / (collectionView.frame.width * 0.8))))
         collectionView.animateVisibleCells()
+        checkoutVM.cardId = cards[index].id ?? -1
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

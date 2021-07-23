@@ -5,10 +5,10 @@
 //  Created by Ko Kyaw on 30/05/2021.
 //
 
-import UIKit
+import Foundation
 
 struct Ticket {
-    var cover: UIImage?
+    var coverPath: String?
     var movieName: String
     var duration: String
     var format: String

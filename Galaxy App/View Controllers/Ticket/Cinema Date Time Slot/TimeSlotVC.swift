@@ -59,11 +59,13 @@ class TimeSlotVC: UIViewController {
         movieTypesCollectionView.onMovieTypeSelected = { vm in
             self.movieTypes.forEach { $0.isSelected = vm.title == $0.title }
             self.movieTypesCollectionView.reloadData()
+            CheckoutVM.instance.movieType = vm.title
         }
         
-        timeslotDatasource.onCinemaTimeSlotSelected = { [weak self] _, timeslotId in
+        timeslotDatasource.onCinemaTimeSlotSelected = { [weak self] cinemaId, timeslotId in
             CheckoutVM.instance.timeslodId = timeslotId
-            self?.timeslots.forEach{ cinema in
+            CheckoutVM.instance.cinemaId = cinemaId
+            self?.timeslots.forEach { cinema in
                 cinema.timeslots.forEach { timeslot in
                     if timeslot.cinemaDayTimeslotID == timeslotId {
                         timeslot.isSelected = true
@@ -93,6 +95,7 @@ class TimeSlotVC: UIViewController {
                 let cinemas = response.getCinemaVM() ?? []
                 cinemas[0].timeslots[0].isSelected = true
                 CheckoutVM.instance.cinemaName = cinemas[0].cinema ?? ""
+                CheckoutVM.instance.cinemaId = cinemas[0].cinemaID ?? -1
                 CheckoutVM.instance.bookingTime = cinemas[0].timeslots[0].startTime ?? ""
                 CheckoutVM.instance.timeslodId = cinemas[0].timeslots[0].cinemaDayTimeslotID ?? -1
                 

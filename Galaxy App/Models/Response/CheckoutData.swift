@@ -8,11 +8,11 @@
 import Foundation
 
 // MARK: - CheckoutData
-class CheckoutData: Codable {
+struct CheckoutData: Codable {
     let cinemaDayTimeslotID: Int?
     let row, seatNumber, bookingDate: String?
     let totalPrice, movieID, cardID, cinemaID: Int?
-    let snacks: [SnackData]?
+    let snacks: [SnackData]
 
     enum CodingKeys: String, CodingKey {
         case cinemaDayTimeslotID = "cinema_day_timeslot_id"
@@ -24,10 +24,10 @@ class CheckoutData: Codable {
         case cardID = "card_id"
         case cinemaID = "cinema_id"
         case snacks
-    }
+    }    
 }
 
 // MARK: - Snack
-class SnackData: Codable {
+struct SnackData: Codable {
     var id, quantity: Int?
 }

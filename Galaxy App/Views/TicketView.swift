@@ -21,7 +21,7 @@ class TicketView: UIView {
     var ticket: Ticket? {
         didSet {
             guard let ticket = ticket else { return }
-            imageView.image = ticket.cover
+            imageView.sd_setImage(with: URL(string: "https://image.tmdb.org/t/p/original\(ticket.coverPath ?? "")"))
             
             movieNameLabel.text = "\(ticket.movieName)"
             movieFormatLabel.text = "\(ticket.duration) - \(ticket.format)"

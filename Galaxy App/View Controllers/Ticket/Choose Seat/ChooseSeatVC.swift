@@ -66,10 +66,10 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
             }
             
             self.noOfTicketLabel.text = "\(indexPaths.count)"
-            self.seatsNoLabel.text = self.selectedSeats.joined(separator: ", ")
+            self.seatsNoLabel.text = self.selectedSeats.joined(separator: ",")
             self.buyTicketButton.setTitle("Buy Ticket for $\(self.ticketPrice)", for: .normal)
 
-            self.checkoutVM.seatNumbers = self.selectedSeats.joined(separator: ", ")
+            self.checkoutVM.seatNumbers = self.selectedSeats.joined(separator: ",")
             self.checkoutVM.totalPrice = self.originalPrice + self.ticketPrice
         }
         
