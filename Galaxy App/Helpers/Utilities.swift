@@ -7,24 +7,26 @@
 
 import Foundation
 
-func generateDates() -> [CalendarVM] {
+func generateDates() -> [CalendarVO] {
     let cal = NSCalendar.current
     var date = cal.startOfDay(for: Date())
     
     var days = [Date]()
     
-    for _ in 1 ... 3 {
+    for _ in 1 ... 14 {
         days.append(date)
-        date = cal.date(byAdding: .day, value: -1, to: date)!
-    }
-    
-    date = cal.startOfDay(for: Date())
-    
-    for _ in 1 ... 7 {
         date = cal.date(byAdding: .day, value: 1, to: date)!
-        days.append(date)
     }
 
-    let calendars: [CalendarVM] = days.sorted().map { CalendarVM(date: $0) }
+    let calendars: [CalendarVO] = days.sorted().map { CalendarVO(date: $0) }
+    
     return calendars
+}
+
+func getToken() -> String {
+    guard let token = UserDefaults.standard.value(forKey: keyAuthToken) as? String else {
+        print("No token found")
+        return ""
+    }
+    return token
 }

@@ -5,9 +5,9 @@
 //  Created by Ko Kyaw on 22/07/2021.
 //
 
-import Foundation
+import UIKit
 
-class CheckoutVM {
+class GlobalVoucherModel {
     
     var movieId: Int = -1
     var movieName: String = ""
@@ -44,7 +44,7 @@ class CheckoutVM {
     
     var bookingTime: String = ""
     
-    static let instance = CheckoutVM()
+    static let instance = GlobalVoucherModel()
     
     private init() { }
     
@@ -61,5 +61,30 @@ class CheckoutVM {
         row = ""
         startTime = ""
         movieType = "2D"
+    }
+    
+    func collectData<ViewController: UIViewController, Value: Codable>(
+        of viewController: ViewController?,
+        keypath: ReferenceWritableKeyPath<ViewController, Value>
+    ) {
+        
+        guard let viewController = viewController else {
+            fatalError("viewController cannot be nil")
+        }
+        
+        switch viewController {
+        case is MovieDetailVC:
+            guard let data = viewController[keyPath: keypath] as? MovieDetail? else {
+                fatalError("Given path \(keypath) cannot be converted into type MovieDetail")
+            }
+            movieName = data?.originalTitle ?? ""
+            movieId = data?.id ?? -1
+            duration = "\(data?.runtime ?? 0)m"
+            imageUrl = data?.posterPath ?? ""
+            
+            print(movieName)
+        default:
+            break
+        }
     }
 }

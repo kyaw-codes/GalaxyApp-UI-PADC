@@ -14,7 +14,7 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
     // MARK: - Properties
     
     private let datasource = CreditCardDatasource()
-    private let checkoutVM = CheckoutVM.instance
+    private let checkoutVM = GlobalVoucherModel.instance
     
     private var cards = [Card]()
     

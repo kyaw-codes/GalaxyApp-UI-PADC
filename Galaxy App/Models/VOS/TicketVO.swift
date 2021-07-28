@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Ticket {
+struct TicketVO {
     var coverPath: String?
     var movieName: String
     var duration: String

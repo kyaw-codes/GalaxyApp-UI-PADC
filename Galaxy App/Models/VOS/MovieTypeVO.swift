@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MovieTypeVM {
+class MovieTypeVO {
     
     var title: String = ""
     var isSelected = false

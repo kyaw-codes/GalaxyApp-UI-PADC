@@ -42,10 +42,6 @@ class AuthenticationVC: UIViewController {
         setupView()
     }
     
-//    private func handleConfirmTapped() {
-//        coordinator?.home(userData: nil)
-//    }
-    
 }
 
 // MARK: - Layout Views

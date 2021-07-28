@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CalendarVM {
+class CalendarVO {
     
     let date: Date
     var isSelected = false

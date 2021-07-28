@@ -9,12 +9,12 @@ import UIKit
 
 class TimeslotCell: UICollectionViewCell {
     
-    var onMovieTypeSelected: ((MovieTypeVM) -> Void)?
+    var onMovieTypeSelected: ((MovieTypeVO) -> Void)?
     var onCinemaTimeSlotSelected: ((Int, Int) -> Void)?
     
     var indexPath: IndexPath?
     
-    var movieType: MovieTypeVM? {
+    var movieType: MovieTypeVO? {
         didSet {
             guard let movieType = movieType else { return }
             
@@ -31,7 +31,7 @@ class TimeslotCell: UICollectionViewCell {
         }
     }
     
-    var cinema: CinemaTimeSlotVM? {
+    var cinema: CinemaTimeSlotVO? {
         didSet {
             guard let cinema = cinema else { return }
             guard let indexPath = indexPath else { fatalError("Set indexpath first") }
@@ -74,7 +74,7 @@ class TimeslotCell: UICollectionViewCell {
             let timeslotId = cinema!.timeslots[indexPath.item].cinemaDayTimeslotID ?? -1
             let cinemaId = cinema!.cinemaID ?? -1
             
-            let checkoutVM = CheckoutVM.instance
+            let checkoutVM = GlobalVoucherModel.instance
             checkoutVM.cinemaName = cinema!.cinema ?? ""
             checkoutVM.bookingTime = cinema!.timeslots[indexPath.item].startTime ?? ""
             

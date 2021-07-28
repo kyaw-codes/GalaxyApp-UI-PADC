@@ -9,10 +9,10 @@ import UIKit
 
 class MovieTypeCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
-    var types = [MovieTypeVM]()
-    var onMovieTypeSelected: ((MovieTypeVM) -> Void)?
+    var types = [MovieTypeVO]()
+    var onMovieTypeSelected: ((MovieTypeVO) -> Void)?
     
-    private lazy var cellRegistration = UICollectionView.CellRegistration<TimeslotCell, MovieTypeVM> { [weak self] cell, indexPath, item in
+    private lazy var cellRegistration = UICollectionView.CellRegistration<TimeslotCell, MovieTypeVO> { [weak self] cell, indexPath, item in
         cell.movieType = item
         cell.onMovieTypeSelected = self?.onMovieTypeSelected
     }

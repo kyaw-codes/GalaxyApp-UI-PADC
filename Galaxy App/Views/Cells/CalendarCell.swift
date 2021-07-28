@@ -9,9 +9,9 @@ import UIKit
 
 class CalendarCell: UICollectionViewCell {
     
-    private let checkoutVM = CheckoutVM.instance
+    private let checkoutVM = GlobalVoucherModel.instance
     
-    var calendar: CalendarVM? {
+    var calendar: CalendarVO? {
         didSet {
             guard let calendar = calendar else { return }
             dayLabel.text = calendar.date.dayOfWeek()
@@ -33,7 +33,7 @@ class CalendarCell: UICollectionViewCell {
         }
     }
     
-    var onDaySelected: ((CalendarVM) -> Void)?
+    var onDaySelected: ((CalendarVO) -> Void)?
     
     private let dayLabel = UILabel(text: "", font: .poppinsLight, size: 18, numberOfLines: 1, color: UIColor.white.withAlphaComponent(0.5), alignment: .center)
     private let dateLabel = UILabel(text: "", font: .poppinsLight, size: 18, numberOfLines: 1, color: UIColor.white.withAlphaComponent(0.5), alignment: .center)

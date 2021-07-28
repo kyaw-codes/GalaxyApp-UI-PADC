@@ -21,7 +21,7 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
     
     private let backButton = BackButton()
     
-    private let checkoutVM = CheckoutVM.instance
+    private let checkoutVM = GlobalVoucherModel.instance
     
     private lazy var movieLabel = UILabel(text: checkoutVM.movieName, font: .poppinsSemiBold, size: 26, numberOfLines: 2, color: .galaxyBlack, alignment: .center)
     private lazy var cinemaLabel = UILabel(text: checkoutVM.cinemaName, font: .poppinsRegular, size: 18, numberOfLines: 1, color: .galaxyLightBlack, alignment: .center)
@@ -115,7 +115,7 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
     }
     
     private func fetchSeatData() {
-        let checkoutVM = CheckoutVM.instance
+        let checkoutVM = GlobalVoucherModel.instance
         spinner.startAnimating()
         ApiService.shared.fetchSeatPlan(timeslodId: checkoutVM.timeslodId, date: checkoutVM.bookingDate) { [weak self] result in
             do {

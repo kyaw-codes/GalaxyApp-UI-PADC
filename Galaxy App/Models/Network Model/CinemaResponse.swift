@@ -13,9 +13,9 @@ struct CinemaResponse: Codable {
     let message: String?
     let data: [Cinema]?
     
-    func getCinemaVM() -> [CinemaTimeSlotVM]? {
+    func getCinemaVM() -> [CinemaTimeSlotVO]? {
         
-        data?.map { CinemaTimeSlotVM(cinemaId: $0.cinemaID, cinema: $0.cinema, timeslots: $0.timeslots) }
+        data?.map { CinemaTimeSlotVO(cinemaId: $0.cinemaID, cinema: $0.cinema, timeslots: $0.timeslots) }
     }
 }
 

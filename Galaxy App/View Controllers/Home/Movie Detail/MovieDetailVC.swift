@@ -57,7 +57,7 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
         backButton.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
         getTicketButton.addTarget(self, action: #selector(handleGetTicketTapped), for: .touchUpInside)
         
-        fetchMovieDetail()
+        fetchMovieDetail(then: setter(for: self, keyPath: \.movie))
     }
     
     // MARK: - Action Handlers
@@ -72,19 +72,13 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
     
     // MARK: - Private Helpers
     
-    private func fetchMovieDetail() {
+    private func fetchMovieDetail(then completion: @escaping (MovieDetail?) -> Void) {
         spinner.startAnimating()
         ApiService.shared.getMovieDetail(movieId) { [weak self] result in
             do {
                 let response = try result.get()
-                self?.movie = response.data
-                
-                let cvm = CheckoutVM.instance
-                cvm.movieName = response.data?.originalTitle ?? ""
-                cvm.movieId = response.data?.id ?? -1
-                cvm.duration = "\(response.data?.runtime ?? 0)m"
-                cvm.imageUrl = response.data?.posterPath ?? ""
-
+                completion(response.data)
+                GlobalVoucherModel.instance.collectData(of: self, keypath: \.movie)
                 self?.spinner.stopAnimating()
             } catch {
                 fatalError("[Error while fetching movie detail] \(error)")

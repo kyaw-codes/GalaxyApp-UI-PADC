@@ -28,7 +28,10 @@ struct ApiService {
             "password": password
         ]
         
-        AF.request("\(baseUrl)/api/v1/register", method: .post, parameters: body).responseDecodable(of: SignUpResponse.self) { response in
+        AF.request(
+            "\(baseUrl)/api/v1/register",
+            method: .post, parameters: body
+        ).responseDecodable(of: SignUpResponse.self, emptyResponseCodes: [200, 204, 205]) { response in
             if let err = response.error {
                 completion(.failure(err))
             }
@@ -37,11 +40,45 @@ struct ApiService {
                 completion(.success(response))
             }
         }
+        .validate()
     }
     
-    func signIn(email: String,
-                password: String,
-                completion: @escaping (Result<SignInResponse, AFError>) -> Void) {
+    func signUpWithFb(
+        vc: UIViewController,
+        name: String,
+        email: String,
+        phone: String,
+        password: String,
+        completion: @escaping (Result<SignUpResponse, AFError>) -> Void
+    ) {
+    
+        let fbAuth = FacebookAuth()
+        fbAuth.start(vc: vc) { response in
+            let id = response.id
+            let body = FacebookSignUpRequestBody(name: name, email: email, phone: phone, password: password, id: id)
+
+            AF.request(
+                "\(baseUrl)/api/v1/register",
+                method: .post,
+                parameters: body
+            ).responseDecodable(of: SignUpResponse.self, emptyResponseCodes: [200, 204, 205]) { response in
+                if let err = response.error {
+                    completion(.failure(err))
+                    return
+                }
+
+                if let data = response.value {
+                    UserDefaults.standard.setValue(id, forKey: keyFBId)
+                    completion(.success(data))
+                    return
+                }
+            }
+        } failure: { failure in
+            print("[Failed when sign up with facebook] \(failure)")
+        }
+    }
+    
+    func signIn(email: String, password: String, completion: @escaping (Result<SignInResponse, AFError>) -> Void) {
         let body = ["email": email, "password": password]
         
         AF.request("\(baseUrl)/api/v1/email-login", method: .post, parameters: body).responseDecodable(of: SignInResponse.self) { response in
@@ -55,10 +92,32 @@ struct ApiService {
         }.validate(statusCode: 200..<300)
     }
     
-    func fetchProfile(completion: @escaping(Result<ProfileResponse, AFError>) -> Void) {
-        guard let token = UserDefaults.standard.value(forKey: keyAuthToken) as? String else {
-            fatalError("No token found")
+    func signInWithFacebook(completion: @escaping (Result<SignInResponse, AFError>) -> Void) {
+        guard let fbId = UserDefaults.standard.value(forKey: keyFBId) as? String else {
+            fatalError("[Error while sign in with fb] Facebook ID not found. Sign up with Facebook first.")
         }
+        
+        AF.request(
+            "\(baseUrl)/api/v1/facebook-login",
+            method: .post,
+            parameters: ["access-token": fbId]
+        ).responseDecodable(of: SignInResponse.self) { response in
+            if let err = response.error {
+                completion(.failure(err))
+                return
+            }
+            
+            if let data = response.value {
+                completion(.success(data))
+                UserDefaults.standard.setValue(data.token, forKey: keyAuthToken)
+                return
+            }
+        }.validate(statusCode: 200..<300)
+    }
+    
+    func fetchProfile(completion: @escaping(Result<ProfileResponse, AFError>) -> Void) {
+        let token = getToken()
+        
         AF.request("\(baseUrl)/api/v1/profile", headers: [.authorization(bearerToken: token)]).responseDecodable(of: ProfileResponse.self) { response in
             if let err = response.error {
                 completion(.failure(err))
@@ -71,9 +130,7 @@ struct ApiService {
     }
     
     func logOut(completion: @escaping () -> Void) {
-        guard let token = UserDefaults.standard.value(forKey: keyAuthToken) as? String else {
-            fatalError("No token found")
-        }
+        let token = getToken()
         
         AF.request("\(baseUrl)/api/v1/logout", headers: [.authorization(bearerToken: token)]).response { response in
             UserDefaults.standard.removeObject(forKey: keyAuthToken)
@@ -125,9 +182,7 @@ struct ApiService {
                                  date: String,
                                  completion: @escaping (Result<CinemaResponse, AFError>) -> Void) {
         let urlString = "\(baseUrl)/api/v1/cinema-day-timeslots?movie_id=\(movieId)&date=\(date)"
-        guard let token = UserDefaults.standard.value(forKey: keyAuthToken) as? String else {
-            fatalError("No token found")
-        }
+        let token = getToken()
         
         AF.request(urlString, headers: [.authorization(bearerToken: token)]).responseDecodable(of: CinemaResponse.self) { response in
             if let err = response.error {
@@ -149,9 +204,7 @@ struct ApiService {
         formatter.dateFormat = "yyyy-MM-dd"
         
         let urlString = "\(baseUrl)/api/v1/seat-plan?cinema_day_timeslot_id=\(timeslodId)&booking_date=\(formatter.string(from: date))"
-        guard let token = UserDefaults.standard.value(forKey: keyAuthToken) as? String else {
-            fatalError("No token found")
-        }
+        let token = getToken()
         
         AF.request(urlString, headers: [.authorization(bearerToken: token)]).responseDecodable(of: CinemaSeatResponse.self) { response in
             if let err = response.error {
@@ -166,9 +219,7 @@ struct ApiService {
     
     // MARK: - Snack List
     func fetchSnakcList(completion: @escaping (Result<SnackResponse, AFError>) -> Void) {
-        guard let token = UserDefaults.standard.value(forKey: keyAuthToken) as? String else {
-            fatalError("No token found")
-        }
+        let token = getToken()
         
         AF.request("\(baseUrl)/api/v1/snacks", headers: [.authorization(bearerToken: token)]).responseDecodable(of: SnackResponse.self) { response in
             if let err = response.error {
@@ -183,9 +234,7 @@ struct ApiService {
     
     // MARK: - Payment Methods
     func fetchPayments(completion: @escaping (Result<PaymentMethodResponse, AFError>) -> Void) {
-        guard let token = UserDefaults.standard.value(forKey: keyAuthToken) as? String else {
-            fatalError("No token found")
-        }
+        let token = getToken()
         
         AF.request("\(baseUrl)/api/v1/payment-methods", headers: [.authorization(bearerToken: token)]).responseDecodable(of: PaymentMethodResponse.self) { response in
             if let err = response.error {
@@ -204,9 +253,7 @@ struct ApiService {
                        expirationDate: String,
                        cvc: String,
                        completion: @escaping(Result<Array<Card>, AFError>) -> Void) {
-        guard let token = UserDefaults.standard.value(forKey: keyAuthToken) as? String else {
-            fatalError("No token found")
-        }
+        let token = getToken()
         
         let reqBody = [
             "card_number" : cardNo,
@@ -232,22 +279,21 @@ struct ApiService {
     
     // MARK: - Checkout
     func checkout(_ checkoutData: CheckoutData, completion: @escaping (Result<VoucherResponse, AFError>) -> Void) {
-        guard let token = UserDefaults.standard.value(forKey: keyAuthToken) as? String else {
-            fatalError("No token found")
-        }
+        let token = getToken()
         
         AF.request("\(baseUrl)/api/v1/checkout",
                    method: .post,
                    parameters: checkoutData,
                    encoder: JSONParameterEncoder.default,
-                   headers: [.authorization(bearerToken: token)]).responseDecodable(of: VoucherResponse.self) { response in
-                    if let err = response.error {
-                        completion(.failure(err))
-                    }
-                    
-                    if let response = response.value {
-                        completion(.success(response))
-                    }
-                   }
+                   headers: [.authorization(bearerToken: token)])
+            .responseDecodable(of: VoucherResponse.self) { response in
+                if let err = response.error {
+                    completion(.failure(err))
+                }
+                
+                if let response = response.value {
+                    completion(.success(response))
+                }
+            }
     }
 }

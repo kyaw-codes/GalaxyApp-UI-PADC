@@ -12,7 +12,7 @@ class VoucherVC: VerticallyScrollableVC<TicketCoordinator> {
     // MARK: - Views
     
     private let closeButton = CloseButton()
-    private let checkoutVM = CheckoutVM.instance
+    private let checkoutVM = GlobalVoucherModel.instance
     
     private let titleLabel: UILabel = {
         let lbl = UILabel(text: "", font: .poppinsMedium, size: 28, numberOfLines: 2, color: .galaxyBlack, alignment: .center)

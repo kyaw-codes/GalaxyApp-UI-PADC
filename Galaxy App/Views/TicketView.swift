@@ -18,7 +18,7 @@ class TicketView: UIView {
     private let bottomDashLineView = DashLine(color: .seatAvailable)
     private let infoSV = UIStackView(subViews: [], axis: .vertical)
 
-    var ticket: Ticket? {
+    var ticket: TicketVO? {
         didSet {
             guard let ticket = ticket else { return }
             imageView.sd_setImage(with: URL(string: "https://image.tmdb.org/t/p/original\(ticket.coverPath ?? "")"))

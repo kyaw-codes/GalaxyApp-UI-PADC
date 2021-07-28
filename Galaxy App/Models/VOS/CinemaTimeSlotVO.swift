@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CinemaTimeSlotVM {
+class CinemaTimeSlotVO {
    
     var cinemaID: Int?
     var cinema: String?

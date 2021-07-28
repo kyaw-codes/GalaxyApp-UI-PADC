@@ -12,7 +12,7 @@ class AdditionalServiceVC: UIViewController {
     var coordinator: TicketCoordinator?
     
     private var originalPrice: Double = 0.0
-    private let checkoutVM = CheckoutVM.instance
+    private let checkoutVM = GlobalVoucherModel.instance
     private var selectedSnacks = [SnackData]()
     private var snackList = [Snack]()
     private var paymentMethods = [PaymentMethod]()

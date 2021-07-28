@@ -10,3 +10,5 @@ import Foundation
 let baseUrl = "https://tmba.padc.com.mm"
 let baseImageUrl = "https://tmba.padc.com.mm"
 let keyAuthToken = "authToken"
+let keyFBId = "fbId"
+let OAUTH_ID_GOOGLE_SIGN_IN = "528408004483-gpql8rf0vsf4uqkak536mvjh9aeem62n.apps.googleusercontent.com"

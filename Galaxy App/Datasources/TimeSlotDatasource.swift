@@ -11,13 +11,13 @@ class TimeSlotDatasource: NSObject, UICollectionViewDataSource {
     
     var onCinemaTimeSlotSelected: ((Int, Int) -> Void)?
     
-    var cinemas = [CinemaTimeSlotVM]()
+    var cinemas = [CinemaTimeSlotVO]()
     
     private lazy var headerRegistration = UICollectionView.SupplementaryRegistration<MovieHeader>(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] header, _, indexPath in
         header.headerText = self?.cinemas[indexPath.section].cinema
     }
     
-    private lazy var cellRegistration = UICollectionView.CellRegistration<TimeslotCell, CinemaTimeSlotVM> { [weak self] cell, indexPath, item in
+    private lazy var cellRegistration = UICollectionView.CellRegistration<TimeslotCell, CinemaTimeSlotVO> { [weak self] cell, indexPath, item in
         cell.indexPath = indexPath
         cell.cinema = item
         cell.onCinemaTimeSlotSelected = self?.onCinemaTimeSlotSelected

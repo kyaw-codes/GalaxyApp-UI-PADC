@@ -10,19 +10,23 @@ import SnapKit
 
 class MainVC: UIViewController {
     
-    // MARK: - Properties
+    // MARK: - View Controllers
     
     let homeVC = HomeVC()
     let sideMenuVC = SideMenuVC()
     
+    // MARK: - Views
+    
     lazy var homeView = homeVC.view
     lazy var sideMenuView = sideMenuVC.view
     lazy var menuWidth: CGFloat = view.frame.width * 0.8
+    let spinner = UIActivityIndicatorView(style: .large)
+
+    // MARK: - Properties
     
-    private var isMenuVisible = false
-    private var contentLeadingConstraint: Constraint?
-    private var menuLeadingConstraint: Constraint?
-    var spinner = UIActivityIndicatorView(style: .large)
+    var isMenuVisible = false
+    var contentLeadingConstraint: Constraint?
+    var menuLeadingConstraint: Constraint?
 
     // MARK: - Lifecycles
     
@@ -31,36 +35,11 @@ class MainVC: UIViewController {
         
         view.backgroundColor = .galaxyViolet
         
-        add(homeVC)
-        homeView?.snp.makeConstraints({ (make) in
-            make.width.top.bottom.equalToSuperview()
-            contentLeadingConstraint = make.leading.equalToSuperview().constraint
-        })
-        
+        sideMenuVC.onLogoutTapped = onLogoutTapped
         homeVC.menuButton.addTarget(self, action: #selector(onMenuButtonTapped), for: .touchUpInside)
-        
-        add(sideMenuVC)
-        sideMenuVC.user = homeVC.user
-        sideMenuView?.snp.makeConstraints({ (make) in
-            make.top.bottom.equalToSuperview()
-            make.width.equalTo(menuWidth)
-            menuLeadingConstraint = make.leading.equalToSuperview().inset(-menuWidth).constraint
-        })
-        sideMenuVC.onLogoutTapped = { [weak self] in
-            self?.spinner.startAnimating()
-            ApiService.shared.logOut {
-                self?.spinner.stopAnimating()
-                self?.homeVC.coordinator?.logOut()
-            }
-        }
-        
-        spinner.color = .white
-        view.addSubview(spinner)
-        spinner.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-        }
-        
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:))))
+        
+        layoutViews()
     }
     
     // MARK: - Target Action Handlers
@@ -130,8 +109,12 @@ class MainVC: UIViewController {
         isMenuVisible = !isMenuVisible
     }
     
-    private func add(_ vc: UIViewController) {
-        addChild(vc)
-        view.addSubview(vc.view)
+    private func onLogoutTapped() {
+        spinner.startAnimating()
+        
+        ApiService.shared.logOut { [weak self] in
+            self?.spinner.stopAnimating()
+            self?.homeVC.coordinator?.logOut()
+        }
     }
 }

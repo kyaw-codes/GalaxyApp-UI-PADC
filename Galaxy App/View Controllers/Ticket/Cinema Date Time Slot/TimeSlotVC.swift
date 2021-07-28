@@ -17,8 +17,8 @@ class TimeSlotVC: UIViewController {
     private let timeslotDatasource = TimeSlotDatasource()
     
     private let dates = generateDates()
-    private let movieTypes: [MovieTypeVM] = [.init(title: "2D", isSelected: true), .init(title: "3D"), .init(title: "IMAX")]
-    private var timeslots = [CinemaTimeSlotVM]()
+    private let movieTypes: [MovieTypeVO] = [.init(title: "2D", isSelected: true), .init(title: "3D"), .init(title: "IMAX")]
+    private var timeslots = [CinemaTimeSlotVO]()
     
     // MARK: - Views
     
@@ -59,12 +59,12 @@ class TimeSlotVC: UIViewController {
         movieTypesCollectionView.onMovieTypeSelected = { vm in
             self.movieTypes.forEach { $0.isSelected = vm.title == $0.title }
             self.movieTypesCollectionView.reloadData()
-            CheckoutVM.instance.movieType = vm.title
+            GlobalVoucherModel.instance.movieType = vm.title
         }
         
         timeslotDatasource.onCinemaTimeSlotSelected = { [weak self] cinemaId, timeslotId in
-            CheckoutVM.instance.timeslodId = timeslotId
-            CheckoutVM.instance.cinemaId = cinemaId
+            GlobalVoucherModel.instance.timeslodId = timeslotId
+            GlobalVoucherModel.instance.cinemaId = cinemaId
             self?.timeslots.forEach { cinema in
                 cinema.timeslots.forEach { timeslot in
                     if timeslot.cinemaDayTimeslotID == timeslotId {
@@ -89,15 +89,15 @@ class TimeSlotVC: UIViewController {
     
     private func fetchTimeSlots(date: String) {
         spinner.startAnimating()
-        ApiService.shared.fetchCinemaDayTimeSlots(movieId: CheckoutVM.instance.movieId, date: date) { [weak self] result in
+        ApiService.shared.fetchCinemaDayTimeSlots(movieId: GlobalVoucherModel.instance.movieId, date: date) { [weak self] result in
             do {
                 let response = try result.get()
                 let cinemas = response.getCinemaVM() ?? []
                 cinemas[0].timeslots[0].isSelected = true
-                CheckoutVM.instance.cinemaName = cinemas[0].cinema ?? ""
-                CheckoutVM.instance.cinemaId = cinemas[0].cinemaID ?? -1
-                CheckoutVM.instance.bookingTime = cinemas[0].timeslots[0].startTime ?? ""
-                CheckoutVM.instance.timeslodId = cinemas[0].timeslots[0].cinemaDayTimeslotID ?? -1
+                GlobalVoucherModel.instance.cinemaName = cinemas[0].cinema ?? ""
+                GlobalVoucherModel.instance.cinemaId = cinemas[0].cinemaID ?? -1
+                GlobalVoucherModel.instance.bookingTime = cinemas[0].timeslots[0].startTime ?? ""
+                GlobalVoucherModel.instance.timeslodId = cinemas[0].timeslots[0].cinemaDayTimeslotID ?? -1
                 
                 self?.timeslots = cinemas
                 self?.timeslotDatasource.cinemas = cinemas

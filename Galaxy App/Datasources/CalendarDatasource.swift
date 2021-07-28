@@ -9,11 +9,11 @@ import UIKit
 
 class CalendarDatasource: NSObject, UICollectionViewDataSource {
     
-    var dates = [CalendarVM]()
+    var dates = [CalendarVO]()
     
-    var onDaySelected: ((CalendarVM) -> Void)?
+    var onDaySelected: ((CalendarVO) -> Void)?
     
-    lazy var cellRegistration = UICollectionView.CellRegistration<CalendarCell, CalendarVM> { [weak self] (cell, indexPath, calendar) in
+    lazy var cellRegistration = UICollectionView.CellRegistration<CalendarCell, CalendarVO> { [weak self] (cell, indexPath, calendar) in
         cell.calendar = calendar
         cell.onDaySelected = self?.onDaySelected
     }
