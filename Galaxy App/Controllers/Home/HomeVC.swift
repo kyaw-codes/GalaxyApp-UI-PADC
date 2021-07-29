@@ -22,11 +22,11 @@ class HomeVC: UIViewController {
 
     // MARK: - Views
     
-    private let navView = UIView(backgroundColor: .systemBackground)
+    let navView = UIView(backgroundColor: .systemBackground)
     
     let menuButton = UIButton(iconImage: #imageLiteral(resourceName: "menu"))
     
-    private lazy var collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewCompositionalLayout(sectionProvider: { [weak self] (section, _) -> NSCollectionLayoutSection? in
             if section == 0 {
                 return self?.createProfileSection()
@@ -39,7 +39,7 @@ class HomeVC: UIViewController {
         return cv
     }()
     
-    private let spinner = UIActivityIndicatorView(style: .large)
+    let spinner = UIActivityIndicatorView(style: .large)
     
     // MARK: - Lifecycles
     
@@ -52,7 +52,8 @@ class HomeVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = dataSource
         
-        fetchMovies()
+        fetchNowShowingMovies(then: setter(for: self, keyPath: \.dataSource.nowShowingMovies))
+        fetchComingMovies(then: setter(for: self, keyPath: \.dataSource.comingSoonMovies))
     }
     
     // MARK: - Private Helpers
@@ -85,67 +86,29 @@ class HomeVC: UIViewController {
         return section
     }
     
-    private func fetchMovies() {
+    private func fetchNowShowingMovies(then completion: @escaping ([Movie]) -> Void) {
         spinner.startAnimating()
         ApiService.shared.fetchMovies { [weak self] result in
             do {
                 let response = try result.get()
-                self?.dataSource.nowShowingMovies = response.movies ?? []
+                completion(response.movies ?? [])
                 self?.collectionView.reloadData()
                 self?.spinner.stopAnimating()
             } catch {
                 fatalError("[Error while fetching now showing movies] \(error)")
             }
         }
-        
+    }
+    
+    private func fetchComingMovies(then completion: @escaping ([Movie]) -> Void) {
         ApiService.shared.fetchMovies(movieType: ApiService.MovieFetchType.coming) { [weak self] result in
             do {
                 let response = try result.get()
-                self?.dataSource.comingSoonMovies = response.movies ?? []
+                completion(response.movies ?? [])
                 self?.collectionView.reloadData()
             } catch {
                 fatalError("[Error while fetching upcoming movies] \(error)")
             }
-        }
-    }
-}
-
-// MARK: - Layout Views
-
-extension HomeVC {
-
-    private func setupView() {
-        view.addSubview(spinner)
-        spinner.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-        }
-        
-        setupNavBar()
-        setupCollectionView()
-    }
-    
-    private func setupNavBar() {
-        let searchButton = UIButton(iconImage: #imageLiteral(resourceName: "search"))
-        let sv = UIStackView(arrangedSubviews: [menuButton, UIView(), searchButton])
-        navView.addSubview(sv)
-        sv.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().inset(40)
-            make.bottom.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(20)
-        }
-        
-        view.addSubview(navView)
-        navView.snp.makeConstraints { (make) in
-            make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(100)
-        }
-    }
-    
-    private func setupCollectionView() {
-        view.addSubview(collectionView)
-        collectionView.snp.makeConstraints { (make) in
-            make.top.equalTo(navView.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
         }
     }
 }

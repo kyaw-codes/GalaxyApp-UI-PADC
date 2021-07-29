@@ -10,11 +10,13 @@ import UIKit
 extension UIViewController {
     
     func setter<Object: AnyObject, Value>(
-        for object: Object,
-        keyPath: ReferenceWritableKeyPath<Object, Value>
+        for object: Object?,
+        keyPath: ReferenceWritableKeyPath<Object, Value>...
     ) -> (Value) -> Void {
         return { [weak object] value in
-            object?[keyPath: keyPath] = value
+            keyPath.forEach {
+                object?[keyPath: $0] = value
+            }
         }
     }
 }

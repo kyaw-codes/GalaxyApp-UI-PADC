@@ -47,6 +47,12 @@
 		026D3D1726A5C3210098B657 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026D3D1626A5C3210098B657 /* ApiService.swift */; };
 		026D3D1B26A5C5EF0098B657 /* FacebookAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026D3D1A26A5C5EF0098B657 /* FacebookAuth.swift */; };
 		026F227426B03DC600E6BEAE /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F227326B03DC600E6BEAE /* UIViewController+extension.swift */; };
+		026F227626B1880F00E6BEAE /* TimeSlotVC+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F227526B1880F00E6BEAE /* TimeSlotVC+Layout.swift */; };
+		026F227826B18AE400E6BEAE /* ChooseSeatVC+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F227726B18AE400E6BEAE /* ChooseSeatVC+Layout.swift */; };
+		026F227A26B18D0700E6BEAE /* AdditionalServiceVC+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F227926B18D0700E6BEAE /* AdditionalServiceVC+Layout.swift */; };
+		026F227C26B19EA900E6BEAE /* CheckoutVC+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F227B26B19EA900E6BEAE /* CheckoutVC+Layout.swift */; };
+		026F228126B19F4000E6BEAE /* CheckoutVC+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F228026B19F4000E6BEAE /* CheckoutVC+CollectionViewDelegate.swift */; };
+		026F228326B2613100E6BEAE /* HomeVC+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F228226B2613100E6BEAE /* HomeVC+Layout.swift */; };
 		027C3EF826590C4F0048EDCF /* ChooseSeatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027C3EF726590C4F0048EDCF /* ChooseSeatVC.swift */; };
 		0297781A2644327E00112F4E /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029778192644327E00112F4E /* UIImageView+Extensions.swift */; };
 		0297783D264437D700112F4E /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0297783C264437D700112F4E /* UILabel+Extensions.swift */; };
@@ -166,6 +172,12 @@
 		026D3D1626A5C3210098B657 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		026D3D1A26A5C5EF0098B657 /* FacebookAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuth.swift; sourceTree = "<group>"; };
 		026F227326B03DC600E6BEAE /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
+		026F227526B1880F00E6BEAE /* TimeSlotVC+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeSlotVC+Layout.swift"; sourceTree = "<group>"; };
+		026F227726B18AE400E6BEAE /* ChooseSeatVC+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChooseSeatVC+Layout.swift"; sourceTree = "<group>"; };
+		026F227926B18D0700E6BEAE /* AdditionalServiceVC+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdditionalServiceVC+Layout.swift"; sourceTree = "<group>"; };
+		026F227B26B19EA900E6BEAE /* CheckoutVC+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckoutVC+Layout.swift"; sourceTree = "<group>"; };
+		026F228026B19F4000E6BEAE /* CheckoutVC+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckoutVC+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		026F228226B2613100E6BEAE /* HomeVC+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeVC+Layout.swift"; sourceTree = "<group>"; };
 		027C3EF726590C4F0048EDCF /* ChooseSeatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSeatVC.swift; sourceTree = "<group>"; };
 		029778192644327E00112F4E /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		0297783C264437D700112F4E /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
@@ -280,17 +292,17 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		020E6A5E26442F8000636EE6 /* View Controllers */ = {
+		020E6A5E26442F8000636EE6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				02B29D2A266755B9000B78D6 /* VerticallyScrollableVC.swift */,
 				02AE45D1264429A400C7F031 /* GetStartedVC.swift */,
-				02DF7F3A2670B0C000D2F01C /* Side Menu */,
 				02BF24D726452D6B00B257D1 /* Authentication */,
+				02DF7F3A2670B0C000D2F01C /* Side Menu */,
 				02D635C0264858660027A0BA /* Home */,
 				024E04A326576BB600C9E164 /* Ticket */,
 			);
-			path = "View Controllers";
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		020E6A5F26442F8600636EE6 /* Views */ = {
@@ -433,10 +445,30 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		026F227D26B19EDA00E6BEAE /* AdditionalServiceVC */ = {
+			isa = PBXGroup;
+			children = (
+				02F88820265A505700C8D3F3 /* AdditionalServiceVC.swift */,
+				026F227926B18D0700E6BEAE /* AdditionalServiceVC+Layout.swift */,
+			);
+			path = AdditionalServiceVC;
+			sourceTree = "<group>";
+		};
+		026F227F26B19EFC00E6BEAE /* CheckoutVC */ = {
+			isa = PBXGroup;
+			children = (
+				02D6E42C265FE86E00F8791C /* CheckoutVC.swift */,
+				026F227B26B19EA900E6BEAE /* CheckoutVC+Layout.swift */,
+				026F228026B19F4000E6BEAE /* CheckoutVC+CollectionViewDelegate.swift */,
+			);
+			path = CheckoutVC;
+			sourceTree = "<group>";
+		};
 		027C3EF326590B9A0048EDCF /* Cinema Date Time Slot */ = {
 			isa = PBXGroup;
 			children = (
 				024E04A426576C5500C9E164 /* TimeSlotVC.swift */,
+				026F227526B1880F00E6BEAE /* TimeSlotVC+Layout.swift */,
 			);
 			path = "Cinema Date Time Slot";
 			sourceTree = "<group>";
@@ -445,6 +477,7 @@
 			isa = PBXGroup;
 			children = (
 				027C3EF726590C4F0048EDCF /* ChooseSeatVC.swift */,
+				026F227726B18AE400E6BEAE /* ChooseSeatVC+Layout.swift */,
 			);
 			path = "Choose Seat";
 			sourceTree = "<group>";
@@ -509,7 +542,7 @@
 				021C75B82646E36B00607FE1 /* Datasources */,
 				02D635AE2647E45F0027A0BA /* Models */,
 				020E6A5F26442F8600636EE6 /* Views */,
-				020E6A5E26442F8000636EE6 /* View Controllers */,
+				020E6A5E26442F8000636EE6 /* Controllers */,
 				020E6A6026442F8B00636EE6 /* Delegates */,
 				020E6A6126442F9200636EE6 /* Resources */,
 				02BF24CE2645034B00B257D1 /* Helpers */,
@@ -584,6 +617,7 @@
 			isa = PBXGroup;
 			children = (
 				021C75A6264684F700607FE1 /* HomeVC.swift */,
+				026F228226B2613100E6BEAE /* HomeVC+Layout.swift */,
 				02C9235F2668A8790092FF58 /* Movie Detail */,
 			);
 			path = Home;
@@ -601,8 +635,8 @@
 		02F88819265A4EF200C8D3F3 /* Issue Voucher */ = {
 			isa = PBXGroup;
 			children = (
-				02F88820265A505700C8D3F3 /* AdditionalServiceVC.swift */,
-				02D6E42C265FE86E00F8791C /* CheckoutVC.swift */,
+				026F227D26B19EDA00E6BEAE /* AdditionalServiceVC */,
+				026F227F26B19EFC00E6BEAE /* CheckoutVC */,
 				02B7DFF126AAA751006D8F81 /* AddCreditCardVC.swift */,
 				025CF5222663B92000D0112E /* VoucherVC.swift */,
 			);
@@ -772,6 +806,7 @@
 				024083EE266B6A6300F40F54 /* TabContentCell.swift in Sources */,
 				02BE1E1026A91C40006E554E /* GlobalVoucherModel.swift in Sources */,
 				02BE1E0A26A85F54006E554E /* GenreCollectionViewCell.swift in Sources */,
+				026F227826B18AE400E6BEAE /* ChooseSeatVC+Layout.swift in Sources */,
 				02D6E425265FDAC600F8791C /* PaymentMethodCell.swift in Sources */,
 				0238B95D264A4EC300EC352B /* FloatingMovieDescriptionVC.swift in Sources */,
 				02B7DFF426AAB64F006D8F81 /* CardResponse.swift in Sources */,
@@ -800,6 +835,7 @@
 				02BE1E1226A954F0006E554E /* Utilities.swift in Sources */,
 				02B29D2B266755B9000B78D6 /* VerticallyScrollableVC.swift in Sources */,
 				02D6E4412660AB3B00F8791C /* String+extensions.swift in Sources */,
+				026F228326B2613100E6BEAE /* HomeVC+Layout.swift in Sources */,
 				024083EB266B66E400F40F54 /* TabHeaderCell.swift in Sources */,
 				02BE1E1426A95941006E554E /* CalendarVO.swift in Sources */,
 				029847E326A7D32E0078F013 /* SignInResponse.swift in Sources */,
@@ -810,6 +846,7 @@
 				0238EBB8264564910049D670 /* OutlineTextField.swift in Sources */,
 				024E04BE2657A72B00C9E164 /* OutlineButton+extensions.swift in Sources */,
 				021C75AB264685E100607FE1 /* Coordinator.swift in Sources */,
+				026F227A26B18D0700E6BEAE /* AdditionalServiceVC+Layout.swift in Sources */,
 				023A7AAC26ABE6210037A00E /* AuthenticationFormVC+delegate.swift in Sources */,
 				02BE1E0626A84073006E554E /* MovieDetailResponse.swift in Sources */,
 				02BF24CC26446B8D00B257D1 /* OutlineButton.swift in Sources */,
@@ -824,11 +861,13 @@
 				029847DE26A7D2850078F013 /* Constants.swift in Sources */,
 				02AE45D0264429A400C7F031 /* SceneDelegate.swift in Sources */,
 				02F88814265A0CC700C8D3F3 /* SeatingPlanDatasource.swift in Sources */,
+				026F227C26B19EA900E6BEAE /* CheckoutVC+Layout.swift in Sources */,
 				02D99410266690CB00C7A00A /* CloseButton.swift in Sources */,
 				02D635BD264857AE0027A0BA /* MovieDetailVC.swift in Sources */,
 				02D6E42D265FE86E00F8791C /* CheckoutVC.swift in Sources */,
 				02B7DFEE26AA644A006D8F81 /* SnackResponse.swift in Sources */,
 				021C75A7264684F700607FE1 /* HomeVC.swift in Sources */,
+				026F228126B19F4000E6BEAE /* CheckoutVC+CollectionViewDelegate.swift in Sources */,
 				02F88817265A167C00C8D3F3 /* DashView.swift in Sources */,
 				023A7AA026ABBC030037A00E /* FacebookSignUpRequestBody.swift in Sources */,
 				02BE1E1B26A9660A006E554E /* MovieTypeVO.swift in Sources */,
@@ -836,6 +875,7 @@
 				02A8E2A0265415C2009F1C5E /* IMDbRatingSV.swift in Sources */,
 				02D6E43B2660106F00F8791C /* CreditCardDatasource.swift in Sources */,
 				020032EE265625AB00C71FDF /* CastCell.swift in Sources */,
+				026F227626B1880F00E6BEAE /* TimeSlotVC+Layout.swift in Sources */,
 				021C75BF2646E3D100607FE1 /* ProfileCell.swift in Sources */,
 				020E6A6426442FBB00636EE6 /* UIColor+Extensions.swift in Sources */,
 				024E04A826576CA400C9E164 /* TicketCoordinator.swift in Sources */,
