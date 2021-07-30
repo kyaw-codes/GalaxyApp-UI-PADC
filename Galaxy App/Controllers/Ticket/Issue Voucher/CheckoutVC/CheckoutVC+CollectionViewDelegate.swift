@@ -25,7 +25,7 @@ extension CheckoutVC: UICollectionViewDelegateFlowLayout {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let index = Int(abs(round(scrollView.contentOffset.x / (collectionView.frame.width * 0.8))))
         collectionView.animateVisibleCells()
-        checkoutVM.cardId = cards[index].id ?? -1
+        voucherModel.cardId = cards[index].id ?? -1
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

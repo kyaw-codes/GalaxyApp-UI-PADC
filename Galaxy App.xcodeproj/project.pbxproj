@@ -25,7 +25,7 @@
 		0238EBB0264534C30049D670 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBAF264534C30049D670 /* TabBar.swift */; };
 		0238EBB8264564910049D670 /* OutlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBB7264564910049D670 /* OutlineTextField.swift */; };
 		0238EBBB2646430D0049D670 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBBA2646430D0049D670 /* UITextField+Extensions.swift */; };
-		023A7AA026ABBC030037A00E /* FacebookSignUpRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A7A9F26ABBC030037A00E /* FacebookSignUpRequestBody.swift */; };
+		023A7AA026ABBC030037A00E /* FbSignUpRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A7A9F26ABBC030037A00E /* FbSignUpRequestBody.swift */; };
 		023A7AA226ABBDD80037A00E /* GoogleAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A7AA126ABBDD80037A00E /* GoogleAuth.swift */; };
 		023A7AA426ABE18C0037A00E /* MainVC+layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A7AA326ABE18C0037A00E /* MainVC+layout.swift */; };
 		023A7AA626ABE4000037A00E /* SideMenuVC+layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A7AA526ABE4000037A00E /* SideMenuVC+layout.swift */; };
@@ -44,7 +44,7 @@
 		024E04BE2657A72B00C9E164 /* OutlineButton+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04BD2657A72B00C9E164 /* OutlineButton+extensions.swift */; };
 		025CF5202663AA2C00D0112E /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025CF51F2663AA2C00D0112E /* TicketView.swift */; };
 		025CF5232663B92000D0112E /* VoucherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025CF5222663B92000D0112E /* VoucherVC.swift */; };
-		026D3D1726A5C3210098B657 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026D3D1626A5C3210098B657 /* ApiService.swift */; };
+		026D3D1726A5C3210098B657 /* ApiServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026D3D1626A5C3210098B657 /* ApiServiceImpl.swift */; };
 		026D3D1B26A5C5EF0098B657 /* FacebookAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026D3D1A26A5C5EF0098B657 /* FacebookAuth.swift */; };
 		026F227426B03DC600E6BEAE /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F227326B03DC600E6BEAE /* UIViewController+extension.swift */; };
 		026F227626B1880F00E6BEAE /* TimeSlotVC+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F227526B1880F00E6BEAE /* TimeSlotVC+Layout.swift */; };
@@ -53,6 +53,7 @@
 		026F227C26B19EA900E6BEAE /* CheckoutVC+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F227B26B19EA900E6BEAE /* CheckoutVC+Layout.swift */; };
 		026F228126B19F4000E6BEAE /* CheckoutVC+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F228026B19F4000E6BEAE /* CheckoutVC+CollectionViewDelegate.swift */; };
 		026F228326B2613100E6BEAE /* HomeVC+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F228226B2613100E6BEAE /* HomeVC+Layout.swift */; };
+		0279BCC126B30DF200DA6DA8 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0279BCC026B30DF200DA6DA8 /* ApiService.swift */; };
 		027C3EF826590C4F0048EDCF /* ChooseSeatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027C3EF726590C4F0048EDCF /* ChooseSeatVC.swift */; };
 		0297781A2644327E00112F4E /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029778192644327E00112F4E /* UIImageView+Extensions.swift */; };
 		0297783D264437D700112F4E /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0297783C264437D700112F4E /* UILabel+Extensions.swift */; };
@@ -104,7 +105,6 @@
 		02D635A82647E3270027A0BA /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D635A72647E3270027A0BA /* MovieCell.swift */; };
 		02D635AC2647E37E0027A0BA /* MovieHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D635AB2647E37E0027A0BA /* MovieHeader.swift */; };
 		02D635B526481E1A0027A0BA /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D635B426481E1A0027A0BA /* Bundle+Extensions.swift */; };
-		02D635BA264821D40027A0BA /* Movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 02D635B9264821D40027A0BA /* Movies.json */; };
 		02D635BD264857AE0027A0BA /* MovieDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D635BC264857AE0027A0BA /* MovieDetailVC.swift */; };
 		02D635C3264861170027A0BA /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D635C2264861170027A0BA /* SideMenuVC.swift */; };
 		02D6E41D265FD08300F8791C /* PromocodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D6E41C265FD08300F8791C /* PromocodeCell.swift */; };
@@ -150,7 +150,7 @@
 		0238EBAF264534C30049D670 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		0238EBB7264564910049D670 /* OutlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineTextField.swift; sourceTree = "<group>"; };
 		0238EBBA2646430D0049D670 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
-		023A7A9F26ABBC030037A00E /* FacebookSignUpRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookSignUpRequestBody.swift; sourceTree = "<group>"; };
+		023A7A9F26ABBC030037A00E /* FbSignUpRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FbSignUpRequestBody.swift; sourceTree = "<group>"; };
 		023A7AA126ABBDD80037A00E /* GoogleAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuth.swift; sourceTree = "<group>"; };
 		023A7AA326ABE18C0037A00E /* MainVC+layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+layout.swift"; sourceTree = "<group>"; };
 		023A7AA526ABE4000037A00E /* SideMenuVC+layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SideMenuVC+layout.swift"; sourceTree = "<group>"; };
@@ -169,7 +169,7 @@
 		024E04BD2657A72B00C9E164 /* OutlineButton+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutlineButton+extensions.swift"; sourceTree = "<group>"; };
 		025CF51F2663AA2C00D0112E /* TicketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		025CF5222663B92000D0112E /* VoucherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherVC.swift; sourceTree = "<group>"; };
-		026D3D1626A5C3210098B657 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		026D3D1626A5C3210098B657 /* ApiServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceImpl.swift; sourceTree = "<group>"; };
 		026D3D1A26A5C5EF0098B657 /* FacebookAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuth.swift; sourceTree = "<group>"; };
 		026F227326B03DC600E6BEAE /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
 		026F227526B1880F00E6BEAE /* TimeSlotVC+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeSlotVC+Layout.swift"; sourceTree = "<group>"; };
@@ -178,6 +178,7 @@
 		026F227B26B19EA900E6BEAE /* CheckoutVC+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckoutVC+Layout.swift"; sourceTree = "<group>"; };
 		026F228026B19F4000E6BEAE /* CheckoutVC+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckoutVC+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		026F228226B2613100E6BEAE /* HomeVC+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeVC+Layout.swift"; sourceTree = "<group>"; };
+		0279BCC026B30DF200DA6DA8 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		027C3EF726590C4F0048EDCF /* ChooseSeatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSeatVC.swift; sourceTree = "<group>"; };
 		029778192644327E00112F4E /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		0297783C264437D700112F4E /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
@@ -231,7 +232,6 @@
 		02D635A72647E3270027A0BA /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		02D635AB2647E37E0027A0BA /* MovieHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHeader.swift; sourceTree = "<group>"; };
 		02D635B426481E1A0027A0BA /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
-		02D635B9264821D40027A0BA /* Movies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Movies.json; sourceTree = "<group>"; };
 		02D635BC264857AE0027A0BA /* MovieDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailVC.swift; sourceTree = "<group>"; };
 		02D635C2264861170027A0BA /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		02D6E41C265FD08300F8791C /* PromocodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeCell.swift; sourceTree = "<group>"; };
@@ -300,6 +300,7 @@
 				02BF24D726452D6B00B257D1 /* Authentication */,
 				02DF7F3A2670B0C000D2F01C /* Side Menu */,
 				02D635C0264858660027A0BA /* Home */,
+				02C9235F2668A8790092FF58 /* Movie Detail */,
 				024E04A326576BB600C9E164 /* Ticket */,
 			);
 			path = Controllers;
@@ -308,6 +309,7 @@
 		020E6A5F26442F8600636EE6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0279BCC326B3100C00DA6DA8 /* Collection Views */,
 				02D635AA2647E36A0027A0BA /* Headers */,
 				021C75BD2646E3C500607FE1 /* Cells */,
 				02BF24CB26446B8D00B257D1 /* OutlineButton.swift */,
@@ -315,22 +317,13 @@
 				02B29D3126677C9B000B78D6 /* SocialButton.swift */,
 				02D9940B26668EE400C7A00A /* BackButton.swift */,
 				02D9940F266690CB00C7A00A /* CloseButton.swift */,
+				02F88825265AA8B600C8D3F3 /* CountButtonGroup.swift */,
 				0238EBAF264534C30049D670 /* TabBar.swift */,
-				024083F2266C842C00F40F54 /* TabHeader.swift */,
 				0238EBB7264564910049D670 /* OutlineTextField.swift */,
 				02A8E29F265415C2009F1C5E /* IMDbRatingSV.swift */,
 				02F88809265A098F00C8D3F3 /* ProjectorView.swift */,
-				02F8880C265A0B9F00C8D3F3 /* SeatingPlanCollectionView.swift */,
 				02F88816265A167C00C8D3F3 /* DashView.swift */,
-				02F88825265AA8B600C8D3F3 /* CountButtonGroup.swift */,
-				021683DF2671CD3C007072DD /* SnackCell.swift */,
-				02D6E41C265FD08300F8791C /* PromocodeCell.swift */,
-				02D6E424265FDAC600F8791C /* PaymentMethodCell.swift */,
 				025CF51F2663AA2C00D0112E /* TicketView.swift */,
-				02D994132666921F00C7A00A /* CalendarCollectionView.swift */,
-				02DF7F3B2670B22C00D2F01C /* TimeSlotCollectionView.swift */,
-				021683DD2671CA9D007072DD /* AdditionalServiceCollectionView.swift */,
-				02BE1E1826A96367006E554E /* MovieTypeCollectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -347,6 +340,7 @@
 		020E6A6126442F9200636EE6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				029778202644357B00112F4E /* Fonts */,
 				02AE45D6264429AA00C7F031 /* Assets.xcassets */,
 				02AE45D8264429AA00C7F031 /* LaunchScreen.storyboard */,
 			);
@@ -382,6 +376,9 @@
 		021C75BD2646E3C500607FE1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				02D6E424265FDAC600F8791C /* PaymentMethodCell.swift */,
+				021683DF2671CD3C007072DD /* SnackCell.swift */,
+				02D6E41C265FD08300F8791C /* PromocodeCell.swift */,
 				021C75BE2646E3D100607FE1 /* ProfileCell.swift */,
 				02D635A72647E3270027A0BA /* MovieCell.swift */,
 				020032ED265625AB00C71FDF /* CastCell.swift */,
@@ -428,7 +425,7 @@
 		024E04A326576BB600C9E164 /* Ticket */ = {
 			isa = PBXGroup;
 			children = (
-				027C3EF326590B9A0048EDCF /* Cinema Date Time Slot */,
+				027C3EF326590B9A0048EDCF /* DateTimeSlot */,
 				027C3EF526590BB00048EDCF /* Choose Seat */,
 				02F88819265A4EF200C8D3F3 /* Issue Voucher */,
 			);
@@ -438,7 +435,8 @@
 		026D3D1526A5C30D0098B657 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				026D3D1626A5C3210098B657 /* ApiService.swift */,
+				0279BCC026B30DF200DA6DA8 /* ApiService.swift */,
+				026D3D1626A5C3210098B657 /* ApiServiceImpl.swift */,
 				026D3D1A26A5C5EF0098B657 /* FacebookAuth.swift */,
 				023A7AA126ABBDD80037A00E /* GoogleAuth.swift */,
 			);
@@ -464,13 +462,33 @@
 			path = CheckoutVC;
 			sourceTree = "<group>";
 		};
-		027C3EF326590B9A0048EDCF /* Cinema Date Time Slot */ = {
+		0279BCC226B30EE200DA6DA8 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		0279BCC326B3100C00DA6DA8 /* Collection Views */ = {
+			isa = PBXGroup;
+			children = (
+				02D994132666921F00C7A00A /* CalendarCollectionView.swift */,
+				02DF7F3B2670B22C00D2F01C /* TimeSlotCollectionView.swift */,
+				021683DD2671CA9D007072DD /* AdditionalServiceCollectionView.swift */,
+				02BE1E1826A96367006E554E /* MovieTypeCollectionView.swift */,
+				024083F2266C842C00F40F54 /* TabHeader.swift */,
+				02F8880C265A0B9F00C8D3F3 /* SeatingPlanCollectionView.swift */,
+			);
+			path = "Collection Views";
+			sourceTree = "<group>";
+		};
+		027C3EF326590B9A0048EDCF /* DateTimeSlot */ = {
 			isa = PBXGroup;
 			children = (
 				024E04A426576C5500C9E164 /* TimeSlotVC.swift */,
 				026F227526B1880F00E6BEAE /* TimeSlotVC+Layout.swift */,
 			);
-			path = "Cinema Date Time Slot";
+			path = DateTimeSlot;
 			sourceTree = "<group>";
 		};
 		027C3EF526590BB00048EDCF /* Choose Seat */ = {
@@ -512,7 +530,7 @@
 				02B7DFEF26AA64E9006D8F81 /* PaymentMethodResponse.swift */,
 				02B7DFF326AAB64F006D8F81 /* CardResponse.swift */,
 				02B7DFF526AAF2E5006D8F81 /* VoucherResponse.swift */,
-				023A7A9F26ABBC030037A00E /* FacebookSignUpRequestBody.swift */,
+				023A7A9F26ABBC030037A00E /* FbSignUpRequestBody.swift */,
 			);
 			path = "Network Model";
 			sourceTree = "<group>";
@@ -539,16 +557,14 @@
 			isa = PBXGroup;
 			children = (
 				026D3D1526A5C30D0098B657 /* Services */,
+				0279BCC226B30EE200DA6DA8 /* Repository */,
 				021C75B82646E36B00607FE1 /* Datasources */,
 				02D635AE2647E45F0027A0BA /* Models */,
 				020E6A5F26442F8600636EE6 /* Views */,
 				020E6A5E26442F8000636EE6 /* Controllers */,
-				020E6A6026442F8B00636EE6 /* Delegates */,
 				020E6A6126442F9200636EE6 /* Resources */,
 				02BF24CE2645034B00B257D1 /* Helpers */,
-				029778202644357B00112F4E /* Fonts */,
 				02AE45DB264429AA00C7F031 /* Info.plist */,
-				02D635B9264821D40027A0BA /* Movies.json */,
 			);
 			path = "Galaxy App";
 			sourceTree = "<group>";
@@ -567,9 +583,11 @@
 		02BF24CE2645034B00B257D1 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				020E6A6026442F8B00636EE6 /* Delegates */,
 				021C75A9264685D500607FE1 /* Coordinators */,
 				020E6A5D26442F7C00636EE6 /* Extensions */,
 				02BE1E1126A954F0006E554E /* Utilities.swift */,
+				029847DD26A7D2850078F013 /* Constants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -605,7 +623,6 @@
 		02D635AE2647E45F0027A0BA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				029847DD26A7D2850078F013 /* Constants.swift */,
 				02BE1E0F26A91C40006E554E /* GlobalVoucherModel.swift */,
 				02BE1E1726A95DF5006E554E /* VOS */,
 				029847DF26A7D2890078F013 /* Network Model */,
@@ -618,7 +635,6 @@
 			children = (
 				021C75A6264684F700607FE1 /* HomeVC.swift */,
 				026F228226B2613100E6BEAE /* HomeVC+Layout.swift */,
-				02C9235F2668A8790092FF58 /* Movie Detail */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -672,6 +688,7 @@
 				02AE45C7264429A400C7F031 /* Frameworks */,
 				02AE45C8264429A400C7F031 /* Resources */,
 				B5302A79A810550B478B4FA9 /* [CP] Embed Pods Frameworks */,
+				054C03E9119BF96513E9D22C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -721,7 +738,6 @@
 			files = (
 				029778442644400E00112F4E /* OFL.txt in Resources */,
 				02BF24C2264441AD00B257D1 /* Poppins-Light.ttf in Resources */,
-				02D635BA264821D40027A0BA /* Movies.json in Resources */,
 				02BF24C4264441AD00B257D1 /* Poppins-Regular.ttf in Resources */,
 				02BF24C5264441AD00B257D1 /* Poppins-Bold.ttf in Resources */,
 				02BF24C1264441AD00B257D1 /* Poppins-SemiBold.ttf in Resources */,
@@ -736,6 +752,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		054C03E9119BF96513E9D22C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Galaxy App/Pods-Galaxy App-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Galaxy App/Pods-Galaxy App-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Galaxy App/Pods-Galaxy App-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B5302A79A810550B478B4FA9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -805,6 +838,7 @@
 				02BE1E1626A95DEA006E554E /* CinemaResponse.swift in Sources */,
 				024083EE266B6A6300F40F54 /* TabContentCell.swift in Sources */,
 				02BE1E1026A91C40006E554E /* GlobalVoucherModel.swift in Sources */,
+				0279BCC126B30DF200DA6DA8 /* ApiService.swift in Sources */,
 				02BE1E0A26A85F54006E554E /* GenreCollectionViewCell.swift in Sources */,
 				026F227826B18AE400E6BEAE /* ChooseSeatVC+Layout.swift in Sources */,
 				02D6E425265FDAC600F8791C /* PaymentMethodCell.swift in Sources */,
@@ -812,7 +846,7 @@
 				02B7DFF426AAB64F006D8F81 /* CardResponse.swift in Sources */,
 				029847E726A8342B0078F013 /* MovieResponse.swift in Sources */,
 				02B7DFF626AAF2E5006D8F81 /* VoucherResponse.swift in Sources */,
-				026D3D1726A5C3210098B657 /* ApiService.swift in Sources */,
+				026D3D1726A5C3210098B657 /* ApiServiceImpl.swift in Sources */,
 				021683E22671DB96007072DD /* AdditionalServiceDatasource.swift in Sources */,
 				02F88821265A505700C8D3F3 /* AdditionalServiceVC.swift in Sources */,
 				02BE1E1D26A971D7006E554E /* CinemaTimeSlotVO.swift in Sources */,
@@ -869,7 +903,7 @@
 				021C75A7264684F700607FE1 /* HomeVC.swift in Sources */,
 				026F228126B19F4000E6BEAE /* CheckoutVC+CollectionViewDelegate.swift in Sources */,
 				02F88817265A167C00C8D3F3 /* DashView.swift in Sources */,
-				023A7AA026ABBC030037A00E /* FacebookSignUpRequestBody.swift in Sources */,
+				023A7AA026ABBC030037A00E /* FbSignUpRequestBody.swift in Sources */,
 				02BE1E1B26A9660A006E554E /* MovieTypeVO.swift in Sources */,
 				021683E02671CD3C007072DD /* SnackCell.swift in Sources */,
 				02A8E2A0265415C2009F1C5E /* IMDbRatingSV.swift in Sources */,

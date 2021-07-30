@@ -12,10 +12,16 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
     // MARK: - Properties
     
     private let datasource = SeatingPlanDatasource()
-    private var seats = [[Seat]]()
+    
+    private var seats = [[Seat]]() {
+        didSet {
+            datasource.seats = seats
+        }
+    }
+    
     private var selectedSeats = [String]()
     private var ticketPrice: Double = 0.0
-    private var originalPrice: Double = 0.0
+    private var priceBeforeThisVC: Double = 0.0
 
     // MARK: - Views
     
@@ -47,7 +53,7 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        originalPrice = checkoutVM.totalPrice
+        priceBeforeThisVC = checkoutVM.totalPrice
     }
 
     override func viewDidLoad() {
@@ -60,7 +66,7 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
         datasource.onSeatTapped = onSeatTapped
 
         setupViews()
-        fetchSeatData()
+        fetchSeatData(then: setter(for: self, keyPath: \.seats))
 
         backButton.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
         buyTicketButton.addTarget(self, action: #selector(handleBuyTapped), for: .touchUpInside)
@@ -79,14 +85,13 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
     
     // MARK: - Private Helpers
     
-    private func fetchSeatData() {
+    private func fetchSeatData(then completion: @escaping ([[Seat]]) -> Void) {
         let checkoutVM = GlobalVoucherModel.instance
         spinner.startAnimating()
-        ApiService.shared.fetchSeatPlan(timeslodId: checkoutVM.timeslodId, date: checkoutVM.bookingDate) { [weak self] result in
+        ApiServiceImpl.shared.fetchSeatPlan(timeslodId: checkoutVM.timeslodId, date: checkoutVM.bookingDate) { [weak self] result in
             do {
                 let response = try result.get()
-                self?.datasource.seats = response.data ?? [[]]
-                self?.seats = response.data ?? [[]]
+                completion(response.data ?? [[]])
                 self?.seatCollectionView.reloadData()
                 self?.spinner.stopAnimating()
             } catch {
@@ -111,7 +116,7 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
         seatsNoLabel.text = selectedSeats.joined(separator: ",")
         buyTicketButton.setTitle("Buy Ticket for $\(ticketPrice)", for: .normal)
         checkoutVM.seatNumbers = selectedSeats.joined(separator: ",")
-        checkoutVM.totalPrice = originalPrice + ticketPrice
+        checkoutVM.totalPrice = priceBeforeThisVC + ticketPrice
     }
     
     // MARK: - Action Handlers

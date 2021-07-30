@@ -14,5 +14,5 @@ target 'Galaxy App' do
     pod 'SDWebImage', '~> 5.0'
     pod 'YouTubePlayer'
     pod 'FBSDKLoginKit'
-    pod 'GoogleSignIn'
+    pod 'GoogleSignIn', '~> 5.0.2'
 end

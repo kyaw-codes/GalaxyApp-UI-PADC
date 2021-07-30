@@ -14,9 +14,13 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
     // MARK: - Properties
     
     private let datasource = CreditCardDatasource()
-    let checkoutVM = GlobalVoucherModel.instance
+    let voucherModel = GlobalVoucherModel.instance
     
-    var cards = [Card]()
+    var cards = [Card]() {
+        didSet {
+            datasource.cards = cards
+        }
+    }
     
     // MARK: - Views
     
@@ -37,7 +41,7 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
     
     let confirmButton = CTAButton(title: "Confirm")
     
-    lazy var paymentAmountLabel = UILabel(text: "$ \(checkoutVM.totalPrice)", font: .poppinsSemiBold, size: 32, color: .galaxyBlack)
+    lazy var paymentAmountLabel = UILabel(text: "$ \(voucherModel.totalPrice)", font: .poppinsSemiBold, size: 32, color: .galaxyBlack)
     
     let cardNoField = OutlineTextField(placeholder: "1234.5678.9101.8014", keyboardType: .numberPad)
     let cardHolderField = OutlineTextField(placeholder: "Craig Federighi", keyboardType: .default)
@@ -74,7 +78,7 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
         confirmButton.addTarget(self, action: #selector(handleConfirmTapped), for: .touchUpInside)
         addNewCardButton.addTarget(self, action: #selector(handleAddNewCardTapped), for: .touchUpInside)
         
-        fetchCards()
+        fetchCards(then: setter(for: self, keyPath: \.cards))
     }
     
     override func viewDidLayoutSubviews() {
@@ -92,22 +96,22 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
             .ease(.easeInOutCirc)
     }
     
-    private func fetchCards() {
+    private func fetchCards(then completion: @escaping ([Card]) -> Void) {
         spinner.startAnimating()
-        ApiService.shared.fetchProfile { [weak self] result in
+        ApiServiceImpl.shared.fetchProfile { [weak self] result in
             do {
                 let response = try result.get()
                 if let cards = response.data?.cards {
-                    self?.cards = cards
-                    self?.datasource.cards = cards
+                    completion(cards)
                     self?.collectionView.reloadData()
                     self?.spinner.stopAnimating()
+
                     if cards.count > 0 {
-                        self?.checkoutVM.cardId = cards[0].id ?? -1
+                        self?.voucherModel.cardId = cards[0].id ?? -1
                     }
                 }
             } catch {
-                fatalError("[Error while fetching profile] \(error)")
+                print("[Error while fetching profile] \(error)")
             }
         }
     }
@@ -119,18 +123,28 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
     }
     
     @objc private func handleConfirmTapped() {
-        let body = CheckoutData(cinemaDayTimeslotID: checkoutVM.timeslodId, row: "A", seatNumber: checkoutVM.seatNumbers, bookingDate: checkoutVM.bookingDate.getApiDateString(), totalPrice: Int(checkoutVM.totalPrice), movieID: checkoutVM.movieId, cardID: checkoutVM.cardId, cinemaID: checkoutVM.cinemaId, snacks: checkoutVM.snack)
+        let reqBody = CheckoutData(
+            cinemaDayTimeslotID: voucherModel.timeslodId,
+            row: "A",
+            seatNumber: voucherModel.seatNumbers,
+            bookingDate: voucherModel.bookingDate.getApiDateString(),
+            totalPrice: Int(voucherModel.totalPrice),
+            movieID: voucherModel.movieId,
+            cardID: voucherModel.cardId,
+            cinemaID: voucherModel.cinemaId,
+            snacks: voucherModel.snack
+        )
         
-        ApiService.shared.checkout(body) { [weak self] result in
+        ApiServiceImpl.shared.checkout(reqBody) { [weak self] result in
             do {
                 let response = try result.get()
-                self?.checkoutVM.bookingNo = response.data?.bookingNo ?? ""
-                self?.checkoutVM.startTime = response.data?.timeslot?.startTime ?? ""
-                self?.checkoutVM.row = response.data?.row ?? ""
+                self?.voucherModel.bookingNo = response.data?.bookingNo ?? ""
+                self?.voucherModel.startTime = response.data?.timeslot?.startTime ?? ""
+                self?.voucherModel.row = response.data?.row ?? ""
                 
                 self?.coordinator?.issueVoucher()
             } catch {
-                fatalError("[Error while issuing voucher] \(error)")
+                print("[Error while issuing voucher] \(error)")
             }
         }
     }
@@ -139,8 +153,10 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
         let formVC = AddCreditCardVC()
         formVC.modalTransitionStyle = .crossDissolve
         formVC.modalPresentationStyle = .overCurrentContext
+        
         formVC.onNewCardAdded = { [weak self] in
-            self?.fetchCards()
+            guard let self = self else { return }
+            self.fetchCards(then: self.setter(for: self, keyPath: \.cards))
         }
         self.navigationController?.present(formVC, animated: true, completion: nil)
     }

@@ -88,7 +88,7 @@ class HomeVC: UIViewController {
     
     private func fetchNowShowingMovies(then completion: @escaping ([Movie]) -> Void) {
         spinner.startAnimating()
-        ApiService.shared.fetchMovies { [weak self] result in
+        ApiServiceImpl.shared.fetchMovies { [weak self] result in
             do {
                 let response = try result.get()
                 completion(response.movies ?? [])
@@ -101,7 +101,7 @@ class HomeVC: UIViewController {
     }
     
     private func fetchComingMovies(then completion: @escaping ([Movie]) -> Void) {
-        ApiService.shared.fetchMovies(movieType: ApiService.MovieFetchType.coming) { [weak self] result in
+        ApiServiceImpl.shared.fetchMovies(movieType: MovieFetchType.coming) { [weak self] result in
             do {
                 let response = try result.get()
                 completion(response.movies ?? [])

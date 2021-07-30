@@ -19,8 +19,8 @@ PODS:
     - FBSDKCoreKit_Basics (~> 11.0.1)
   - FloatingPanel (2.3.0)
   - Gemini (1.4.0)
-  - GoogleSignIn (6.0.0):
-    - AppAuth (~> 1.4)
+  - GoogleSignIn (5.0.2):
+    - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
   - GTMAppAuth (1.2.2):
@@ -39,7 +39,7 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - FloatingPanel
   - Gemini
-  - GoogleSignIn
+  - GoogleSignIn (~> 5.0.2)
   - SDWebImage (~> 5.0)
   - SnapKit (~> 5.0.0)
   - Wormholy
@@ -70,7 +70,7 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 8243e04c590c38b85c69fcf09d1234514d2475c3
   FloatingPanel: 373478513a197cf140abd219ca9a9c049967332b
   Gemini: 4ad915cca8805577fe3021e02feeca2b77dcdbfc
-  GoogleSignIn: b7779a809e1dfb32ebb43131b10d8bfcd53c1383
+  GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
@@ -78,6 +78,6 @@ SPEC CHECKSUMS:
   Wormholy: 2e70f64227e010d363f8d33268369f77faf12471
   YouTubePlayer: 2b5f2830d8f9b2cde942083211291e382c9e6bd5
 
-PODFILE CHECKSUM: f769171b33bc36850b0a3744b5445d4d53c011a2
+PODFILE CHECKSUM: 28e5528ec7914b7234505403ec72fc56939500b0
 
 COCOAPODS: 1.10.1

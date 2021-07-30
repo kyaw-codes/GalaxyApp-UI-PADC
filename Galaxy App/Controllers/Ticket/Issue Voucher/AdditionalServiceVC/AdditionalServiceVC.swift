@@ -14,8 +14,19 @@ class AdditionalServiceVC: UIViewController {
     private var priceBeforeThisVC: Double = 0.0
     private let checkoutVM = GlobalVoucherModel.instance
     private var selectedSnacks = [SnackData]()
-    private var snackList = [Snack]()
-    private var paymentMethods = [PaymentMethod]()
+    
+    private var snackList = [Snack]() {
+        didSet {
+            dataSource.snackList = snackList
+        }
+    }
+    
+    private var paymentMethods = [PaymentMethod]() {
+        didSet {
+            dataSource.paymentMethods = paymentMethods
+        }
+    }
+    
     private let dataSource = AdditionalServiceDatasource()
     
     // MARK: - Views
@@ -52,8 +63,8 @@ class AdditionalServiceVC: UIViewController {
         backButton.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
         payButton.addTarget(self, action: #selector(onPayTap), for: .touchUpInside)
         
-        fetchSnacks(then: setter(for: self, keyPath: \.snackList, \.dataSource.snackList))
-        fetchPaymentMethods(then: setter(for: self, keyPath: \.paymentMethods, \.dataSource.paymentMethods))
+        fetchSnacks(then: setter(for: self, keyPath: \.snackList))
+        fetchPaymentMethods(then: setter(for: self, keyPath: \.paymentMethods))
     }
     
     // MARK: - Action Handlers
@@ -70,7 +81,7 @@ class AdditionalServiceVC: UIViewController {
     
     private func fetchSnacks(then: @escaping ([Snack]) -> Void) {
         spinner.startAnimating()
-        ApiService.shared.fetchSnakcList { [weak self] result in
+        ApiServiceImpl.shared.fetchSnakcList { [weak self] result in
             do {
                 let response = try result.get()
                 then(response.data ?? [])
@@ -84,7 +95,7 @@ class AdditionalServiceVC: UIViewController {
     
     private func fetchPaymentMethods(then: @escaping ([PaymentMethod]) -> Void) {
         spinner.startAnimating()
-        ApiService.shared.fetchPayments { [weak self] result in
+        ApiServiceImpl.shared.fetchPayments { [weak self] result in
             do {
                 let response = try result.get()
                 then(response.data ?? [])

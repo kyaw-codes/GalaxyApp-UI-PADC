@@ -107,12 +107,13 @@ class AuthenticationFormVC: VerticallyScrollableVC<MainCoordinator> {
         guard let coordinator = coordinator else { return }
         
         if viewType == .signUp {
+            // Sign up with facebook
             let name = nameOutlineField.textField.text ?? ""
             let phone = phoneNoOutlineField.textField.text ?? ""
             let password = passwordOutlineField.textField.text ?? ""
             let email = emailOutlineField.textField.text ?? ""
             
-            ApiService.shared.signUpWithFb(vc: self, name: name, email: email, phone: phone, password: password) { result in
+            ApiServiceImpl.shared.signUpWithFb(vc: self, name: name, email: email, phone: phone, password: password) { result in
                 do {
                     let result = try result.get()
                     coordinator.home(userData: result.data)
@@ -123,7 +124,7 @@ class AuthenticationFormVC: VerticallyScrollableVC<MainCoordinator> {
             }
         } else {
             // Sign in with facebook
-            ApiService.shared.signInWithFacebook { result in
+            ApiServiceImpl.shared.signInWithFacebook { result in
                 do {
                     let result = try result.get()
                     coordinator.home(userData: result.data)
@@ -135,7 +136,25 @@ class AuthenticationFormVC: VerticallyScrollableVC<MainCoordinator> {
     }
     
     @objc private func handleGoogleTapped() {
+        let name = nameOutlineField.textField.text ?? ""
+        let phone = phoneNoOutlineField.textField.text ?? ""
+        let password = passwordOutlineField.textField.text ?? ""
+        let email = emailOutlineField.textField.text ?? ""
         
+        if viewType == .signUp {
+            ApiServiceImpl.shared.signUpWithGoogle(vc: self, name: name, email: email, phone: phone, password: password) { result in
+                print("Successful")
+                do {
+                    let response = try result.get()
+                    print("Hi")
+                    print(response)
+                } catch {
+                    print("[Error while sign up with google] \(error)")
+                }
+            }
+        } else {
+            // Sign in with google
+        }
     }
     
 }

@@ -30,3 +30,13 @@ func getToken() -> String {
     }
     return token
 }
+
+/// Convert double value into "0hr 0min" format
+func calculateDuration(_ duration: Double?) -> String {
+    guard let duration = duration else {
+        return "0hr 0m"
+    }
+    let hour = Int(duration / 60)
+    let minute = Int(Int(duration) % 60)
+    return "\(hour)hr \(minute)m"
+}

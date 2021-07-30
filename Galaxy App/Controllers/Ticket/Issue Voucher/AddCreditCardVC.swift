@@ -63,7 +63,7 @@ class AddCreditCardVC: UIViewController {
         let cvc = cvcField.textField.text ?? ""
         spinner.startAnimating()
         
-        ApiService.shared.createNewCard(cardNo: cardNo, cardHolder: cardHolder, expirationDate: expirationDate, cvc: cvc) { [weak self] result in
+        ApiServiceImpl.shared.createNewCard(cardNo: cardNo, cardHolder: cardHolder, expirationDate: expirationDate, cvc: cvc) { [weak self] result in
             do {
                 let cards = try result.get()
                 self?.spinner.stopAnimating()

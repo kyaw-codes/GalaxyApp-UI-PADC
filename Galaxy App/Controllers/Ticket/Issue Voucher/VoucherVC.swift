@@ -40,7 +40,17 @@ class VoucherVC: VerticallyScrollableVC<TicketCoordinator> {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        ticketView.ticket = .init(coverPath: checkoutVM.imageUrl, movieName: checkoutVM.movieName, duration: checkoutVM.duration, format: checkoutVM.movieType, bookingNo: checkoutVM.bookingNo, showDateTime: "\(checkoutVM.startTime) - \(checkoutVM.bookingDateForVoucher)", theater: "\(checkoutVM.cinemaName)", screen: 2, row: "\(checkoutVM.row)", seats: checkoutVM.seatNumbers, price: checkoutVM.totalPrice)
+        ticketView.ticket = .init(
+            coverPath: checkoutVM.imageUrl,
+            movieName: checkoutVM.movieName,
+            duration: checkoutVM.duration,
+            format: checkoutVM.movieType,
+            bookingNo: checkoutVM.bookingNo,
+            showDateTime: "\(checkoutVM.startTime) - \(checkoutVM.bookingDateForVoucher)",
+            theater: "\(checkoutVM.cinemaName)",
+            screen: 2, row: "\(checkoutVM.row)",
+            seats: checkoutVM.seatNumbers,
+            price: checkoutVM.totalPrice)
         
         setupViews()
         
