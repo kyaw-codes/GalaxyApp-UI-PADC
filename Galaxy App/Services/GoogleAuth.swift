@@ -69,7 +69,6 @@ public class GoogleAuth : NSObject, GIDSignInDelegate {
         )
         
         onGoogleAuthSuccess?(userData)
-        
     }
     
 }
