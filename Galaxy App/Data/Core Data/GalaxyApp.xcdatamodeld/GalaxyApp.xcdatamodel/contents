@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G5033c" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="BelongToTypeEntity" representedClassName="BelongToTypeEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MovieEntity" inverseName="belongToTypeEntity" inverseEntity="MovieEntity"/>
+    </entity>
+    <entity name="CardEntity" representedClassName="CardEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="cardHolder" optional="YES" attributeType="String"/>
+        <attribute name="cardNumber" optional="YES" attributeType="String"/>
+        <attribute name="cardType" optional="YES" attributeType="String"/>
+        <attribute name="expirationDate" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="cards" inverseEntity="UserEntity"/>
+    </entity>
+    <entity name="CastEntity" representedClassName="CastEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="adult" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="castId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="character" optional="YES" attributeType="String"/>
+        <attribute name="creditID" optional="YES" attributeType="String"/>
+        <attribute name="gender" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="knownForDepartment" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="order" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="originalName" optional="YES" attributeType="String"/>
+        <attribute name="popularity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="profilePath" optional="YES" attributeType="String"/>
+        <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MovieEntity" inverseName="casts" inverseEntity="MovieEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="MovieDetailEntity" representedClassName="MovieDetailEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="genres" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="originalTitle" optional="YES" attributeType="String"/>
+        <attribute name="overview" optional="YES" attributeType="String"/>
+        <attribute name="posterPath" optional="YES" attributeType="String"/>
+        <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="releaseDate" optional="YES" attributeType="String"/>
+        <attribute name="runtime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MovieEntity" inverseName="detail" inverseEntity="MovieEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="MovieEntity" representedClassName="MovieEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="genres" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="originalTitle" optional="YES" attributeType="String"/>
+        <attribute name="posterPath" optional="YES" attributeType="String"/>
+        <attribute name="releaseDate" optional="YES" attributeType="String"/>
+        <relationship name="belongToTypeEntity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BelongToTypeEntity" inverseName="movies" inverseEntity="BelongToTypeEntity"/>
+        <relationship name="casts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CastEntity" inverseName="movies" inverseEntity="CastEntity"/>
+        <relationship name="detail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MovieDetailEntity" inverseName="movie" inverseEntity="MovieDetailEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="UserEntity" representedClassName="UserEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="profileImage" optional="YES" attributeType="String"/>
+        <attribute name="totalExpense" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CardEntity" inverseName="owner" inverseEntity="CardEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <elements>
+        <element name="BelongToTypeEntity" positionX="514.1360473632812" positionY="-436.3731384277344" width="128" height="73"/>
+        <element name="CardEntity" positionX="336.7999877929688" positionY="-59.2677001953125" width="128" height="133"/>
+        <element name="CastEntity" positionX="24.338134765625" positionY="-371.1019592285156" width="128" height="238"/>
+        <element name="MovieDetailEntity" positionX="577.4960327148438" positionY="-332.8566131591797" width="128" height="178"/>
+        <element name="MovieEntity" positionX="229.4561767578125" positionY="-299.4270172119141" width="128" height="149"/>
+        <element name="UserEntity" positionX="46.895263671875" positionY="-32.3531494140625" width="128" height="148"/>
+    </elements>
+</model>

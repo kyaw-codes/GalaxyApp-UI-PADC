@@ -81,7 +81,7 @@ class AdditionalServiceVC: UIViewController {
     
     private func fetchSnacks(then: @escaping ([Snack]) -> Void) {
         spinner.startAnimating()
-        ApiServiceImpl.shared.fetchSnakcList { [weak self] result in
+        NetworkAgentImpl.shared.fetchSnakcList { [weak self] result in
             do {
                 let response = try result.get()
                 then(response.data ?? [])
@@ -95,7 +95,7 @@ class AdditionalServiceVC: UIViewController {
     
     private func fetchPaymentMethods(then: @escaping ([PaymentMethod]) -> Void) {
         spinner.startAnimating()
-        ApiServiceImpl.shared.fetchPayments { [weak self] result in
+        NetworkAgentImpl.shared.fetchPayments { [weak self] result in
             do {
                 let response = try result.get()
                 then(response.data ?? [])

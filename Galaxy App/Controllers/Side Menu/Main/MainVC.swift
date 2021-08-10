@@ -112,7 +112,7 @@ class MainVC: UIViewController {
     private func onLogoutTapped() {
         spinner.startAnimating()
         
-        ApiServiceImpl.shared.logOut { [weak self] in
+        NetworkAgentImpl.shared.logOut { [weak self] in
             self?.spinner.stopAnimating()
             self?.homeVC.coordinator?.logOut()
         }

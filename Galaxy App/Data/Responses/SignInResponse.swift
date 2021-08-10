@@ -19,7 +19,7 @@ struct SignInResponse: Codable {
 struct SignInUserData: Codable {
     let id: Int?
     let name, email, phone: String?
-    let totalExpense: Int?
+    let totalExpense: Double?
     let profileImage: String?
     let cards: [Card]?
 

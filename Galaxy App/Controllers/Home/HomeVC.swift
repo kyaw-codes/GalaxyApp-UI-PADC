@@ -88,27 +88,19 @@ class HomeVC: UIViewController {
     
     private func fetchNowShowingMovies(then completion: @escaping ([Movie]) -> Void) {
         spinner.startAnimating()
-        ApiServiceImpl.shared.fetchMovies { [weak self] result in
-            do {
-                let response = try result.get()
-                completion(response.movies ?? [])
-                self?.collectionView.reloadData()
-                self?.spinner.stopAnimating()
-            } catch {
-                fatalError("[Error while fetching now showing movies] \(error)")
-            }
+        MovieModelImpl.shared.getAllMovies(movieType: .nowShowing) { [weak self] movies in
+            completion(movies)
+            self?.collectionView.reloadData()
+            self?.spinner.stopAnimating()
         }
     }
     
     private func fetchComingMovies(then completion: @escaping ([Movie]) -> Void) {
-        ApiServiceImpl.shared.fetchMovies(movieType: MovieFetchType.coming) { [weak self] result in
-            do {
-                let response = try result.get()
-                completion(response.movies ?? [])
-                self?.collectionView.reloadData()
-            } catch {
-                fatalError("[Error while fetching upcoming movies] \(error)")
-            }
+        spinner.startAnimating()
+        MovieModelImpl.shared.getAllMovies(movieType: .coming) { [weak self] movies in
+            completion(movies)
+            self?.collectionView.reloadData()
+            self?.spinner.stopAnimating()
         }
     }
 }

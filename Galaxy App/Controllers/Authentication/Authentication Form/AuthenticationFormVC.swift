@@ -113,7 +113,7 @@ class AuthenticationFormVC: VerticallyScrollableVC<MainCoordinator> {
             let password = passwordOutlineField.textField.text ?? ""
             let email = emailOutlineField.textField.text ?? ""
             
-            ApiServiceImpl.shared.signUpWithFb(vc: self, name: name, email: email, phone: phone, password: password) { result in
+            NetworkAgentImpl.shared.signUpWithFb(vc: self, name: name, email: email, phone: phone, password: password) { result in
                 do {
                     let result = try result.get()
                     coordinator.home(userData: result.data)
@@ -124,7 +124,7 @@ class AuthenticationFormVC: VerticallyScrollableVC<MainCoordinator> {
             }
         } else {
             // Sign in with facebook
-            ApiServiceImpl.shared.signInWithFacebook { result in
+            NetworkAgentImpl.shared.signInWithFacebook { result in
                 do {
                     let result = try result.get()
                     coordinator.home(userData: result.data)
@@ -142,7 +142,7 @@ class AuthenticationFormVC: VerticallyScrollableVC<MainCoordinator> {
         let email = emailOutlineField.textField.text ?? ""
         
         if viewType == .signUp {
-            ApiServiceImpl.shared.signUpWithGoogle(vc: self, name: name, email: email, phone: phone, password: password) { result in
+            NetworkAgentImpl.shared.signUpWithGoogle(vc: self, name: name, email: email, phone: phone, password: password) { result in
                 print("Successful")
                 do {
                     let response = try result.get()

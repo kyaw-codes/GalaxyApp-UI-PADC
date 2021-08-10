@@ -98,7 +98,7 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
     
     private func fetchCards(then completion: @escaping ([Card]) -> Void) {
         spinner.startAnimating()
-        ApiServiceImpl.shared.fetchProfile { [weak self] result in
+        NetworkAgentImpl.shared.fetchProfile { [weak self] result in
             do {
                 let response = try result.get()
                 if let cards = response.data?.cards {
@@ -135,7 +135,7 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
             snacks: voucherModel.snack
         )
         
-        ApiServiceImpl.shared.checkout(reqBody) { [weak self] result in
+        NetworkAgentImpl.shared.checkout(reqBody) { [weak self] result in
             do {
                 let response = try result.get()
                 self?.voucherModel.bookingNo = response.data?.bookingNo ?? ""

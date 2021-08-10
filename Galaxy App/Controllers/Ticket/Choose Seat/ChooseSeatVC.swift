@@ -88,7 +88,7 @@ class ChooseSeatVC: VerticallyScrollableVC<TicketCoordinator> {
     private func fetchSeatData(then completion: @escaping ([[Seat]]) -> Void) {
         let checkoutVM = GlobalVoucherModel.instance
         spinner.startAnimating()
-        ApiServiceImpl.shared.fetchSeatPlan(timeslodId: checkoutVM.timeslodId, date: checkoutVM.bookingDate) { [weak self] result in
+        NetworkAgentImpl.shared.fetchSeatPlan(timeslodId: checkoutVM.timeslodId, date: checkoutVM.bookingDate) { [weak self] result in
             do {
                 let response = try result.get()
                 completion(response.data ?? [[]])

@@ -21,6 +21,14 @@
 		021C75B62646DAD100607FE1 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75B52646DAD100607FE1 /* HomeCoordinator.swift */; };
 		021C75BA2646E37600607FE1 /* HomeDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75B92646E37600607FE1 /* HomeDatasource.swift */; };
 		021C75BF2646E3D100607FE1 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75BE2646E3D100607FE1 /* ProfileCell.swift */; };
+		0227B58726C15DB80071E5BF /* GalaxyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0227B58526C15DB80071E5BF /* GalaxyApp.xcdatamodeld */; };
+		0227B58926C15DC10071E5BF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227B58826C15DC10071E5BF /* CoreDataStack.swift */; };
+		0227B58B26C164620071E5BF /* BaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227B58A26C164620071E5BF /* BaseRepository.swift */; };
+		0227B58D26C165950071E5BF /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227B58C26C165950071E5BF /* MovieRepository.swift */; };
+		0227B58F26C165FB0071E5BF /* BelongToTypeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227B58E26C165FB0071E5BF /* BelongToTypeRepository.swift */; };
+		0227B59226C179B30071E5BF /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227B59126C179B30071E5BF /* BaseModel.swift */; };
+		0227B59426C179D20071E5BF /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227B59326C179D20071E5BF /* MovieModel.swift */; };
+		0227B59726C17FE70071E5BF /* MovieEntity+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227B59626C17FE70071E5BF /* MovieEntity+Extension.swift */; };
 		0238B95D264A4EC300EC352B /* FloatingMovieDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238B95C264A4EC300EC352B /* FloatingMovieDescriptionVC.swift */; };
 		0238EBB0264534C30049D670 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBAF264534C30049D670 /* TabBar.swift */; };
 		0238EBB8264564910049D670 /* OutlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238EBB7264564910049D670 /* OutlineTextField.swift */; };
@@ -44,7 +52,7 @@
 		024E04BE2657A72B00C9E164 /* OutlineButton+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04BD2657A72B00C9E164 /* OutlineButton+extensions.swift */; };
 		025CF5202663AA2C00D0112E /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025CF51F2663AA2C00D0112E /* TicketView.swift */; };
 		025CF5232663B92000D0112E /* VoucherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025CF5222663B92000D0112E /* VoucherVC.swift */; };
-		026D3D1726A5C3210098B657 /* ApiServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026D3D1626A5C3210098B657 /* ApiServiceImpl.swift */; };
+		026D3D1726A5C3210098B657 /* NetworkAgentImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026D3D1626A5C3210098B657 /* NetworkAgentImpl.swift */; };
 		026D3D1B26A5C5EF0098B657 /* FacebookAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026D3D1A26A5C5EF0098B657 /* FacebookAuth.swift */; };
 		026F227426B03DC600E6BEAE /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F227326B03DC600E6BEAE /* UIViewController+extension.swift */; };
 		026F227626B1880F00E6BEAE /* TimeSlotVC+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F227526B1880F00E6BEAE /* TimeSlotVC+Layout.swift */; };
@@ -53,7 +61,7 @@
 		026F227C26B19EA900E6BEAE /* CheckoutVC+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F227B26B19EA900E6BEAE /* CheckoutVC+Layout.swift */; };
 		026F228126B19F4000E6BEAE /* CheckoutVC+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F228026B19F4000E6BEAE /* CheckoutVC+CollectionViewDelegate.swift */; };
 		026F228326B2613100E6BEAE /* HomeVC+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F228226B2613100E6BEAE /* HomeVC+Layout.swift */; };
-		0279BCC126B30DF200DA6DA8 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0279BCC026B30DF200DA6DA8 /* ApiService.swift */; };
+		0279BCC126B30DF200DA6DA8 /* NetworkAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0279BCC026B30DF200DA6DA8 /* NetworkAgent.swift */; };
 		027C3EF826590C4F0048EDCF /* ChooseSeatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027C3EF726590C4F0048EDCF /* ChooseSeatVC.swift */; };
 		0297781A2644327E00112F4E /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029778192644327E00112F4E /* UIImageView+Extensions.swift */; };
 		0297783D264437D700112F4E /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0297783C264437D700112F4E /* UILabel+Extensions.swift */; };
@@ -146,6 +154,14 @@
 		021C75B52646DAD100607FE1 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		021C75B92646E37600607FE1 /* HomeDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDatasource.swift; sourceTree = "<group>"; };
 		021C75BE2646E3D100607FE1 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		0227B58626C15DB80071E5BF /* GalaxyApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GalaxyApp.xcdatamodel; sourceTree = "<group>"; };
+		0227B58826C15DC10071E5BF /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		0227B58A26C164620071E5BF /* BaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRepository.swift; sourceTree = "<group>"; };
+		0227B58C26C165950071E5BF /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
+		0227B58E26C165FB0071E5BF /* BelongToTypeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BelongToTypeRepository.swift; sourceTree = "<group>"; };
+		0227B59126C179B30071E5BF /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		0227B59326C179D20071E5BF /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
+		0227B59626C17FE70071E5BF /* MovieEntity+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieEntity+Extension.swift"; sourceTree = "<group>"; };
 		0238B95C264A4EC300EC352B /* FloatingMovieDescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingMovieDescriptionVC.swift; sourceTree = "<group>"; };
 		0238EBAF264534C30049D670 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		0238EBB7264564910049D670 /* OutlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineTextField.swift; sourceTree = "<group>"; };
@@ -169,7 +185,7 @@
 		024E04BD2657A72B00C9E164 /* OutlineButton+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutlineButton+extensions.swift"; sourceTree = "<group>"; };
 		025CF51F2663AA2C00D0112E /* TicketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		025CF5222663B92000D0112E /* VoucherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherVC.swift; sourceTree = "<group>"; };
-		026D3D1626A5C3210098B657 /* ApiServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceImpl.swift; sourceTree = "<group>"; };
+		026D3D1626A5C3210098B657 /* NetworkAgentImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAgentImpl.swift; sourceTree = "<group>"; };
 		026D3D1A26A5C5EF0098B657 /* FacebookAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuth.swift; sourceTree = "<group>"; };
 		026F227326B03DC600E6BEAE /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
 		026F227526B1880F00E6BEAE /* TimeSlotVC+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeSlotVC+Layout.swift"; sourceTree = "<group>"; };
@@ -178,7 +194,7 @@
 		026F227B26B19EA900E6BEAE /* CheckoutVC+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckoutVC+Layout.swift"; sourceTree = "<group>"; };
 		026F228026B19F4000E6BEAE /* CheckoutVC+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckoutVC+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		026F228226B2613100E6BEAE /* HomeVC+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeVC+Layout.swift"; sourceTree = "<group>"; };
-		0279BCC026B30DF200DA6DA8 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		0279BCC026B30DF200DA6DA8 /* NetworkAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAgent.swift; sourceTree = "<group>"; };
 		027C3EF726590C4F0048EDCF /* ChooseSeatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSeatVC.swift; sourceTree = "<group>"; };
 		029778192644327E00112F4E /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		0297783C264437D700112F4E /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
@@ -393,6 +409,33 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		0227B58426C15D930071E5BF /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				0227B59526C17FDB0071E5BF /* Entities */,
+				0227B58826C15DC10071E5BF /* CoreDataStack.swift */,
+				0227B58526C15DB80071E5BF /* GalaxyApp.xcdatamodeld */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		0227B59026C1798B0071E5BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0227B59126C179B30071E5BF /* BaseModel.swift */,
+				0227B59326C179D20071E5BF /* MovieModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0227B59526C17FDB0071E5BF /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				0227B59626C17FE70071E5BF /* MovieEntity+Extension.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		023A7AA726ABE4D70037A00E /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,15 +475,15 @@
 			path = Ticket;
 			sourceTree = "<group>";
 		};
-		026D3D1526A5C30D0098B657 /* Services */ = {
+		026D3D1526A5C30D0098B657 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				0279BCC026B30DF200DA6DA8 /* ApiService.swift */,
-				026D3D1626A5C3210098B657 /* ApiServiceImpl.swift */,
+				0279BCC026B30DF200DA6DA8 /* NetworkAgent.swift */,
+				026D3D1626A5C3210098B657 /* NetworkAgentImpl.swift */,
 				026D3D1A26A5C5EF0098B657 /* FacebookAuth.swift */,
 				023A7AA126ABBDD80037A00E /* GoogleAuth.swift */,
 			);
-			path = Services;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		026F227D26B19EDA00E6BEAE /* AdditionalServiceVC */ = {
@@ -465,6 +508,9 @@
 		0279BCC226B30EE200DA6DA8 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				0227B58A26C164620071E5BF /* BaseRepository.swift */,
+				0227B58C26C165950071E5BF /* MovieRepository.swift */,
+				0227B58E26C165FB0071E5BF /* BelongToTypeRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -515,7 +561,7 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		029847DF26A7D2890078F013 /* Network Model */ = {
+		029847DF26A7D2890078F013 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
 				029847E026A7D3100078F013 /* SignUpResponse.swift */,
@@ -532,7 +578,7 @@
 				02B7DFF526AAF2E5006D8F81 /* VoucherResponse.swift */,
 				023A7A9F26ABBC030037A00E /* FbSignUpRequestBody.swift */,
 			);
-			path = "Network Model";
+			path = Responses;
 			sourceTree = "<group>";
 		};
 		02AE45C1264429A400C7F031 = {
@@ -556,10 +602,9 @@
 		02AE45CC264429A400C7F031 /* Galaxy App */ = {
 			isa = PBXGroup;
 			children = (
-				026D3D1526A5C30D0098B657 /* Services */,
-				0279BCC226B30EE200DA6DA8 /* Repository */,
+				026D3D1526A5C30D0098B657 /* Network */,
 				021C75B82646E36B00607FE1 /* Datasources */,
-				02D635AE2647E45F0027A0BA /* Models */,
+				02D635AE2647E45F0027A0BA /* Data */,
 				020E6A5F26442F8600636EE6 /* Views */,
 				020E6A5E26442F8000636EE6 /* Controllers */,
 				020E6A6126442F9200636EE6 /* Resources */,
@@ -620,14 +665,17 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
-		02D635AE2647E45F0027A0BA /* Models */ = {
+		02D635AE2647E45F0027A0BA /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				02BE1E0F26A91C40006E554E /* GlobalVoucherModel.swift */,
+				0227B58426C15D930071E5BF /* Core Data */,
+				0227B59026C1798B0071E5BF /* Model */,
+				0279BCC226B30EE200DA6DA8 /* Repository */,
 				02BE1E1726A95DF5006E554E /* VOS */,
-				029847DF26A7D2890078F013 /* Network Model */,
+				029847DF26A7D2890078F013 /* Responses */,
 			);
-			path = Models;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		02D635C0264858660027A0BA /* Home */ = {
@@ -825,20 +873,23 @@
 				02A17BB0266F4671007CFF1C /* AuthenticationFormVC.swift in Sources */,
 				02F8880A265A098F00C8D3F3 /* ProjectorView.swift in Sources */,
 				020032F12656265700C71FDF /* CastDatasource.swift in Sources */,
+				0227B58926C15DC10071E5BF /* CoreDataStack.swift in Sources */,
 				021683DE2671CA9D007072DD /* AdditionalServiceCollectionView.swift in Sources */,
 				021C75AF2646864300607FE1 /* MainCoordinator.swift in Sources */,
 				02F8880D265A0B9F00C8D3F3 /* SeatingPlanCollectionView.swift in Sources */,
 				02BE1E0C26A86333006E554E /* GenreDatasource.swift in Sources */,
 				02B7DFF026AA64E9006D8F81 /* PaymentMethodResponse.swift in Sources */,
+				0227B58F26C165FB0071E5BF /* BelongToTypeRepository.swift in Sources */,
 				021C75BA2646E37600607FE1 /* HomeDatasource.swift in Sources */,
 				02BE1E0E26A91BD4006E554E /* CheckoutData.swift in Sources */,
 				0297783D264437D700112F4E /* UILabel+Extensions.swift in Sources */,
 				02DF7F3E2670B68200D2F01C /* TimeSlotDatasource.swift in Sources */,
 				023A7AA426ABE18C0037A00E /* MainVC+layout.swift in Sources */,
 				02BE1E1626A95DEA006E554E /* CinemaResponse.swift in Sources */,
+				0227B58726C15DB80071E5BF /* GalaxyApp.xcdatamodeld in Sources */,
 				024083EE266B6A6300F40F54 /* TabContentCell.swift in Sources */,
 				02BE1E1026A91C40006E554E /* GlobalVoucherModel.swift in Sources */,
-				0279BCC126B30DF200DA6DA8 /* ApiService.swift in Sources */,
+				0279BCC126B30DF200DA6DA8 /* NetworkAgent.swift in Sources */,
 				02BE1E0A26A85F54006E554E /* GenreCollectionViewCell.swift in Sources */,
 				026F227826B18AE400E6BEAE /* ChooseSeatVC+Layout.swift in Sources */,
 				02D6E425265FDAC600F8791C /* PaymentMethodCell.swift in Sources */,
@@ -846,7 +897,7 @@
 				02B7DFF426AAB64F006D8F81 /* CardResponse.swift in Sources */,
 				029847E726A8342B0078F013 /* MovieResponse.swift in Sources */,
 				02B7DFF626AAF2E5006D8F81 /* VoucherResponse.swift in Sources */,
-				026D3D1726A5C3210098B657 /* ApiServiceImpl.swift in Sources */,
+				026D3D1726A5C3210098B657 /* NetworkAgentImpl.swift in Sources */,
 				021683E22671DB96007072DD /* AdditionalServiceDatasource.swift in Sources */,
 				02F88821265A505700C8D3F3 /* AdditionalServiceVC.swift in Sources */,
 				02BE1E1D26A971D7006E554E /* CinemaTimeSlotVO.swift in Sources */,
@@ -866,10 +917,12 @@
 				0240841D266DCCF300F40F54 /* MainVC.swift in Sources */,
 				02B7DFF826AB2F54006D8F81 /* TicketVO.swift in Sources */,
 				02BF24C9264443F200B257D1 /* UIFont+Extensions.swift in Sources */,
+				0227B59726C17FE70071E5BF /* MovieEntity+Extension.swift in Sources */,
 				02BE1E1226A954F0006E554E /* Utilities.swift in Sources */,
 				02B29D2B266755B9000B78D6 /* VerticallyScrollableVC.swift in Sources */,
 				02D6E4412660AB3B00F8791C /* String+extensions.swift in Sources */,
 				026F228326B2613100E6BEAE /* HomeVC+Layout.swift in Sources */,
+				0227B59426C179D20071E5BF /* MovieModel.swift in Sources */,
 				024083EB266B66E400F40F54 /* TabHeaderCell.swift in Sources */,
 				02BE1E1426A95941006E554E /* CalendarVO.swift in Sources */,
 				029847E326A7D32E0078F013 /* SignInResponse.swift in Sources */,
@@ -893,6 +946,7 @@
 				0297784026443DE200112F4E /* UIStackView+Extensions.swift in Sources */,
 				02D635AC2647E37E0027A0BA /* MovieHeader.swift in Sources */,
 				029847DE26A7D2850078F013 /* Constants.swift in Sources */,
+				0227B59226C179B30071E5BF /* BaseModel.swift in Sources */,
 				02AE45D0264429A400C7F031 /* SceneDelegate.swift in Sources */,
 				02F88814265A0CC700C8D3F3 /* SeatingPlanDatasource.swift in Sources */,
 				026F227C26B19EA900E6BEAE /* CheckoutVC+Layout.swift in Sources */,
@@ -911,6 +965,7 @@
 				020032EE265625AB00C71FDF /* CastCell.swift in Sources */,
 				026F227626B1880F00E6BEAE /* TimeSlotVC+Layout.swift in Sources */,
 				021C75BF2646E3D100607FE1 /* ProfileCell.swift in Sources */,
+				0227B58D26C165950071E5BF /* MovieRepository.swift in Sources */,
 				020E6A6426442FBB00636EE6 /* UIColor+Extensions.swift in Sources */,
 				024E04A826576CA400C9E164 /* TicketCoordinator.swift in Sources */,
 				02BE1E1F26A9B48A006E554E /* CinemaSeatResponse.swift in Sources */,
@@ -919,6 +974,7 @@
 				023A7AA226ABBDD80037A00E /* GoogleAuth.swift in Sources */,
 				02D635A82647E3270027A0BA /* MovieCell.swift in Sources */,
 				021C75B62646DAD100607FE1 /* HomeCoordinator.swift in Sources */,
+				0227B58B26C164620071E5BF /* BaseRepository.swift in Sources */,
 				024E04AC265771FE00C9E164 /* CalendarCell.swift in Sources */,
 				026D3D1B26A5C5EF0098B657 /* FacebookAuth.swift in Sources */,
 				02D6E41D265FD08300F8791C /* PromocodeCell.swift in Sources */,
@@ -1121,6 +1177,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0227B58526C15DB80071E5BF /* GalaxyApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0227B58626C15DB80071E5BF /* GalaxyApp.xcdatamodel */,
+			);
+			currentVersion = 0227B58626C15DB80071E5BF /* GalaxyApp.xcdatamodel */;
+			path = GalaxyApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 02AE45C2264429A400C7F031 /* Project object */;
 }

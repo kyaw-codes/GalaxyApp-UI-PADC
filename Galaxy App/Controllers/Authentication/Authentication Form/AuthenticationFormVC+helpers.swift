@@ -21,7 +21,7 @@ extension AuthenticationFormVC {
     func signUp(name: String, email: String, phone: String, password: String) {
         guard let coordinator = coordinator else { return }
         
-        ApiServiceImpl.shared.signUpWithEmail(
+        NetworkAgentImpl.shared.signUpWithEmail(
             name: name,
             email: email,
             phone: phone,
@@ -41,7 +41,7 @@ extension AuthenticationFormVC {
     func login(email: String, password: String) {
         guard let coordinator = coordinator else { return }
         
-        ApiServiceImpl.shared.signIn(email: email, password: password) { [weak self] result in
+        NetworkAgentImpl.shared.signIn(email: email, password: password) { [weak self] result in
             do {
                 let response = try result.get()
                 let userData = response.data

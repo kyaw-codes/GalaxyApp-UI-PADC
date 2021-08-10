@@ -74,7 +74,7 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
     
     private func fetchMovieDetail(then completion: @escaping (MovieDetail?) -> Void) {
         spinner.startAnimating()
-        ApiServiceImpl.shared.getMovieDetail(movieId) { [weak self] result in
+        NetworkAgentImpl.shared.getMovieDetail(movieId) { [weak self] result in
             do {
                 let response = try result.get()
                 completion(response.data)

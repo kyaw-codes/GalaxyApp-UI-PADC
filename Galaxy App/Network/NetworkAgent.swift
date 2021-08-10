@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-protocol ApiService {
+protocol NetworkAgent {
     
     // MARK: - Auth
     

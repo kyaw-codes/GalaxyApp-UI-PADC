@@ -64,7 +64,7 @@ class TimeSlotVC: UIViewController {
     
     private func fetchTimeSlots(date: String) {
         spinner.startAnimating()
-        ApiServiceImpl.shared.fetchCinemaDayTimeSlots(movieId: GlobalVoucherModel.instance.movieId, date: date) { [weak self] result in
+        NetworkAgentImpl.shared.fetchCinemaDayTimeSlots(movieId: GlobalVoucherModel.instance.movieId, date: date) { [weak self] result in
             do {
                 let response = try result.get()
                 let cinemas = response.getCinemaVM() ?? []

@@ -8,14 +8,14 @@
 import Foundation
 import Alamofire
 
-public enum MovieFetchType: String {
+public enum MovieFetchType: String, CaseIterable {
     case nowShowing = "current"
     case coming = "comingsoon"
 }
 
-class ApiServiceImpl : ApiService {
+class NetworkAgentImpl : NetworkAgent {
 
-    static let shared = ApiServiceImpl()
+    static let shared = NetworkAgentImpl()
     
     private init() {}
     

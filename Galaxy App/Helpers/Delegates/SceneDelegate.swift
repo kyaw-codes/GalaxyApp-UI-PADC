@@ -39,7 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             coordinator?.start()
         } else {
             // fetch profile here
-            ApiServiceImpl.shared.fetchProfile { [weak self] result in
+            NetworkAgentImpl.shared.fetchProfile { [weak self] result in
                 do {
                     let response = try result.get()
                     // Show home screen
