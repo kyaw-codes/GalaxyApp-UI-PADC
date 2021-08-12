@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol MovieModel {
     func getAllMovies(
@@ -14,7 +15,7 @@ protocol MovieModel {
         completion: @escaping ([Movie]) -> Void
     )
     
-    func getMovieDetail(_ id: Int, completion: @escaping (MovieDetailResponse) -> Void)
+    func getMovieDetail(_ id: Int, completion: @escaping (MovieDetail) -> Void)
 }
 
 final class MovieModelImpl: BaseModel, MovieModel {
@@ -39,8 +40,27 @@ final class MovieModelImpl: BaseModel, MovieModel {
         }
     }
     
-    func getMovieDetail(_ id: Int, completion: @escaping (MovieDetailResponse) -> Void) {
-        
+    func getMovieDetail(_ id: Int, completion: @escaping (MovieDetail) -> Void) {
+        NetworkAgentImpl.shared.getMovieDetail(id) { [weak self] result in
+            do {
+                let response = try result.get()
+                if let detail = response.data {
+                    self?.movieRepo.save(movieDetail: detail)
+                    try self?.movieRepo.getMovieDetail(by: id, completion: { detail in
+                        if let detail = detail {
+                            completion(detail)
+                        }
+                    })
+                }
+            } catch {
+                switch error {
+                case is AFError:
+                    fatalError("[Error while fetching movie detail] \(error)")
+                default:
+                    fatalError("[Error in repo] \(error)")
+                }
+            }
+        }
     }
 
 }

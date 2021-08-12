@@ -9,7 +9,7 @@
         <attribute name="cardNumber" optional="YES" attributeType="String"/>
         <attribute name="cardType" optional="YES" attributeType="String"/>
         <attribute name="expirationDate" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="cards" inverseEntity="UserEntity"/>
     </entity>
     <entity name="CastEntity" representedClassName="CastEntity" syncable="YES" codeGenerationType="class">
@@ -18,7 +18,7 @@
         <attribute name="character" optional="YES" attributeType="String"/>
         <attribute name="creditID" optional="YES" attributeType="String"/>
         <attribute name="gender" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="knownForDepartment" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="order" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -34,7 +34,7 @@
     </entity>
     <entity name="MovieDetailEntity" representedClassName="MovieDetailEntity" syncable="YES" codeGenerationType="class">
         <attribute name="genres" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="originalTitle" optional="YES" attributeType="String"/>
         <attribute name="overview" optional="YES" attributeType="String"/>
         <attribute name="posterPath" optional="YES" attributeType="String"/>
@@ -50,7 +50,7 @@
     </entity>
     <entity name="MovieEntity" representedClassName="MovieEntity" syncable="YES" codeGenerationType="class">
         <attribute name="genres" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="originalTitle" optional="YES" attributeType="String"/>
         <attribute name="posterPath" optional="YES" attributeType="String"/>
         <attribute name="releaseDate" optional="YES" attributeType="String"/>
@@ -65,7 +65,7 @@
     </entity>
     <entity name="UserEntity" representedClassName="UserEntity" syncable="YES" codeGenerationType="class">
         <attribute name="email" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="phone" optional="YES" attributeType="String"/>
         <attribute name="profileImage" optional="YES" attributeType="String"/>
@@ -82,7 +82,7 @@
         <element name="CardEntity" positionX="336.7999877929688" positionY="-59.2677001953125" width="128" height="133"/>
         <element name="CastEntity" positionX="24.338134765625" positionY="-371.1019592285156" width="128" height="238"/>
         <element name="MovieDetailEntity" positionX="577.4960327148438" positionY="-332.8566131591797" width="128" height="178"/>
-        <element name="MovieEntity" positionX="229.4561767578125" positionY="-299.4270172119141" width="128" height="149"/>
+        <element name="MovieEntity" positionX="229.4561767578125" positionY="-299.4270172119141" width="128" height="163"/>
         <element name="UserEntity" positionX="46.895263671875" positionY="-32.3531494140625" width="128" height="148"/>
     </elements>
 </model>

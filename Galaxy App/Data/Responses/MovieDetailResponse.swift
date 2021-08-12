@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 // MARK: - MovieDetailResponse
 struct MovieDetailResponse: Codable {
@@ -32,6 +33,19 @@ struct MovieDetail: Codable {
         case posterPath = "poster_path"
         case casts
     }
+    
+    func toMovieDetailEntity(context: NSManagedObjectContext) -> MovieDetailEntity {
+        let entity = MovieDetailEntity(context: context)
+        entity.id = Int64(id ?? -1)
+        entity.originalTitle = originalTitle ?? ""
+        entity.releaseDate = releaseDate ?? ""
+        entity.genres = genres?.joined(separator: ",")
+        entity.overview = overview ?? ""
+        entity.rating = rating ?? 0.0
+        entity.runtime = runtime ?? 0.0
+        entity.posterPath = posterPath ?? ""
+        return entity
+    }
 }
 
 // MARK: - Cast
@@ -57,5 +71,22 @@ struct Cast: Codable {
         case character
         case creditID = "credit_id"
         case order
+    }
+    
+    func toCastEntity(context: NSManagedObjectContext) -> CastEntity {
+        let entity = CastEntity(context: context)
+        entity.id = Int64(id ?? -1)
+        entity.adult = adult ?? false
+        entity.gender = Int16(gender ?? 1)
+        entity.knownForDepartment = knownForDepartment ?? ""
+        entity.name = name ?? ""
+        entity.originalName = originalName ?? ""
+        entity.popularity = popularity ?? 0.0
+        entity.profilePath = profilePath ?? ""
+        entity.castId = Int64(castID ?? -1)
+        entity.character = character ?? ""
+        entity.creditID = creditID ?? ""
+        entity.order = Int64(order ?? -1)
+        return entity
     }
 }

@@ -21,6 +21,7 @@
 		021C75B62646DAD100607FE1 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75B52646DAD100607FE1 /* HomeCoordinator.swift */; };
 		021C75BA2646E37600607FE1 /* HomeDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75B92646E37600607FE1 /* HomeDatasource.swift */; };
 		021C75BF2646E3D100607FE1 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75BE2646E3D100607FE1 /* ProfileCell.swift */; };
+		021D3F5F26C2EF6B00AF7D8B /* CastEntity+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D3F5E26C2EF6B00AF7D8B /* CastEntity+Extension.swift */; };
 		0227B58726C15DB80071E5BF /* GalaxyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0227B58526C15DB80071E5BF /* GalaxyApp.xcdatamodeld */; };
 		0227B58926C15DC10071E5BF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227B58826C15DC10071E5BF /* CoreDataStack.swift */; };
 		0227B58B26C164620071E5BF /* BaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227B58A26C164620071E5BF /* BaseRepository.swift */; };
@@ -52,6 +53,7 @@
 		024E04BE2657A72B00C9E164 /* OutlineButton+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024E04BD2657A72B00C9E164 /* OutlineButton+extensions.swift */; };
 		025CF5202663AA2C00D0112E /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025CF51F2663AA2C00D0112E /* TicketView.swift */; };
 		025CF5232663B92000D0112E /* VoucherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025CF5222663B92000D0112E /* VoucherVC.swift */; };
+		026C072026C23F970047A853 /* MovieDetailEntity+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026C071F26C23F970047A853 /* MovieDetailEntity+Extension.swift */; };
 		026D3D1726A5C3210098B657 /* NetworkAgentImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026D3D1626A5C3210098B657 /* NetworkAgentImpl.swift */; };
 		026D3D1B26A5C5EF0098B657 /* FacebookAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026D3D1A26A5C5EF0098B657 /* FacebookAuth.swift */; };
 		026F227426B03DC600E6BEAE /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026F227326B03DC600E6BEAE /* UIViewController+extension.swift */; };
@@ -154,6 +156,7 @@
 		021C75B52646DAD100607FE1 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		021C75B92646E37600607FE1 /* HomeDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDatasource.swift; sourceTree = "<group>"; };
 		021C75BE2646E3D100607FE1 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		021D3F5E26C2EF6B00AF7D8B /* CastEntity+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CastEntity+Extension.swift"; sourceTree = "<group>"; };
 		0227B58626C15DB80071E5BF /* GalaxyApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GalaxyApp.xcdatamodel; sourceTree = "<group>"; };
 		0227B58826C15DC10071E5BF /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		0227B58A26C164620071E5BF /* BaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRepository.swift; sourceTree = "<group>"; };
@@ -185,6 +188,7 @@
 		024E04BD2657A72B00C9E164 /* OutlineButton+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutlineButton+extensions.swift"; sourceTree = "<group>"; };
 		025CF51F2663AA2C00D0112E /* TicketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		025CF5222663B92000D0112E /* VoucherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherVC.swift; sourceTree = "<group>"; };
+		026C071F26C23F970047A853 /* MovieDetailEntity+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailEntity+Extension.swift"; sourceTree = "<group>"; };
 		026D3D1626A5C3210098B657 /* NetworkAgentImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAgentImpl.swift; sourceTree = "<group>"; };
 		026D3D1A26A5C5EF0098B657 /* FacebookAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuth.swift; sourceTree = "<group>"; };
 		026F227326B03DC600E6BEAE /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
@@ -432,6 +436,8 @@
 			isa = PBXGroup;
 			children = (
 				0227B59626C17FE70071E5BF /* MovieEntity+Extension.swift */,
+				026C071F26C23F970047A853 /* MovieDetailEntity+Extension.swift */,
+				021D3F5E26C2EF6B00AF7D8B /* CastEntity+Extension.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -866,6 +872,7 @@
 				026F227426B03DC600E6BEAE /* UIViewController+extension.swift in Sources */,
 				02D6E43026600F4E00F8791C /* CreditCardCell.swift in Sources */,
 				029847E126A7D3100078F013 /* SignUpResponse.swift in Sources */,
+				021D3F5F26C2EF6B00AF7D8B /* CastEntity+Extension.swift in Sources */,
 				02D635C3264861170027A0BA /* SideMenuVC.swift in Sources */,
 				02D994142666921F00C7A00A /* CalendarCollectionView.swift in Sources */,
 				024E04A526576C5500C9E164 /* TimeSlotVC.swift in Sources */,
@@ -883,6 +890,7 @@
 				021C75BA2646E37600607FE1 /* HomeDatasource.swift in Sources */,
 				02BE1E0E26A91BD4006E554E /* CheckoutData.swift in Sources */,
 				0297783D264437D700112F4E /* UILabel+Extensions.swift in Sources */,
+				026C072026C23F970047A853 /* MovieDetailEntity+Extension.swift in Sources */,
 				02DF7F3E2670B68200D2F01C /* TimeSlotDatasource.swift in Sources */,
 				023A7AA426ABE18C0037A00E /* MainVC+layout.swift in Sources */,
 				02BE1E1626A95DEA006E554E /* CinemaResponse.swift in Sources */,

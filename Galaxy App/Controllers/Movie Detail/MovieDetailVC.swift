@@ -43,6 +43,8 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
     let getTicketButton = CTAButton(title: "Get your ticket")
     let spinner = UIActivityIndicatorView(style: .large)
     
+    private var model: MovieModel = MovieModelImpl.shared
+    
     // MARK: - Lifecycles
     
     override func viewDidLoad() {
@@ -74,20 +76,15 @@ class MovieDetailVC: UIViewController, FloatingPanelControllerDelegate {
     
     private func fetchMovieDetail(then completion: @escaping (MovieDetail?) -> Void) {
         spinner.startAnimating()
-        NetworkAgentImpl.shared.getMovieDetail(movieId) { [weak self] result in
-            do {
-                let response = try result.get()
-                completion(response.data)
-                self?.spinner.stopAnimating()
-
-                GlobalVoucherModel.instance.apply { model in
-                    model.movieName = response.data?.originalTitle ?? ""
-                    model.movieId = response.data?.id ?? -1
-                    model.duration = "\(response.data?.runtime ?? 0)m"
-                    model.imageUrl = response.data?.posterPath ?? ""
-                }
-            } catch {
-                fatalError("[Error while fetching movie detail] \(error)")
+        model.getMovieDetail(movieId) { [weak self] detail in
+            completion(detail)
+            self?.spinner.stopAnimating()
+            
+            GlobalVoucherModel.instance.apply { model in
+                model.movieName = detail.originalTitle ?? ""
+                model.movieId = detail.id ?? -1
+                model.duration = "\(detail.runtime ?? 0)m"
+                model.imageUrl = detail.posterPath ?? ""
             }
         }
     }
