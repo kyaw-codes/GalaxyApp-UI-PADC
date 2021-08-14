@@ -39,14 +39,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             coordinator?.start()
         } else {
             // fetch profile here
-            NetworkAgentImpl.shared.fetchProfile { [weak self] result in
-                do {
-                    let response = try result.get()
-                    // Show home screen
-                    (self?.coordinator as! MainCoordinator).home(userData: response.data)
-                } catch {
-                    fatalError("[Error fetch profile] \(error)")
-                }
+            UserModelImpl.shared.fetchProfile { [weak self] profileResponse in
+                (self?.coordinator as! MainCoordinator).home(userData: profileResponse.data)
             }
         }
         

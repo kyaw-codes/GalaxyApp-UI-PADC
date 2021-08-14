@@ -27,6 +27,7 @@ class MainVC: UIViewController {
     var isMenuVisible = false
     var contentLeadingConstraint: Constraint?
     var menuLeadingConstraint: Constraint?
+    private let authModel = AuthModelImpl.shared
 
     // MARK: - Lifecycles
     
@@ -112,7 +113,7 @@ class MainVC: UIViewController {
     private func onLogoutTapped() {
         spinner.startAnimating()
         
-        NetworkAgentImpl.shared.logOut { [weak self] in
+        authModel.logOut { [weak self] in
             self?.spinner.stopAnimating()
             self?.homeVC.coordinator?.logOut()
         }

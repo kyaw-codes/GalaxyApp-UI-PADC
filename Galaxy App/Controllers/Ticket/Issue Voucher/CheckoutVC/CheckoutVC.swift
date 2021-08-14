@@ -15,6 +15,7 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
     
     private let datasource = CreditCardDatasource()
     let voucherModel = GlobalVoucherModel.instance
+    private let cardModel = CardModelImpl.shared
     
     var cards = [Card]() {
         didSet {
@@ -98,20 +99,14 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
     
     private func fetchCards(then completion: @escaping ([Card]) -> Void) {
         spinner.startAnimating()
-        NetworkAgentImpl.shared.fetchProfile { [weak self] result in
-            do {
-                let response = try result.get()
-                if let cards = response.data?.cards {
-                    completion(cards)
-                    self?.collectionView.reloadData()
-                    self?.spinner.stopAnimating()
-
-                    if cards.count > 0 {
-                        self?.voucherModel.cardId = cards[0].id ?? -1
-                    }
-                }
-            } catch {
-                print("[Error while fetching profile] \(error)")
+        
+        cardModel.getAllCards { [weak self] cards in
+            completion(cards)
+            self?.collectionView.reloadData()
+            self?.spinner.stopAnimating()
+            
+            if cards.count > 0 {
+                self?.voucherModel.cardId = cards[0].id ?? -1
             }
         }
     }
@@ -157,6 +152,7 @@ class CheckoutVC: VerticallyScrollableVC<TicketCoordinator> {
         formVC.onNewCardAdded = { [weak self] in
             guard let self = self else { return }
             self.fetchCards(then: self.setter(for: self, keyPath: \.cards))
+            self.collectionView.reloadData()
         }
         self.navigationController?.present(formVC, animated: true, completion: nil)
     }

@@ -15,6 +15,8 @@ class AuthenticationFormVC: VerticallyScrollableVC<MainCoordinator> {
     
     var onConfirmTapped: ((MainCoordinator, SignInUserData?) -> Void)?
     
+    let authModel = AuthModelImpl.shared
+    
     // MARK: - Views
     
     let nameLabel = UILabel(text: "Full name", font: .poppinsRegular, size: 17, color: .galaxyLightBlack)
@@ -113,24 +115,14 @@ class AuthenticationFormVC: VerticallyScrollableVC<MainCoordinator> {
             let password = passwordOutlineField.textField.text ?? ""
             let email = emailOutlineField.textField.text ?? ""
             
-            NetworkAgentImpl.shared.signUpWithFb(vc: self, name: name, email: email, phone: phone, password: password) { result in
-                do {
-                    let result = try result.get()
-                    coordinator.home(userData: result.data)
-                    UserDefaults.standard.setValue(result.token, forKey: keyAuthToken)
-                } catch {
-                    print("[Error while sign up with facebook] \(error)")
-                }
+            authModel.signUpWithFb(vc: self, name: name, email: email, phone: phone, password: password) { response in
+                coordinator.home(userData: response.data)
+                UserDefaults.standard.setValue(response.token, forKey: keyAuthToken)
             }
         } else {
             // Sign in with facebook
-            NetworkAgentImpl.shared.signInWithFacebook { result in
-                do {
-                    let result = try result.get()
-                    coordinator.home(userData: result.data)
-                } catch {
-                    print("[Error while sign in with facebook] \(error)")
-                }
+            authModel.signInWithFacebook { response in
+                coordinator.home(userData: response.data)
             }
         }
     }
@@ -142,16 +134,16 @@ class AuthenticationFormVC: VerticallyScrollableVC<MainCoordinator> {
         let email = emailOutlineField.textField.text ?? ""
         
         if viewType == .signUp {
-            NetworkAgentImpl.shared.signUpWithGoogle(vc: self, name: name, email: email, phone: phone, password: password) { result in
-                print("Successful")
-                do {
-                    let response = try result.get()
-                    print("Hi")
-                    print(response)
-                } catch {
-                    print("[Error while sign up with google] \(error)")
-                }
-            }
+//            NetworkAgentImpl.shared.signUpWithGoogle(vc: self, name: name, email: email, phone: phone, password: password) { result in
+//                print("Successful")
+//                do {
+//                    let response = try result.get()
+//                    print("Hi")
+//                    print(response)
+//                } catch {
+//                    print("[Error while sign up with google] \(error)")
+//                }
+//            }
         } else {
             // Sign in with google
         }

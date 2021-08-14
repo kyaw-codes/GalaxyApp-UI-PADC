@@ -12,6 +12,7 @@ class AddCreditCardVC: UIViewController {
     let contentView = UIView(backgroundColor: .white)
     
     var onNewCardAdded: (() -> Void)?
+    private let cardModel = CardModelImpl.shared
     
     private let cardNoField = OutlineTextField(placeholder: "1234.5678.9101.8014", keyboardType: .numberPad)
     private let cardHolderField = OutlineTextField(placeholder: "Craig Federighi", keyboardType: .default)
@@ -63,15 +64,10 @@ class AddCreditCardVC: UIViewController {
         let cvc = cvcField.textField.text ?? ""
         spinner.startAnimating()
         
-        NetworkAgentImpl.shared.createNewCard(cardNo: cardNo, cardHolder: cardHolder, expirationDate: expirationDate, cvc: cvc) { [weak self] result in
-            do {
-                let cards = try result.get()
-                self?.spinner.stopAnimating()
-                self?.onNewCardAdded?()
-                self?.dismiss(animated: true, completion: nil)
-            } catch {
-                fatalError("[Error while creating new card] \(error)")
-            }
+        cardModel.saveCard(cardNo: cardNo, cardHolder: cardHolder, expirationDate: expirationDate, cvc: cvc) { [weak self] in
+            self?.spinner.stopAnimating()
+            self?.onNewCardAdded?()
+            self?.dismiss(animated: true, completion: nil)
         }
     }
     

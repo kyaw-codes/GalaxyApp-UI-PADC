@@ -22,6 +22,13 @@
 		021C75BA2646E37600607FE1 /* HomeDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75B92646E37600607FE1 /* HomeDatasource.swift */; };
 		021C75BF2646E3D100607FE1 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C75BE2646E3D100607FE1 /* ProfileCell.swift */; };
 		021D3F5F26C2EF6B00AF7D8B /* CastEntity+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D3F5E26C2EF6B00AF7D8B /* CastEntity+Extension.swift */; };
+		021D3F6126C4D90D00AF7D8B /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D3F6026C4D90D00AF7D8B /* UserRepository.swift */; };
+		021D3F6326C4D9B900AF7D8B /* CardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D3F6226C4D9B900AF7D8B /* CardRepository.swift */; };
+		021D3F6526C4E14600AF7D8B /* UserEntity+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D3F6426C4E14600AF7D8B /* UserEntity+Extension.swift */; };
+		021D3F6726C4E20000AF7D8B /* CardEntity+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D3F6626C4E20000AF7D8B /* CardEntity+Extension.swift */; };
+		021D3F6926C53DE700AF7D8B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D3F6826C53DE700AF7D8B /* UserModel.swift */; };
+		021D3F6B26C53E3700AF7D8B /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D3F6A26C53E3700AF7D8B /* AuthModel.swift */; };
+		021D3F6D26C6272700AF7D8B /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D3F6C26C6272700AF7D8B /* CardModel.swift */; };
 		0227B58726C15DB80071E5BF /* GalaxyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0227B58526C15DB80071E5BF /* GalaxyApp.xcdatamodeld */; };
 		0227B58926C15DC10071E5BF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227B58826C15DC10071E5BF /* CoreDataStack.swift */; };
 		0227B58B26C164620071E5BF /* BaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227B58A26C164620071E5BF /* BaseRepository.swift */; };
@@ -157,6 +164,13 @@
 		021C75B92646E37600607FE1 /* HomeDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDatasource.swift; sourceTree = "<group>"; };
 		021C75BE2646E3D100607FE1 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		021D3F5E26C2EF6B00AF7D8B /* CastEntity+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CastEntity+Extension.swift"; sourceTree = "<group>"; };
+		021D3F6026C4D90D00AF7D8B /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		021D3F6226C4D9B900AF7D8B /* CardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRepository.swift; sourceTree = "<group>"; };
+		021D3F6426C4E14600AF7D8B /* UserEntity+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+Extension.swift"; sourceTree = "<group>"; };
+		021D3F6626C4E20000AF7D8B /* CardEntity+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardEntity+Extension.swift"; sourceTree = "<group>"; };
+		021D3F6826C53DE700AF7D8B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		021D3F6A26C53E3700AF7D8B /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
+		021D3F6C26C6272700AF7D8B /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		0227B58626C15DB80071E5BF /* GalaxyApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GalaxyApp.xcdatamodel; sourceTree = "<group>"; };
 		0227B58826C15DC10071E5BF /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		0227B58A26C164620071E5BF /* BaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRepository.swift; sourceTree = "<group>"; };
@@ -428,6 +442,9 @@
 			children = (
 				0227B59126C179B30071E5BF /* BaseModel.swift */,
 				0227B59326C179D20071E5BF /* MovieModel.swift */,
+				021D3F6826C53DE700AF7D8B /* UserModel.swift */,
+				021D3F6A26C53E3700AF7D8B /* AuthModel.swift */,
+				021D3F6C26C6272700AF7D8B /* CardModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -438,6 +455,8 @@
 				0227B59626C17FE70071E5BF /* MovieEntity+Extension.swift */,
 				026C071F26C23F970047A853 /* MovieDetailEntity+Extension.swift */,
 				021D3F5E26C2EF6B00AF7D8B /* CastEntity+Extension.swift */,
+				021D3F6426C4E14600AF7D8B /* UserEntity+Extension.swift */,
+				021D3F6626C4E20000AF7D8B /* CardEntity+Extension.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -517,6 +536,8 @@
 				0227B58A26C164620071E5BF /* BaseRepository.swift */,
 				0227B58C26C165950071E5BF /* MovieRepository.swift */,
 				0227B58E26C165FB0071E5BF /* BelongToTypeRepository.swift */,
+				021D3F6026C4D90D00AF7D8B /* UserRepository.swift */,
+				021D3F6226C4D9B900AF7D8B /* CardRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -909,6 +930,7 @@
 				021683E22671DB96007072DD /* AdditionalServiceDatasource.swift in Sources */,
 				02F88821265A505700C8D3F3 /* AdditionalServiceVC.swift in Sources */,
 				02BE1E1D26A971D7006E554E /* CinemaTimeSlotVO.swift in Sources */,
+				021D3F6126C4D90D00AF7D8B /* UserRepository.swift in Sources */,
 				0238EBB0264534C30049D670 /* TabBar.swift in Sources */,
 				029847E526A7DB390078F013 /* ProfileResponse.swift in Sources */,
 				023A7AA626ABE4000037A00E /* SideMenuVC+layout.swift in Sources */,
@@ -923,6 +945,7 @@
 				02BF24D52645078300B257D1 /* AuthenticationVC.swift in Sources */,
 				024083F3266C842C00F40F54 /* TabHeader.swift in Sources */,
 				0240841D266DCCF300F40F54 /* MainVC.swift in Sources */,
+				021D3F6726C4E20000AF7D8B /* CardEntity+Extension.swift in Sources */,
 				02B7DFF826AB2F54006D8F81 /* TicketVO.swift in Sources */,
 				02BF24C9264443F200B257D1 /* UIFont+Extensions.swift in Sources */,
 				0227B59726C17FE70071E5BF /* MovieEntity+Extension.swift in Sources */,
@@ -945,11 +968,14 @@
 				023A7AAC26ABE6210037A00E /* AuthenticationFormVC+delegate.swift in Sources */,
 				02BE1E0626A84073006E554E /* MovieDetailResponse.swift in Sources */,
 				02BF24CC26446B8D00B257D1 /* OutlineButton.swift in Sources */,
+				021D3F6B26C53E3700AF7D8B /* AuthModel.swift in Sources */,
 				021C75A426464E5800607FE1 /* UIButton+Extensions.swift in Sources */,
 				02DF7F3C2670B22C00D2F01C /* TimeSlotCollectionView.swift in Sources */,
+				021D3F6326C4D9B900AF7D8B /* CardRepository.swift in Sources */,
 				023A7AAE26ABE72E0037A00E /* AuthenticationFormVC+helpers.swift in Sources */,
 				024D5D71266DE7EA00980E9A /* UIView+Extension.swift in Sources */,
 				02D6E43E266010DA00F8791C /* Date+extension.swift in Sources */,
+				021D3F6D26C6272700AF7D8B /* CardModel.swift in Sources */,
 				024E04B5265772F900C9E164 /* CalendarDatasource.swift in Sources */,
 				0297784026443DE200112F4E /* UIStackView+Extensions.swift in Sources */,
 				02D635AC2647E37E0027A0BA /* MovieHeader.swift in Sources */,
@@ -972,6 +998,7 @@
 				02D6E43B2660106F00F8791C /* CreditCardDatasource.swift in Sources */,
 				020032EE265625AB00C71FDF /* CastCell.swift in Sources */,
 				026F227626B1880F00E6BEAE /* TimeSlotVC+Layout.swift in Sources */,
+				021D3F6926C53DE700AF7D8B /* UserModel.swift in Sources */,
 				021C75BF2646E3D100607FE1 /* ProfileCell.swift in Sources */,
 				0227B58D26C165950071E5BF /* MovieRepository.swift in Sources */,
 				020E6A6426442FBB00636EE6 /* UIColor+Extensions.swift in Sources */,
@@ -988,6 +1015,7 @@
 				02D6E41D265FD08300F8791C /* PromocodeCell.swift in Sources */,
 				02D635B526481E1A0027A0BA /* Bundle+Extensions.swift in Sources */,
 				02F88826265AA8B600C8D3F3 /* CountButtonGroup.swift in Sources */,
+				021D3F6526C4E14600AF7D8B /* UserEntity+Extension.swift in Sources */,
 				02DF7F402670BB6700D2F01C /* TimeslotCell.swift in Sources */,
 				025CF5202663AA2C00D0112E /* TicketView.swift in Sources */,
 			);

@@ -16,7 +16,10 @@ public enum MovieFetchType: String, CaseIterable {
 class NetworkAgentImpl : NetworkAgent {
 
     static let shared = NetworkAgentImpl()
-    
+
+    let facebookAuth = FacebookAuth()
+    let googleAuth = GoogleAuth()
+
     private init() {}
     
     // MARK: - Authentication
@@ -57,8 +60,7 @@ class NetworkAgentImpl : NetworkAgent {
         completion: @escaping (Result<SignUpResponse, AFError>) -> Void
     ) {
     
-        let fbAuth = FacebookAuth()
-        fbAuth.start(vc: vc) { response in
+        facebookAuth.start(vc: vc) { response in
             let id = response.id
             let body = FbSignUpRequestBody(name: name, email: email, phone: phone, password: password, id: id)
 
@@ -91,8 +93,6 @@ class NetworkAgentImpl : NetworkAgent {
         password: String,
         completion: @escaping (Result<SignUpResponse, AFError>) -> Void
     ) {
-        let googleAuth = GoogleAuth()
-        
         googleAuth.start(view: vc) { response in
 //            let id = response.id
 //            let body = GoogleSignUpRequestBody(name: name, email: email, phone: phone, password: password, id: id)
@@ -174,9 +174,7 @@ class NetworkAgentImpl : NetworkAgent {
     
     func logOut(completion: @escaping () -> Void) {
         let token = getToken()
-        
         AF.request("\(baseUrl)/api/v1/logout", headers: [.authorization(bearerToken: token)]).response { response in
-            UserDefaults.standard.removeObject(forKey: keyAuthToken)
             completion()
         }
     }

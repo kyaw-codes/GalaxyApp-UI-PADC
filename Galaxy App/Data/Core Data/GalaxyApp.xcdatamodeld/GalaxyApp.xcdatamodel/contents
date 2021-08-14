@@ -11,6 +11,12 @@
         <attribute name="expirationDate" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="cards" inverseEntity="UserEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+                <constraint value="cardNumber"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="CastEntity" representedClassName="CastEntity" syncable="YES" codeGenerationType="class">
         <attribute name="adult" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>

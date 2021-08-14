@@ -21,35 +21,18 @@ extension AuthenticationFormVC {
     func signUp(name: String, email: String, phone: String, password: String) {
         guard let coordinator = coordinator else { return }
         
-        NetworkAgentImpl.shared.signUpWithEmail(
-            name: name,
-            email: email,
-            phone: phone,
-            password: password
-        ) { [weak self] result in
-            do {
-                let response = try result.get()
-                let userData = response.data
-                UserDefaults.standard.setValue(response.token, forKey: keyAuthToken)
-                self?.onConfirmTapped?(coordinator, userData)
-            } catch {
-                print("[Error while sign up] \(error)")
-            }
+        authModel.signUpWithEmail(name: name, email: email, phone: phone, password: password) { [weak self] response in
+            UserDefaults.standard.setValue(response.token, forKey: keyAuthToken)
+            self?.onConfirmTapped?(coordinator, response.data)
         }
     }
     
     func login(email: String, password: String) {
         guard let coordinator = coordinator else { return }
-        
-        NetworkAgentImpl.shared.signIn(email: email, password: password) { [weak self] result in
-            do {
-                let response = try result.get()
-                let userData = response.data
-                UserDefaults.standard.setValue(response.token, forKey: keyAuthToken)
-                self?.onConfirmTapped?(coordinator, userData)
-            } catch {
-                fatalError("[Error while sign in] \(error)")
-            }
+
+        authModel.signIn(email: email, password: password) { [weak self] response in
+            UserDefaults.standard.setValue(response.token, forKey: keyAuthToken)
+            self?.onConfirmTapped?(coordinator, response.data)
         }
     }
 }

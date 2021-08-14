@@ -43,4 +43,14 @@ struct Card: Codable {
         case expirationDate = "expiration_date"
         case cardType
     }
+    
+    func toCardEntity() -> CardEntity {
+        let entity = CardEntity(context: CoreDataStack.shared.context)
+        entity.id = Int64(id ?? -1)
+        entity.cardHolder = cardHolder
+        entity.cardNumber = cardNumber
+        entity.expirationDate = expirationDate
+        entity.cardType = cardType
+        return entity
+    }
 }
