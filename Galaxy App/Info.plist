@@ -28,6 +28,12 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>184248700398872</string>
+	<key>FacebookClientToken</key>
+	<string>8ba0c37c486b00cec2057df8b0223c04</string>
+	<key>FacebookDisplayName</key>
+	<string>Galaxy App</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIAppFonts</key>
@@ -76,11 +82,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>FacebookAppID</key>
-	<string>184248700398872</string>
-	<key>FacebookClientToken</key>
-	<string>8ba0c37c486b00cec2057df8b0223c04</string>
-	<key>FacebookDisplayName</key>
-	<string>Galaxy App</string>
 </dict>
 </plist>
